@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+//后台首页
+Route::resource("/admin","Admin\AdminController" );
