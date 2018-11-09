@@ -7,7 +7,9 @@
   <title>@yield('title')</title> 
   <!-- plugins:css --> 
   <link rel="stylesheet" href="/static/admins/vendors/iconfonts/mdi/css/materialdesignicons.min.css" /> 
-  <link rel="stylesheet" href="/static/admins/vendors/css/vendor.bundle.base.css" /> 
+  <link rel="stylesheet" href="/static/admins/vendors/css/vendor.bundle.base.css" />
+  <!-- 分页样式 -->
+  <link rel="stylesheet" href="/static/admins/css/mypage.css" /> 
   <!-- endinject --> 
   <!-- inject:css --> 
   <link rel="stylesheet" href="/static/admins/css/style.css" /> 
@@ -24,14 +26,7 @@
     </div> 
     <div class="navbar-menu-wrapper d-flex align-items-stretch"> 
      <div class="search-field d-none d-md-block"> 
-      <form class="d-flex align-items-center h-100" action="#"> 
-       <div class="input-group"> 
-        <div class="input-group-prepend bg-transparent"> 
-         <i class="input-group-text border-0 mdi mdi-magnify"></i> 
-        </div> 
-        <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects" /> 
-       </div> 
-      </form> 
+       
      </div> 
      <ul class="navbar-nav navbar-nav-right"> 
       <li class="nav-item nav-profile dropdown"> <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> 
@@ -40,90 +35,12 @@
          <span class="availability-status online"></span> 
         </div> 
         <div class="nav-profile-text"> 
-         <p class="mb-1 text-black">David Greymaax</p> 
+         <p class="mb-1 text-black">{{session('name')}}</p> 
         </div> </a> 
-       <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown"> 
-        <a class="dropdown-item" href="#"> <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a> 
-        <div class="dropdown-divider"></div> 
-        <a class="dropdown-item" href="#"> <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a> 
+       <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">    
+        <a class="dropdown-item" href="/adminlogin/create"> <i class="mdi mdi-logout mr-2 text-primary"></i> 退出 </a> 
        </div> </li> 
       <li class="nav-item d-none d-lg-block full-screen-link"> <a class="nav-link"> <i class="mdi mdi-fullscreen" id="fullscreen-button"></i> </a> </li> 
-      <li class="nav-item dropdown"> <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> <i class="mdi mdi-email-outline"></i> <span class="count-symbol bg-warning"></span> </a> 
-       <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown"> 
-        <h6 class="p-3 mb-0">Messages</h6> 
-        <div class="dropdown-divider"></div> 
-        <a class="dropdown-item preview-item"> 
-         <div class="preview-thumbnail"> 
-          <img src="/static/admins/images/faces/face4.jpg" alt="image" class="profile-pic" /> 
-         </div> 
-         <div class="preview-item-content d-flex align-items-start flex-column justify-content-center"> 
-          <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6> 
-          <p class="text-gray mb-0"> 1 Minutes ago </p> 
-         </div> </a> 
-        <div class="dropdown-divider"></div> 
-        <a class="dropdown-item preview-item"> 
-         <div class="preview-thumbnail"> 
-          <img src="/static/admins/images/faces/face2.jpg" alt="image" class="profile-pic" /> 
-         </div> 
-         <div class="preview-item-content d-flex align-items-start flex-column justify-content-center"> 
-          <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6> 
-          <p class="text-gray mb-0"> 15 Minutes ago </p> 
-         </div> </a> 
-        <div class="dropdown-divider"></div> 
-        <a class="dropdown-item preview-item"> 
-         <div class="preview-thumbnail"> 
-          <img src="/static/admins/images/faces/face3.jpg" alt="image" class="profile-pic" /> 
-         </div> 
-         <div class="preview-item-content d-flex align-items-start flex-column justify-content-center"> 
-          <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6> 
-          <p class="text-gray mb-0"> 18 Minutes ago </p> 
-         </div> </a> 
-        <div class="dropdown-divider"></div> 
-        <h6 class="p-3 mb-0 text-center">4 new messages</h6> 
-       </div> </li> 
-      <li class="nav-item dropdown"> <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown"> <i class="mdi mdi-bell-outline"></i> <span class="count-symbol bg-danger"></span> </a> 
-       <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown"> 
-        <h6 class="p-3 mb-0">Notifications</h6> 
-        <div class="dropdown-divider"></div> 
-        <a class="dropdown-item preview-item"> 
-         <div class="preview-thumbnail"> 
-          <div class="preview-icon bg-success"> 
-           <i class="mdi mdi-calendar"></i> 
-          </div> 
-         </div> 
-         <div class="preview-item-content d-flex align-items-start flex-column justify-content-center"> 
-          <h6 class="preview-subject font-weight-normal mb-1">Event today</h6> 
-          <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p> 
-         </div> </a> 
-        <div class="dropdown-divider"></div> 
-        <a class="dropdown-item preview-item"> 
-         <div class="preview-thumbnail"> 
-          <div class="preview-icon bg-warning"> 
-           <i class="mdi mdi-settings"></i> 
-          </div> 
-         </div> 
-         <div class="preview-item-content d-flex align-items-start flex-column justify-content-center"> 
-          <h6 class="preview-subject font-weight-normal mb-1">Settings</h6> 
-          <p class="text-gray ellipsis mb-0"> Update dashboard </p> 
-         </div> </a> 
-        <div class="dropdown-divider"></div> 
-        <a class="dropdown-item preview-item"> 
-         <div class="preview-thumbnail"> 
-          <div class="preview-icon bg-info"> 
-           <i class="mdi mdi-link-variant"></i> 
-          </div> 
-         </div> 
-         <div class="preview-item-content d-flex align-items-start flex-column justify-content-center"> 
-          <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6> 
-          <p class="text-gray ellipsis mb-0"> New admin wow! </p> 
-         </div> </a> 
-        <div class="dropdown-divider"></div> 
-        <h6 class="p-3 mb-0 text-center">See all notifications</h6> 
-       </div> </li> 
-      <li class="nav-item nav-logout d-none d-lg-block"> <a class="nav-link" href="#"> <i class="mdi mdi-power"></i> </a> </li> 
-      <li class="nav-item nav-settings d-none d-lg-block"> <a class="nav-link" href="#"> <i class="mdi mdi-format-line-spacing"></i> </a> </li> 
-     </ul> 
-     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas"> <span class="mdi mdi-menu"></span> </button> 
     </div> 
    </nav> 
    <!-- partial --> 
@@ -138,7 +55,7 @@
          <!--change to offline or busy as needed--> 
         </div> 
         <div class="nav-profile-text d-flex flex-column"> 
-         <span class="font-weight-bold mb-2">David Grey. H</span> 
+         <span class="font-weight-bold mb-2">{{session('name')}}</span> 
          <span class="text-secondary text-small">Project Manager</span> 
         </div> <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i> </a> </li> 
       <li class="nav-item"> <a class="nav-link" href="index.html"> <span class="menu-title">后台首页</span> <i class="mdi mdi-home menu-icon"></i> </a> </li> 
@@ -191,14 +108,16 @@
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#guanggao" aria-expanded="false" aria-controls="guanggao"> <span class="menu-title">广告管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-lumx menu-icon"></i> </a> 
        <div class="collapse" id="guanggao"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">广告列表</a></li> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">广告添加</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/adver">广告列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/adver/create">广告添加</a></li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#company" aria-expanded="false" aria-controls="company"> <span class="menu-title">公司管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-polymer menu-icon"></i> </a> 
        <div class="collapse" id="company"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">公司信息</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/company">公司列表</a></li>
+         <li class="nav-item"> <a class="nav-link" href="/company/create">公司添加</a></li> 
+
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#friendship" aria-expanded="false" aria-controls="friendship"> <span class="menu-title">友情链接管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-medical-bag menu-icon"></i> </a> 
@@ -226,6 +145,27 @@
     <!-- partial --> 
     <div class="main-panel"> 
      <div class="content-wrapper">
+      @if (count($errors) > 0)
+      <div class="mws-form-message warning">
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+        </div>
+        @endif
+      @if(session('success'))
+      <div class="d-flex align-items-center  btn btn-gradient-danger btn-fw">
+        {{session('success')}}
+      </div>
+      @endif
+      @if(session('error'))
+      <div class="mws-form-message error">
+          {{session('error')}}
+      </div>
+      @endif 
       @section('admin')
      
       @show
@@ -234,8 +174,8 @@
       </div>
      <footer class="footer"> 
       <div class="d-sm-flex justify-content-center justify-content-sm-between"> 
-       <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright &copy; 2017 <a href="" target="_blank">BootstrapDash</a>. All rights reserved. </span> 
-       <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted &amp; made with <i class="mdi mdi-heart text-danger"></i> - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span> 
+       <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 BootstrapDash. All rights reserved.</span> 
+       <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">联系电话<i class="mdi mdi-heart text-danger"></i> - 15518564257<a href="" target="_blank">广州灯饰人生有限公司</a></a></span> 
       </div> 
      </footer> 
      <!-- partial --> 
