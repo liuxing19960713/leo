@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Adver extends Model
+class Company extends Model
 {
-    protected $table="adver";
+    protected $table="about";
     protected $primaryKey="id";
     //设置是否需要自动维护时间戳
     public $timestamps=true;
     //可以批量被赋值的字段
-    protected $fillable=['ad_name','adv_title','pic','commpany'];
+    protected $fillable=['commpany','commpany_address','com_tel','brank_conten'];
 }

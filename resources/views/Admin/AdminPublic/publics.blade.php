@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
  <head> 
+  <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
   <!-- Required meta tags --> 
   <meta charset="utf-8" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> 
@@ -157,14 +158,15 @@
         </div>
         @endif
       @if(session('success'))
-      <div class="d-flex align-items-center  btn btn-gradient-danger btn-fw">
+
+      <a href="javascript:void(0)" class="d-flex align-items-center  btn btn-gradient-danger btn-fw" id="success"> 
         {{session('success')}}
-      </div>
+      </a>
       @endif
       @if(session('error'))
-      <div class="mws-form-message error">
+      <a href="javascript:void(0)" class="mws-form-message error btn btn-gradient-danger btn-fw" id="error">
           {{session('error')}}
-      </div>
+      </a>
       @endif 
       @section('admin')
      
@@ -183,7 +185,15 @@
     <!-- main-panel ends --> 
    </div> 
    <!-- page-body-wrapper ends --> 
-  </div> 
+  </div>
+  <script type="text/javascript">
+    $("#success").click(function(){
+      $("#success").remove();
+    });
+    $("#error").click(function(){
+      $("#error").remove();
+    });
+  </script> 
   <!-- container-scroller --> 
   <!-- plugins:js --> 
   <script src="/static/admins/vendors/js/vendor.bundle.base.js"></script> 
@@ -196,7 +206,8 @@
   <script src="/static/admins/js/misc.js"></script> 
   <!-- endinject --> 
   <!-- Custom js for this page--> 
-  <script src="/static/admins/js/dashboard.js"></script> 
+  <script src="/static/admins/js/dashboard.js"></script>
+  <script src="/static/admins/js/core/mws.js"></script>
   <!-- End custom js for this page-->   
  </body>
 </html>
