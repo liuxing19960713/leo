@@ -9,7 +9,7 @@ use App\Http\Requests\AdminAdverinsert;
 //导入请求校验类
 use App\Http\Requests\AdminAdveredit;
 //导入模型类Adver
-use App\Models\Adver;
+use App\Model\Adver;
 
 //引入Config
 use Config;
