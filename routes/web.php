@@ -14,3 +14,12 @@
 
 //后台首页
 Route::resource("/admin","Admin\AdminController" );
+// 后台商品
+Route::resource("/agoods","Admin\GoodsController");
+// 商品ajax删除
+Route::get('/agdel',"Admin\GoodsController@agdel");
+// 后台分类
+Route::Resource("/acate","Admin\CategoryController");
+// 分类ajax删除
+Route::get('/acadel',"Admin\CategoryController@acadel");
+

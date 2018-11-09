@@ -8,6 +8,8 @@
   <!-- plugins:css --> 
   <link rel="stylesheet" href="/static/admins/vendors/iconfonts/mdi/css/materialdesignicons.min.css" /> 
   <link rel="stylesheet" href="/static/admins/vendors/css/vendor.bundle.base.css" /> 
+  <link rel="stylesheet" href="/static/admins/mypage.css" />
+ <script src="/static/admins/js/jquery-1.8.3.min.js"></script>
   <!-- endinject --> 
   <!-- inject:css --> 
   <link rel="stylesheet" href="/static/admins/css/style.css" /> 
@@ -24,14 +26,14 @@
     </div> 
     <div class="navbar-menu-wrapper d-flex align-items-stretch"> 
      <div class="search-field d-none d-md-block"> 
-      <form class="d-flex align-items-center h-100" action="#"> 
+     <!--  <form class="d-flex align-items-center h-100" action="#"> 
        <div class="input-group"> 
         <div class="input-group-prepend bg-transparent"> 
          <i class="input-group-text border-0 mdi mdi-magnify"></i> 
         </div> 
         <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects" /> 
        </div> 
-      </form> 
+      </form>  -->
      </div> 
      <ul class="navbar-nav navbar-nav-right"> 
       <li class="nav-item nav-profile dropdown"> <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> 
@@ -141,7 +143,7 @@
          <span class="font-weight-bold mb-2">David Grey. H</span> 
          <span class="text-secondary text-small">Project Manager</span> 
         </div> <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i> </a> </li> 
-      <li class="nav-item"> <a class="nav-link" href="index.html"> <span class="menu-title">后台首页</span> <i class="mdi mdi-home menu-icon"></i> </a> </li> 
+      <li class="nav-item"> <a class="nav-link" href="/admin"> <span class="menu-title">后台首页</span> <i class="mdi mdi-home menu-icon"></i> </a> </li> 
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic"> <span class="menu-title">用户管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-account menu-icon"></i> </a> 
        <div class="collapse" id="ui-basic"> 
         <ul class="nav flex-column sub-menu"> 
@@ -158,15 +160,15 @@
       <li class="nav-item"> <a class="nav-link" href="#fenlei" aria-expanded="false" aria-controls="fenlei" data-toggle="collapse"> <span class="menu-title">分类管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-format-list-bulleted menu-icon"></i> </a> 
        <div class="collapse" id="fenlei"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="">分类列表</a></li> 
-         <li class="nav-item"> <a class="nav-link" href="">分类添加</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/acate">分类列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="acate/create">分类添加</a></li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" href="#shop" aria-expanded="false" aria-controls="shop" data-toggle="collapse"> <span class="menu-title">商品管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-shopping menu-icon"></i> </a> 
        <div class="collapse" id="shop"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="">商品列表</a></li> 
-         <li class="nav-item"> <a class="nav-link" href="">商品添加</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/agoods">商品列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/agoods/create">商品添加</a></li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" href="#order" aria-expanded="false" aria-controls="order" data-toggle="collapse"> <span class="menu-title">订单管理</span> <i class="menu-arrow"></i> <i class="mdi mdi mdi-square-inc-cash menu-icon"></i> </a> 
@@ -226,6 +228,28 @@
     <!-- partial --> 
     <div class="main-panel"> 
      <div class="content-wrapper">
+      @if(count($errors) > 0)
+       <div class="mws-form-message warning">
+        <div class="alert alert-danger">
+          <ul>  
+            @foreach($errors->all() as $error)
+            <li class="">{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+
+      @endif
+      @if(session('success'))
+      <a href="javascript:void(0)" class="d-flex align-items-center  btn btn-gradient-danger btn-fw" id="success"> 
+        {{session('success')}}
+      </a>
+      @endif
+      @if(session('error'))
+       <a href="javascript:void(0)" class="mws-form-message error btn btn-gradient-danger btn-fw" id="error">
+          {{session('error')}}
+      </a>
+      @endif 
       @section('admin')
      
       @show
@@ -248,6 +272,7 @@
   <!-- plugins:js --> 
   <script src="/static/admins/vendors/js/vendor.bundle.base.js"></script> 
   <script src="/static/admins/vendors/js/vendor.bundle.addons.js"></script> 
+
   <!-- endinject --> 
   <!-- Plugin js for this page--> 
   <!-- End plugin js for this page--> 
@@ -257,6 +282,17 @@
   <!-- endinject --> 
   <!-- Custom js for this page--> 
   <script src="/static/admins/js/dashboard.js"></script> 
+    <script type="text/javascript">
+    $("#success").click(function(){
+      $("#success").remove();
+    });
+    $("#error").click(function(){
+      $("#error").remove();
+    });
+
+  
+  </script> 
+  <script src="/static/admins/js/core/mws.js"></script>
   <!-- End custom js for this page-->   
  </body>
 </html>
