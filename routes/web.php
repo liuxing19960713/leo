@@ -12,8 +12,7 @@
 */
 
 
-//后台首页
-Route::resource("/admin","Admin\AdminController" );
+ 
 // 后台商品
 Route::resource("/agoods","Admin\GoodsController");
 // 商品ajax删除

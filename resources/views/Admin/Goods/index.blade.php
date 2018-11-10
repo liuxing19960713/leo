@@ -73,12 +73,13 @@
       @endforeach
     
      </tbody>
-      <div id="pull_right">
+     
+    </table> 
+     <div id="pull_right">
        <div class="">
           {{$info->appends($request)->render()}}
        </div>
     </div> 
-    </table> 
    </div> 
   </div>
  </div>

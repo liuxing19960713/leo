@@ -18,6 +18,16 @@
       <span>{{$info->created_at}}</span> 
      </div> 
     </div> 
+
+    <!-- 商品主图 -->
+    <div class="row mt-3"> 
+     <div class="col-4 pr-6"> 
+      <img src="/static/admin/uploads/z_goods/{{$info->z_pic}}" class="mw-100 w-50 rounded"  alt="image" /> 
+     </div> 
+    </div> 
+
+
+
     <!-- 商品图片集 -->
     <div class="row mt-3"> 
     @foreach($pic as $p)

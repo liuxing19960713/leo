@@ -15,7 +15,7 @@ class Goods extends Model
     public $timestamps  = true;
  
     //可以被批量赋值的属性
-    protected $fillable = ['goods_name','brank','cate_id','price','pic','desrc','commpany','sale','status','stock'];
+    protected $fillable = ['goods_name','brank','cate_id','price','pic','desrc','commpany','sale','status','stock','z_pic'];
 
     // 修改器方法
     public function getStatusAttribute($value)
