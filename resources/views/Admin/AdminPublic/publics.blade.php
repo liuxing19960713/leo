@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
- <head> 
+ <head>
+ <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script> 
   <!-- Required meta tags --> 
   <meta charset="utf-8" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> 
   <title>@yield('title')</title> 
   <!-- plugins:css --> 
   <link rel="stylesheet" href="/static/admins/vendors/iconfonts/mdi/css/materialdesignicons.min.css" /> 
-  <link rel="stylesheet" href="/static/admins/vendors/css/vendor.bundle.base.css" /> 
+  <link rel="stylesheet" href="/static/admins/vendors/css/vendor.bundle.base.css" />
   <!-- endinject --> 
   <!-- inject:css --> 
   <link rel="stylesheet" href="/static/admins/css/style.css" /> 
   <!-- endinject --> 
-  <link rel="shortcut icon" href="/static/admins/images/favicon.png" /> 
+  <link rel="shortcut icon" href="/static/admins/images/favicon.png" />
+  <!--分页样式-->
+  <link rel="stylesheet" type="text/css" href="/static/admins/mypage.css"/> 
  </head> 
  <body> 
   <div class="container-scroller"> 
@@ -145,14 +148,15 @@
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic"> <span class="menu-title">用户管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-account menu-icon"></i> </a> 
        <div class="collapse" id="ui-basic"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="">用户列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/adminuser">用户列表</a></li>
+         <li class="nav-item"> <a class="nav-link" href="/adminuser/create">用户添加</a></li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" href="#gly" aria-expanded="false" aria-controls="gly" data-toggle="collapse"> <span class="menu-title">管理员管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-contacts menu-icon"></i> </a> 
        <div class="collapse" id="gly"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="">管理员列表</a></li> 
-         <li class="nav-item"> <a class="nav-link" href="">管理员添加</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/administrator">管理员列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/administrator/create">管理员添加</a></li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" href="#fenlei" aria-expanded="false" aria-controls="fenlei" data-toggle="collapse"> <span class="menu-title">分类管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-format-list-bulleted menu-icon"></i> </a> 
@@ -172,7 +176,7 @@
       <li class="nav-item"> <a class="nav-link" href="#order" aria-expanded="false" aria-controls="order" data-toggle="collapse"> <span class="menu-title">订单管理</span> <i class="menu-arrow"></i> <i class="mdi mdi mdi-square-inc-cash menu-icon"></i> </a> 
        <div class="collapse" id="order"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="">订单列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/order">订单列表</a></li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#lunbo" aria-expanded="false" aria-controls="lunbo"> <span class="menu-title">轮播图管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-xaml menu-icon"></i> </a> 
@@ -226,6 +230,31 @@
     <!-- partial --> 
     <div class="main-panel"> 
      <div class="content-wrapper">
+     <div id="mws-container" class="clearfix">
+      
+      @if(count($errors)>0)
+      
+      <div class="mws-form-message warning">
+        <div class="alert alert-danger">
+          <ul>
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+          </ul> 
+        </div>
+        </div>
+        @endif
+      @if(session('success'))
+      <a href="javascript:void(0)" class="d-flex align-items-center  btn btn-gradient-danger btn-fw" id="success">
+        {{session('success')}}
+     
+      </a>
+      @endif
+      @if(session('error'))
+      <div class="mws-form-message error">
+          {{session('error')}}
+      </div>
+      @endif
       @section('admin')
      
       @show
@@ -244,6 +273,14 @@
    </div> 
    <!-- page-body-wrapper ends --> 
   </div> 
+  <script type="text/javascript">
+    $("#success").click(function(){
+      $("#success").remove();
+    });
+    $("#error").click(function(){
+      $("#error").remove();
+    });
+  </script>
   <!-- container-scroller --> 
   <!-- plugins:js --> 
   <script src="/static/admins/vendors/js/vendor.bundle.base.js"></script> 
@@ -257,6 +294,9 @@
   <!-- endinject --> 
   <!-- Custom js for this page--> 
   <script src="/static/admins/js/dashboard.js"></script> 
-  <!-- End custom js for this page-->   
+  <!-- End custom js for this page-->
+  <!--校验类点击消失的js-->
+  <script src="/static/admins/js/core/mws.js"></script>
+    
  </body>
 </html>

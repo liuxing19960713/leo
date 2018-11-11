@@ -4,17 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-class UsersController extends Controller
+use DB;
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //获取搜索的关键字
+        $k=$request->input('keywords');
+        //用户列表
+        $data=DB::table("user")->where('uname','like',"%".$k."%")->paginate(3);
+        //$true_name=$data->true_name;
+       
+        return view("Admin.User.index",['data'=>$data,'request'=>$request->all()]);
     }
 
     /**
@@ -24,7 +30,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        //加载用户添加模板
+        return view("Admin.User.add");
     }
 
     /**
@@ -35,7 +42,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +64,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -69,7 +76,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -80,6 +87,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+       
     }
+
+    public function del(Request $request){
+           
+        }
 }
