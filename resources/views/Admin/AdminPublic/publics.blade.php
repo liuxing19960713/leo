@@ -63,7 +63,7 @@
          <span class="font-weight-bold mb-2">{{session('name')}}</span> 
          <span class="text-secondary text-small">Project Manager</span> 
         </div> <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i> </a> </li> 
-      <li class="nav-item"> <a class="nav-link" href="index.html"> <span class="menu-title">后台首页</span> <i class="mdi mdi-home menu-icon"></i> </a> </li> 
+      <li class="nav-item"> <a class="nav-link" href="/admin"> <span class="menu-title">后台首页</span> <i class="mdi mdi-home menu-icon"></i> </a> </li> 
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic"> <span class="menu-title">用户管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-account menu-icon"></i> </a> 
        <div class="collapse" id="ui-basic"> 
         <ul class="nav flex-column sub-menu"> 
@@ -77,7 +77,20 @@
          <li class="nav-item"> <a class="nav-link" href="/administrator">管理员列表</a></li> 
          <li class="nav-item"> <a class="nav-link" href="/administrator/create">管理员添加</a></li> 
         </ul> 
-       </div> </li> 
+       </div> </li>
+
+
+       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#mokuai" aria-expanded="false" aria-controls="mokuai"> <span class="menu-title">模块管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-account-network menu-icon"></i> </a> 
+       <div class="collapse" id="mokuai"> 
+        <ul class="nav flex-column sub-menu"> 
+         <li class="nav-item"> <a class="nav-link" href="/auth">模块列表</a></li>
+         <li class="nav-item"> <a class="nav-link" href="/auth/create">模块添加</a></li> 
+
+        </ul> 
+       </div> 
+      </li>
+       
+
       <li class="nav-item"> <a class="nav-link" href="#fenlei" aria-expanded="false" aria-controls="fenlei" data-toggle="collapse"> <span class="menu-title">分类管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-format-list-bulleted menu-icon"></i> </a> 
        <div class="collapse" id="fenlei"> 
         <ul class="nav flex-column sub-menu"> 
@@ -108,12 +121,13 @@
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#quanxian" aria-expanded="false" aria-controls="quanxian"> <span class="menu-title">管理员权限管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-account-network menu-icon"></i> </a> 
        <div class="collapse" id="quanxian"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> 
-            <a class="nav-link" href="/auth">管理员权限列表</a>
-            <a class="nav-link" href="/auth">管理员权限添加</a>
-         </li> 
+         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">管理员权限列表</a></li> 
         </ul> 
-       </div> </li> 
+       </div> 
+      </li>
+
+
+
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#guanggao" aria-expanded="false" aria-controls="guanggao"> <span class="menu-title">广告管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-lumx menu-icon"></i> </a> 
        <div class="collapse" id="guanggao"> 
         <ul class="nav flex-column sub-menu"> 
@@ -182,14 +196,6 @@
       <a href="javascript:void(0)" class="mws-form-message error btn btn-gradient-danger btn-fw" id="error">
           {{session('error')}}
       </a>
-      <div class="d-flex align-items-center  btn btn-gradient-danger btn-fw">
-        {{session('success')}}
-      </div>
-      @endif
-      @if(session('error'))
-      <div class="mws-form-message error">
-          {{session('error')}}
-      </div>
       @endif 
 
       @section('admin')

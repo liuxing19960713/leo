@@ -40,16 +40,7 @@
         return array('pic'=>$fileNames,'msg'=>$arr);
 	}
 
-  // 单图上传
-  function upload($z_pic)
-  {
-    if(!empty($z_pic)){
-        $file = $z_pic;
-       
-
-    }
-    
-  }
+  
 
 
 

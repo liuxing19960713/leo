@@ -27,6 +27,42 @@ class AdministratorController extends Controller
 
         return view("Admin.Administrator.index",['data'=>$data,'request'=>$request->all()]);
     }
+    //分配权限
+    public function rolelist($id)
+    {
+        // echo "this is rolelist";
+        //获取用户与角色的信息
+        $infos = DB::table('admin')->where('admin.id','=',$id) ->join('role', 'admin.rid', '=', 'role.id')->select('admin.*', 'role.rname as rname') ->get();
+        foreach ($infos as $key => $value) {
+            $info = $value;
+        }
+        $role = DB::table('node')->get();
+        // var_dump($info);
+        //加载模板
+        return view("Admin.Administrator.rolelist",['info'=>$info,'role'=>$role]);
+    }
+
+    //处理分配权限信息
+    public function save_rolelist(Request $request)
+    {
+       $data = $request->except(['_token']);
+        $nid = $request->input('nid');
+       // var_dump($nid);
+        $data['rid'] = $request->input('rid');
+        $data['aid'] = $request->input('aid');
+        // 删除当前角色已有的权限
+        DB::table('role_node')->where('rid','=',$data['rid'])->delete();
+        foreach ($nid as $v) {
+            // $data['nid'] =　$v;
+            $data['nid']= $v;
+            // var_dump($data);
+            DB::table('role_node')->insert($data);
+        }
+        return redirect('/administrator')->with('success','权限分配成功');
+       // var_dump($data);
+
+       
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +72,11 @@ class AdministratorController extends Controller
     public function create()
     {
         //加载用户添加模板
-        return view("Admin.Administrator.add");
+        //分配角色信息
+        $role = DB::table('role')->get();
+
+        // var_dump($role);
+        return view("Admin.Administrator.add",['role'=>$role]);
     }
 
     /**
@@ -55,21 +95,7 @@ class AdministratorController extends Controller
         $data['level'];
         //dd($data['level']);
         //dd($data);
-        switch ($data['level']){
-            case "v1":
-                $data['level']=1;
-            break;
-            case "v2":
-                $data['level']=2;
-            break;
-            case "v3":
-                $data['level']=3;
-            break;
-            case "v4":
-               $data['level']=4;
-            break;
-           
-        }
+       
         
 
         if(Administrator::create($data)){
@@ -102,9 +128,12 @@ class AdministratorController extends Controller
     {
 
         //获取需要修改的数据
-        $user=Administrator::where("id",'=',$id)->first();
+        $user=DB::table('admin')->where("id",'=',$id)->first();
+        //分配角色信息
+        $role = DB::table('role')->get();
+        // dd($role);
         //加载模板 分配数据
-        return view("Admin.Administrator.edit",['user'=>$user]);
+        return view("Admin.Administrator.edit",['user'=>$user,'role'=>$role]);
     }
 
     /**
@@ -119,21 +148,7 @@ class AdministratorController extends Controller
     {
         //获取参数
         $data=$request->except(['_token','_method','repassword']);
-        switch ($data['level']){
-            case "v1":
-                $data['level']=1;
-            break;
-            case "v2":
-                $data['level']=2;
-            break;
-            case "v3":
-                $data['level']=3;
-            break;
-            case "v4":
-               $data['level']=4;
-            break;
-           
-        }
+        
         if(Administrator::where("id",'=',$id)->update($data)){
             return redirect("/administrator")->with('success','修改成功');
         }else{
