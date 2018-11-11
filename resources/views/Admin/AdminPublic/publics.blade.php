@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
  <head> 
+  <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
   <!-- Required meta tags --> 
   <meta charset="utf-8" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> 
@@ -68,8 +69,8 @@
       <li class="nav-item"> <a class="nav-link" href="#gly" aria-expanded="false" aria-controls="gly" data-toggle="collapse"> <span class="menu-title">管理员管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-contacts menu-icon"></i> </a> 
        <div class="collapse" id="gly"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="">管理员列表</a></li> 
-         <li class="nav-item"> <a class="nav-link" href="">管理员添加</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/administrator">管理员列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/administrator/create">管理员添加</a></li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" href="#fenlei" aria-expanded="false" aria-controls="fenlei" data-toggle="collapse"> <span class="menu-title">分类管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-format-list-bulleted menu-icon"></i> </a> 
@@ -102,7 +103,10 @@
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#quanxian" aria-expanded="false" aria-controls="quanxian"> <span class="menu-title">管理员权限管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-account-network menu-icon"></i> </a> 
        <div class="collapse" id="quanxian"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">管理员权限列表</a></li> 
+         <li class="nav-item"> 
+            <a class="nav-link" href="/auth">管理员权限列表</a>
+            <a class="nav-link" href="/auth">管理员权限添加</a>
+         </li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#guanggao" aria-expanded="false" aria-controls="guanggao"> <span class="menu-title">广告管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-lumx menu-icon"></i> </a> 
@@ -157,6 +161,16 @@
         </div>
         @endif
       @if(session('success'))
+
+
+      <a href="javascript:void(0)" class="d-flex align-items-center  btn btn-gradient-danger btn-fw" id="success"> 
+        {{session('success')}}
+      </a>
+      @endif
+      @if(session('error'))
+      <a href="javascript:void(0)" class="mws-form-message error btn btn-gradient-danger btn-fw" id="error">
+          {{session('error')}}
+      </a>
       <div class="d-flex align-items-center  btn btn-gradient-danger btn-fw">
         {{session('success')}}
       </div>
@@ -183,7 +197,15 @@
     <!-- main-panel ends --> 
    </div> 
    <!-- page-body-wrapper ends --> 
-  </div> 
+  </div>
+  <script type="text/javascript">
+    $("#success").click(function(){
+      $("#success").remove();
+    });
+    $("#error").click(function(){
+      $("#error").remove();
+    });
+  </script> 
   <!-- container-scroller --> 
   <!-- plugins:js --> 
   <script src="/static/admins/vendors/js/vendor.bundle.base.js"></script> 
@@ -196,7 +218,8 @@
   <script src="/static/admins/js/misc.js"></script> 
   <!-- endinject --> 
   <!-- Custom js for this page--> 
-  <script src="/static/admins/js/dashboard.js"></script> 
+  <script src="/static/admins/js/dashboard.js"></script>
+  <script src="/static/admins/js/core/mws.js"></script>
   <!-- End custom js for this page-->   
  </body>
 </html>

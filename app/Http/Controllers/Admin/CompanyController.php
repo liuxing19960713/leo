@@ -9,6 +9,8 @@ use App\Http\Requests\AdminCompanyinsert;
 //导入请求校验类
 use App\Http\Requests\AdminCompanyedit;
 //导入模型类Company
+use App\Model\Company;
+=======
 use App\Models\Company;
 class CompanyController extends Controller
 {
