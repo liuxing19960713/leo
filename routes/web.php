@@ -35,6 +35,7 @@ Route::group(["middleware"=>"adminlogin"],function()
 	Route::resource("/company","Admin\CompanyController");
 	//广告
 	Route::resource("/adver","Admin\AdverController");
+
 	//模型管理
 	Route::resource('/auth',"Admin\AuthController");
 
@@ -42,9 +43,19 @@ Route::group(["middleware"=>"adminlogin"],function()
 	Route::get("/rolelist/{id}","Admin\AdministratorController@rolelist");
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
+
+  
+  //后台用户管理
+	Route::resource("/adminuser","Admin\UserController");
+
+	//后台订单管理
+	Route::resource("/order","Admin\OrderController");
+	//后台订单状态ajax修改
+	Route::get("/orderAjax","Admin\OrderController@Ajax");
+
 });
 //前台首页
 Route::resource("/home","Home\HomeController");
 
 
-
+ 

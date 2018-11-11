@@ -6,20 +6,27 @@
  <body>
   <div class="col-lg-18 grid-margin stretch-card"> 
    <div class="card"> 
-    <div class="card-body"> 
+
+    <div class="card-body">
+
      <h4 class="card-title">管理员列表</h4> 
      <p class="card-description"></p>
      <form action="" method="get">
-
-     <label>搜索: 用户名<input type="text"  name="keywords" value="{{$request['keywords'] or ''}}"/></label>
-     <input type="submit" value="搜索">
+    <div class="input-group">
+    <input type="text" class="form-control" placeholder="用户名" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keywords" value="{{$request['keywords'] or ''}}"/>
+     <div class="input-group-append">
+     <input type="submit" class="btn btn-sm btn-gradient-primary" value="搜索">
+     </div>
+    </div>
 
     </form> 
      <table class="table table-hover"> 
       <thead> 
        <tr> 
         <th>id</th> 
-        <th>名字</th> 
+
+        <th>用户名</th> 
+
         <th>权限</th> 
         <th>修改时间</th>
         <th>创建时间</th>
@@ -31,7 +38,22 @@
        <tr> 
         <td>{{$row->id}}</td> 
         <td>{{$row->name}}</td>
+<<<<<<< HEAD
         <td>{{$row->rid}}
+=======
+
+        <td>{{$row->level}}</td>
+        <td>{{$row->updated_at}}</td> 
+        <td>{{$row->created_at}}</td> 
+      <td><a href="javascript:void(0)" class="btn btn-sm btn-gradient-danger del">删除</a><a href="/administrator/{{$row->id}}/edit" class="btn btn-sm btn-gradient-info">修改</a></td>    
+       </tr> 
+        @endforeach
+      </tbody> 
+     </table>
+     {{$data->appends($request)->render()}} 
+
+        <td>{{$row->level}}
+>>>>>>> c9500a3a067363a0a18f5ed4b301d110ac57d6cf
 
       
 
@@ -39,8 +61,12 @@
       </td>
       <td>{{$row->updated_at}}</td> 
       <td>{{$row->created_at}}</td> 
+<<<<<<< HEAD
       <td> <a href="/rolelist/{{$row->id}}" class="badge badge-warning">分配权限</a><a href="javascript:void(0)" class="btn btn-sm btn-gradient-danger del">删除</a><a href="/administrator/{{$row->id}}/edit" class="btn btn-sm btn-gradient-info">修改</a></td>    
        </tr> 
+=======
+       
+>>>>>>> c9500a3a067363a0a18f5ed4b301d110ac57d6cf
         @endforeach
         
        
@@ -50,6 +76,7 @@
      {{$data->appends($request)->render()}} 
     </div> 
    </div> 
+
   </div>
  </body>
  <script type="text/javascript">

@@ -65,6 +65,7 @@
 			});
 		});
 
+
 		// Checkable Tables
 		$( 'table thead th.checkbox-column :checkbox' ).on('change', function() {
 			var checked = $( this ).prop( 'checked' );
