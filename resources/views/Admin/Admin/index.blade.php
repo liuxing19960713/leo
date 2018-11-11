@@ -5,7 +5,7 @@
  <body>
   <div class="row"> 
    <div class="col-12"> 
-    <span class="d-flex align-items-center  btn btn-gradient-danger btn-fw"> <p>欢迎来到灯饰人生后台管理系统</p> </span> 
+    <span class="d-flex align-items-center  btn btn-gradient-danger btn-fw"> <p>欢迎{{session('name')}}来到灯饰人生后台管理系统</p> </span> 
    </div> 
   </div> 
   <div class="page-header"> 
