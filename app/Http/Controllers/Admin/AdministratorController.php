@@ -27,15 +27,7 @@ class AdministratorController extends Controller
 
         return view("Admin.Administrator.index",['data'=>$data,'request'=>$request->all()]);
     }
-    //分配角色
-    public function rolelist($id)
-    {
-        // echo "this is rolelist";
-        //获取用户的信息
-        $info=Administrator::where("id",'=',$id)->first();
-        //加载模板
-        return view("Admin.Administrator.rolelist",['info'=>$info]);
-    }
+
     /**
      * Show the form for creating a new resource.
      *
