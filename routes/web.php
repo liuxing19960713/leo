@@ -38,6 +38,7 @@ Route::group(["middleware"=>"adminlogin"],function()
 	Route::resource("/company","Admin\CompanyController");
 	//广告
 	Route::resource("/adver","Admin\AdverController");
+	Route::resource('/auth',"Admin\AuthController");
 });
 //前台首页
 Route::resource("/home","Home\HomeController");

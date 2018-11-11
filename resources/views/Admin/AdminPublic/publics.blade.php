@@ -103,7 +103,10 @@
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#quanxian" aria-expanded="false" aria-controls="quanxian"> <span class="menu-title">管理员权限管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-account-network menu-icon"></i> </a> 
        <div class="collapse" id="quanxian"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">管理员权限列表</a></li> 
+         <li class="nav-item"> 
+            <a class="nav-link" href="/auth">管理员权限列表</a>
+            <a class="nav-link" href="/auth">管理员权限添加</a>
+         </li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#guanggao" aria-expanded="false" aria-controls="guanggao"> <span class="menu-title">广告管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-lumx menu-icon"></i> </a> 
