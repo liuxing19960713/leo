@@ -10,8 +10,8 @@ use App\Http\Requests\AdminAdverinsert;
 use App\Http\Requests\AdminAdveredit;
 //导入模型类Adver
 use App\Model\Adver;
-=======
-use App\Models\Adver;
+
+
 
 
 //引入Config

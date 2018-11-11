@@ -31,7 +31,7 @@
        <tr> 
         <td>{{$row->id}}</td> 
         <td>{{$row->name}}</td>
-        <td>{{$row->level}}
+        <td>{{$row->rid}}
 
       
 
@@ -39,7 +39,7 @@
       </td>
       <td>{{$row->updated_at}}</td> 
       <td>{{$row->created_at}}</td> 
-      <td><a href="/rolelist/{{$row->id}}" class="btn btn-sm badge-warning">分配角色</a><a href="javascript:void(0)" class="btn btn-sm btn-gradient-danger del">删除</a><a href="/administrator/{{$row->id}}/edit" class="btn btn-sm btn-gradient-info">修改</a></td>    
+      <td> <a href="/rolelist/{{$row->id}}" class="badge badge-warning">分配权限</a><a href="javascript:void(0)" class="btn btn-sm btn-gradient-danger del">删除</a><a href="/administrator/{{$row->id}}/edit" class="btn btn-sm btn-gradient-info">修改</a></td>    
        </tr> 
         @endforeach
         

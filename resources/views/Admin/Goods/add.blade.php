@@ -35,7 +35,7 @@
      <div class="form-group"> 
         <label>商品图</label> 
         <div class="input-group col-xs-12"> 
-         <input type="file"multiple name="pic[]" class="form-control file-upload-info"  placeholder="Upload Image" /> 
+         <input type="file" multiple name="pic[]" class="form-control file-upload-info"  placeholder="Upload Image" /> 
          <span class="input-group-append"> <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button> </span> 
       </div> 
       <br>
