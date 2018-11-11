@@ -6,6 +6,7 @@
  <body>
   <div class="col-lg-18 grid-margin stretch-card"> 
    <div class="card"> 
+
     <div class="card-body">
 
      <h4 class="card-title">管理员列表</h4> 
@@ -17,12 +18,15 @@
      <input type="submit" class="btn btn-sm btn-gradient-primary" value="搜索">
      </div>
     </div>
+
     </form> 
      <table class="table table-hover"> 
       <thead> 
        <tr> 
         <th>id</th> 
+
         <th>用户名</th> 
+
         <th>权限</th> 
         <th>修改时间</th>
         <th>创建时间</th>
@@ -34,6 +38,7 @@
        <tr> 
         <td>{{$row->id}}</td> 
         <td>{{$row->name}}</td>
+
         <td>{{$row->level}}</td>
         <td>{{$row->updated_at}}</td> 
         <td>{{$row->created_at}}</td> 
@@ -43,6 +48,26 @@
       </tbody> 
      </table>
      {{$data->appends($request)->render()}} 
+
+        <td>{{$row->level}}
+
+      
+
+
+      </td>
+      <td>{{$row->updated_at}}</td> 
+      <td>{{$row->created_at}}</td> 
+       
+        @endforeach
+        
+       
+        
+      </tbody> 
+     </table>
+     {{$data->appends($request)->render()}} 
+    </div> 
+   </div> 
+
   </div>
  </body>
  <script type="text/javascript">
