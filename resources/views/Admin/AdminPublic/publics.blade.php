@@ -162,6 +162,7 @@
         @endif
       @if(session('success'))
 
+
       <a href="javascript:void(0)" class="d-flex align-items-center  btn btn-gradient-danger btn-fw" id="success"> 
         {{session('success')}}
       </a>
@@ -170,6 +171,14 @@
       <a href="javascript:void(0)" class="mws-form-message error btn btn-gradient-danger btn-fw" id="error">
           {{session('error')}}
       </a>
+      <div class="d-flex align-items-center  btn btn-gradient-danger btn-fw">
+        {{session('success')}}
+      </div>
+      @endif
+      @if(session('error'))
+      <div class="mws-form-message error">
+          {{session('error')}}
+      </div>
       @endif 
       @section('admin')
      
