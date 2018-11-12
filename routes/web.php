@@ -16,22 +16,36 @@ Route::resource("/adminlogin","Admin\AdminloginController");
 //中间件结合路由组使用
 Route::group(["middleware"=>"adminlogin"],function()
 {
-	
+
 	//后台首页
 	Route::resource("/admin","Admin\AdminController" );
 	//后台管理员用户管理
 	Route::resource("/administrator","Admin\AdministratorController");
+
+	//后台用户管理
+	Route::resource("/adminuser","Admin\UserController");
+
+	//后台订单管理
+	Route::resource("/order","Admin\OrderController");
+	//后台订单状态ajax修改
+	Route::get("/orderAjax","Admin\OrderController@Ajax");
+
 	//后台管理员ajax删除
 	Route::get("/administratordel","Admin\AdministratorController@del");
 	
 	// 后台商品
 	Route::resource("/agoods","Admin\GoodsController");
+
+
 	// 商品ajax删除
 	Route::get('/agdel',"Admin\GoodsController@agdel");
+
 	// 后台分类
 	Route::Resource("/acate","Admin\CategoryController");
+
 	// 分类ajax删除
 	Route::get('/acadel',"Admin\CategoryController@acadel");
+	
 	//公司模块
 	Route::resource("/company","Admin\CompanyController");
 	//广告
@@ -68,13 +82,7 @@ Route::group(["middleware"=>"adminlogin"],function()
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
 
   
-  //后台用户管理
-	Route::resource("/adminuser","Admin\UserController");
-
-	//后台订单管理
-	Route::resource("/order","Admin\OrderController");
-	//后台订单状态ajax修改
-	Route::get("/orderAjax","Admin\OrderController@Ajax");
+  
 
 });
 //前台首页
