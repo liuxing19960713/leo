@@ -228,5 +228,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    //初始化上传文件
+    'wheeluploads'=>'./uploads/wheel/',
 ];
