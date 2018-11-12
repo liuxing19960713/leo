@@ -28,7 +28,8 @@
         },
         "files":[
             "app/Library/Uploads.php"
-            ]
+
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -14,12 +14,13 @@
     <div class="form-group"> 
      <label for="exampleInputEmail3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">权限</font></font></label>
      <tr>
+
      <td><select class="form-control" id="exampleInputEmail3" placeholder="level" name="rid" value="{{$user->rid}}"/>
      @foreach($role as $r)
      <option value="{{$user->rid}}" @if($r->id == $user->rid) selected @endif>{{$r->rname}}</option>
 
-
      @endforeach
+
      </select>
      </td>
      </tr> 

@@ -29,9 +29,10 @@ class AdminloginController extends Controller
         //退出
         //销毁session
         $request->session()->pull('name');
+
+
         $request->session()->pull('id');
         $request->session()->pull('nodelist');  
-
         return redirect("/adminlogin");
     }
 
@@ -60,7 +61,6 @@ class AdminloginController extends Controller
             if (Hash::check($pwd,$info->pwd)) {
                 //把登录的用户名存储在session里
                 // dd('dada');
-
                 session(['id'=>$info->id]);
 
                 session(['name'=>$name]);

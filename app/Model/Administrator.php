@@ -27,4 +27,9 @@ class Administrator extends Model
         $status=[1=>'普通管理员',2=>'部门组长',3=>'运维经理',4=>'产品经理'];
         return $status[$value];
     }
+
+    public function link()
+    {
+        return $this->hasMany('App\Model\Link','admin_id','id');
+    }
 }

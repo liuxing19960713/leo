@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+ <head>
   <!-- Required meta tags --> 
   <meta charset="utf-8" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> 
@@ -13,6 +14,9 @@
   <!-- 分页样式 -->
   <link rel="stylesheet" href="/static/admins/css/mypage.css" /> 
 
+  <!-- jq引入-->
+ <script src="/static/admins/js/jquery-mini.js"></script>
+ 
   <!-- endinject --> 
   <!-- inject:css --> 
   <link rel="stylesheet" href="/static/admins/css/style.css" /> 
@@ -20,6 +24,7 @@
   <link rel="shortcut icon" href="/static/admins/images/favicon.png" />
   <!--分页样式-->
   <link rel="stylesheet" type="text/css" href="/static/admins/mypage.css"/> 
+  <!-- 分页样式结束 -->
  </head> 
  <body> 
   <div class="container-scroller"> 
@@ -110,13 +115,14 @@
          <li class="nav-item"> <a class="nav-link" href="/order">订单列表</a></li> 
         </ul> 
        </div> </li> 
-      <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#lunbo" aria-expanded="false" aria-controls="lunbo"> <span class="menu-title">轮播图管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-xaml menu-icon"></i> </a> 
-       <div class="collapse" id="lunbo"> 
-        <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">轮播图列表</a></li> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html">轮播图添加</a></li> 
-        </ul> 
-       </div> </li> 
+       
+      <<li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#lunbo" aria-expanded="false" aria-controls="lunbo"> <span class="menu-title">轮播图管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-xaml menu-icon"></i> </a>
+       <div class="collapse" id="lunbo">
+        <ul class="nav flex-column sub-menu">
+         <li class="nav-item"> <a class="nav-link" href="/wheel">轮播图列表</a></li>
+         <li class="nav-item"> <a class="nav-link" href="/wheel/create">轮播图添加</a></li>
+        </ul>
+       </div> </li>
        
 
 
@@ -135,19 +141,22 @@
 
         </ul> 
        </div> </li> 
-      <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#friendship" aria-expanded="false" aria-controls="friendship"> <span class="menu-title">友情链接管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-medical-bag menu-icon"></i> </a> 
-       <div class="collapse" id="friendship"> 
-        <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">友情链接列表</a></li> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">友情链接添加</a></li> 
-        </ul> 
-       </div> </li> 
-      <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#comment" aria-expanded="false" aria-controls="comment"> <span class="menu-title">评论管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-new-box menu-icon"></i> </a> 
-       <div class="collapse" id="comment"> 
-        <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">评论列表</a></li> 
-        </ul> 
-       </div> </li> 
+        <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#friendship" aria-expanded="false" aria-controls="friendship"> <span class="menu-title">友情链接管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-medical-bag menu-icon"></i> </a>
+       <div class="collapse" id="friendship">
+        <ul class="nav flex-column sub-menu">
+         <li class="nav-item"> <a class="nav-link" href="/link">友情链接列表</a></li>
+         <li class="nav-item"> <a class="nav-link" href="/link/create">友情链接添加</a></li>
+        </ul>
+       </div> </li>
+       
+      <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#comment" aria-expanded="false" aria-controls="comment"> <span class="menu-title">评论管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-new-box menu-icon"></i> </a>
+       <div class="collapse" id="comment">
+        <ul class="nav flex-column sub-menu">
+         <li class="nav-item"> <a class="nav-link" href="/comment">评论列表</a></li>
+         <li class="nav-item"> <a class="nav-link" href="/recomment">回复列表</a></li>
+        </ul>
+       </div>
+     </li>
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#notice" aria-expanded="false" aria-controls="notice"> <span class="menu-title">公告管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-vector-point menu-icon"></i> </a> 
        <div class="collapse" id="notice"> 
         <ul class="nav flex-column sub-menu"> 
@@ -162,9 +171,7 @@
      <div class="content-wrapper">
 
      <div id="mws-container" class="clearfix">
-      
       @if(count($errors)>0)
-      
       <div class="mws-form-message warning">
         <div class="alert alert-danger">
           <ul>
@@ -172,15 +179,14 @@
             <li>{{$error}}</li>
             @endforeach
           </ul> 
-
         </div>
         </div>
         @endif
       @if(session('success'))
 
-
-
-      <a href="javascript:void(0)" class="d-flex align-items-center  btn btn-gradient-danger btn-fw" id="success"> 
+    <!-- 错误提示信息结束 -->
+    
+     <a href="javascript:void(0)" class="d-flex align-items-center  btn btn-gradient-danger btn-fw" id="success"> 
         {{session('success')}}
       </a>
       @endif
@@ -189,11 +195,10 @@
           {{session('error')}}
       </a>
       @endif 
-
       @section('admin')
-     
+
       @show
-     <!-- content-wrapper ends --> 
+     <!-- content-wrapper ends -->
      <!-- partial:partials/_footer.html -->
       </div>
      <footer class="footer"> 
