@@ -28,6 +28,7 @@
         },
         "files":[
             "app/Library/Uploads.php"
+
         ]
     },
     "autoload-dev": {

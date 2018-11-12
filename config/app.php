@@ -230,4 +230,6 @@ return [
     ],
     //初始化上传文件
     'wheeluploads'=>'./uploads/wheel/',
+    'uploads'=>'./uploads/',
+
 ];
