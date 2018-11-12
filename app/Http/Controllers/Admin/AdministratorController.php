@@ -19,13 +19,12 @@ class AdministratorController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request->session('nodelist'));
-        
-            
         //获取搜索的关键字
         $k=$request->input('keywords');
         //管理员列表
         $data=Administrator::where("name",'like','%'.$k.'%')->paginate(3);
+
+
 
         return view("Admin.Administrator.index",['data'=>$data,'request'=>$request->all()]);
     }
@@ -66,6 +65,7 @@ class AdministratorController extends Controller
        
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -74,11 +74,13 @@ class AdministratorController extends Controller
     public function create()
     {
         //加载用户添加模板
+
         //分配角色信息
         $role = DB::table('role')->get();
 
         // var_dump($role);
         return view("Admin.Administrator.add",['role'=>$role]);
+
     }
 
     /**
@@ -90,15 +92,13 @@ class AdministratorController extends Controller
     public function store(Administratorinsert $request)
     {
         //获取所有数据
-       
+
         $data=$request->except(['repassword','_token']);
         //密码加密
         $data['pwd']=Hash::make($data['pwd']);
         $data['level'];
         //dd($data['level']);
         //dd($data);
-       
-        
 
         if(Administrator::create($data)){
 
@@ -130,18 +130,19 @@ class AdministratorController extends Controller
     {
 
         //获取需要修改的数据
+
         $user=DB::table('admin')->where("id",'=',$id)->first();
         //分配角色信息
         $role = DB::table('role')->get();
         // dd($role);
         //加载模板 分配数据
         return view("Admin.Administrator.edit",['user'=>$user,'role'=>$role]);
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -164,7 +165,6 @@ class AdministratorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
 
     public function del(Request $request){
             //dd(1);

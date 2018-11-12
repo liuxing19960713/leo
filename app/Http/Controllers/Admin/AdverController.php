@@ -10,10 +10,6 @@ use App\Http\Requests\AdminAdverinsert;
 use App\Http\Requests\AdminAdveredit;
 //导入模型类Adver
 use App\Model\Adver;
-
-
-
-
 //引入Config
 use Config;
 class AdverController extends Controller
@@ -118,6 +114,7 @@ class AdverController extends Controller
              unlink("$pic");
         }
         //执行修改
+
         if (Adver::where("id",'=',$id)->update($data)) { 
             return redirect("/adver")->with('success','修改成功');
         }else{
