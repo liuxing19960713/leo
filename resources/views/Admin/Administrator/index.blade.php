@@ -38,42 +38,20 @@
        <tr> 
         <td>{{$row->id}}</td> 
         <td>{{$row->name}}</td>
-<<<<<<< HEAD
         <td>{{$row->rid}}
-=======
-
         <td>{{$row->level}}</td>
         <td>{{$row->updated_at}}</td> 
         <td>{{$row->created_at}}</td> 
-      <td><a href="javascript:void(0)" class="btn btn-sm btn-gradient-danger del">删除</a><a href="/administrator/{{$row->id}}/edit" class="btn btn-sm btn-gradient-info">修改</a></td>    
+      <td>
+        <a href="/rolelist/{{$row->id}}" class="badge badge-warning">分配权限</a>
+        <a href="javascript:void(0)" class="btn btn-sm btn-gradient-danger del">删除</a><a href="/administrator/{{$row->id}}/edit" class="btn btn-sm btn-gradient-info">修改</a></td>    
        </tr> 
         @endforeach
       </tbody> 
      </table>
      {{$data->appends($request)->render()}} 
-
-        <td>{{$row->level}}
->>>>>>> c9500a3a067363a0a18f5ed4b301d110ac57d6cf
-
-      
-
-
-      </td>
-      <td>{{$row->updated_at}}</td> 
-      <td>{{$row->created_at}}</td> 
-<<<<<<< HEAD
-      <td> <a href="/rolelist/{{$row->id}}" class="badge badge-warning">分配权限</a><a href="javascript:void(0)" class="btn btn-sm btn-gradient-danger del">删除</a><a href="/administrator/{{$row->id}}/edit" class="btn btn-sm btn-gradient-info">修改</a></td>    
-       </tr> 
-=======
-       
->>>>>>> c9500a3a067363a0a18f5ed4b301d110ac57d6cf
-        @endforeach
-        
-       
-        
-      </tbody> 
-     </table>
-     {{$data->appends($request)->render()}} 
+     
+    
     </div> 
    </div> 
 

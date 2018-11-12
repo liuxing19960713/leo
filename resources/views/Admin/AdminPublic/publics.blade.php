@@ -68,7 +68,6 @@
        <div class="collapse" id="ui-basic"> 
         <ul class="nav flex-column sub-menu"> 
          <li class="nav-item"> <a class="nav-link" href="/adminuser">用户列表</a></li>
-         <li class="nav-item"> <a class="nav-link" href="/adminuser/create">用户添加</a></li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" href="#gly" aria-expanded="false" aria-controls="gly" data-toggle="collapse"> <span class="menu-title">管理员管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-contacts menu-icon"></i> </a> 
@@ -101,8 +100,8 @@
       <li class="nav-item"> <a class="nav-link" href="#shop" aria-expanded="false" aria-controls="shop" data-toggle="collapse"> <span class="menu-title">商品管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-shopping menu-icon"></i> </a> 
        <div class="collapse" id="shop"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="">商品列表</a></li> 
-         <li class="nav-item"> <a class="nav-link" href="">商品添加</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/agoods">商品列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/agoods/create">商品添加</a></li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" href="#order" aria-expanded="false" aria-controls="order" data-toggle="collapse"> <span class="menu-title">订单管理</span> <i class="menu-arrow"></i> <i class="mdi mdi mdi-square-inc-cash menu-icon"></i> </a> 
@@ -118,14 +117,7 @@
          <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html">轮播图添加</a></li> 
         </ul> 
        </div> </li> 
-      <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#quanxian" aria-expanded="false" aria-controls="quanxian"> <span class="menu-title">管理员权限管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-account-network menu-icon"></i> </a> 
-       <div class="collapse" id="quanxian"> 
-        <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">管理员权限列表</a></li> 
-        </ul> 
-       </div> 
-      </li>
-
+       
 
 
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#guanggao" aria-expanded="false" aria-controls="guanggao"> <span class="menu-title">广告管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-lumx menu-icon"></i> </a> 

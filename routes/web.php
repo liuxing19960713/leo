@@ -16,6 +16,7 @@ Route::resource("/adminlogin","Admin\AdminloginController");
 //中间件结合路由组使用
 Route::group(["middleware"=>"adminlogin"],function()
 {
+	
 	//后台首页
 	Route::resource("/admin","Admin\AdminController" );
 	//后台管理员用户管理
