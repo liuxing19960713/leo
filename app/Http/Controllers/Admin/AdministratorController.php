@@ -19,11 +19,13 @@ class AdministratorController extends Controller
      */
     public function index(Request $request)
     {
+        // dd($request->session('nodelist'));
+        
+            
         //获取搜索的关键字
         $k=$request->input('keywords');
         //管理员列表
         $data=Administrator::where("name",'like','%'.$k.'%')->paginate(3);
-
 
         return view("Admin.Administrator.index",['data'=>$data,'request'=>$request->all()]);
     }

@@ -22,6 +22,7 @@ class GoodsController extends Controller
     public function index(Request $request)
     {
         //首页
+        // dd($request->session('nodelist'));
         //
         $k = $request->input('keyword');
         //商品信息
