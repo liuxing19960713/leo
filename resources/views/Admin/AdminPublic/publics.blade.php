@@ -116,7 +116,7 @@
         </ul> 
        </div> </li> 
        
-      <<li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#lunbo" aria-expanded="false" aria-controls="lunbo"> <span class="menu-title">轮播图管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-xaml menu-icon"></i> </a>
+      <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#lunbo" aria-expanded="false" aria-controls="lunbo"> <span class="menu-title">轮播图管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-xaml menu-icon"></i> </a>
        <div class="collapse" id="lunbo">
         <ul class="nav flex-column sub-menu">
          <li class="nav-item"> <a class="nav-link" href="/wheel">轮播图列表</a></li>
