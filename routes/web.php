@@ -50,7 +50,8 @@ Route::group(["middleware"=>"adminlogin"],function()
 	Route::resource("/company","Admin\CompanyController");
 	//广告
 	Route::resource("/adver","Admin\AdverController");
-
+	//公告
+	Route::resource("/notice","Admin\NoticeController");
 	//模型管理
 	Route::resource('/auth',"Admin\AuthController");
 
@@ -86,5 +87,6 @@ Route::group(["middleware"=>"adminlogin"],function()
 
 });
 //前台首页
-Route::resource("/home","Home\HomeController");
-
+Route::resource("/","Home\HomeController");
+//关于我们
+Route::resource("/contact","Home\ContactController");

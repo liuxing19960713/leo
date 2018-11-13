@@ -3,27 +3,27 @@
  <head> 
   <meta charset="utf-8" /> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
-  <title>Pataku - Furniture eCommerce Bootstrap4 Template</title> 
+  <title>@yield('title')</title> 
   <meta name="description" content="" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1" /> 
   <!-- Favicon --> 
-  <link rel="icon" href="assets/images/favicon.ico" /> 
+  <link rel="icon" href="/static/home/assets/images/favicon.ico" /> 
   <!-- CSS
   ============================================ --> 
   <!-- Bootstrap CSS --> 
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" /> 
+  <link href="/static/home/assets/css/bootstrap.min.css" rel="stylesheet" /> 
   <!-- FontAwesome CSS --> 
-  <link href="assets/css/font-awesome.min.css" rel="stylesheet" /> 
+  <link href="/static/home/assets/css/font-awesome.min.css" rel="stylesheet" /> 
   <!-- Linear Icon CSS --> 
-  <link href="assets/css/linear-icon.css" rel="stylesheet" /> 
+  <link href="/static/home/assets/css/linear-icon.css" rel="stylesheet" /> 
   <!-- Plugins CSS --> 
-  <link href="assets/css/plugins.css" rel="stylesheet" /> 
+  <link href="/static/home/assets/css/plugins.css" rel="stylesheet" /> 
   <!-- Helper CSS --> 
-  <link href="assets/css/helper.css" rel="stylesheet" /> 
+  <link href="/static/home/assets/css/helper.css" rel="stylesheet" /> 
   <!-- Main CSS --> 
-  <link href="assets/css/main.css" rel="stylesheet" /> 
+  <link href="/static/home/assets/css/main.css" rel="stylesheet" /> 
   <!-- Modernizer JS --> 
-  <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script> 
+  <script src="/static/home/assets/js/vendor/modernizr-2.8.3.min.js"></script> 
  </head> 
  <body> 
   <!--=============================================
@@ -35,46 +35,32 @@
     <div class="container"> 
      <div class="row"> 
       <div class="col-12 col-md-6 text-center text-md-left mb-sm-15"> 
-       <span class="header-top-text">Welcome to Pataku Online Shopping Store !</span> 
+       <span class="header-top-text">欢迎来到Pataku网上商店！</span> 
       </div> 
       <div class="col-12 col-md-6"> 
        <!--=======  header top dropdowns  =======--> 
        <div class="header-top-dropdown d-flex justify-content-center justify-content-md-end"> 
         <!--=======  single dropdown  =======--> 
         <div class="single-dropdown"> 
-         <a href="#" id="changeAccount"><span id="accountMenuName">My Account <i class="fa fa-angle-down"></i></span></a> 
+         <a href="#" id="changeAccount"><span id="accountMenuName">我的账户<i class="fa fa-angle-down"></i></span></a> 
          <div class="language-currency-list hidden" id="accountList"> 
           <ul> 
-           <li><a href="my-account.html">My Account</a></li> 
-           <li><a href="checkout.html">Checkout</a></li> 
-           <li><a href="login-register.html">Login</a></li> 
+           <li><a href="my-account.html">我的账户</a></li> 
+           <li><a href="checkout.html">结算</a></li> 
+           <li><a href="login-register.html">登录</a></li> 
           </ul> 
          </div> 
         </div> 
-        <span class="separator pl-15 pr-15">|</span> 
+        
+        <!--=======  End of single dropdown  =======--> 
+        <!--=======  single dropdown  =======--> 
+         
+         
         <!--=======  End of single dropdown  =======--> 
         <!--=======  single dropdown  =======--> 
         <div class="single-dropdown"> 
-         <a href="#" id="changeCurrency"><span id="currencyName">USD $ <i class="fa fa-angle-down"></i></span></a> 
-         <div class="language-currency-list hidden" id="currencyList"> 
-          <ul> 
-           <li><a href="#">USD $</a></li> 
-           <li><a href="#">EURO €</a></li> 
-          </ul> 
-         </div> 
-        </div> 
-        <span class="separator pl-15 pr-15">|</span> 
-        <!--=======  End of single dropdown  =======--> 
-        <!--=======  single dropdown  =======--> 
-        <div class="single-dropdown"> 
-         <img src="assets/images/flags/1.jpg" alt="" /> 
-         <a href="#" id="changeLanguage"><span id="languageName">English <i class="fa fa-angle-down"></i></span></a> 
-         <div class="language-currency-list hidden" id="languageList"> 
-          <ul> 
-           <li><a href="#"><img src="assets/images/flags/1.jpg" alt="" /> English</a></li> 
-           <li><a href="#"><img src="assets/images/flags/2.jpg" alt="" /> Fran&ccedil;ais</a></li> 
-          </ul> 
-         </div> 
+          
+          
         </div> 
         <!--=======  End of single dropdown  =======--> 
        </div> 
@@ -91,7 +77,7 @@
       <div class="col-12 col-lg-3 col-md-3 text-center text-md-left mb-sm-20"> 
        <!--=======  logo  =======--> 
        <div class="logo"> 
-        <a href="index.html"> <img src="assets/images/logo.png" class="img-fluid" alt="" /> </a> 
+        <a href="index.html"> <img src="/static/home/assets/images/logo.png" class="img-fluid" alt="" /> </a> 
        </div> 
        <!--=======  End of logo  =======--> 
       </div> 
@@ -122,7 +108,7 @@
            <div class="cart-float-single-item d-flex"> 
             <span class="remove-item" id="remove-item"><a href="#"><i class="fa fa-times"></i></a></span> 
             <div class="cart-float-single-item-image"> 
-             <a href="single-product.html"><img src="assets/images/products/product01.jpg" class="img-fluid" alt="" /></a> 
+             <a href="single-product.html"><img src="/static/home/assets/images/products/product01.jpg" class="img-fluid" alt="" /></a> 
             </div> 
             <div class="cart-float-single-item-desc"> 
              <p class="product-title"> <a href="single-product.html">Duis pulvinar obortis eleifend </a></p> 
@@ -132,7 +118,7 @@
            <div class="cart-float-single-item d-flex"> 
             <span class="remove-item"><a href="#"><i class="fa fa-times"></i></a></span> 
             <div class="cart-float-single-item-image"> 
-             <a href="single-product.html"><img src="assets/images/products/product02.jpg" class="img-fluid" alt="" /></a> 
+             <a href="single-product.html"><img src="/static/home/assets/images/products/product02.jpg" class="img-fluid" alt="" /></a> 
             </div> 
             <div class="cart-float-single-item-desc"> 
              <p class="product-title"> <a href="single-product.html">Fusce ultricies dolor vitae</a></p> 
@@ -317,7 +303,7 @@
             <li><a href="blog-post-audio-format.html">Blog Post Audio Format</a></li> 
             <li><a href="blog-post-video-format.html">Blog Post Video Format</a></li> 
            </ul> </li> 
-          <li><a href="contact.html">CONTACT</a></li> 
+          <li><a href="/contact">关于我们</a></li> 
          </ul> 
         </nav> 
        </div> 
@@ -336,7 +322,7 @@
   <!--=============================================
   =            Hero Area One         =
   =============================================--> 
-  @section('admin')
+  @section('home')
      
   @show
   <!--=====  End of instagram section  ======--> 
@@ -522,28 +508,28 @@
           <div class="tab-pane fade show active" id="single-slide-quick-1" role="tabpanel" aria-labelledby="single-slide-tab-quick-1"> 
            <!--Single Product Image Start--> 
            <div class="single-product-img img-full"> 
-            <img src="assets/images/single-product-slider/01.jpg" class="img-fluid" alt="" /> 
+            <img src="/static/home/assets/images/single-product-slider/01.jpg" class="img-fluid" alt="" /> 
            </div> 
            <!--Single Product Image End--> 
           </div> 
           <div class="tab-pane fade" id="single-slide-quick-2" role="tabpanel" aria-labelledby="single-slide-tab-quick-2"> 
            <!--Single Product Image Start--> 
            <div class="single-product-img img-full"> 
-            <img src="assets/images/single-product-slider/02.jpg" class="img-fluid" alt="" /> 
+            <img src="/static/home/assets/images/single-product-slider/02.jpg" class="img-fluid" alt="" /> 
            </div> 
            <!--Single Product Image End--> 
           </div> 
           <div class="tab-pane fade" id="single-slide-quick-3" role="tabpanel" aria-labelledby="single-slide-tab-quick-3"> 
            <!--Single Product Image Start--> 
            <div class="single-product-img img-full"> 
-            <img src="assets/images/single-product-slider/03.jpg" class="img-fluid" alt="" /> 
+            <img src="/static/home/assets/images/single-product-slider/03.jpg" class="img-fluid" alt="" /> 
            </div> 
            <!--Single Product Image End--> 
           </div> 
           <div class="tab-pane fade" id="single-slide-quick-4" role="tabpanel" aria-labelledby="single-slide-tab-quick-4"> 
            <!--Single Product Image Start--> 
            <div class="single-product-img img-full"> 
-            <img src="assets/images/single-product-slider/04.jpg" class="img-fluid" alt="" /> 
+            <img src="/static/home/assets/images/single-product-slider/04.jpg" class="img-fluid" alt="" /> 
            </div> 
            <!--Single Product Image End--> 
           </div> 
@@ -553,16 +539,16 @@
          <div class="product-small-image-list quickview-product-small-image-list"> 
           <div class="nav small-image-slider quickview-small-image-slider" role="tablist"> 
            <div class="single-small-image img-full"> 
-            <a data-toggle="tab" id="single-slide-tab-quick-1" href="#single-slide-quick-1"><img src="assets/images/single-product-slider/01.jpg" class="img-fluid" alt="" /></a> 
+            <a data-toggle="tab" id="single-slide-tab-quick-1" href="#single-slide-quick-1"><img src="/static/home/assets/images/single-product-slider/01.jpg" class="img-fluid" alt="" /></a> 
            </div> 
            <div class="single-small-image img-full"> 
-            <a data-toggle="tab" id="single-slide-tab-quick-2" href="#single-slide-quick-2"><img src="assets/images/single-product-slider/02.jpg" class="img-fluid" alt="" /></a> 
+            <a data-toggle="tab" id="single-slide-tab-quick-2" href="#single-slide-quick-2"><img src="/static/home/assets/images/single-product-slider/02.jpg" class="img-fluid" alt="" /></a> 
            </div> 
            <div class="single-small-image img-full"> 
-            <a data-toggle="tab" id="single-slide-tab-quick-3" href="#single-slide-quick-3"><img src="assets/images/single-product-slider/03.jpg" class="img-fluid" alt="" /></a> 
+            <a data-toggle="tab" id="single-slide-tab-quick-3" href="#single-slide-quick-3"><img src="/static/home/assets/images/single-product-slider/03.jpg" class="img-fluid" alt="" /></a> 
            </div> 
            <div class="single-small-image img-full"> 
-            <a data-toggle="tab" id="single-slide-tab-quick-4" href="#single-slide-quick-4"><img src="assets/images/single-product-slider/04.jpg" alt="" /></a> 
+            <a data-toggle="tab" id="single-slide-tab-quick-4" href="#single-slide-quick-4"><img src="/static/home/assets/images/single-product-slider/04.jpg" alt="" /></a> 
            </div> 
           </div> 
          </div> 
@@ -608,14 +594,14 @@
   <!-- JS
   ============================================ --> 
   <!-- jQuery JS --> 
-  <script src="assets/js/vendor/jquery.min.js"></script> 
+  <script src="/static/home/assets/js/vendor/jquery.min.js"></script> 
   <!-- Popper JS --> 
-  <script src="assets/js/popper.min.js"></script> 
+  <script src="/static/home/assets/js/popper.min.js"></script> 
   <!-- Bootstrap JS --> 
-  <script src="assets/js/bootstrap.min.js"></script> 
+  <script src="/static/home/assets/js/bootstrap.min.js"></script> 
   <!-- Plugins JS --> 
-  <script src="assets/js/plugins.js"></script> 
+  <script src="/static/home/assets/js/plugins.js"></script> 
   <!-- Main JS --> 
-  <script src="assets/js/main.js"></script>   
+  <script src="/static/home/assets/js/main.js"></script>   
  </body>
 </html>
