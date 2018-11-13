@@ -9,6 +9,9 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="/static/admins/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/static/admins/vendors/css/vendor.bundle.base.css">
+
+<!-- jq引入-->
+ <script src="/static/admins/js/jquery-mini.js"></script>
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -16,6 +19,7 @@
   <link rel="stylesheet" href="/static/admins/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="/static/admins/images/favicon.png" />
+
 </head>
 
 <body>
@@ -28,11 +32,27 @@
               <div class="brand-logo">
                 <img src="/static/admins/images/logo.svg">
               </div>
-              <h4>Hello! let's get started</h4>
-              <h6 class="font-weight-light">Sign in to continue.</h6>
+              <h4>Hello!欢迎来到后台</h4>
+              <h6 class="font-weight-light">请先登录在继续~</h6>
               <form class="pt-3" action="/adminlogin" method="post">
+                 @if(count($errors)>0)
+
+                  <div class="mws-form-message warning">
+                    <div class="alert alert-danger">
+                      <ul style="list-style-type: none;">
+                        @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                      </ul>
+                    </div>
+                    </div>
+                @endif
+
                 @if(session('error'))
-                {{session('error')}}
+
+                 <a href="javascript:void(0)" class="mws-form-message error btn btn-gradient-danger btn-fw" id="error">
+                      {{session('error')}}
+                  </a>
                 @endif
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="账号" name="name" value="{{old('name')}}">
@@ -40,6 +60,14 @@
                 <div class="form-group">
                   <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="密码" name="pwd">
                 </div>
+
+                 <div class="form-group">
+                  <input type="text" class="form-control form-control-lg {{$errors->has('captcha')?'parsley-error':''}}" id="exampleInputPassword2" placeholder="验证码" name="captcha">
+                </div>
+                <div class="form-group">
+                    <img src="{{captcha_src()}}" style="cursor: pointer" onclick="this.src='{{captcha_src()}}'+Math.random()">
+                </div>
+
                 {{csrf_field()}}
                 <div class="mt-3">
                   <input type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" value="登录">
@@ -61,7 +89,17 @@
   <!-- inject:js -->
   <script src="/static/admins/js/off-canvas.js"></script>
   <script src="/static/admins/js/misc.js"></script>
+  <script src="/static/admins/js/core/mws.js"></script>
+
   <!-- endinject -->
 </body>
+<script type="text/javascript">
+    $("#success").click(function(){
+      $("#success").remove();
+    });
+    $("#error").click(function(){
+      $("#error").remove();
+    });
 
+  </script>
 </html>
