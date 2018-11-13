@@ -98,8 +98,8 @@
       <li class="nav-item"> <a class="nav-link" href="#fenlei" aria-expanded="false" aria-controls="fenlei" data-toggle="collapse"> <span class="menu-title">分类管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-format-list-bulleted menu-icon"></i> </a> 
        <div class="collapse" id="fenlei"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="">分类列表</a></li> 
-         <li class="nav-item"> <a class="nav-link" href="">分类添加</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/acate">分类列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/acate/create">分类添加</a></li> 
         </ul> 
        </div> </li> 
       <li class="nav-item"> <a class="nav-link" href="#shop" aria-expanded="false" aria-controls="shop" data-toggle="collapse"> <span class="menu-title">商品管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-shopping menu-icon"></i> </a> 
@@ -160,8 +160,8 @@
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#notice" aria-expanded="false" aria-controls="notice"> <span class="menu-title">公告管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-vector-point menu-icon"></i> </a> 
        <div class="collapse" id="notice"> 
         <ul class="nav flex-column sub-menu"> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">公告列表</a></li> 
-         <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">公告添加</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/adver">公告列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/adver/create">公告添加</a></li> 
         </ul> 
        </div> </li> 
      </ul> 
