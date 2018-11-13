@@ -21,8 +21,12 @@
       </div> 
      </div> 
      <div class="form-group row">
-      <label for="exampleInputMobile" class="col-sm-3 col-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">广告图片</font></font></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       <input type="file" name="pic" value="{{$user->pic}}"  id="exampleInputEmail2" >
+      <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">原图片</font></font></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <img src="/uploads/{{$user->pic}}" height="300px" >
+      </div>
+      <div class="form-group row">
+      <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新图片</font></font></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <input type="file" name="pic" value=""  id="exampleInputEmail2" >
       </div> 
      <div class="form-group row"> 
       <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属公司</font></font></label> 
