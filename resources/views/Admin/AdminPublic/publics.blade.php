@@ -94,28 +94,42 @@
        </div>
       </li>
 
+       
 
-      <li class="nav-item"> <a class="nav-link" href="#fenlei" aria-expanded="false" aria-controls="fenlei" data-toggle="collapse"> <span class="menu-title">分类管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-format-list-bulleted menu-icon"></i> </a>
-       <div class="collapse" id="fenlei">
-        <ul class="nav flex-column sub-menu">
-         <li class="nav-item"> <a class="nav-link" href="/acate">分类列表</a></li>
-         <li class="nav-item"> <a class="nav-link" href="/acate/create">分类添加</a></li>
-        </ul>
-       </div> </li>
-      <li class="nav-item"> <a class="nav-link" href="#shop" aria-expanded="false" aria-controls="shop" data-toggle="collapse"> <span class="menu-title">商品管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-shopping menu-icon"></i> </a>
-       <div class="collapse" id="shop">
-        <ul class="nav flex-column sub-menu">
-         <li class="nav-item"> <a class="nav-link" href="/agoods">商品列表</a></li>
-         <li class="nav-item"> <a class="nav-link" href="/agoods/create">商品添加</a></li>
-        </ul>
-       </div> </li>
-      <li class="nav-item"> <a class="nav-link" href="#order" aria-expanded="false" aria-controls="order" data-toggle="collapse"> <span class="menu-title">订单管理</span> <i class="menu-arrow"></i> <i class="mdi mdi mdi-square-inc-cash menu-icon"></i> </a>
-       <div class="collapse" id="order">
-        <ul class="nav flex-column sub-menu">
-         <li class="nav-item"> <a class="nav-link" href="/order">订单列表</a></li>
-        </ul>
-       </div> </li>
+      <li class="nav-item"> <a class="nav-link" href="#fenlei" aria-expanded="false" aria-controls="fenlei" data-toggle="collapse"> <span class="menu-title">分类管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-format-list-bulleted menu-icon"></i> </a> 
+       <div class="collapse" id="fenlei"> 
+        <ul class="nav flex-column sub-menu"> 
+         <li class="nav-item"> <a class="nav-link" href="/acate">分类列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/acate/create">分类添加</a></li> 
+        </ul> 
+       </div> </li> 
+      <li class="nav-item"> <a class="nav-link" href="#shop" aria-expanded="false" aria-controls="shop" data-toggle="collapse"> <span class="menu-title">商品管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-shopping menu-icon"></i> </a> 
+       <div class="collapse" id="shop"> 
+        <ul class="nav flex-column sub-menu"> 
+         <li class="nav-item"> <a class="nav-link" href="/agoods">商品列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/agoods/create">商品添加</a></li> 
+        </ul> 
+       </div> 
+     </li> 
 
+     <li class="nav-item"> <a class="nav-link" href="#discount" aria-expanded="false" aria-controls="discount" data-toggle="collapse"> <span class="menu-title">优惠券</span> <i class="menu-arrow"></i> <i class="mdi mdi-shopping menu-icon"></i> </a> 
+       <div class="collapse" id="discount"> 
+        <ul class="nav flex-column sub-menu"> 
+         <li class="nav-item"> <a class="nav-link" href="/adiscount">优惠券列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/adiscount/create">优惠券添加</a></li> 
+        </ul> 
+       </div> 
+     </li> 
+
+
+      <li class="nav-item"> <a class="nav-link" href="#order" aria-expanded="false" aria-controls="order" data-toggle="collapse"> <span class="menu-title">订单管理</span> <i class="menu-arrow"></i> <i class="mdi mdi mdi-square-inc-cash menu-icon"></i> </a> 
+       <div class="collapse" id="order"> 
+        <ul class="nav flex-column sub-menu"> 
+         <li class="nav-item"> <a class="nav-link" href="/order">订单列表</a></li> 
+        </ul> 
+       </div> </li> 
+       
+ 
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#lunbo" aria-expanded="false" aria-controls="lunbo"> <span class="menu-title">轮播图管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-xaml menu-icon"></i> </a>
        <div class="collapse" id="lunbo">
         <ul class="nav flex-column sub-menu">
