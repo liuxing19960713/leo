@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Hash;
+use App\Http\Requests\AdminLogin;
 class AdminloginController extends Controller
 {
     /**
@@ -32,7 +33,7 @@ class AdminloginController extends Controller
 
 
         $request->session()->pull('id');
-        $request->session()->pull('nodelist');  
+        $request->session()->pull('nodelist');
         return redirect("/adminlogin");
     }
 
@@ -42,12 +43,14 @@ class AdminloginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminLogin $request)
     {
         // dd($request->all());
         //获取登录用户名和密码
         $name=$request->input("name");
         $pwd=$request->input("pwd");
+        // $captcha = $request->input('captcha');
+        // dd($captcha);
         //闪存name
         $request->flashOnly('name');
         //要数据表的数据做对比
