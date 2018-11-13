@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -12,10 +12,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //遍历方法
+    public function getCategoryBypid($pid){
+        $s=DB::table("category")->where("pid",'=',$pid)->get();
+        //遍历
+        $data=[];
+        foreach($s as $key=>$value){
+            $value->dev=$this->getCategoryBypid($value->id);
+            $data[]=$value;
+        }
+        return $data;
+    }
     public function index()
     {
-        //加载模板
-        return view("Home.Home.index");
+        $cate=$this->getCategoryBypid(0);
+        //dd($cate);
+        //首页方法
+        return view("Home.Home.index",['cate'=>$cate]);
+        
     }
 
     /**

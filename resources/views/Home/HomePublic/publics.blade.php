@@ -161,67 +161,34 @@
         <!-- Category Menu --> 
         <nav class="category-menu"> 
          <ul> 
-          <li><a href="shop-left-sidebar.html">Sofas &amp; Chairs</a></li> 
-          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">Drawing Room</a> 
+          @foreach($cate as $row)
+          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">{{$row->name}}</a>
+          @if(count($row->dev)) 
            <!-- Mega Category Menu Start --> 
-           <ul class="category-mega-menu"> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Living Chairs</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Armchairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs &amp; Benches</a></li> 
-              <li><a href="shop-left-sidebar.html">Desk Chairs</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Sofa</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Dining Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Side Boards</a></li> 
-              <li><a href="shop-left-sidebar.html">Coffee Tables</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Storage</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Chair &amp; Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Sets</a></li> 
-              <li><a href="shop-left-sidebar.html">Loungers</a></li> 
-             </ul> </li> 
+           <ul class="category-mega-menu">
+            @foreach($row->dev as $rows) 
+            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">{{$rows->name}}</a>
+              @if(count($rows->dev)) 
+             <ul>
+                @foreach($rows->dev as $rowss) 
+              <li><a href="shop-left-sidebar.html">{{$rowss->name}}</a></li> 
+               @endforeach
+               
+               
+             </ul>
+              @endif
+              </li>
+              @endforeach 
+             
+             
            </ul>
+           @endif
            <!-- Mega Category Menu End --> </li> 
-          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">Dinning Room</a> 
-           <!-- Mega Category Menu Start --> 
-           <ul class="category-mega-menu"> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Living Chairs</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Armchairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs &amp; Benches</a></li> 
-              <li><a href="shop-left-sidebar.html">Desk Chairs</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Sofa</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Dining Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Side Boards</a></li> 
-              <li><a href="shop-left-sidebar.html">Coffee Tables</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Storage</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Chair &amp; Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Sets</a></li> 
-              <li><a href="shop-left-sidebar.html">Loungers</a></li> 
-             </ul> </li> 
-           </ul>
-           <!-- Mega Category Menu End --> </li> 
-          <li><a href="shop-left-sidebar.html">Out Door Room</a></li> 
-          <li><a href="shop-left-sidebar.html">Room living</a></li> 
-          <li><a href="shop-left-sidebar.html">Estilo</a></li> 
-          <li><a href="shop-left-sidebar.html">Living Chairs</a></li> 
-          <li class="hidden"><a href="shop-left-sidebar.html">New Sofas</a></li> 
-          <li class="hidden"><a href="shop-left-sidebar.html">Sleight Sofas</a></li> 
-          <li><a href="#" id="more-btn"><span class="lnr lnr-plus-circle"></span> More Categories</a></li> 
-         </ul> 
+           @endforeach
+          <li><a href="#" id="more-btn"><span class="lnr lnr-plus-circle"></span> More Categories</a></li>
+            
+         </ul>
+
         </nav> 
        </div> 
        <!--=======  End of category menu =======--> 
