@@ -71,17 +71,21 @@ Route::group(["middleware"=>"adminlogin"],function()
   //回复评论添加
   Route::get('/recommentinsert/{id}','Admin\Re_CommentController@insert');
   Route::post('/recommentinsert/{id}','Admin\Re_CommentController@up');
+
   // 轮播图的路由
   Route::resource('/wheel','Admin\WheelController');
+
   // 轮播图Ajax 修改状态
   Route::get('/wheelsta','Admin\WheelController@Ajax');
-//强结束
+	//强结束
 
 	//分配权限
 	Route::get("/rolelist/{id}","Admin\AdministratorController@rolelist");
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
 
+	// 优惠券模块
+	Route::resource("/adiscount","Admin\DiscountController");
   
   
 

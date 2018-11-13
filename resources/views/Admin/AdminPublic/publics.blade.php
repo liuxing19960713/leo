@@ -108,7 +108,19 @@
          <li class="nav-item"> <a class="nav-link" href="/agoods">商品列表</a></li> 
          <li class="nav-item"> <a class="nav-link" href="/agoods/create">商品添加</a></li> 
         </ul> 
-       </div> </li> 
+       </div> 
+     </li> 
+
+     <li class="nav-item"> <a class="nav-link" href="#discount" aria-expanded="false" aria-controls="discount" data-toggle="collapse"> <span class="menu-title">优惠券</span> <i class="menu-arrow"></i> <i class="mdi mdi-shopping menu-icon"></i> </a> 
+       <div class="collapse" id="discount"> 
+        <ul class="nav flex-column sub-menu"> 
+         <li class="nav-item"> <a class="nav-link" href="/adiscount">优惠券列表</a></li> 
+         <li class="nav-item"> <a class="nav-link" href="/adiscount/create">优惠券添加</a></li> 
+        </ul> 
+       </div> 
+     </li> 
+
+
       <li class="nav-item"> <a class="nav-link" href="#order" aria-expanded="false" aria-controls="order" data-toggle="collapse"> <span class="menu-title">订单管理</span> <i class="menu-arrow"></i> <i class="mdi mdi mdi-square-inc-cash menu-icon"></i> </a> 
        <div class="collapse" id="order"> 
         <ul class="nav flex-column sub-menu"> 
