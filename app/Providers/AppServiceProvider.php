@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use DB;
 class AppServiceProvider extends ServiceProvider
 {
+    // 无限分类方法
     public function getCategoryBypid($pid)
     {
         $s=DB::table("category")->where("pid",'=',$pid)->get();
