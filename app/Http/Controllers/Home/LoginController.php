@@ -1,11 +1,11 @@
 <?php
-
+// 登录模块
 namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ContactController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view("Home.Home.contact");
+        //
     }
 
     /**
@@ -24,7 +24,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-         
+        //
+        return view('Home.Login.login');
     }
 
     /**
@@ -36,6 +37,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         //
+        var_dump($request->all());
     }
 
     /**
