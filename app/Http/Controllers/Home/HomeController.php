@@ -18,7 +18,7 @@ class HomeController extends Controller
         $info=DB::table('goods')->where('status','=',1)->get();
         // dd($info);
 
-        $cate=$this->getCategoryBypid(0);
+        // $cate=$this->getCategoryBypid(0);
         //首页方法
         return view("Home.Home.index",['cate'=>$cate,'info'=>$info]);
         
