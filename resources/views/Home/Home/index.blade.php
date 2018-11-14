@@ -138,6 +138,7 @@
      <div class="col-lg-12"> 
       <!--=======  top selling product slider container  =======--> 
       <div class="ptk-slider double-row-slider-container" data-row="2">
+      <!--所有商品遍历开始--> 
       @foreach($info as $row) 
        <div class="col"> 
         <!--=======  single product  =======--> 
@@ -155,8 +156,8 @@
           <!--=======  End of badge  =======--> 
          </div> 
          <div class="content"> 
-          <p class="product-title"><a href="single-product.html" style="font-size:15px;">{{$row->goods_name}}</a></p> 
-          <p class="product-price"><span class="discounted-price">{{$row->price}}</span> </p> 
+          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="single-product.html" style="font-size:15px;">{{$row->goods_name}}</a></p> 
+          <p class="product-price"><span class="discounted-price">{{$row->price}}￥</span> </p> 
          </div> 
          <div class="rating"> 
           <i class="lnr lnr-star active"></i> 
@@ -168,7 +169,8 @@
         </div> 
         <!--=======  End of single product  =======--> 
        </div>  
-       @endforeach  
+       @endforeach
+       <!--所有商品遍历结束-->   
       </div> 
       <!--=======  End of top selling product slider container  =======--> 
      </div> 
@@ -203,19 +205,21 @@
     <div class="row"> 
      <div class="col-lg-6 mb-md-80 mb-sm-80"> 
       <div class="section-title mb-40"> 
-       <h2>Deals <span>of The</span> Week</h2> 
-       <p>Deals of the Week are a selection of fresh deals updated every week!</p> 
+       <h2>优惠周</h2> 
+       <p>本周优惠商品，每周都会更新优惠商品</p> 
       </div> 
       <div class="row"> 
        <div class="col-lg-12"> 
         <!--=======  deal slider container  =======--> 
-        <div class="ptk-slider deal-slider-container"> 
+        <div class="ptk-slider deal-slider-container">
+        <!--优惠商品遍历开始-->
+        @foreach($info as $row) 
          <div class="col"> 
           <!--=======  single product  =======--> 
           <div class="product-countdown" data-countdown="2020/05/01"></div> 
           <div class="ptk-product"> 
            <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product01.jpg" class="img-fluid" alt="" /> </a> 
+            <a href="single-product.html"> <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" /> </a> 
             <!--=======  hover icons  =======--> 
             <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
             <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
@@ -229,8 +233,8 @@
             <!--=======  End of badge  =======--> 
            </div> 
            <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Field Messenger</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
+            <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="single-product.html">{{$row->goods_name}}</a></p> 
+            <p class="product-price">  <span class="discounted-price">{{$row->price}}￥</span> </p> 
            </div> 
            <div class="rating"> 
             <i class="lnr lnr-star active"></i> 
@@ -241,102 +245,11 @@
            </div> 
           </div> 
           <!--=======  End of single product  =======--> 
-         </div> 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="product-countdown" data-countdown="2020/05/01"></div> 
-          <div class="ptk-product"> 
-           <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product02.jpg" class="img-fluid" alt="" /> </a> 
-            <!--=======  hover icons  =======--> 
-            <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-            <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
-            <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
-            <!--=======  End of hover icons  =======--> 
-            <!--=======  badge  =======--> 
-            <div class="product-badge"> 
-             <span class="new-badge">NEW</span> 
-            </div> 
-            <!--=======  End of badge  =======--> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Teton Pullover Hoo</a></p> 
-            <p class="product-price"> <span class="main-price">$75.90</span> </p> 
-           </div> 
-           <div class="rating"> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star"></i> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
-         </div> 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="product-countdown" data-countdown="2020/05/01"></div> 
-          <div class="ptk-product"> 
-           <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product03.jpg" class="img-fluid" alt="" /> </a> 
-            <!--=======  hover icons  =======--> 
-            <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-            <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
-            <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
-            <!--=======  End of hover icons  =======--> 
-            <!--=======  badge  =======--> 
-            <div class="product-badge"> 
-             <span class="new-badge">NEW</span> 
-             <span class="discount-badge">-8%</span> 
-            </div> 
-            <!--=======  End of badge  =======--> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Hummingbird printed t-shirt</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
-           </div> 
-           <div class="rating"> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star"></i> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
-         </div> 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="product-countdown" data-countdown="2020/05/01"></div> 
-          <div class="ptk-product"> 
-           <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product04.jpg" class="img-fluid" alt="" /> </a> 
-            <!--=======  hover icons  =======--> 
-            <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-            <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
-            <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
-            <!--=======  End of hover icons  =======--> 
-            <!--=======  badge  =======--> 
-            <div class="product-badge"> 
-             <span class="new-badge">NEW</span> 
-             <span class="discount-badge">-8%</span> 
-            </div> 
-            <!--=======  End of badge  =======--> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Aim Analog</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
-           </div> 
-           <div class="rating"> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star"></i> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
-         </div> 
+         </div>
+         @endforeach 
+        <!--优惠商品遍历结束-->   
+          
+          
         </div> 
         <!--=======  End of deal slider container  =======--> 
        </div> 
@@ -344,22 +257,24 @@
      </div> 
      <div class="col-lg-6"> 
       <div class="section-title mb-40"> 
-       <h2>Some <span>Popular</span> Products</h2> 
+       <h2>客厅类专栏</h2> 
        <p>We offer the best selection furniture at prices you will love!</p> 
       </div> 
       <div class="row"> 
        <div class="col-lg-12"> 
         <!--=======  popular product slider  =======--> 
-        <div class="ptk-slider popular-product-slider" data-row="3"> 
+        <div class="ptk-slider popular-product-slider" data-row="2">
+        <!--客厅类商品遍历-->
+        @foreach($search as $data) 
          <div class="col"> 
           <!--=======  single product  =======--> 
-          <div class="ptk-product d-flex"> 
+          <div class="ptk-product"> 
            <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product01.jpg" class="img-fluid" alt="" /> </a> 
+            <a href="single-product.html"> <img src="/static/admin/uploads/z_goods/{{$data->z_pic}}" class="img-fluid" alt="" /> </a> 
            </div> 
            <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Field Messenger</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
+            <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="single-product.html">{{$data->goods_name}}</a></p> 
+            <p class="product-price"><span class="discounted-price">{{$data->price}}￥</span> </p> 
             <div class="rating rating-product-style-2"> 
              <i class="lnr lnr-star active"></i> 
              <i class="lnr lnr-star active"></i> 
@@ -370,147 +285,9 @@
            </div> 
           </div> 
           <!--=======  End of single product  =======--> 
-         </div> 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="ptk-product d-flex"> 
-           <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product02.jpg" class="img-fluid" alt="" /> </a> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Mug Today is a good day</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
-            <div class="rating rating-product-style-2"> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star"></i> 
-            </div> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
-         </div> 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="ptk-product d-flex"> 
-           <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product03.jpg" class="img-fluid" alt="" /> </a> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Teton Pullover Hoo</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
-            <div class="rating rating-product-style-2"> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star"></i> 
-            </div> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
-         </div> 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="ptk-product d-flex"> 
-           <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product04.jpg" class="img-fluid" alt="" /> </a> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Field Messenger</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
-            <div class="rating rating-product-style-2"> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star"></i> 
-            </div> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
-         </div> 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="ptk-product d-flex"> 
-           <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product05.jpg" class="img-fluid" alt="" /> </a> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Hummingbird printed t-shirt</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
-            <div class="rating rating-product-style-2"> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star"></i> 
-            </div> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
-         </div> 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="ptk-product d-flex"> 
-           <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product06.jpg" class="img-fluid" alt="" /> </a> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Field Messenger</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
-            <div class="rating rating-product-style-2"> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star"></i> 
-            </div> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
-         </div> 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="ptk-product d-flex"> 
-           <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product07.jpg" class="img-fluid" alt="" /> </a> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Hummingbird printed t-shirt</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
-            <div class="rating rating-product-style-2"> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star"></i> 
-            </div> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
-         </div> 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="ptk-product d-flex"> 
-           <div class="image"> 
-            <a href="single-product.html"> <img src="/static/home/assets/images/products/product08.jpg" class="img-fluid" alt="" /> </a> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title"><a href="single-product.html">Teton Pullover Hoo</a></p> 
-            <p class="product-price"> <span class="main-price discounted">$75.90</span> <span class="discounted-price">$69.83</span> </p> 
-            <div class="rating rating-product-style-2"> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star"></i> 
-            </div> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
-         </div> 
+         </div>
+         @endforeach 
+         <!--客厅类商品遍历结束-->        
         </div> 
         <!--=======  End of popular product slider  =======--> 
        </div> 

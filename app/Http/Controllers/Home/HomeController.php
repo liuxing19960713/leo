@@ -12,27 +12,31 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //遍历方法
-    public function getCategoryBypid($pid){
-        $s=DB::table("category")->where("pid",'=',$pid)->get();
-        //遍历
-        $data=[];
-        foreach($s as $key=>$value){
-            $value->dev=$this->getCategoryBypid($value->id);
-            $data[]=$value;
+    public function getSearch($id){
+        // dd($id);
+        $data=DB::table("category")->where('path','like',"0,$id")->get();
+        $ids='';
+        foreach($data as $value)
+        {
+            $ids.=$value->id.',';
+
         }
-        return $data;
+        $ids=$ids.$id;
+        // dd($ids);
+        $search=DB::select("SELECT * FROM goods WHERE `status`=1 and cate_id in({$ids})");
+        // dd($search);
+        return $search;
     }
     public function index()
     {
 
         $info=DB::table('goods')->where('status','=',1)->get();
         $cate=$this->getCategoryBypid(0);
-        //dd($cate);
-        //首页方法
-        return view("Home.Home.index",['cate'=>$cate,'info'=>$info]);
-        
+        $search=$this->getSearch(7);
 
+        // dd($search);
+        //首页方法
+        return view("Home.Home.index",['cate'=>$cate,'search'=>$search,'info'=>$info]);
     }
 
     /**
