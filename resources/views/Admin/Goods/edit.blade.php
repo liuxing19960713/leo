@@ -28,7 +28,7 @@
         <select class="form-control" id="exampleSelectGender" name="cate_id">
           <option value="0">--请选择--</option>
           @foreach($cateinfo as $r)
-          <option value="{{$r->id}}" @if($r->id == $user->r_id) selected  @endif>{{$r->name}} </option>
+          <option value="{{$r->id}}" @if($r->id == $good_info->cate_id) selected  @endif>{{$r->name}} </option>
           @endforeach
         </select> 
      </div> 

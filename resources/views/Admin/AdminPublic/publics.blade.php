@@ -174,8 +174,8 @@
       <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#notice" aria-expanded="false" aria-controls="notice"> <span class="menu-title">公告管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-vector-point menu-icon"></i> </a>
        <div class="collapse" id="notice">
         <ul class="nav flex-column sub-menu">
-         <li class="nav-item"> <a class="nav-link" href="/adver">公告列表</a></li>
-         <li class="nav-item"> <a class="nav-link" href="/adver/create">公告添加</a></li>
+         <li class="nav-item"> <a class="nav-link" href="/notice">公告列表</a></li>
+         <li class="nav-item"> <a class="nav-link" href="/notice/create">公告添加</a></li>
         </ul>
        </div> </li>
      </ul>

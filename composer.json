@@ -28,7 +28,10 @@
             "App\\": "app/"
         },
         "files":[
-            "app/Library/Uploads.php"
+            "app/Library/Uploads.php",
+            "app/Library/Ucpaas.php",
+            "app/Library/Sendcode.php"
+
 
         ]
     },
