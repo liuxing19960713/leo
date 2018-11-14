@@ -36,7 +36,7 @@
     <div class="container"> 
      <div class="row"> 
       <div class="col-12 col-md-6 text-center text-md-left mb-sm-15"> 
-       <span class="header-top-text">欢迎来到Pataku网上商店！</span> 
+       <span class="header-top-text">欢迎来到灯饰人生网上商店！</span> 
       </div> 
       <div class="col-12 col-md-6"> 
        <!--=======  header top dropdowns  =======--> 
@@ -97,12 +97,12 @@
        <div class="menu-top-icons d-flex justify-content-center align-items-center justify-content-md-end"> 
         <!--=======  single icon  =======--> 
         <div class="single-icon mr-20"> 
-         <a href="wishlist.html"> <i class="lnr lnr-heart"></i> <span class="text">Wishlist</span> <span class="count">0</span> </a> 
+         <a href="wishlist.html"> <i class="lnr lnr-heart"></i> <span class="text">愿望清单</span> <span class="count">0</span> </a> 
         </div> 
         <!--=======  End of single icon  =======--> 
         <!--=======  single icon  =======--> 
         <div class="single-icon"> 
-         <a href="javascript:void(0)" id="cart-icon"> <i class="lnr lnr-cart"></i> <span class="text">My Cart</span> <span class="count">0</span> </a> 
+         <a href="javascript:void(0)" id="cart-icon"> <i class="lnr lnr-cart"></i> <span class="text">我的购物车</span> <span class="count">0</span> </a> 
          <!-- cart floating box --> 
          <div class="cart-floating-box hidden" id="cart-floating-box"> 
           <div class="cart-items"> 
@@ -162,67 +162,34 @@
         <!-- Category Menu --> 
         <nav class="category-menu"> 
          <ul> 
-          <li><a href="shop-left-sidebar.html">Sofas &amp; Chairs</a></li> 
-          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">Drawing Room</a> 
+          @foreach($cate as $row)
+          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">{{$row->name}}</a>
+          @if(count($row->dev)) 
            <!-- Mega Category Menu Start --> 
-           <ul class="category-mega-menu"> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Living Chairs</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Armchairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs &amp; Benches</a></li> 
-              <li><a href="shop-left-sidebar.html">Desk Chairs</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Sofa</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Dining Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Side Boards</a></li> 
-              <li><a href="shop-left-sidebar.html">Coffee Tables</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Storage</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Chair &amp; Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Sets</a></li> 
-              <li><a href="shop-left-sidebar.html">Loungers</a></li> 
-             </ul> </li> 
+           <ul class="category-mega-menu">
+            @foreach($row->dev as $rows) 
+            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">{{$rows->name}}</a>
+              @if(count($rows->dev)) 
+             <ul>
+                @foreach($rows->dev as $rowss) 
+              <li><a href="shop-left-sidebar.html">{{$rowss->name}}</a></li> 
+               @endforeach
+               
+               
+             </ul>
+              @endif
+              </li>
+              @endforeach 
+             
+             
            </ul>
+           @endif
            <!-- Mega Category Menu End --> </li> 
-          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">Dinning Room</a> 
-           <!-- Mega Category Menu Start --> 
-           <ul class="category-mega-menu"> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Living Chairs</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Armchairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs &amp; Benches</a></li> 
-              <li><a href="shop-left-sidebar.html">Desk Chairs</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Sofa</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Dining Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Side Boards</a></li> 
-              <li><a href="shop-left-sidebar.html">Coffee Tables</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Storage</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Chair &amp; Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Sets</a></li> 
-              <li><a href="shop-left-sidebar.html">Loungers</a></li> 
-             </ul> </li> 
-           </ul>
-           <!-- Mega Category Menu End --> </li> 
-          <li><a href="shop-left-sidebar.html">Out Door Room</a></li> 
-          <li><a href="shop-left-sidebar.html">Room living</a></li> 
-          <li><a href="shop-left-sidebar.html">Estilo</a></li> 
-          <li><a href="shop-left-sidebar.html">Living Chairs</a></li> 
-          <li class="hidden"><a href="shop-left-sidebar.html">New Sofas</a></li> 
-          <li class="hidden"><a href="shop-left-sidebar.html">Sleight Sofas</a></li> 
-          <li><a href="#" id="more-btn"><span class="lnr lnr-plus-circle"></span> More Categories</a></li> 
-         </ul> 
+           @endforeach
+          <li><a href="#" id="more-btn"><span class="lnr lnr-plus-circle"></span> More Categories</a></li>
+            
+         </ul>
+
         </nav> 
        </div> 
        <!--=======  End of category menu =======--> 
