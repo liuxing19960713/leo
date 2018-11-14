@@ -7,22 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    //遍历分类栏目方法
-    public function getCategoryBypid($pid){
-        $s=DB::table("category")->where("pid",'=',$pid)->get();
-        //遍历
-        $data=[];
-        foreach($s as $key=>$value){
-            $value->dev=$this->getCategoryBypid($value->id);
-            $data[]=$value;
-        }
-        return $data;
-    }
+    
     
     
     //首页轮播图方法
@@ -39,13 +24,12 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $cate=$this->getCategoryBypid(0);
         
         $wheel=$this->wheel();
         $link=$this->link();
         //dd($cate);
         //首页方法
-        return view("Home.Home.index",['cate'=>$cate,'wheel'=>$wheel,'link'=>$link]);
+        return view("Home.Home.index",['wheel'=>$wheel,'link'=>$link]);
        
         
     }
