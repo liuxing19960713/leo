@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 class HomeController extends Controller
 {
+
     
     
     
@@ -21,17 +22,44 @@ class HomeController extends Controller
         $link=DB::table("link")->get();
         //dd(count($link));
         return $link;
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function getsear($id){
+        // dd($id);
+        $data=DB::table("category")->where('path','like',"0,$id")->get();
+        $ids='';
+        foreach($data as $value)
+        {
+            $ids.=$value->id.',';
+
+        }
+        $ids=$ids.$id;
+        // dd($ids);
+        $sear=DB::select("SELECT * FROM goods WHERE `status`=1 and cate_id in({$ids})");
+        // dd($sear);
+        return $sear;
+
     }
+
     public function index()
     {
+
         
         $wheel=$this->wheel();
         $link=$this->link();
-        //dd($cate);
+        // dd(111);
+        $info=DB::table('goods')->where('status','=',1)->get();
+        $sear=$this->getsear(7);
+        // dd($info);
+        // dd($sear);
         //首页方法
-        return view("Home.Home.index",['wheel'=>$wheel,'link'=>$link]);
-       
-        
+        return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel,'link'=>$link]);
+
     }
     //首页文章栏目
     public function article(){

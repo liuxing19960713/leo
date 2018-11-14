@@ -71,22 +71,28 @@ Route::group(["middleware"=>"adminlogin"],function()
   //回复评论添加
   Route::get('/recommentinsert/{id}','Admin\Re_CommentController@insert');
   Route::post('/recommentinsert/{id}','Admin\Re_CommentController@up');
+
   // 轮播图的路由
   Route::resource('/wheel','Admin\WheelController');
+
   // 轮播图Ajax 修改状态
   Route::get('/wheelsta','Admin\WheelController@Ajax');
-//强结束
+	//强结束
 
 //分配权限
 	Route::get("/rolelist/{id}","Admin\AdministratorController@rolelist");
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
+
 //文章管理
 Route::resource('/article','Admin\ArticleController');
 //文章ajax删除
 Route::get('/articledel',"Admin\ArticleController@del");
 //文章状态ajax修改)
 Route::get('/articleajax',"Admin\ArticleController@ajax");	
+// 优惠券模块
+Route::resource("/adiscount","Admin\DiscountController");
+
   
   
 
@@ -97,3 +103,15 @@ Route::resource("/","Home\HomeController");
 Route::get("/article","Home\HomeController@article");
 //关于我们
 Route::resource("/contact","Home\ContactController");
+
+// 前台登录
+Route::resource("/hlogin","Home\LoginController");
+
+// 前台注册
+Route::resource("/hregi","Home\RegisterController");
+
+//ajax验证用户是否存在
+Route::get("/checkuname","Home\RegisterController@checkuname");
+
+// 接收发来的手机
+Route::get("/hsend","Home\RegisterController@send");

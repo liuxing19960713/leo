@@ -62,7 +62,7 @@ class AdministratorController extends Controller
         return redirect('/administrator')->with('success','权限分配成功');
        // var_dump($data);
 
-       
+
     }
 
 
@@ -96,7 +96,10 @@ class AdministratorController extends Controller
         $data=$request->except(['repassword','_token']);
         //密码加密
         $data['pwd']=Hash::make($data['pwd']);
-        $data['rid'];
+
+      
+
+
         //dd($data['level']);
         //dd($data);
 
@@ -151,7 +154,7 @@ class AdministratorController extends Controller
     {
         //获取参数
         $data=$request->except(['_token','_method','repassword']);
-        
+
         if(Administrator::where("id",'=',$id)->update($data)){
             return redirect("/administrator")->with('success','修改成功');
         }else{
