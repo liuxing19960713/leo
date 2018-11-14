@@ -20,7 +20,7 @@ class HomeController extends Controller
 
         // $cate=$this->getCategoryBypid(0);
         //首页方法
-        return view("Home.Home.index",['cate'=>$cate,'info'=>$info]);
+        return view("Home.Home.index",['info'=>$info]);
         
 
     }

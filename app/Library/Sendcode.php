@@ -5,13 +5,12 @@
 	{
 		//初始化必填
 		//填写在开发者控制台首页上的Account Sid
-		$options['accountsid']='b70ea9ba6c9bcef4e612f0219d88e902';
-		//填写在开发者控制台首页上的Auth Token
+		$options['accountsid']='b70ea9ba6c9bcef4e612f0219d88e902';		//填写在开发者控制台首页上的Auth Token
 		$options['token']='4adbb781143f7fabc344b8fdc0cd73c5';
 		//初始化 $options必填
 		$ucpass = new Ucpaas($options);
-		$appid = "b585a43d13f24a658640c9266b3a638e"; //应用的ID，可在开发者控制台内的短信产品下查看
-		$templateid = "387033"; //可在后台短信产品→选择接入的应用→短信模板-模板ID，查看该模
+		$appid = "6f62c4bb52ef46cca4c0dc95fe71772d"; //应用的ID，可在开发者控制台内的短信产品下查看
+		$templateid = "373837"; //可在后台短信产品→选择接入的应用→短信模板-模板ID，查看该模
 		// 板ID
 		$param = rand(1,10000); //多个参数使用英文逗号隔开（如：param=“a,b,c”），如为参数则
 		// 留空

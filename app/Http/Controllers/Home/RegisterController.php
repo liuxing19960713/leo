@@ -50,10 +50,11 @@ class RegisterController extends Controller
             // $data['token'] = uniqid().rand(1,10000).time();
             $data['status']     = 1;
             $data['true_name']  = '会员'; 
+            // dd($data);
             if(User::create($data)){
-                return view("/hlogin")->with('success',"注册成功,请登录");
+                return redirect("/hlogin/create")->with('success',"注册成功,请登录");
             }else{
-                return view("/hregi")->with('error',"请查看用户名否正确");
+                return redirect("/hregi")->with('error',"请查看用户名否正确");
             }
         }
         // var_dump(cookie());
@@ -63,27 +64,24 @@ class RegisterController extends Controller
      * [验证用户是否存在]
      * @author 刘兴
      * @DateTime 2018-11-13T20:39:10+0800
-     * @return 参数：1 已存在 0 不存在 3号码符合规则
+     * @return 参数：1 已存在 0 不存在  
      *           uname    用户
      */
     public function checkuname()
     {
         // echo $_GET['uname'];
         $uname  = $_GET['uname'];
-        // $pattern= '/^1(?:(?:3[0-9])|(?:47)|(?:5[079])|(?:7[0-9])|(?:8[0-35-9]))\d{8}$/S';
-        
+        // if(empty($uname)){
+        //     echo 2;
+        // }
         // $result = preg_match($pattern,$uname,$match);
 
         $info  = DB::table('user')->where("uname","=",$uname)->first();
         
-        if(!$result){
-            // 如果用户不匹配返回三
-            echo 3;exit;
-        }
-        if(!$info){
+        if($info){
             echo 0; 
         }else{
-            echo 1;
+            echo 1;   
         }
     }
 

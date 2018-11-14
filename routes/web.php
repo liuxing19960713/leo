@@ -106,3 +106,9 @@ Route::get("/checkuname","Home\RegisterController@checkuname");
 
 // 接收发来的手机
 Route::get("/hsend","Home\RegisterController@send");
+//引入验证码
+Route::get("/code","Home\LoginController@code");
+
+//检验登录校验码
+Route::get("/chvcode","Home\LoginController@chvcode");
+
