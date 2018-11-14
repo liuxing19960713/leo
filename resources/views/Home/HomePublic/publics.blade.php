@@ -161,7 +161,7 @@
         </div> 
         <!-- Category Menu --> 
         <nav class="category-menu"> 
-         <ul> 
+         <ul>
           @foreach($cate as $row)
           <li class="menu-item-has-children"><a href="shop-left-sidebar.html">{{$row->name}}</a>
           @if(count($row->dev)) 
@@ -174,7 +174,7 @@
                 @foreach($rows->dev as $rowss) 
               <li><a href="shop-left-sidebar.html">{{$rowss->name}}</a></li> 
                @endforeach
-               
+
                
              </ul>
               @endif
@@ -189,6 +189,7 @@
           <li><a href="#" id="more-btn"><span class="lnr lnr-plus-circle"></span> More Categories</a></li>
             
          </ul>
+         
 
         </nav> 
        </div> 
