@@ -25,7 +25,7 @@ class LoginController extends Controller
     public function create()
     {
         //
-        return view('Home.Login.login');
+        return view("Home.Login.login");
     }
 
     /**
@@ -37,7 +37,7 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         //
-        var_dump($request->all());
+        // var_dump($request->all());
     }
 
     /**
