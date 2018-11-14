@@ -265,7 +265,7 @@
         <!--=======  popular product slider  =======--> 
         <div class="ptk-slider popular-product-slider" data-row="2">
         <!--客厅类商品遍历-->
-        @foreach($search as $data) 
+        @foreach($sear as $data) 
          <div class="col"> 
           <!--=======  single product  =======--> 
           <div class="ptk-product"> 

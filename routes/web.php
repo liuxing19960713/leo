@@ -94,3 +94,15 @@ Route::group(["middleware"=>"adminlogin"],function()
 Route::resource("/","Home\HomeController");
 //关于我们
 Route::resource("/contact","Home\ContactController");
+
+// 前台登录
+Route::resource("/hlogin","Home\LoginController");
+
+// 前台注册
+Route::resource("/hregi","Home\RegisterController");
+
+//ajax验证用户是否存在
+Route::get("/checkuname","Home\RegisterController@checkuname");
+
+// 接收发来的手机
+Route::get("/hsend","Home\RegisterController@send");

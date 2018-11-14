@@ -1,43 +1,20 @@
 <?php
-
+// 登录模块
 namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
-class HomeController extends Controller
+
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function getsear($id){
-        // dd($id);
-        $data=DB::table("category")->where('path','like',"0,$id")->get();
-        $ids='';
-        foreach($data as $value)
-        {
-            $ids.=$value->id.',';
-
-        }
-        $ids=$ids.$id;
-        // dd($ids);
-        $sear=DB::select("SELECT * FROM goods WHERE `status`=1 and cate_id in({$ids})");
-        // dd($sear);
-        return $sear;
-    }
-
     public function index()
     {
-        // dd(111);
-        $info=DB::table('goods')->where('status','=',1)->get();
-        $sear=$this->getsear(7);
-        // dd($info);
-        // dd($sear);
-        //首页方法
-        return view("Home.Home.index",['sear'=>$sear,'info'=>$info]);
+        //
     }
 
     /**
@@ -48,6 +25,7 @@ class HomeController extends Controller
     public function create()
     {
         //
+        return view("Home.Login.login");
     }
 
     /**
@@ -59,6 +37,7 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         //
+        // var_dump($request->all());
     }
 
     /**
