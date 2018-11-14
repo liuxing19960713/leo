@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -14,8 +14,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $info=DB::table('goods')->where('status','=',1)->get();
+        // dd($info);
         //加载模板
-        return view("Home.Home.index");
+        return view("Home.Home.index",['info'=>$info]);
     }
 
     /**

@@ -35,7 +35,7 @@
     <div class="container"> 
      <div class="row"> 
       <div class="col-12 col-md-6 text-center text-md-left mb-sm-15"> 
-       <span class="header-top-text">欢迎来到Pataku网上商店！</span> 
+       <span class="header-top-text">欢迎来到灯饰人生网上商店！</span> 
       </div> 
       <div class="col-12 col-md-6"> 
        <!--=======  header top dropdowns  =======--> 
@@ -96,12 +96,12 @@
        <div class="menu-top-icons d-flex justify-content-center align-items-center justify-content-md-end"> 
         <!--=======  single icon  =======--> 
         <div class="single-icon mr-20"> 
-         <a href="wishlist.html"> <i class="lnr lnr-heart"></i> <span class="text">Wishlist</span> <span class="count">0</span> </a> 
+         <a href="wishlist.html"> <i class="lnr lnr-heart"></i> <span class="text">愿望清单</span> <span class="count">0</span> </a> 
         </div> 
         <!--=======  End of single icon  =======--> 
         <!--=======  single icon  =======--> 
         <div class="single-icon"> 
-         <a href="javascript:void(0)" id="cart-icon"> <i class="lnr lnr-cart"></i> <span class="text">My Cart</span> <span class="count">0</span> </a> 
+         <a href="javascript:void(0)" id="cart-icon"> <i class="lnr lnr-cart"></i> <span class="text">我的购物车</span> <span class="count">0</span> </a> 
          <!-- cart floating box --> 
          <div class="cart-floating-box hidden" id="cart-floating-box"> 
           <div class="cart-items"> 
