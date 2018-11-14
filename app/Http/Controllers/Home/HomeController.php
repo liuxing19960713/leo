@@ -12,7 +12,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //遍历方法
+    //遍历分类栏目方法
     public function getCategoryBypid($pid){
         $s=DB::table("category")->where("pid",'=',$pid)->get();
         //遍历
@@ -23,13 +23,37 @@ class HomeController extends Controller
         }
         return $data;
     }
+    
+    
+    //首页轮播图方法
+    public function wheel(){
+        $w=DB::table("wheel")->get();
+        return $w;
+    }
+
+    //首页友情链接方法
+    public function link(){
+        $link=DB::table("link")->get();
+        //dd(count($link));
+        return $link;
+    }
     public function index()
     {
         $cate=$this->getCategoryBypid(0);
+        
+        $wheel=$this->wheel();
+        $link=$this->link();
         //dd($cate);
         //首页方法
-        return view("Home.Home.index",['cate'=>$cate]);
+        return view("Home.Home.index",['cate'=>$cate,'wheel'=>$wheel,'link'=>$link]);
+       
         
+    }
+    //首页文章栏目
+    public function article(){
+        //dd(1);
+        $article=DB::table("article")->get();
+         return view("Home.Home.article",['article'=>$article]);
     }
 
     /**

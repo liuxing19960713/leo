@@ -11,8 +11,10 @@
       <div class="slider-container"> 
        <!--=======  hero slider one  =======--> 
        <div class="hero-slider-one"> 
-        <!--=======  slider item  =======--> 
-        <div class="hero-slider-item slider-bg-1"> 
+        <!--=======  slider item  =======-->
+        @foreach($wheel as $row)
+        @if($row->status==1)
+        <div class="hero-slider-item"style ="background-image: url('{{$row->l_pic}}')"> 
          <!--=======  slider content  =======--> 
          <div class="slider-content  d-flex flex-column justify-content-center align-items-start h-100"> 
           <p>Beautiful and luxurious Decor at Affordable price</p> 
@@ -20,18 +22,11 @@
           <a href="shop-left-sidebar.html" class="pataku-btn slider-btn-1">SHOP NOW</a> 
          </div> 
          <!--=======  End of slider content  =======--> 
-        </div> 
+        </div>
+        @endif 
         <!--=======  End of slider item  =======--> 
         <!--=======  slider item  =======--> 
-        <div class="hero-slider-item slider-bg-2"> 
-         <!--=======  slider content  =======--> 
-         <div class="slider-content d-flex flex-column justify-content-center align-items-start h-100"> 
-          <p>Ultra bright slimline led table lamp. A light for perfect color matching</p> 
-          <h1>TABLE <span>LAMPS</span></h1> 
-          <a href="shop-left-sidebar.html" class="pataku-btn slider-btn-1">SHOP NOW</a> 
-         </div> 
-         <!--=======  End of slider content  =======--> 
-        </div> 
+        @endforeach 
         <!--=======  End of slider item  =======--> 
        </div> 
        <!--=======  End of hero slider one  =======--> 

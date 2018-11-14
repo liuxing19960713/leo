@@ -163,7 +163,15 @@
          <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">公告列表</a></li> 
          <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html">公告添加</a></li> 
         </ul> 
-       </div> </li> 
+       </div> </li>
+        <li class="nav-item"> <a class="nav-link" data-toggle="collapse" href="#article" aria-expanded="false" aria-controls="article"> <span class="menu-title">文章管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-new-box menu-icon"></i> </a>
+       <div class="collapse" id="article">
+        <ul class="nav flex-column sub-menu">
+         <li class="nav-item"> <a class="nav-link" href="/article">文章列表</a></li>
+         <li class="nav-item"> <a class="nav-link" href="/article/create">文章添加</a></li>
+        </ul>
+       </div>
+     </li>
      </ul> 
     </nav> 
     <!-- partial --> 

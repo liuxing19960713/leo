@@ -77,16 +77,23 @@ Route::group(["middleware"=>"adminlogin"],function()
   Route::get('/wheelsta','Admin\WheelController@Ajax');
 //强结束
 
-	//分配权限
+//分配权限
 	Route::get("/rolelist/{id}","Admin\AdministratorController@rolelist");
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
-
+//文章管理
+Route::resource('/article','Admin\ArticleController');
+//文章ajax删除
+Route::get('/articledel',"Admin\ArticleController@del");
+//文章状态ajax修改)
+Route::get('/articleajax',"Admin\ArticleController@ajax");	
   
   
 
 });
 //前台首页
 Route::resource("/","Home\HomeController");
+//前台文章栏目
+Route::get("/article","Home\HomeController@article");
 //关于我们
 Route::resource("/contact","Home\ContactController");

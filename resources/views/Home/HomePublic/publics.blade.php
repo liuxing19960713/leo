@@ -258,7 +258,7 @@
            </ul> </li> 
           <li class="menu-item-has-children"><a href="#">BLOG</a> 
            <ul class="sub-menu"> 
-            <li><a href="blog-3-column.html">Blog 3 column</a></li> 
+            <li><a href="/article">Blog 3 column</a></li> 
             <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li> 
             <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li> 
             <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li> 
@@ -425,14 +425,12 @@
       <div class="col-lg-12"> 
        <!--=======  navigation-container  =======--> 
        <div class="navigation-container"> 
-        <ul> 
-         <li><a href="#">About Us</a> <span class="separator">|</span></li> 
-         <li><a href="#">Blog</a> <span class="separator">|</span></li> 
-         <li><a href="#">My Account</a> <span class="separator">-</span></li> 
-         <li><a href="#">Order Status</a> <span class="separator">-</span></li> 
-         <li><a href="#">Shipping &amp; Returns</a> <span class="separator">-</span></li> 
-         <li><a href="#">Privacy Policy</a> <span class="separator">-</span></li> 
-         <li><a href="#">Terms &amp; Conditions</a></li> 
+        <ul>
+        @foreach($link as $rows)
+        @if($rows->status==1) 
+         <li><a href="{{$rows->link_url}}">{{$rows->urlname}}</a> <span class="separator">|</span></li> 
+         @endif
+         @endforeach 
         </ul> 
        </div> 
        <!--=======  End of navigation-container  =======--> 

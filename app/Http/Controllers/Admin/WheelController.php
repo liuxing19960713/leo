@@ -27,7 +27,7 @@ class WheelController extends Controller
         $k = $request->input('keywords');
         // echo 'this is 轮播图';
         // 获取数据
-        $data = Wheel::where('l_name','like','%'.$k.'%')->paginate(3);
+        $data = Wheel::where('l_name','like','%'.$k.'%')->paginate(4);
         // dd($data);
         return view('Admin.Admin.Wheel.wheel',['data'=>$data,'request'=>$request->all()]);
     }

@@ -9,9 +9,9 @@
    <form class="forms-sample" action="/administrator" method="post"> 
     <div class="form-group"> 
      <label for="exampleInputName1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户名</font></font></label> 
-     <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name" value="{{old('name')}}"/> 
+     <input type="text" clasplaceholder="Name" name="name" value="{{old('name')}}"/> 
     </div> 
-    <div class="form-group"> 
+    <div class="form-gs="form-control" id="exampleInputName1" roup"> 
      <label for="exampleInputEmail3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">权限</font></font></label> 
       <tr>
 
