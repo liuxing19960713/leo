@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
- 
+
 //后台登录和退出
 Route::resource("/adminlogin","Admin\AdminloginController");
 //中间件结合路由组使用
@@ -32,7 +32,7 @@ Route::group(["middleware"=>"adminlogin"],function()
 
 	//后台管理员ajax删除
 	Route::get("/administratordel","Admin\AdministratorController@del");
-	
+
 	// 后台商品
 	Route::resource("/agoods","Admin\GoodsController");
 
@@ -45,7 +45,7 @@ Route::group(["middleware"=>"adminlogin"],function()
 
 	// 分类ajax删除
 	Route::get('/acadel',"Admin\CategoryController@acadel");
-	
+
 	//公司模块
 	Route::resource("/company","Admin\CompanyController");
 	//广告
@@ -84,17 +84,20 @@ Route::group(["middleware"=>"adminlogin"],function()
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
 
-//文章管理
-Route::resource('/article','Admin\ArticleController');
-//文章ajax删除
-Route::get('/articledel',"Admin\ArticleController@del");
-//文章状态ajax修改)
-Route::get('/articleajax',"Admin\ArticleController@ajax");	
-// 优惠券模块
-Route::resource("/adiscount","Admin\DiscountController");
 
-  
-  
+	// 优惠券模块
+	Route::resource("/discount","Admin\DiscountController");
+	// 优惠券模块状态ajax
+	Route::get("/discountsta",'Admin\DiscountController@sta');
+	// 用户拥有优惠券详情
+	Route::resource('/discountlog','Admin\DiscountLogController');
+  //文章管理
+  Route::resource('/article','Admin\ArticleController');
+  //文章ajax删除
+  Route::get('/articledel',"Admin\ArticleController@del");
+  //文章状态ajax修改)
+  Route::get('/articleajax',"Admin\ArticleController@ajax");	
+
 
 });
 //前台首页
