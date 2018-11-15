@@ -29,9 +29,9 @@
    <div class="table-responsive">
    <div class="form-group">
 
-      <form action="/discount" method="get">
+      <form action="/discountlog" method="get">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="请输入与优惠券相关的分类" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword" value="{{$request['keyword'] or ''}}">
+            <input type="text" class="form-control" placeholder="请输入用户名称" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword" value="{{$request['keyword'] or ''}}">
             <div class="input-group-append">
               <button class="btn btn-sm btn-gradient-primary" type="submit">Search</button>
             </div>
@@ -45,46 +45,57 @@
      <thead>
       <tr align="center">
        <th> 编号 </th>
-       <th style="color:red"> 与优惠券<br><b>相关分类</b> </th>
+       <th style="color:red"> 用户名 </th>
+       <th style="color:blue">  订单号 </th>
+       <th style="color:purple"> 优惠券属性 </th>
        <th> 状态 </th>
-       <th> 满足金额 </th>
-       <th> 优惠金额 </th>
-       <th> 优惠券名称 </th>
-       <th> 描述 </th>
-       <th> 开始时间 </th>
-       <th> 结束时间 </th>
+       <th> 领取时间 </th>
+       <th> 修改时间 </th>
        <th>操作</th>
 
       </tr>
      </thead>
      <tbody>
   @foreach($data as $row)
+
       <tr align="center">
        <td>  {{$row->id}} </td>
-       <td class="text-danger">  {{$row->category->name}} </td>
-       <td>
-        @if($row->status=='启用')
-        <label class="badge badge-gradient-success sta">
-            {{$row->status}}
-        </label>
-        @else
-        <label class="badge badge-gradient-danger sta">
-            {{$row->status}}
-        </label>
-        @endif
+       <td class="text-danger">  {{$row->uname}} </td>
+       <td class="text-info">
+          {{$row->order_code}}
+
        </td>
-       <td> {{$row->max}}元 </td>
-       <td> {{$row->minus}}元 </td>
-       <td> {{$row->dname}} </td>
-       <td> {{$row->describe}} </td>
-       <td> {{$row->start_time}} </td>
-       <td> {{$row->end_time}} </td>
+       <td >
+        {{$row->dname}}
+      </td>
+       <td >
+        @switch($row->status)
+          @case(1)
+            未使用
+          @break
+           @case(2)
+            已使用
+          @break
+           @case(3)
+            已过期
+          @break
+           @case(4)
+            已作废
+          @break
+           @case(5)
+            已删除
+          @break
+
+          @endswitch
+        </td>
+       <td> {{$row->created_at}} </td>
+       <td> {{$row->updated_at}} </td>
        <td>
-        <a href="/discount/{{$row->id}}/edit" class="badge badge-gradient-info">修改</a>
+
 
         <!-- <a href="javascript:void(0);" class="badge badge-gradient-danger del">删除</a> -->
 
-        <form action="/discount/{{$row->id}}" method="post">
+        <form action="/discountlog/{{$row->id}}" method="post">
           {{csrf_field()}}
           {{method_field('DELETE')}}
            <button class="badge badge-gradient-danger">删除</button>
@@ -103,7 +114,7 @@
  </div>
       <div id="pull_right">
        <div class="pull-right">
-              {{$data->appends($request)->render()}}
+          {{$data->appends($request)->render()}}
        </div>
       </div>
     </div>
