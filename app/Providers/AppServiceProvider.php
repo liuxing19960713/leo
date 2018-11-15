@@ -19,6 +19,13 @@ class AppServiceProvider extends ServiceProvider
         return $data;
     }
 
+     //首页友情链接方法
+    public function link(){
+        $link=DB::table("link")->get();
+        //dd(count($link));
+        return $link;
+    }
+
 
     /**
      * Bootstrap any application services.
@@ -30,6 +37,11 @@ class AppServiceProvider extends ServiceProvider
         //
         $cate = $this->getCategoryBypid(0);
         view()->share('cate',$cate);
+
+         $link=$this->link();
+        view()->share('link',$link);
+
+
     }
 
     /**
