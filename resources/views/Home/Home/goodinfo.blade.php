@@ -64,6 +64,8 @@
        <!--product small image slider Start--> 
        <div class="product-small-image-list pts-product-small-image-list pts1-product-small-image-list"> 
         <div class="nav small-image-slider pts-small-image-slider pts1-small-image-slider" role="tablist"> 
+
+
          
           @foreach($pic as $key=> $r)
          <div class="single-small-image img-full"> 
@@ -106,7 +108,7 @@
         <div class="pro-qty mr-10"> 
          <input type="text" value="1" /> 
         </div> 
-        <a href="#" class="pataku-btn"><i class="fa fa-shopping-cart"></i>添加到购物车</a> 
+        <a href="javascript:void(0);" class="pataku-btn"><i class="fa fa-shopping-cart"></i>添加到购物车</a> 
        </div> 
        <p class="wishlist-link mb-30"><a href="#"> <i class="fa fa-heart"></i> 加入到愿望清单</a></p> 
        <div class="social-share-buttons mb-30"> 
