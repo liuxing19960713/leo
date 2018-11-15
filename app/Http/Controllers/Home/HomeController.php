@@ -18,6 +18,7 @@ class HomeController extends Controller
     }
 
 
+
     /**
      * Display a listing of the resource.
      *
@@ -83,9 +84,7 @@ class HomeController extends Controller
         // $value = '/static/uploads/goods/'.$value;
         // dd($value);
 
-
-
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value]);
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'count'=>$count]);
     }
     public function create()
     {

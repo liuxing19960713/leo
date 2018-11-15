@@ -25,7 +25,7 @@ class RegisterInsert extends FormRequest
     {
         return [
             'uname'=>'required',
-            'upwd' =>'required|regex:/^[a-zA-Z][a-zA-Z0-9_]{5,20}$/',
+            'upwd' =>'required|regex:/^[a-zA-Z_0-9]{5,20}$/',
             'rupwd'=>'required|same:upwd',
             'code' => 'required'
 
