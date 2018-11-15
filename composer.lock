@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ef80a6b0fb92d766ea0ade99fbc00d3",
+    "content-hash": "31c717da01ac2e795f193200c325724a",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -387,6 +387,59 @@
                 "trusted proxy"
             ],
             "time": "2017-06-15T17:19:42+00:00"
+        },
+        {
+            "name": "gregwar/captcha",
+            "version": "v1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gregwar/Captcha.git",
+                "reference": "cf953dd79748406e0292cea8c565399681e4d345"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/cf953dd79748406e0292cea8c565399681e4d345",
+                "reference": "cf953dd79748406e0292cea8c565399681e4d345",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.0",
+                "symfony/finder": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "captcha",
+            "autoload": {
+                "psr-4": {
+                    "Gregwar\\": "src/Gregwar"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grégoire Passault",
+                    "email": "g.passault@gmail.com",
+                    "homepage": "http://www.gregwar.com/"
+                },
+                {
+                    "name": "Jeremy Livingston",
+                    "email": "jeremy.j.livingston@gmail.com"
+                }
+            ],
+            "description": "Captcha generator",
+            "homepage": "https://github.com/Gregwar/Captcha",
+            "keywords": [
+                "bot",
+                "captcha",
+                "spam"
+            ],
+            "time": "2018-08-17T22:57:28+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -955,16 +1008,16 @@
         },
         {
             "name": "mews/captcha",
-            "version": "2.2.2",
+            "version": "2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mewebstudio/captcha.git",
-                "reference": "56b044e650a7f9b234f2262b9e377cfb66b94f03"
+                "reference": "4ce5b375cc5d3a19d73360c41ed45b994f6ba20c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mewebstudio/captcha/zipball/56b044e650a7f9b234f2262b9e377cfb66b94f03",
-                "reference": "56b044e650a7f9b234f2262b9e377cfb66b94f03",
+                "url": "https://api.github.com/repos/mewebstudio/captcha/zipball/4ce5b375cc5d3a19d73360c41ed45b994f6ba20c",
+                "reference": "4ce5b375cc5d3a19d73360c41ed45b994f6ba20c",
                 "shasum": ""
             },
             "require": {
@@ -1018,7 +1071,7 @@
                 "laravel5 Captcha",
                 "laravel5 Security"
             ],
-            "time": "2018-10-05T19:58:36+00:00"
+            "time": "2018-11-13T22:43:14+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1144,16 +1197,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.34.3",
+            "version": "1.34.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "3b903d236ccd757d29c20632bf55ae91071c1b6f"
+                "reference": "b9a444d829c9a16735aceca1b173e765745bcc0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/3b903d236ccd757d29c20632bf55ae91071c1b6f",
-                "reference": "3b903d236ccd757d29c20632bf55ae91071c1b6f",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/b9a444d829c9a16735aceca1b173e765745bcc0c",
+                "reference": "b9a444d829c9a16735aceca1b173e765745bcc0c",
                 "shasum": ""
             },
             "require": {
@@ -1198,7 +1251,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-11-13T07:01:46+00:00"
+            "time": "2018-11-13T08:26:10+00:00"
         },
         {
             "name": "nikic/php-parser",

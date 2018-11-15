@@ -58,7 +58,9 @@ class HomeController extends Controller
         // dd($info);
         // dd($sear);
         //首页方法
-        return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel,'link'=>$link]);
+
+        return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
+
 
     }
     //首页文章栏目
