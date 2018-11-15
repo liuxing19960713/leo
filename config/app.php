@@ -231,8 +231,8 @@ return [
         // 验证码
         'Captcha'=>Mews\Captcha\Facades\Captcha::class,
     ],
-    //初始化上传文件
+    //初始化上传文件 
     'wheeluploads'=>'./uploads/wheel/',
     'uploads'=>'./uploads/',
-
+    // 加载图片路径
 ];

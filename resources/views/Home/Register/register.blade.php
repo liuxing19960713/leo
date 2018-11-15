@@ -3,13 +3,22 @@
 
 <html>
  <head></head>
+ <style>
+  .cur{
+    border:1px solid red;
+  }
+
+  .curs{
+    border:1px solid green;
+  }
+ </style>
  <body>
   <div class="page-section mb-80"> 
    <div class="container"> 
     <div class="row"> 
        
      <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"> 
-      <form action="/hregi" method="post">
+      <form action="/hregi" method="post" id="form">
       {{csrf_field()}} 
        <div class="login-form"> 
         <h4 class="login-title">Register</h4> 
@@ -17,24 +26,26 @@
          
          <div class="col-md-12 mb-20"> 
           <label>用户*</label><span class="n"></span> 
-          <input class="mb-0 uname" type="text" name="uname" placeholder="phone" /> 
+          <input class="mb-0 uname"   reminder="手机不能为空"  type="text" name="uname" placeholder="phone" />  <span class="ss"></span>
          </div> 
          <div class="col-md-12 mb-20"> 
           <label>密 码</label> <label class="pwd"></label>
-          <input class="mb-0 upwd" type="password" placeholder="Password" name="upwd" /> 
+          <input class="mb-0 upwd"  reminder="密码不能为空"  type="password" placeholder="Password" name="upwd" /> 
          </div> 
          <div class="col-md-12 mb-20"> 
           <label>确认 密码</label>  <label class="repwd"></label>
-          <input class="mb-0 rupwd " type="password" placeholder="Confirm Password" name="rupwd" /> 
+          <input class="mb-0 rupwd " reminder="确认密码不能为空"  type="password" placeholder="Confirm Password" name="rupwd" /> 
          </div>
          <div class="col-md-6 col-12 mb-20"> 
           <label>验证码</label> 
-          <input class="mb-0 " type="text" placeholder="填写验证码" name="code" /> 
+          <input class="mb-0 " reminder="填写验证码不能为空" type="text" placeholder="填写验证码" name="code" /> 
+         <span  class="cc"></span>
+
          </div>  
          <div class="col-md-6 col-12 mb-20" style="padding-top: 30px"> 
              <span  class="register-button mt-0 code sendcode">Send</span>
+
          </div> 
-         <span  class="cc""></span>
 
          <div class="col-12"> 
           <button class="register-button mt-0">Register</button> 
@@ -48,38 +59,21 @@
    </div> 
   </div>
   <script>
+    phone = false;
+    password = false;
     // alert($);
-   
-    // 验证用户名是否合法
-    //光标离开获取uname
-    // $('.uname').blur(function(){
-    //     //获取用户名的值
-    //     var uname = $(".uname").val();
-    //     var nn    = $(".n");
-       
-    //     if(uname == ""){
-    //           nn.html("不能为空").css("color","red").css("font-Size","20px");
-    //           return false;
-    //     }
-    //     // alert(uname);
-    //     $.get("/checkuname",{uname:uname},function(data)
-    //     {
-
-    //         // alert(data);
-    //         if (data==0) {
-    //           nn.html("可以使用").css("color","red").css("font-Size","20px");
-    //         }else if(data == 3){
-    //           nn.html("不符合用户规则").css("color","red").css("font-Size","20px");
-
-    //         }else{
-    //            nn.html("账号太守欢迎,请重新编写").css("color","red").css("font-Size","20px");
-    //         }
-
-    //     },"json");
-    // });
+  $("input").focus(function(){
+      reminder = $(this).attr("reminder");
+  $(this).next("span").css('color',"red").html(reminder);
+    //样式清除
+    $(this).removeClass("curs");
+    //添加样式
+    $(this).addClass('cur');
+  })
+     
 
     
-    var pwd   = $(".pwd");
+  var pwd   = $(".pwd");
    $(".upwd").blur(function(){
       // alert('222');
       var upwd = $(".upwd").val();
@@ -87,7 +81,9 @@
         // console.info(thisurl);
         if(upwd == ""){
            pwd.html("密码不能为空");
-
+           password =false;
+        }else{
+          password = true;
         }
 
 
@@ -100,29 +96,15 @@
       var upwd = $(".rupwd").val();
       // alert(upwd);
        if(upwd == ""){
-           repwd.html("密码不能为空");
-
+           repwd.html("确认密码不能为空");
+        }else{
         }
 
 
     });
 
 
-     $(".code").blur(function(){
-      var cc = $(".cc");
-
-      // alert('222');
-      var code = $(".code").val();
-      // alert(upwd);
-     
-        // console.info(thisurl);
-        if(code == ""){
-            cc.html("验证码不能为空").css("color","red").css("font-Size","20px");
-            return false;
-        }
-
-
-    });
+    
 
 
 
@@ -133,10 +115,6 @@
     var phone = $(".uname").val();
       $.get("/hsend",{phone:phone},function(data){
          newData=data.replace(/\s/g,'');
-
-        // alert(newData[code]);
-        // sss = data.match(/"code":"\d{6}"/);
-     
       
         dad =  eval('(' +  newData + ')');
           if(dad.code== 000000){
@@ -159,6 +137,76 @@
           }
       });
     });
+
+
+    //验证码
+     $("input[name='uname']").blur(function(){
+      name = $(this).val();
+      console.log(name);
+      if(name==""){
+        ss = $('.ss');
+         ss.css('red','red').html("不能为空");
+         ss.addClass("curs");
+         // 
+         phone = false; 
+      }else{
+        phone = true;
+      }
+        uname = $(this).val();
+        ss = $(".ss");
+        // console.log(vcode);
+          $.ajax({
+              type:"get",
+              url: '/checkuname',
+              data: {uname:uname},
+              // dataType: 'json',
+
+              success: function(data){
+                // newData=data.replace(/\s/g,'');
+                // alert(data);
+           /*     if(data == 1){
+                    ss.css('color','green').html("账号太守欢迎,请重新填写");
+                    ss.addClass("curs");
+                    phone = false;
+                }else if (data == 2){
+                    ss.css('color','green').html("不能为空");
+                    ss.addClass("curs");
+                    phone = false;
+                } else {
+                    ss.css('color','red').html("账号太守欢迎,请重新填写");
+                    ss.addClass("curs");
+                    phone = false;  
+                }*/
+                if(data== 1){
+                    ss.css('color','blue').html("可以使用");
+                    ss.addClass("curs");
+                    phone = true;
+
+                }else{
+                   ss.css('color','red').html("账号太守欢迎,请重新填写");
+                    ss.addClass("curs");
+                    phone = false; 
+                }
+              },
+              error: function(data){
+                // alert('系统正在')
+
+              }
+          });
+      });
+
+
+
+   // 表单验证
+   $("#form").submit(function(){
+      if(password && phone){
+        return true;
+      }else{
+        return false;
+      }
+   });
+
+
       // alert('aa');
        
         // alert('aaa');
