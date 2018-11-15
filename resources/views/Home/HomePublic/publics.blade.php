@@ -23,7 +23,8 @@
   <!-- Main CSS --> 
   <link href="/static/home/assets/css/main.css" rel="stylesheet" /> 
   <!-- Modernizer JS --> 
-  <script src="/static/home/assets/js/vendor/modernizr-2.8.3.min.js"></script> 
+  <script src="/static/home/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+   <script src="/static/js/jquery-1.8.3.min.js"></script>
  </head> 
  <body> 
   <!--=============================================
@@ -35,7 +36,7 @@
     <div class="container"> 
      <div class="row"> 
       <div class="col-12 col-md-6 text-center text-md-left mb-sm-15"> 
-       <span class="header-top-text">欢迎来到Pataku网上商店！</span> 
+       <span class="header-top-text">欢迎来到灯饰人生网上商店！</span> 
       </div> 
       <div class="col-12 col-md-6"> 
        <!--=======  header top dropdowns  =======--> 
@@ -47,7 +48,7 @@
           <ul> 
            <li><a href="my-account.html">我的账户</a></li> 
            <li><a href="checkout.html">结算</a></li> 
-           <li><a href="login-register.html">登录</a></li> 
+           <li><a href="/hlogin/create">登录</a></li> 
           </ul> 
          </div> 
         </div> 
@@ -96,12 +97,12 @@
        <div class="menu-top-icons d-flex justify-content-center align-items-center justify-content-md-end"> 
         <!--=======  single icon  =======--> 
         <div class="single-icon mr-20"> 
-         <a href="wishlist.html"> <i class="lnr lnr-heart"></i> <span class="text">Wishlist</span> <span class="count">0</span> </a> 
+         <a href="wishlist.html"> <i class="lnr lnr-heart"></i> <span class="text">愿望清单</span> <span class="count">0</span> </a> 
         </div> 
         <!--=======  End of single icon  =======--> 
         <!--=======  single icon  =======--> 
         <div class="single-icon"> 
-         <a href="javascript:void(0)" id="cart-icon"> <i class="lnr lnr-cart"></i> <span class="text">My Cart</span> <span class="count">0</span> </a> 
+         <a href="javascript:void(0)" id="cart-icon"> <i class="lnr lnr-cart"></i> <span class="text">我的购物车</span> <span class="count">0</span> </a> 
          <!-- cart floating box --> 
          <div class="cart-floating-box hidden" id="cart-floating-box"> 
           <div class="cart-items"> 
@@ -156,72 +157,40 @@
         <!-- Category Toggle Wrap --> 
         <div class="category-toggle-wrap"> 
          <!-- Category Toggle --> 
-         <button class="category-toggle"> <span class="lnr lnr-text-align-left"></span> Browse Categories <span class="lnr lnr-chevron-down"></span></button> 
+         <button class="category-toggle"> <span class="lnr lnr-text-align-left"></span>全部商品分类<span class="lnr lnr-chevron-down"></span></button> 
         </div> 
         <!-- Category Menu --> 
         <nav class="category-menu"> 
-         <ul> 
-          <li><a href="shop-left-sidebar.html">Sofas &amp; Chairs</a></li> 
-          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">Drawing Room</a> 
+         <ul>
+          @foreach($cate as $row)
+          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">{{$row->name}}</a>
+          @if(count($row->dev)) 
            <!-- Mega Category Menu Start --> 
-           <ul class="category-mega-menu"> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Living Chairs</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Armchairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs &amp; Benches</a></li> 
-              <li><a href="shop-left-sidebar.html">Desk Chairs</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Sofa</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Dining Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Side Boards</a></li> 
-              <li><a href="shop-left-sidebar.html">Coffee Tables</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Storage</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Chair &amp; Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Sets</a></li> 
-              <li><a href="shop-left-sidebar.html">Loungers</a></li> 
-             </ul> </li> 
+           <ul class="category-mega-menu">
+            @foreach($row->dev as $rows) 
+            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">{{$rows->name}}</a>
+              @if(count($rows->dev)) 
+             <ul>
+                @foreach($rows->dev as $rowss) 
+              <li><a href="shop-left-sidebar.html">{{$rowss->name}}</a></li> 
+               @endforeach
+
+               
+             </ul>
+              @endif
+              </li>
+              @endforeach 
+             
+             
            </ul>
+           @endif
            <!-- Mega Category Menu End --> </li> 
-          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">Dinning Room</a> 
-           <!-- Mega Category Menu Start --> 
-           <ul class="category-mega-menu"> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Living Chairs</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Armchairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs &amp; Benches</a></li> 
-              <li><a href="shop-left-sidebar.html">Desk Chairs</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Sofa</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Dining Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Dining Chairs</a></li> 
-              <li><a href="shop-left-sidebar.html">Side Boards</a></li> 
-              <li><a href="shop-left-sidebar.html">Coffee Tables</a></li> 
-             </ul> </li> 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">Storage</a> 
-             <ul> 
-              <li><a href="shop-left-sidebar.html">Chair &amp; Sofas</a></li> 
-              <li><a href="shop-left-sidebar.html">Tables</a></li> 
-              <li><a href="shop-left-sidebar.html">Sets</a></li> 
-              <li><a href="shop-left-sidebar.html">Loungers</a></li> 
-             </ul> </li> 
-           </ul>
-           <!-- Mega Category Menu End --> </li> 
-          <li><a href="shop-left-sidebar.html">Out Door Room</a></li> 
-          <li><a href="shop-left-sidebar.html">Room living</a></li> 
-          <li><a href="shop-left-sidebar.html">Estilo</a></li> 
-          <li><a href="shop-left-sidebar.html">Living Chairs</a></li> 
-          <li class="hidden"><a href="shop-left-sidebar.html">New Sofas</a></li> 
-          <li class="hidden"><a href="shop-left-sidebar.html">Sleight Sofas</a></li> 
-          <li><a href="#" id="more-btn"><span class="lnr lnr-plus-circle"></span> More Categories</a></li> 
-         </ul> 
+           @endforeach
+          <li><a href="#" id="more-btn"><span class="lnr lnr-plus-circle"></span> More Categories</a></li>
+            
+         </ul>
+         
+
         </nav> 
        </div> 
        <!--=======  End of category menu =======--> 
@@ -291,7 +260,7 @@
            </ul> </li> 
           <li class="menu-item-has-children"><a href="#">BLOG</a> 
            <ul class="sub-menu"> 
-            <li><a href="blog-3-column.html">Blog 3 column</a></li> 
+            <li><a href="/article">Blog 3 column</a></li> 
             <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li> 
             <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li> 
             <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li> 
@@ -322,6 +291,30 @@
   <!--=============================================
   =            Hero Area One         =
   =============================================--> 
+   @if(count($errors)>0)
+      <div class="mws-form-message warning">
+        <div class="alert alert-danger">
+          <ul>
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+          </ul>
+        </div>
+        </div>
+        @endif
+      @if(session('success'))
+
+    <!-- 错误提示信息结束 -->
+
+     <a href="javascript:void(0)" class="d-flex align-items-center  btn btn-gradient-danger btn-fw" id="success">
+        {{session('success')}}
+      </a>
+      @endif
+      @if(session('error'))
+      <a href="javascript:void(0)" class="mws-form-message error btn btn-gradient-danger btn-fw" id="error">
+          {{session('error')}}
+      </a>
+      @endif
   @section('home')
      
   @show
@@ -458,14 +451,12 @@
       <div class="col-lg-12"> 
        <!--=======  navigation-container  =======--> 
        <div class="navigation-container"> 
-        <ul> 
-         <li><a href="#">About Us</a> <span class="separator">|</span></li> 
-         <li><a href="#">Blog</a> <span class="separator">|</span></li> 
-         <li><a href="#">My Account</a> <span class="separator">-</span></li> 
-         <li><a href="#">Order Status</a> <span class="separator">-</span></li> 
-         <li><a href="#">Shipping &amp; Returns</a> <span class="separator">-</span></li> 
-         <li><a href="#">Privacy Policy</a> <span class="separator">-</span></li> 
-         <li><a href="#">Terms &amp; Conditions</a></li> 
+        <ul>
+        @foreach($link as $rows)
+        @if($rows->status==1) 
+         <li><a href="{{$rows->link_url}}">{{$rows->urlname}}</a> <span class="separator">|</span></li> 
+         @endif
+         @endforeach 
         </ul> 
        </div> 
        <!--=======  End of navigation-container  =======--> 
@@ -602,6 +593,21 @@
   <!-- Plugins JS --> 
   <script src="/static/home/assets/js/plugins.js"></script> 
   <!-- Main JS --> 
-  <script src="/static/home/assets/js/main.js"></script>   
+  <script src="/static/home/assets/js/main.js"></script>  
+ <script src="/static/admins/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/static/admins/vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="/static/admins/js/off-canvas.js"></script>
+  <script src="/static/admins/js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+
+
+  <script src="/static/admins/js/dashboard.js"></script>
+  <!-- 校验类点击消失js -->
+  <script src="/static/admins/js/core/mws.js"></script>
  </body>
 </html>

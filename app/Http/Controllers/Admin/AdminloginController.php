@@ -62,9 +62,9 @@ class AdminloginController extends Controller
             // echo "ok";
             //哈希数据值检测
             if (Hash::check($pwd,$info->pwd)) {
-                //把登录的用户名存储在session里
                 // dd('dada');
                 session(['id'=>$info->id]);
+                //把登录的用户名存储在session里
 
                 session(['name'=>$name]);
                //获取后台登录用户的所有权限列表信息

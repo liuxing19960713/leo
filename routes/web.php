@@ -55,34 +55,35 @@ Route::group(["middleware"=>"adminlogin"],function()
 	//模型管理
 	Route::resource('/auth',"Admin\AuthController");
 
-  //伟强
-  //模型友情链接
-  Route::resource('/link','Admin\LinkController');
-  //Ajax 更改友情链接状态 路由
-  Route::get('/linkss','Admin\LinkController@Ajax');
-  //评论
-  Route::resource('/comment','Admin\CommentController');
-  // 评论ajax删除
-  Route::get('/commentdel','Admin\CommentController@Ajax');
-  //回复评论主页
-  Route::resource('/recomment','Admin\Re_CommentController');
-  //回复评论ajax 删除
-  Route::get('/recommentdel','Admin\Re_CommentController@Ajax');
-  //回复评论添加
-  Route::get('/recommentinsert/{id}','Admin\Re_CommentController@insert');
-  Route::post('/recommentinsert/{id}','Admin\Re_CommentController@up');
+	//伟强
+	//模型友情链接
+	Route::resource('/link','Admin\LinkController');
+	//Ajax 更改友情链接状态 路由
+	Route::get('/linkss','Admin\LinkController@Ajax');
+	//评论
+	Route::resource('/comment','Admin\CommentController');
+	// 评论ajax删除
+	Route::get('/commentdel','Admin\CommentController@Ajax');
+	//回复评论主页
+	Route::resource('/recomment','Admin\Re_CommentController');
+	//回复评论ajax 删除
+	Route::get('/recommentdel','Admin\Re_CommentController@Ajax');
+	//回复评论添加
+	Route::get('/recommentinsert/{id}','Admin\Re_CommentController@insert');
+	Route::post('/recommentinsert/{id}','Admin\Re_CommentController@up');
 
-  // 轮播图的路由
-  Route::resource('/wheel','Admin\WheelController');
+	// 轮播图的路由
+	Route::resource('/wheel','Admin\WheelController');
 
-  // 轮播图Ajax 修改状态
-  Route::get('/wheelsta','Admin\WheelController@Ajax');
+	// 轮播图Ajax 修改状态
+	Route::get('/wheelsta','Admin\WheelController@Ajax');
 	//强结束
 
-	//分配权限
+//分配权限
 	Route::get("/rolelist/{id}","Admin\AdministratorController@rolelist");
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
+
 
 	// 优惠券模块
 	Route::resource("/discount","Admin\DiscountController");
@@ -90,9 +91,40 @@ Route::group(["middleware"=>"adminlogin"],function()
 	Route::get("/discountsta",'Admin\DiscountController@sta');
 	// 用户拥有优惠券详情
 	Route::resource('/discountlog','Admin\DiscountLogController');
+  //文章管理
+  Route::resource('/article','Admin\ArticleController');
+  //文章ajax删除
+  Route::get('/articledel',"Admin\ArticleController@del");
+  //文章状态ajax修改)
+  Route::get('/articleajax',"Admin\ArticleController@ajax");	
+
 
 });
 //前台首页
 Route::resource("/","Home\HomeController");
+//前台文章栏目
+Route::get("/article","Home\HomeController@article");
 //关于我们
 Route::resource("/contact","Home\ContactController");
+
+// 前台登录
+Route::resource("/hlogin","Home\LoginController");
+
+// 前台注册
+Route::resource("/hregi","Home\RegisterController");
+
+//ajax验证用户是否存在
+Route::get("/checkuname","Home\RegisterController@checkuname");
+
+// 接收发来的手机
+Route::get("/hsend","Home\RegisterController@send");
+
+//商品详情页
+Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
+
+//引入验证码
+Route::get("/code","Home\LoginController@code");
+
+//检验登录校验码
+Route::get("/chvcode","Home\LoginController@chvcode");
+
