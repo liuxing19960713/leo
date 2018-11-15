@@ -17,11 +17,7 @@ class HomeController extends Controller
         return $w;
     }
 
-    //首页友情链接方法
-    public function link(){
-        $link=DB::table("link")->get();
-        //dd(count($link));
-        return $link;
+
 
     /**
      * Display a listing of the resource.
@@ -31,7 +27,7 @@ class HomeController extends Controller
 
     public function getsear($id){
         // dd($id);
-        $data=DB::table("category")->where('path','like',"0,$id")->get();
+        $data=DB::table("category")->where('path','like',"0,$id")->paginate(12);
         $ids='';
         foreach($data as $value)
         {
@@ -51,12 +47,11 @@ class HomeController extends Controller
 
         
         $wheel=$this->wheel();
-        $link=$this->link();
         // dd(111);
         $info=DB::table('goods')->where('status','=',1)->get();
         $sear=$this->getsear(7);
         // dd($info);
-        // dd($sear);
+        // dd($wheel);
         //首页方法
 
         return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
@@ -91,6 +86,14 @@ class HomeController extends Controller
        
 
         return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value]);
+    }
+    //商品列表页
+    public function search(Request $request,$id)
+    {
+        // dd($id);
+        $search=$this->getsear($id);
+        // dd($search);
+        return view("Home.Home.search",['search'=>$search]);
     }
     public function create()
     {

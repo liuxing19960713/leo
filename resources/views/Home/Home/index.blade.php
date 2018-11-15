@@ -139,7 +139,7 @@
         <!--=======  single product  =======--> 
         <div class="ptk-product"> 
          <div class="image"> 
-          <a href="/goodinfo/{{$row->id}}" > <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt=""  /> </a> 
+          <a href="/goodinfo/{{$row->id}}" > <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" height="198px" /> </a> 
           <!--=======  hover icons  =======--> 
           <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
           <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
@@ -152,7 +152,7 @@
          </div> 
          <div class="content"> 
           <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="/goodinfo/{{$row->id}}" style="font-size:15px;">{{$row->goods_name}}</a></p> 
-          <p class="product-price"><span class="discounted-price">{{$row->price}}￥</span> </p> 
+          <p class="product-price"><span class="discounted-price">￥{{$row->price}}</span> </p> 
          </div> 
          <div class="rating"> 
           <i class="lnr lnr-star active"></i> 
@@ -229,7 +229,7 @@
            </div> 
            <div class="content"> 
             <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="/goodinfo/{{$row->id}}">{{$row->goods_name}}</a></p> 
-            <p class="product-price">  <span class="discounted-price">{{$row->price}}￥</span> </p> 
+            <p class="product-price">  <span class="discounted-price">￥{{$row->price}}</span> </p> 
            </div> 
            <div class="rating"> 
             <i class="lnr lnr-star active"></i> 
@@ -269,7 +269,7 @@
            </div> 
            <div class="content"> 
             <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$data->id}}">{{$data->goods_name}}</a></p> 
-            <p class="product-price"><span class="discounted-price">{{$data->price}}￥</span> </p> 
+            <p class="product-price"><span class="discounted-price">￥{{$data->price}}</span> </p> 
             <div class="rating rating-product-style-2"> 
              <i class="lnr lnr-star active"></i> 
              <i class="lnr lnr-star active"></i> 
@@ -354,7 +354,7 @@
          </div> 
          <div class="content"> 
           <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$row->id}}">{{$row->goods_name}}</a></p> 
-          <p class="product-price"> <span class="discounted-price">{{$data->price}}￥</span> </p> 
+          <p class="product-price"> <span class="discounted-price">￥{{$data->price}}</span> </p> 
          </div> 
          <div class="rating"> 
           <i class="lnr lnr-star active"></i> 

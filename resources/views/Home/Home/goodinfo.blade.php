@@ -103,7 +103,7 @@
         <i class="lnr lnr-star"></i> 
        </div> 
        <p class="review-links d-inline-block"> <a href="#"><i class="fa fa-comment-o"></i> 阅读评论 (1) </a> <a href="#"><i class="fa fa-pencil"></i> 写评论</a> </p> 
-       <p class="product-price mb-30">  <span class="discounted-price">{{$info->price}}</span> </p> 
+       <p class="product-price mb-30">  <span class="discounted-price">￥{{$info->price}}</span> </p> 
        <p class="product-description mb-15"> {{$info->desrc}}</p> 
        <div class="cart-buttons mb-30"> 
         <p class="mb-15">数量</p> 

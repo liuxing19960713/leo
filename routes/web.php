@@ -118,6 +118,8 @@ Route::get("/hsend","Home\RegisterController@send");
 
 //商品详情页
 Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
+//商品详情页
+Route::get("/search/{id}","Home\HomeController@search");
 
 //引入验证码
 Route::get("/code","Home\LoginController@code");
