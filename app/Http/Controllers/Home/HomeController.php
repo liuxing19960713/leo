@@ -17,11 +17,7 @@ class HomeController extends Controller
         return $w;
     }
 
-    //首页友情链接方法
-    public function link(){
-        $link=DB::table("link")->get();
-        //dd(count($link));
-        return $link;
+  
 
     /**
      * Display a listing of the resource.
@@ -51,7 +47,7 @@ class HomeController extends Controller
 
         
         $wheel=$this->wheel();
-        $link=$this->link();
+      
         // dd(111);
         $info=DB::table('goods')->where('status','=',1)->get();
         $sear=$this->getsear(7);
