@@ -3,11 +3,12 @@
 <html>
  <head></head>
  <body>
+  <script src="/js/cart.js"></script>
   <div class="breadcrumb-area breadcrumb-bg pt-85 pb-85 mb-80"> 
    <div class="container"> 
     <div class="row"> 
      <div class="col-lg-12"> 
-      <div class="breadcrumb-container"> 
+      <div class="breadcrumb-container">
        <ul> 
         <li><a href="index.html">Home</a> <span class="separator">/</span></li> 
         <li class="active">Single Product</li> 
@@ -106,8 +107,9 @@
        <div class="cart-buttons mb-30"> 
         <p class="mb-15">数量</p> 
         <div class="pro-qty mr-10"> 
-         <input type="text" value="1" /> 
+         <input type="text" value="1" class="cartnum" name="cartnum" /> 
         </div> 
+        <input type="hidden" class="goodid" name="id" value="{{$info->id}}">
         <a href="javascript:void(0);" class="pataku-btn"><i class="fa fa-shopping-cart"></i>添加到购物车</a> 
        </div> 
        <p class="wishlist-link mb-30"><a href="#"> <i class="fa fa-heart"></i> 加入到愿望清单</a></p> 
