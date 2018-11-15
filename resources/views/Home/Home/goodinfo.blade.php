@@ -29,11 +29,13 @@
       <div class="product-image-slider pts1-product-image-slider pts-product-image-slider pts1-product-image-slider flex-row-reverse"> 
        <!--product large image start --> 
        <div class="tab-content product-large-image-list pts-product-large-image-list pts1-product-large-image-list" id="myTabContent"> 
+          <!-- {{var_dump($pic)}} -->
+
         <div class="tab-pane fade show active" id="single-slide-1" role="tabpanel" aria-labelledby="single-slide-tab-1"> 
          <!--Single Product Image Start--> 
          <div class="single-product-img img-full"> 
-          <img src="/static/admin/uploads/z_goods/{{$info->z_pic}}" class="img-fluid" alt="" /> 
-          <a href="/static/admin/uploads/z_goods/{{$info->z_pic}}" class="big-image-popup"><i class="fa fa-search-plus"></i></a> 
+          <img src="/static/home/assets/images/single-product-slider/01.jpg" class="img-fluid" alt="" /> 
+          <a href="/static/admin/uploads/goods/{{$pic[0]}}" class="big-image-popup"><i class="fa fa-search-plus"></i></a> 
          </div> 
          <!--Single Product Image End--> 
         </div>
@@ -42,7 +44,7 @@
          <!--Single Product Image Start--> 
          <div class="single-product-img img-full"> 
           <img src="/static/home/assets/images/single-product-slider/02.jpg" class="img-fluid" alt="" /> 
-          <a href="/static/home/assets/images/single-product-slider/02.jpg" class="big-image-popup"><i class="fa fa-search-plus"></i></a> 
+          <a href="/static/admin/uploads/goods/{{$pic[1]}}" class="big-image-popup"><i class="fa fa-search-plus"></i></a> 
          </div> 
          <!--Single Product Image End--> 
         </div>
@@ -51,27 +53,21 @@
          <!--Single Product Image Start--> 
          <div class="single-product-img img-full"> 
           <img src="/static/home/assets/images/single-product-slider/03.jpg" class="img-fluid" alt="" /> 
-          <a href="/static/home/assets/images/single-product-slider/03.jpg" class="big-image-popup"><i class="fa fa-search-plus"></i></a> 
+          <a href="/static/admin/uploads/goods/{{$pic[2]}}" class="big-image-popup"><i class="fa fa-search-plus"></i></a> 
          </div> 
          <!--Single Product Image End--> 
         </div> 
-        <div class="tab-pane fade" id="single-slide-4" role="tabpanel" aria-labelledby="single-slide-tab-4"> 
-         <!--Single Product Image Start--> 
-         <div class="single-product-img img-full"> 
-          <img src="/static/home/assets/images/single-product-slider/04.jpg" class="img-fluid" alt="" /> 
-          <a href="/static/home/assets/images/single-product-slider/04.jpg" class="big-image-popup"><i class="fa fa-search-plus"></i></a> 
-         </div> 
-         <!--Single Product Image End--> 
-        </div> 
+       
+
        </div> 
        <!--product large image End--> 
        <!--product small image slider Start--> 
        <div class="product-small-image-list pts-product-small-image-list pts1-product-small-image-list"> 
         <div class="nav small-image-slider pts-small-image-slider pts1-small-image-slider" role="tablist"> 
          
-          @foreach($pic as $r)
+          @foreach($pic as $key=> $r)
          <div class="single-small-image img-full"> 
-          <a data-toggle="tab" id="single-slide-tab-1" href="#single-slide-1"><img src="/static/admin/uploads/z_goods/{{$r}}" class="img-fluid" alt="" /></a> 
+          <a data-toggle="tab" id="single-slide-tab-{{$key}}" href="#single-slide-{{$key}}"><img src="/static/admin/uploads/goods/{{$r}}" class="img-fluid" alt="" /></a> 
          </div> 
          @endforeach
 <!-- 

@@ -82,11 +82,13 @@ class HomeController extends Controller
         }
         // dd($value);
         // $value = '/static/uploads/goods/'.$value;
-        // dd($value); 
+        // dd($value);
+        $count = count($value);
+        // dd($count); 
         
        
 
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value]);
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'count'=>$count]);
     }
     public function create()
     {
