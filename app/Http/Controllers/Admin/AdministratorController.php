@@ -96,6 +96,10 @@ class AdministratorController extends Controller
         $data=$request->except(['repassword','_token']);
         //密码加密
         $data['pwd']=Hash::make($data['pwd']);
+
+      
+
+
         //dd($data['level']);
         //dd($data);
 

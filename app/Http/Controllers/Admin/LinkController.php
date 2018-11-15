@@ -22,6 +22,7 @@ class LinkController extends Controller
     // 显示数据列表 link.blade.php
     public function index(Request $request)
     {
+        
         // 获取搜索关键词
         $k = $request->input('keywords');
         // $ks = $request->input('keywordss');
@@ -67,6 +68,8 @@ class LinkController extends Controller
         //dd($res);
         // $name = Link::where('')
         //加载模板
+        //
+       
         return view('Admin.Admin.Link.link',['data'=>$data,'request'=>$request->all()]);
     }
 
@@ -104,6 +107,7 @@ class LinkController extends Controller
         $admin_id = $info->id;
         // 赋值
         $data['admin_id']=$admin_id;
+        //dd($data);
         //批量添加 Model::create
         if (Link::create($data)) {
             return redirect('/link')->with('success','添加成功');
