@@ -24,7 +24,7 @@ class AdminLogin extends FormRequest
     public function rules()
     {
         return [
-            'captcha'=>'required|captcha',
+            // 'captcha'=>'required|captcha',
             'name'=>'required',
             'pwd'=>'required',
         ];
@@ -32,8 +32,8 @@ class AdminLogin extends FormRequest
 
     public function messages(){
         return [
-            'captcha.required'=>'验证码不能为空',
-            'captcha.captcha'=>'验证码不正确',
+            // 'captcha.required'=>'验证码不能为空',
+            // 'captcha.captcha'=>'验证码不正确',
             'name.required'=>"账号不能为空",
             'pwd.required'=>'密码不能为空',
         ];

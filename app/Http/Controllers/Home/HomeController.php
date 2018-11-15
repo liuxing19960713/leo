@@ -8,9 +8,9 @@ use DB;
 class HomeController extends Controller
 {
 
-    
-    
-    
+
+
+
     //首页轮播图方法
     public function wheel(){
         $w=DB::table("wheel")->get();
@@ -45,8 +45,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        
+
         $wheel=$this->wheel();
+
         // dd(111);
         $info=DB::table('goods')->where('status','=',1)->get();
         $sear=$this->getsear(7);
@@ -81,9 +82,7 @@ class HomeController extends Controller
         }
         // dd($value);
         // $value = '/static/uploads/goods/'.$value;
-        // dd($value); 
-        
-       
+        // dd($value);
 
         return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value]);
     }
@@ -97,7 +96,7 @@ class HomeController extends Controller
     }
     public function create()
     {
-        
+
     }
 
     /**
@@ -108,7 +107,7 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**

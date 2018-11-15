@@ -119,13 +119,7 @@
         <div class="col-lg-8 col-md-8 col-sm-12"> 
          <!--=======  pagination-content  =======--> 
          <div class="pagination-content text-center text-md-right"> 
-          <!-- 分页 -->
-	      <div id="pull_right">
-	       <div class="pull-right">
-	          {{$search->render()}}
-	       </div>
-	      </div>
-	     <!-- 分页结束  --> 
+           
          </div> 
          <!--=======  End of pagination-content  =======--> 
         </div> 
