@@ -157,7 +157,7 @@
         <!-- Category Toggle Wrap --> 
         <div class="category-toggle-wrap"> 
          <!-- Category Toggle --> 
-         <button class="category-toggle"> <span class="lnr lnr-text-align-left"></span> Browse Categories <span class="lnr lnr-chevron-down"></span></button> 
+         <button class="category-toggle"> <span class="lnr lnr-text-align-left"></span>全部商品分类<span class="lnr lnr-chevron-down"></span></button> 
         </div> 
         <!-- Category Menu --> 
         <nav class="category-menu"> 

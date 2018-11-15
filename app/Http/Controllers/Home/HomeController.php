@@ -71,9 +71,26 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //商品详情页
+    public function goodinfo(Request $request,$id)
+    {
+        $info=DB::table('goods')->where('id','=',$id)->first();
+        //以下是详情信息获取方法
+        $arr    = $info->pic;
+        $pic['pic']    = explode(',',$arr);
+        foreach ($pic as $key => $value) {
+        }
+        // dd($value);
+        // $value = '/static/uploads/goods/'.$value;
+        // dd($value); 
+        
+       
+
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value]);
+    }
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -84,7 +101,7 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
