@@ -91,6 +91,8 @@ class GoodsController extends Controller
                     // 批量删除
                     $unlink= unlink($value);
                 }
+                
+
                 return redirect('/agoods')->with('error','商品上传失败');
             }
         }else{
@@ -112,7 +114,7 @@ class GoodsController extends Controller
         //获取该id的详细信息
         $pic = array();
         $info   = Goods::where('id','=',$id)->first();
-            //将图片转为数组 
+            //将副图片转为数组 
         $arr    = $info->pic;
         $pic['pic']    = explode(',',$arr);
         foreach ($pic as $key => $value) {

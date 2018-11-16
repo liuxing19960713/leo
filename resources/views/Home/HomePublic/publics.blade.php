@@ -157,22 +157,22 @@
         <!-- Category Toggle Wrap --> 
         <div class="category-toggle-wrap"> 
          <!-- Category Toggle --> 
-         <button class="category-toggle"> <span class="lnr lnr-text-align-left"></span> Browse Categories <span class="lnr lnr-chevron-down"></span></button> 
+         <button class="category-toggle"> <span class="lnr lnr-text-align-left"></span>全部商品分类<span class="lnr lnr-chevron-down"></span></button> 
         </div> 
         <!-- Category Menu --> 
         <nav class="category-menu"> 
          <ul>
           @foreach($cate as $row)
-          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">{{$row->name}}</a>
+          <li class="menu-item-has-children"><a href="/search/{{$row->id}}">{{$row->name}}</a>
           @if(count($row->dev)) 
            <!-- Mega Category Menu Start --> 
            <ul class="category-mega-menu">
             @foreach($row->dev as $rows) 
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">{{$rows->name}}</a>
+            <li class="menu-item-has-children"> <a class="megamenu-head" href="/search/{{$rows->id}}">{{$rows->name}}</a>
               @if(count($rows->dev)) 
              <ul>
                 @foreach($rows->dev as $rowss) 
-              <li><a href="shop-left-sidebar.html">{{$rowss->name}}</a></li> 
+              <li><a href="/search/{{$rowss->id}}">{{$rowss->name}}</a></li> 
                @endforeach
 
                

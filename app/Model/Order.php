@@ -21,10 +21,15 @@ class Order extends Model
     	//返回数据
     	return $status[$value];
     }
+
+    // 一对一
+    public function dilog(){
+        return $this->hasOne('App\Model\DiscountLog','oid','id');
+    }
 }
 
 
-    
+
 
 
 

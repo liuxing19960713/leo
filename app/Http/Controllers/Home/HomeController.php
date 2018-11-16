@@ -10,16 +10,21 @@ use App\Model\Article;
 class HomeController extends Controller
 {
 
-    
-    
-    
+
+
+
     //首页轮播图方法
     public function wheel(){
         $w=DB::table("wheel")->get();
         return $w;
     }
 
+
    
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -27,8 +32,13 @@ class HomeController extends Controller
      */
     // 遍历客厅的方法 搜索方法
     public function getsear($id){
+
         
-        $data=DB::table("category")->where('path','like',"0,$id")->get();
+       
+
+        // dd($id);
+        $data=DB::table("category")->where('path','like',"0,$id")->paginate(12);
+
         $ids='';
         foreach($data as $value)
         {
@@ -46,18 +56,30 @@ class HomeController extends Controller
     public function index()
     {
 
+
         // 轮播图
         $wheel=$this->wheel();
 
       
+
+
+        
+
+
         // dd(111);
         $info=DB::table('goods')->where('status','=',1)->get();
         // 
         $sear=$this->getsear(7);
         // dd($info);
-        // dd($sear);
+        // dd($wheel);
         //首页方法
+
+        
+
+
         return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
+
+
 
     }
     //首页文章栏目
@@ -98,9 +120,32 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //商品详情页
+    public function goodinfo(Request $request,$id)
+    {
+        $info=DB::table('goods')->where('id','=',$id)->first();
+        //以下是详情信息获取方法
+        $arr    = $info->pic;
+        $pic['pic']    = explode(',',$arr);
+        foreach ($pic as $key => $value) {
+        }
+        // dd($value);
+        // $value = '/static/uploads/goods/'.$value;
+        // dd($value);
+
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value]);
+    }
+    //商品列表页
+    public function search(Request $request,$id)
+    {
+        // dd($id);
+        $search=$this->getsear($id);
+        // dd($search);
+        return view("Home.Home.search",['search'=>$search]);
+    }
     public function create()
     {
-        //
+
     }
 
     /**
@@ -111,7 +156,7 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

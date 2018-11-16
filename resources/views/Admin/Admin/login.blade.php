@@ -61,12 +61,6 @@
                   <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="密码" name="pwd">
                 </div>
 
-                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg {{$errors->has('captcha')?'parsley-error':''}}" id="exampleInputPassword2" placeholder="验证码" name="captcha">
-                </div>
-                <div class="form-group">
-                    <img src="{{captcha_src()}}" style="cursor: pointer" onclick="this.src='{{captcha_src()}}'+Math.random()">
-                </div>
 
                 {{csrf_field()}}
                 <div class="mt-3">
