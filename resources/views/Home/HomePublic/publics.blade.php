@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
- <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>@yield('title')</title>
-  <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Favicon -->
+
+ <head> 
+  <meta charset="utf-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <title>@yield('title')</title> 
+  <meta name="description" content="" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <!-- Favicon --> 
   <link rel="icon" href="/static/home/assets/images/favicon.ico" />
+    <!-- 分页样式 -->
+  <link rel="stylesheet" href="/static/admins/css/mypage.css" /> 
+
   <!-- CSS
   ============================================ -->
   <!-- Bootstrap CSS -->
