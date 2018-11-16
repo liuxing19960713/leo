@@ -61,7 +61,7 @@
   @foreach($data as $row)
       <tr align="center">
        <td>  {{$row->id}} </td>
-       <td class="text-danger">  {{$row->category->name}} </td>
+       <td class="text-danger">  {{$row->category['name']}} </td>
        <td>
         @if($row->status=='启用')
         <label class="badge badge-gradient-success sta">

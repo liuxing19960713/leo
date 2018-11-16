@@ -24,8 +24,9 @@
       <thead> 
        <tr> 
         <th>id</th> 
-        <th>标题</th> 
-        <th>内容</th> 
+        <th>标题</th>
+        <th>前言</th> 
+         
         <th>添加者</th>
         <th>状态</th>
         <th>添加时间</th>
@@ -37,7 +38,8 @@
        <tr> 
         <td>{{$row->id}}</td> 
         <td>{{$row->title}}</td>
-        <td>{!!$row->content!!}</td>
+        <td>{{$row->head}}</td>
+        
         <td>{{$row->admin->name}}</td>
         <td class=" status btn btn-gradient-dark" style="margin-top: 20px;">{{$row->status}}</td>
         <td>{{$row->created_at}}</td> 
@@ -56,15 +58,20 @@
   </div>
  </body>
  <script type="text/javascript">
- //alert($);
+ // alert($);
  $(".del").click(function(){
+  //alert(1);
   //获取id
     id=$(this).parents("tr").find("td:first").html();
-    // alert(id);    
+    //alert(id);    
     //获取删除数据所在的tr
     s=$(this).parents("tr");
+    //alert(s);
     //Ajax
+    // alert('1');
     $.get("/articledel",{id:id},function(data){
+      // alert(1);
+      // alert(data);
        if(data.msg==1){
          alert("删除成功");
          //移除删除数据所在的tr
@@ -76,28 +83,31 @@
  });
 
  $('.status').click(function(){
-    // alert('hah ');
+     // alert('hah ');
     //获取该链接的id
     id = $(this).parents('tr').find('td:first').html();
     // alert(id);
     //存储 该状态的td 的对象
-    s = $(this).parents('tr').find('td:nth-child(5)');
+    s = $(this).parents('tr').find('td:nth-child(6)');
     //获取状态
-    //
-    sta = $(this).parents('tr').find('td:nth-child(5)').html();
-    // alert(sta);
+    // console.log(s);
+    sta = $(this).parents('tr').find('td:nth-child(6)').html();
+     // alert(sta);
     //ajax
     $.get('/articleajax',{id:id,sta:sta},function(data){
-      // alert(data);
-      if (data.msg == 1) {
-        alert('修改成功');
-        // alert(data.sta);
+     
+        // console.log(dad.sta);
+       if (data.msg == 1) {
+         alert('修改成功');
+      //   console.log(data.sta);
         s.html(data.sta);
-      }else{
-        alert('修改失败！');
-      }
+       }else{
+         alert('修改失败！');
+       }
     },'json');
+
   });
+
  </script>
 </html>
 @endsection
