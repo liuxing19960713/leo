@@ -177,8 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        // 验证码类的加载
-        Mews\Captcha\CaptchaServiceProvider::class,
+
 
     ],
 
@@ -229,9 +228,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         // 验证码
-        'Captcha'=>Mews\Captcha\Facades\Captcha::class,
+
     ],
-    //初始化上传文件 
+    //初始化上传文件
     'wheeluploads'=>'./uploads/wheel/',
     'uploads'=>'./uploads/',
     // 加载图片路径
