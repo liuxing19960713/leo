@@ -52,7 +52,7 @@ class RegisterController extends Controller
             $data['true_name']  = '会员';
             // dd($data);
             if(User::create($data)){
-                return redirect("/hlogin/create")->with('success',"注册成功,请登录");
+                return redirect("/hlogin")->with('success',"注册成功,请登录");
             }else{
                 return redirect("/hregi")->with('error',"请查看用户名否正确");
             }

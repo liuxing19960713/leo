@@ -1,4 +1,4 @@
-<?php
+`<?php
 
 namespace App\Http\Controllers\Admin;
 
@@ -178,7 +178,7 @@ class GoodsController extends Controller
         }
 
         // dd(1);
-
+ 
         // 判断主图是否为空
         if(!empty($data['z_pic']))
         {
@@ -187,7 +187,7 @@ class GoodsController extends Controller
              $pic  = DB::table('goods')->where("id","=",$id)->first();
                  $value = './static/admin/uploads/z_goods/'.($pic->z_pic);
                 // dd($value);           
-
+ 
              if(unlink($value))
             {
                     $z_pic =$request->file("z_pic");
@@ -206,6 +206,7 @@ class GoodsController extends Controller
             }
 
         }
+ 
          // 在判断 附图是否为空
         if (!empty($data['pic'])) {
 
@@ -213,7 +214,7 @@ class GoodsController extends Controller
                 // 查出原先的图片 全部删除掉
                  $pic   =   DB::table('goods')->where("id","=",$id)->value('pic');
                  $pic   =   explode(',',$pic);
-
+ 
                  // dd($pic);
                 foreach ($pic as $key => $value)
                 {
@@ -230,14 +231,14 @@ class GoodsController extends Controller
                         
                    
                 }
-
+ 
             // 如果为空 就不修改他啊
             // $pic  = DB::table('goods')->where("id","=",$id)->first();
             // $data['z_pic'] = $pic->z_pic;
 
 
         }
-
+ 
 
         // 如果不为空就操作 发送过去操作
         // 调用upload的方法 upload的方法在app/Libary里
@@ -246,7 +247,7 @@ class GoodsController extends Controller
 
         // 下面是做 附图有的和主图也有时候才做的事情
 
-
+ 
        if(($app['msg']['msg'] == 1) && (!empty($data['z_pic']))){
             if ($app['msg']['msg'] ==1 ) {
                 $f_pic          = implode(',',$app['pic']);
@@ -263,7 +264,7 @@ class GoodsController extends Controller
             // 只做只有附图
         }elseif (($app['msg']['msg'] == 1) && empty($data['z_pic'])){
             unset($data['z_pic']);
-
+ 
             $f_pic          = implode(',',$app['pic']);
             $data['pic']    = $f_pic;
             if(Goods::where("id","=",$id)->update($data)) {

@@ -136,6 +136,7 @@ class HomeController extends Controller
         // $value = '/static/uploads/goods/'.$value;
         // dd($value);
 
+
         return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data]);
     }
     //商品列表页
@@ -146,6 +147,7 @@ class HomeController extends Controller
         // dd($search);
 
         return view("Home.Home.search",['search'=>$search]);
+
     }
     public function create()
     {
