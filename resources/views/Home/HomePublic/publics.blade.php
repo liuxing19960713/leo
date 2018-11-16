@@ -260,7 +260,7 @@
            </ul> </li> 
           <li class="menu-item-has-children"><a href="#">BLOG</a> 
            <ul class="sub-menu"> 
-            <li><a href="/article">Blog 3 column</a></li> 
+            <li><a href="/articlehome">Blog 3 column</a></li> 
             <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li> 
             <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li> 
             <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li> 

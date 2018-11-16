@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+//导入模型类Administrator
+use App\Model\Article;
 class HomeController extends Controller
 {
 
@@ -17,20 +19,15 @@ class HomeController extends Controller
         return $w;
     }
 
-    //首页友情链接方法
-    public function link(){
-        $link=DB::table("link")->get();
-        //dd(count($link));
-        return $link;
-
+   
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
+    // 遍历客厅的方法 搜索方法
     public function getsear($id){
-        // dd($id);
+        
         $data=DB::table("category")->where('path','like',"0,$id")->get();
         $ids='';
         foreach($data as $value)
@@ -49,23 +46,51 @@ class HomeController extends Controller
     public function index()
     {
 
-        
+        // 轮播图
         $wheel=$this->wheel();
-        $link=$this->link();
+
+      
         // dd(111);
         $info=DB::table('goods')->where('status','=',1)->get();
+        // 
         $sear=$this->getsear(7);
         // dd($info);
         // dd($sear);
         //首页方法
-        return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel,'link'=>$link]);
+        return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
 
     }
     //首页文章栏目
     public function article(){
-        //dd(1);
-        $article=DB::table("article")->get();
-         return view("Home.Home.article",['article'=>$article]);
+  
+        //连表查询获取添加者名字
+        $article=DB::table('article')->join('admin','admin.id','admin_id')->select('article.*','admin.name')->paginate(9);
+        // dd($article);
+        foreach ($article as $k=>$row){
+            $rows[$k]['id']=$row->id;
+            $rows[$k]['title']=$row->title;
+            $rows[$k]['head']=$row->head;
+            $rows[$k]['content']=$row->content;
+            //将添加者名字存入数组
+            $rows[$k]['name']=$row->name;
+            $rows[$k]['admin_id']=$row->admin_id;
+            $rows[$k]['status']=$row->status;
+            //将多张图片分离,第一张图片作为封面图
+            $rows[$k]['thumb']=explode(',',$row->thumb);
+            
+        }
+        //dd($rows);
+      
+         return view("Home.Home.article",['rows'=>$rows,'article'=>$article]);
+    }
+    //首页文章栏目详情
+    public function articles($id){
+        $info=Article::where('id','=',$id)->first();
+        //分离多张图片
+        //$info->thumb=explode(',',$info->thumb);
+
+        
+        return view("Home.Home.articles",['info'=>$info]);
     }
 
     /**

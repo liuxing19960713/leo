@@ -100,7 +100,9 @@ Route::resource("/adiscount","Admin\DiscountController");
 //前台首页
 Route::resource("/","Home\HomeController");
 //前台文章栏目
-Route::get("/article","Home\HomeController@article");
+Route::get("/articlehome","Home\HomeController@article");
+//前台文章栏目详情
+Route::get("/articleshome/{id}","Home\HomeController@articles");
 //关于我们
 Route::resource("/contact","Home\ContactController");
 
