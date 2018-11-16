@@ -97,13 +97,25 @@ Route::resource('/discountlog','Admin\DiscountLogController');
  Route::get('/articleajax',"Admin\ArticleController@ajax");
 
 
-		
+
+	// 优惠券模块
+	Route::resource("/discount","Admin\DiscountController");
+	// 优惠券模块状态ajax
+	Route::get("/discountsta",'Admin\DiscountController@sta');
+	// 用户拥有优惠券详情
+	Route::resource('/discountlog','Admin\DiscountLogController');
+  //文章管理
+  Route::resource('/article','Admin\ArticleController');
+  //文章ajax删除
+  Route::get('/articledel',"Admin\ArticleController@del");
+  //文章状态ajax修改)
+  Route::get('/articleajax',"Admin\ArticleController@ajax");
+
 
 
 });
 // 前台登录
 Route::resource("/hlogin","Home\LoginController");
-
 // 前台注册
 Route::resource("/hregi","Home\RegisterController");
 
@@ -138,4 +150,15 @@ Route::get("/search/{id}","Home\HomeController@search");
 });
 
 
+
+
+//前台购物车：
+Route::resource("/hcart","Home\CartController");
+// 检测是否有重复的商品
+Route::get("/checkexit","Home\CartController@checkexit");
+// 查询购物车里面的信息
+Route::get("/select","Home\CartController@select");
+
+// 前台个人用户主页
+Route::resource('/mypersonal','Home\PersonalController');
 

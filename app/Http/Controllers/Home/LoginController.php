@@ -28,8 +28,12 @@ class LoginController extends Controller
      */
     public function create()
     {
+
       
         
+
+        //
+
         
     }
     /**
@@ -65,7 +69,7 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         //
-        
+
         $vcode = session('vcode');
         $code  = $request->input('vcode');
         // echo $vcode.':'.$code;
@@ -80,12 +84,12 @@ class LoginController extends Controller
             if($info){
                 // echo 11;
                 if(Hash::check($pwd,$info->upwd)){
-                    
+
                     session(['hid'=>$info->id]);//
                     session(['username'=>$info->uname]);
                     return redirect("/");
                 }else{
-                    return redirect("/hlogin")->with('error',"密码错误");
+                    return redirect("/hlogin/create")->with('error',"密码错误");
                 }
             }
         }
@@ -107,7 +111,7 @@ class LoginController extends Controller
             echo 3;
         }
 
-        
+
     }
 
     /**
@@ -152,6 +156,7 @@ class LoginController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // echo $id;
     }
+
 }

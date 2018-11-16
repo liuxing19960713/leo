@@ -49,7 +49,7 @@ class RegisterController extends Controller
             $data['upwd']  = Hash::make($data['upwd']);
             // $data['token'] = uniqid().rand(1,10000).time();
             $data['status']     = 1;
-            $data['true_name']  = '会员'; 
+            $data['true_name']  = '会员';
             // dd($data);
             if(User::create($data)){
                 return redirect("/hlogin")->with('success',"注册成功,请登录");
@@ -64,7 +64,7 @@ class RegisterController extends Controller
      * [验证用户是否存在]
      * @author 刘兴
      * @DateTime 2018-11-13T20:39:10+0800
-     * @return 参数：1 已存在 0 不存在  
+     * @return 参数：1 已存在 0 不存在
      *           uname    用户
      */
     public function checkuname()
@@ -77,11 +77,11 @@ class RegisterController extends Controller
         // $result = preg_match($pattern,$uname,$match);
 
         $info  = DB::table('user')->where("uname","=",$uname)->first();
-        
+
         if($info){
-            echo 0; 
+            echo 0;
         }else{
-            echo 1;   
+            echo 1;
         }
     }
 
@@ -90,7 +90,7 @@ class RegisterController extends Controller
     {
         $phone =$_GET['phone'];
         return sendsphone($phone);
-       
+
     }
 
     /**
