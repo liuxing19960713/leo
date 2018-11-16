@@ -83,32 +83,24 @@ Route::group(["middleware"=>"adminlogin"],function()
 	Route::get("/rolelist/{id}","Admin\AdministratorController@rolelist");
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
+// 优惠券模块
+Route::resource("/discount","Admin\DiscountController");
+// 优惠券模块状态ajax
+Route::get("/discountsta",'Admin\DiscountController@sta');
+// 用户拥有优惠券详情
+Route::resource('/discountlog','Admin\DiscountLogController');
+ //文章管理
+ Route::resource('/article','Admin\ArticleController');
+ //文章ajax删除
+ Route::get('/articledel',"Admin\ArticleController@del");
+//文章状态ajax修改)
+ Route::get('/articleajax',"Admin\ArticleController@ajax");
 
 
-	// 优惠券模块
-	Route::resource("/discount","Admin\DiscountController");
-	// 优惠券模块状态ajax
-	Route::get("/discountsta",'Admin\DiscountController@sta');
-	// 用户拥有优惠券详情
-	Route::resource('/discountlog','Admin\DiscountLogController');
-  //文章管理
-  Route::resource('/article','Admin\ArticleController');
-  //文章ajax删除
-  Route::get('/articledel',"Admin\ArticleController@del");
-  //文章状态ajax修改)
-  Route::get('/articleajax',"Admin\ArticleController@ajax");	
+		
 
 
 });
-//前台首页
-Route::resource("/","Home\HomeController");
-//前台文章栏目
-Route::get("/articlehome","Home\HomeController@article");
-//前台文章栏目详情
-Route::get("/articleshome/{id}","Home\HomeController@articles");
-//关于我们
-Route::resource("/contact","Home\ContactController");
-
 // 前台登录
 Route::resource("/hlogin","Home\LoginController");
 
@@ -120,15 +112,30 @@ Route::get("/checkuname","Home\RegisterController@checkuname");
 
 // 接收发来的手机
 Route::get("/hsend","Home\RegisterController@send");
-
-//商品详情页
-Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
-//商品详情页
-Route::get("/search/{id}","Home\HomeController@search");
-
 //引入验证码
 Route::get("/code","Home\LoginController@code");
 
 //检验登录校验码
 Route::get("/chvcode","Home\LoginController@chvcode");
+//前台首页
+Route::resource("/","Home\HomeController");
+//中间件结合路由组使用
+Route::group(["middleware"=>"hlogin"],function()
+{
+
+//前台文章栏目
+Route::get("/articlehome","Home\HomeController@article");
+//前台文章栏目详情
+Route::get("/articleshome/{id}","Home\HomeController@articles");
+//关于我们
+Route::resource("/contact","Home\ContactController");
+
+
+//商品详情页
+Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
+//商品详情页
+Route::get("/search/{id}","Home\HomeController@search");
+});
+
+
 

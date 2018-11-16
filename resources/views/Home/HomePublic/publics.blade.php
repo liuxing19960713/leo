@@ -48,7 +48,7 @@
           <ul> 
            <li><a href="my-account.html">我的账户</a></li> 
            <li><a href="checkout.html">结算</a></li> 
-           <li><a href="/hlogin/create">登录</a></li> 
+           <li><a href="/hlogin">登录</a></li> 
           </ul> 
          </div> 
         </div> 
