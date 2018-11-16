@@ -78,7 +78,7 @@ class HomeController extends Controller
 
         
 
-
+        //dd($info);
         return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
 
 
@@ -136,13 +136,17 @@ class HomeController extends Controller
         // $value = '/static/uploads/goods/'.$value;
         // dd($value);
 
+       
+
+
 
         return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data]);
+
     }
     //商品列表页
     public function search(Request $request,$id)
     {
-        // dd($id);
+         //dd($id);
         $search=$this->getsear($id);
         // dd($search);
 

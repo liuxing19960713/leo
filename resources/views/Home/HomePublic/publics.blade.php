@@ -34,6 +34,7 @@
   <!--=============================================
   =            Header One         =
 
+
   <div class="header-container header-sticky">
    <!--=======  header top  =======-->
    <div class="header-top pt-15 pb-15">
@@ -174,6 +175,7 @@
         </div>
         <!-- Category Menu -->
         <nav class="category-menu">
+
 
          <ul>
           @foreach($cate as $row)

@@ -21,6 +21,7 @@ class DiscountController extends Controller
         // 测试是否有反关联
         // $info = Discount::find(2);
         // dd($info->category->name);
+        //dd(1);
         $c = '';
         $k = $request->input('keyword');
         $cid = [];
