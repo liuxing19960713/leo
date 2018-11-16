@@ -92,6 +92,7 @@
      </div> 
      <div class="col-lg-6"> 
       <!--=======  single product details  =======--> 
+
       <div class="single-product-details-container"> 
        <p class="product-title mb-15">{{$info->goods_name}}</p> 
        <div class="rating d-inline-block mb-15"> 
@@ -104,14 +105,18 @@
        <p class="review-links d-inline-block"> <a href="#"><i class="fa fa-comment-o"></i> 阅读评论 (1) </a> <a href="#"><i class="fa fa-pencil"></i> 写评论</a> </p> 
        <p class="product-price mb-30">  <span class="discounted-price">{{$info->price}}</span> </p> 
        <p class="product-description mb-15"> {{$info->desrc}}</p> 
+       <form action="/hcart" method="post">
+        {{csrf_field()}}
+          <input type="hidden" name="id" value="{{$info->id}}">
+
        <div class="cart-buttons mb-30"> 
         <p class="mb-15">数量</p> 
         <div class="pro-qty mr-10"> 
          <input type="text" value="1" class="cartnum" name="cartnum" /> 
         </div> 
-        <input type="hidden" class="goodid" name="id" value="{{$info->id}}">
-        <a href="javascript:void(0);" class="pataku-btn"><i class="fa fa-shopping-cart"></i>添加到购物车</a> 
+        <input type="submit" value="添加到购物车" class="pataku-btn"> 
        </div> 
+       </form>
        <p class="wishlist-link mb-30"><a href="#"> <i class="fa fa-heart"></i> 加入到愿望清单</a></p> 
        <div class="social-share-buttons mb-30"> 
         <p>分享</p> 
@@ -130,6 +135,8 @@
         </ul> 
        </div> 
       </div> 
+
+
       <!--=======  End of single product details  =======--> 
      </div> 
     </div> 

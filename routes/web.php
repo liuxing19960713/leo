@@ -128,3 +128,9 @@ Route::get("/code","Home\LoginController@code");
 //检验登录校验码
 Route::get("/chvcode","Home\LoginController@chvcode");
 
+//前台购物车：
+Route::resource("/hcart","Home\CartController");
+// 检测是否有重复的商品
+Route::get("/checkexit","Home\CartController@checkexit");
+// 查询购物车里面的信息
+Route::get("/select","Home\CartController@select");

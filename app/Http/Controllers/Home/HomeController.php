@@ -84,7 +84,7 @@ class HomeController extends Controller
         // $value = '/static/uploads/goods/'.$value;
         // dd($value);
 
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value]);
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'id'=>$id]);
     }
     public function create()
     {
