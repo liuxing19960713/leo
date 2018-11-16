@@ -7,7 +7,9 @@
   <meta name="description" content="" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1" /> 
   <!-- Favicon --> 
-  <link rel="icon" href="/static/home/assets/images/favicon.ico" /> 
+  <link rel="icon" href="/static/home/assets/images/favicon.ico" />
+    <!-- 分页样式 -->
+  <link rel="stylesheet" href="/static/admins/css/mypage.css" /> 
   <!-- CSS
   ============================================ --> 
   <!-- Bootstrap CSS --> 
