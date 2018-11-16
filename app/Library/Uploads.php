@@ -1,6 +1,6 @@
 
-<?php 
-	function uploads($pic)
+<?php
+	function Uploads($pic)
 	{
 
 		$file = $pic;
@@ -15,13 +15,16 @@
 
                     return ['error' => 'You may only upload png, jpg,jpeg or gif.'];die;
                  }
-                 $destinationPath = 'static/admin/uploads/goods'; //public 文件夹下面建 uploads/goods 文件夹
+                 $destinationPath = '/static/admin/uploads/goods'; //public 文件夹下面建 uploads/goods 文件夹
                  $extension = $value->getClientOriginalExtension();  //后缀
                  // var_dump($extension);
                  $fileName = str_random(10).'.'.$extension;//重命名
+                 // 数组存的是什么？
+                 //存的只是图片名字
                  $fileNames[]= $fileName;
-                 // var_dump($fileNames);
+
                  $value->move($destinationPath, $fileName);
+                 // dd($bool);
                  if($value){
                      $arr['msg'] = 1;
                  }
@@ -30,7 +33,7 @@
                  // $post['landlord_img']="storage/uploads/".$fileName;
                  // $list=array('img_name'=>$fileName,'house_id'=>$id);
 
-                 // DB::table('img')->insert($list);                 
+                 // DB::table('img')->insert($list);
              }
 
           }
