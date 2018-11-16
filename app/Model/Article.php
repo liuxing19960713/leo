@@ -19,12 +19,12 @@ class Article extends Model
 			return $status[$value];
 	}
     //可以被批量赋值的属性字段
-    protected $fillable=['id','title','content','admin_id','created_at','updated_at','status'];
+    protected $fillable=['id','title','content','admin_id','created_at','updated_at','status','thumb','head','text'];
 
    public function admin()
 	{
 		return $this->belongsTo('App\Model\Administrator','admin_id','id');
 	}
 
-
+   
 }
