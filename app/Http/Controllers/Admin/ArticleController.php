@@ -21,7 +21,7 @@ class ArticleController extends Controller
         //获取数据列表
         $k=$request->input('keywords');
         //文章列表
-        $data=Article::where("title",'like','%'.$k.'%')->paginate(3);
+        $data=Article::where("title",'like','%'.$k.'%')->orderBy('id','ASC')->paginate(3);
         return view("Admin.Article.index",['data'=>$data,'request'=>$request->all()]);
     }
 
@@ -48,10 +48,49 @@ class ArticleController extends Controller
         //获取所有数据
         $data=$request->except(['_token']);
         //dd($data);
+
+       //通过正则分离获取图片上传路径
+        preg_match_all('/<img.*?src="(.*?)".*?>/is',$data['content'],$arr);
+        //dd($arr);
+       //将图片路径存入数据库图片字段
+        $data['thumb']=implode(',',$arr[1]);
+        
+        // foreach ($arr[0] as $k => $v) {
+        //     if($k >= 1){
+        //         $need[$k] = explode($v, $need[$k-1][1]);
+                
+        //     }else{
+        //         $need[$k] = explode($v, $data['content']);
+            
+        //     }
+        // }
+        // //获取并合并文字
+        // $cneed = '';
+        
+        // $sum = (count($need));
+        
+        
+        // if ($sum > 1) {
+
+        //     // echo 'diuni ';
+        //     foreach ($need as $key => $value) {
+        //         $cneed .=$value[0];
+        //     }
+        //      $cneed .=$need[$sum-1][1];
+        // }else{
+        //     $cneed = implode('', $need[0]);
+
+        // }
+       
+        // //将文字存入数据库文字字段
+        // $data['text']=$cneed;
+        //dd($data['content']);
+        //dd($arr);
         //获取对应的name
         $admin=$data['admin_id'];
         //DB类来获取对应的会员信息
         $info = DB::table('admin')->where('name','=',$admin)->first();
+        //dd($info);
         //获取对应id
         $admin_id = $info->id;
         //赋值
@@ -99,10 +138,53 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Articleinsert $request, $id)
     {
         //获取修改的数据
         $data=$request->except(['_token','_method','admin_id','editorValue']);
+        //与数据添加一样的操作
+        preg_match_all('/<img.*?src="(.*?)".*?>/is',$data['content'],$arr);
+        var_dump($arr);
+        $data['thumb']=implode(',',$arr[1]);
+        
+        // foreach ($arr[0] as $k => $v) {
+        //     if($k >= 1){
+        //         $need[$k] = explode($v, $need[$k-1][1]);
+                
+        //     }else{
+        //         $need[$k] = explode($v, $data['content']);
+        //     // dd($need);
+        //     }
+        // }
+      
+        // $cneed = '';
+        // var_dump($need);
+        // $sum = (count($need));
+        
+        // if ($sum > 1) {
+
+        //     // echo 'diuni ';
+        //     foreach ($need as $key => $value) {
+        //         $cneed .=$value[0];
+        //     }
+        //      $cneed .=$need[$sum-1][1];
+        // }else{
+        //     $cneed = implode('', $need[0]);
+
+        // }
+        // // var_dump($cneed);
+        // //var_dump($cneed);
+        // $data['text']=$cneed;
+        //dd($data['content']);
+        //dd($arr);
+        //获取对应的name
+        //$admin=$data['admin_id'];
+        //DB类来获取对应的会员信息
+        //$info = DB::table('admin')->where('name','=',$admin)->first();
+        //获取对应id
+        //$admin_id = $info->id;
+        //赋值
+        //$data['admin_id']=$admin_id;
         //$data['content']=$data['editorValue'];
       
         //unlink($data['editorValue']);
@@ -132,6 +214,7 @@ class ArticleController extends Controller
         $id=$request->input('id');
         $info=DB::table('article')->where('id','=',$id)->first();
         preg_match_all('/<img.*?src="(.*?)".*?>/is',$info->content,$arr);
+        //dd($arr);
         if(DB::table('article')->delete($id)){
             foreach($arr['1'] as $key=>$value){
                 unlink(".".$value);
@@ -143,7 +226,7 @@ class ArticleController extends Controller
         }
     }
 
-    public function Ajax(Request $request){
+    public function ajax(Request $request){
         // return '1
         $data = array();
         $arr = [0=>'禁用',1=>'启用'];

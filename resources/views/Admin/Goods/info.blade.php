@@ -32,7 +32,7 @@
     <div class="row mt-3"> 
     @foreach($pic as $p)
      <div class="col-4 pr-6"> 
-      <img src="/static/admin/uploads/goods/" class="mw-100 w-50 rounded"  alt="image" /> 
+      <img src="/static/admin/uploads/goods/{{$p}}" class="mw-100 w-50 rounded"  alt="image" /> 
      </div> 
     @endforeach
     </div> 

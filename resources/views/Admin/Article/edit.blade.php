@@ -19,6 +19,12 @@
        
       </div>
       <div class="form-group row">
+       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">文章前言</label>
+
+        <input type="text" class="form-control" id="exampleInputUsername2" name="title" value="{{$info->head or ''}}" />
+       
+      </div>
+      <div class="form-group row">
        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">文章内容</label>
        
        <script id="editor" type="text/plain" style="width:1024px;height:500px;" name="content">{!!$info->content!!}</script>
