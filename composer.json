@@ -10,7 +10,6 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "mews/captcha": "^2.2",
         "gregwar/captcha": "1.*"
     },
     "require-dev": {
@@ -31,7 +30,8 @@
         "files":[
             "app/Library/Uploads.php",
             "app/Library/Ucpaas.php",
-            "app/Library/Sendcode.php"
+            "app/Library/Sendcode.php",
+            "app/Library/Ups.php"
 
 
         ]

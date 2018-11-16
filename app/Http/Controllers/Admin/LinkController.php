@@ -22,7 +22,7 @@ class LinkController extends Controller
     // 显示数据列表 link.blade.php
     public function index(Request $request)
     {
-        
+
         // 获取搜索关键词
         $k = $request->input('keywords');
         // $ks = $request->input('keywordss');
@@ -69,7 +69,7 @@ class LinkController extends Controller
         // $name = Link::where('')
         //加载模板
         //
-       
+
         return view('Admin.Admin.Link.link',['data'=>$data,'request'=>$request->all()]);
     }
 

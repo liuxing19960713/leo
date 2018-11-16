@@ -43,7 +43,7 @@
         <td>{{$row->urlname}}</td>
         <td class="text-danger" style="width: 180px;font-size: 12px;">{{$row->link_url}}</td>
         <!-- 关联起来直接调用 多对一 其实就是反向关联 belongsTo -->
-        <td>{{$row->admin->name}}</td>
+        <td>{{$row->admin['name']}}</td>
         <td class=" status btn btn-gradient-dark" style="margin-top: 20px;">{{$row->status}}</td>
         <td style="width: 120px;">{{$row->updated_at}}</td>
         <td style="width: 120px;">{{$row->created_at}}</td>

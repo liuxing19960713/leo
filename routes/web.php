@@ -96,7 +96,7 @@ Route::group(["middleware"=>"adminlogin"],function()
   //文章ajax删除
   Route::get('/articledel',"Admin\ArticleController@del");
   //文章状态ajax修改)
-  Route::get('/articleajax',"Admin\ArticleController@ajax");	
+  Route::get('/articleajax',"Admin\ArticleController@ajax");
 
 
 });
@@ -109,7 +109,6 @@ Route::resource("/contact","Home\ContactController");
 
 // 前台登录
 Route::resource("/hlogin","Home\LoginController");
-
 // 前台注册
 Route::resource("/hregi","Home\RegisterController");
 
@@ -128,3 +127,5 @@ Route::get("/code","Home\LoginController@code");
 //检验登录校验码
 Route::get("/chvcode","Home\LoginController@chvcode");
 
+// 前台个人用户主页
+Route::resource('/mypersonal','Home\PersonalController');
