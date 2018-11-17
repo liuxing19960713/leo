@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
 class PersonalController extends Controller
 {
     /**
@@ -30,7 +30,19 @@ class PersonalController extends Controller
     {
         //
     }
-
+    public function adress(Request $request)
+    {
+      
+        // echo $request->input($id)
+        // var_dump($_GET['upid']);
+        $upid = $request->input('upid');
+        // echo $upid;
+        //获取当前子类下的所有商品数据
+        // $data=DB::table("district")->where("upid",'=',$upid)->get();
+        $data = DB::table('district')->where('upid', '=', $upid)->get();
+        // var_dump($data);
+        return $data;
+    }
     /**
      * Store a newly created resource in storage.
      *
