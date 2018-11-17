@@ -12,7 +12,6 @@ use DB;
 use App\Model\Admin\Goods;
 // 引入分类
 use App\Http\Controllers\Admin\CategoryController;
-use Config;
 class GoodsController extends Controller
 {
     /**
@@ -27,7 +26,7 @@ class GoodsController extends Controller
         //
         $k = $request->input('keyword');
         //商品信息
-        $info = DB::table('goods')->where('goods_name','like',"%$k%")->join('category','goods.cate_id','=','category.id')->select('goods.id as gid','goods.goods_name','goods.brank','goods.status','goods.stock','goods.updated_at','goods.created_at','category.name')->paginate(5);
+        $info = DB::table('goods')->where('goods_name','like',"%$k%")->join('category','goods.cate_id','=','category.id')->select('goods.id as gid','goods.goods_name','goods.brank','goods.status','goods.stock','goods.updated_at','goods.created_at','category.name')->orderBy('goods.id','ASC')->paginate(5);
         // $info = paginate(2);
         return view('Admin.Goods.index',['info'=>$info,'request'=>$request->all()]);
     }
@@ -50,16 +49,12 @@ class GoodsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // 下面的校验类
-    // AdminGoodsinsert
-    public function store(Request $request)
+    public function store(AdminGoodsinsert $request)
     {
         $data = $request->except(['_token']);
         // 商品图片
         // 调用upload的多图上传方法            upload的方法在app/Libary里
-        $app = Uploads($request->file("pic"));
-        // $app    = Ups($request->file("pic"));
-
+        $app    = uploads($request->file("pic"));
         $z_pic =$request->file("z_pic");
         // 后缀
         $z_ext= $z_pic->getClientOriginalExtension();
@@ -71,22 +66,22 @@ class GoodsController extends Controller
         $request->file("z_pic")->move($destinationPath,$fileName);
         // var_dump($data);die;
         //商品图片转成字符串
-        $f_pic          = implode(',',$app['pic']);
+        $f_pic          = implode(',',$app['pic']); 
 
         $data['pic']    = $f_pic; //商品图片
 
         $data['z_pic'] = $fileName; //商品主图
-
-        if($app['msg'] == 1){
+        
+        if($app['msg']){
             $data['status'] = 1;
             $data['sale']   = 0;
-            dd($data);
+
             if (Goods::create($data)) {
                 return redirect('/agoods')->with('success','商品上传成功');
             }else{
 
                 $pic    = explode(',',$f_pic);
-                // $pic[]
+                // $pic[] 
                 // $count  = count($pic);
                 foreach ($pic as $key => $value) {
                     // var_dump($value)
@@ -119,7 +114,7 @@ class GoodsController extends Controller
         //获取该id的详细信息
         $pic = array();
         $info   = Goods::where('id','=',$id)->first();
-            //将副图片转为数组
+            //将副图片转为数组 
         $arr    = $info->pic;
         $pic['pic']    = explode(',',$arr);
         foreach ($pic as $key => $value) {
@@ -127,7 +122,7 @@ class GoodsController extends Controller
         return view('Admin.goods.info',['info'=>$info,'pic'=>$value]);
     }
 
-
+     
 
     /**
      * Show the form for editing the specified resource.
@@ -147,7 +142,7 @@ class GoodsController extends Controller
         // 获取当前的商品信息
         $good_info= DB::table('goods')->where("id","=",$id)->first();
         // 加载模板
-        return view('Admin.Goods.edit',['cateinfo'=>$cateinfo,'good_info'=>$good_info]);
+        return view('Admin.Goods.edit',['cateinfo'=>$cateinfo,'good_info'=>$good_info]);                
     }
 
     /**
@@ -178,7 +173,6 @@ class GoodsController extends Controller
         }
 
         // dd(1);
-
         // 判断主图是否为空
         if(!empty($data['z_pic']))
         {
@@ -187,7 +181,6 @@ class GoodsController extends Controller
              $pic  = DB::table('goods')->where("id","=",$id)->first();
                  $value = './static/admin/uploads/z_goods/'.($pic->z_pic);
                 // dd($value);           
-
              if(unlink($value))
             {
                     $z_pic =$request->file("z_pic");
@@ -206,6 +199,8 @@ class GoodsController extends Controller
             }
 
         }
+        // dd(1);
+
          // 在判断 附图是否为空
         if (!empty($data['pic'])) {
 
@@ -213,7 +208,6 @@ class GoodsController extends Controller
                 // 查出原先的图片 全部删除掉
                  $pic   =   DB::table('goods')->where("id","=",$id)->value('pic');
                  $pic   =   explode(',',$pic);
-
                  // dd($pic);
                 foreach ($pic as $key => $value)
                 {
@@ -230,14 +224,16 @@ class GoodsController extends Controller
                         
                    
                 }
-
+                
+                // dd($app);
+               
             // 如果为空 就不修改他啊
             // $pic  = DB::table('goods')->where("id","=",$id)->first();
             // $data['z_pic'] = $pic->z_pic;
 
 
         }
-
+        // dd($data);
 
         // 如果不为空就操作 发送过去操作
         // 调用upload的方法 upload的方法在app/Libary里
@@ -245,7 +241,6 @@ class GoodsController extends Controller
 
 
         // 下面是做 附图有的和主图也有时候才做的事情
-
 
        if(($app['msg']['msg'] == 1) && (!empty($data['z_pic']))){
             if ($app['msg']['msg'] ==1 ) {
@@ -263,7 +258,6 @@ class GoodsController extends Controller
             // 只做只有附图
         }elseif (($app['msg']['msg'] == 1) && empty($data['z_pic'])){
             unset($data['z_pic']);
-
             $f_pic          = implode(',',$app['pic']);
             $data['pic']    = $f_pic;
             if(Goods::where("id","=",$id)->update($data)) {
@@ -271,7 +265,6 @@ class GoodsController extends Controller
             }else{
                 return redirect('/agoods/'.$id.'/edit')->with('error','更新失败');
             }
-
             // 只有主图
         }elseif (empty($data['pic'])&&(!empty($data['z_pic']))){
                 unset($data['pic']);
@@ -304,7 +297,7 @@ class GoodsController extends Controller
         $info   = DB::table('goods')->where("id","=",$id)->select('pic','z_pic')->first();
         // 将图片转为数组然后拼接路劲
         $pic    = explode(',',$info->pic);
-        // $pic[]
+        // $pic[] 
         // $count  = count($pic);
 
         foreach ($pic as $key => $value) {

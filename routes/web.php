@@ -106,8 +106,6 @@ Route::resource("/","Home\HomeController");
 Route::get("/articlehome","Home\HomeController@article");
 //前台文章栏目详情
 Route::get("/articleshome/{id}","Home\HomeController@articles");
-//关于我们
-Route::resource("/contact","Home\ContactController");
 
 // 前台登录
 Route::resource("/hlogin","Home\LoginController");
@@ -133,3 +131,6 @@ Route::get("/chvcode","Home\LoginController@chvcode");
 
 // 前台个人用户主页
 Route::resource('/mypersonal','Home\PersonalController');
+//添加个人收货地址
+Route::get('/adress','Home\PersonalController@adress');
+//处理收货数据

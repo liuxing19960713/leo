@@ -143,8 +143,8 @@
  <script type="text/javascript">
   function check(obj)
   {
-    dd=$(obj).val();
-    alert(dd);
+    order=$(obj).val();
+    alert(order);
   }
  </script>
 </html>
