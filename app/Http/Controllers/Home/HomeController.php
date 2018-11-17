@@ -58,16 +58,8 @@ class HomeController extends Controller
     public function index()
     {
 
-
         // 轮播图
         $wheel=$this->wheel();
-
-      
-
-
-        
-
-
         // dd(111);
         $info=DB::table('goods')->where('status','=',1)->get();
         // 
@@ -76,9 +68,6 @@ class HomeController extends Controller
         // dd($wheel);
         //首页方法
 
-        
-
-        //dd($info);
         return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
 
 

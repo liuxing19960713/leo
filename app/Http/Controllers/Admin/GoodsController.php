@@ -26,7 +26,7 @@ class GoodsController extends Controller
         //
         $k = $request->input('keyword');
         //商品信息
-        $info = DB::table('goods')->where('goods_name','like',"%$k%")->join('category','goods.cate_id','=','category.id')->select('goods.id as gid','goods.goods_name','goods.brank','goods.status','goods.stock','goods.updated_at','goods.created_at','category.name')->paginate(5);
+        $info = DB::table('goods')->where('goods_name','like',"%$k%")->join('category','goods.cate_id','=','category.id')->select('goods.id as gid','goods.goods_name','goods.brank','goods.status','goods.stock','goods.updated_at','goods.created_at','category.name')->orderBy('goods.id','ASC')->paginate(5);
         // $info = paginate(2);
         return view('Admin.Goods.index',['info'=>$info,'request'=>$request->all()]);
     }
@@ -199,7 +199,6 @@ class GoodsController extends Controller
             }
 
         }
-        // dd(1);
 
          // 在判断 附图是否为空
         if (!empty($data['pic'])) {
@@ -224,16 +223,13 @@ class GoodsController extends Controller
                         
                    
                 }
-                
-                // dd($app);
-               
+
             // 如果为空 就不修改他啊
             // $pic  = DB::table('goods')->where("id","=",$id)->first();
             // $data['z_pic'] = $pic->z_pic;
 
 
         }
-        // dd($data);
 
         // 如果不为空就操作 发送过去操作
         // 调用upload的方法 upload的方法在app/Libary里

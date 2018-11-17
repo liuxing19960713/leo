@@ -15,7 +15,7 @@
 
                     return ['error' => 'You may only upload png, jpg,jpeg or gif.'];die;
                  }
-                 $destinationPath = '/static/admin/uploads/goods'; //public 文件夹下面建 uploads/goods 文件夹
+                 $destinationPath = './static/admin/uploads/goods'; //public 文件夹下面建 uploads/goods 文件夹
                  $extension = $value->getClientOriginalExtension();  //后缀
                  // var_dump($extension);
                  $fileName = str_random(10).'.'.$extension;//重命名
