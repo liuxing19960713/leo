@@ -131,7 +131,8 @@ Route::get("/code","Home\LoginController@code");
 Route::get("/chvcode","Home\LoginController@chvcode");
 //前台首页
 Route::resource("/","Home\HomeController");
-//中间件结合路由组使用
+
+//前台中间件结合路由组使用
 Route::group(["middleware"=>"hlogin"],function()
 {
 
@@ -147,9 +148,6 @@ Route::resource("/contact","Home\ContactController");
 Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
 //商品详情页
 Route::get("/search/{id}","Home\HomeController@search");
-});
-
-
 
 
 //前台购物车：
@@ -159,6 +157,24 @@ Route::get("/checkexit","Home\CartController@checkexit");
 // 查询购物车里面的信息
 Route::get("/select","Home\CartController@select");
 
+//购物车增加数量
+Route::get("/addcart","Home\CartController@addcart");
+Route::get("/addnum","Home\CartController@addnum");
+
+//购物车减数量
+Route::get("/jiancart","Home\CartController@jiancart");
+// ajax数量增加
+Route::get("ajaxadd","Home\CartController@ajaxadd");
+//购物车的删除
+Route::get("/cartdel","Home\CartController@cartdel");
 // 前台个人用户主页
 Route::resource('/mypersonal','Home\PersonalController');
+
+
+
+});
+
+
+
+
 

@@ -33,8 +33,7 @@
  <body>
   <!--=============================================
   =            Header One         =
-
-
+  =============================================-->
   <div class="header-container header-sticky">
    <!--=======  header top  =======-->
    <div class="header-top pt-15 pb-15">
@@ -60,7 +59,7 @@
            <li><a href="checkout.html">结算</a></li>
            <li><a href="/hlogin/loginout/{{session('id')}}">登出</a></li>
             @else
-           <li><a href="/hlogin/create">登录</a></li>
+           <li><a href="/hlogin">登录</a></li>
            <li><a href="/hregi/create">注册</a></li>
             @endif
           </ul>
@@ -116,7 +115,7 @@
         <!--=======  End of single icon  =======-->
         <!--=======  single icon  =======-->
         <div class="single-icon">
-         <a href="javascript:void(0)" id="cart-icon"> <i class="lnr lnr-cart"></i> <span class="text">我的购物车</span> <span class="count">0</span> </a>
+         <a href="/hcart" id="cart-icon"> <i class="lnr lnr-cart"></i> <span class="text">我的购物车</span> <span class="count">0</span> </a>
          <!-- cart floating box -->
          <div class="cart-floating-box hidden" id="cart-floating-box">
           <div class="cart-items">
@@ -175,8 +174,6 @@
         </div>
         <!-- Category Menu -->
         <nav class="category-menu">
-
-
          <ul>
           @foreach($cate as $row)
 
