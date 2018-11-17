@@ -50,7 +50,7 @@
           <a href="#">忘记密码?</a> 
          </div> 
          <div class="col-md-12"> 
-          <button class="register-button mt-0">Login</button> 
+          <input type="submit" class="register-button mt-0"  value="Login">
          </div> 
         </div> 
        </div> 

@@ -219,7 +219,7 @@
     //     data: {phone:phone},
     //     dataType: 'json',
     //     success: function(data){
-    //       // newData=data.replace(/\s/g,'');
+    //       // 
     //       alert(data.code);
     //     },
     //     error: function(data){

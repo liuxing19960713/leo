@@ -1,4 +1,4 @@
-`<?php
+<?php
 
 namespace App\Http\Controllers\Admin;
 
@@ -61,7 +61,7 @@ class GoodsController extends Controller
         //重新命名
         $fileName = str_random(10).uniqid().'.'.$z_ext;
         // 单文件上传
-        $destinationPath = './static/admin/uploads/z_goods'; //public 文件夹下面建 uploads/
+        $destinationPath = 'static/admin/uploads/z_goods'; //public 文件夹下面建 uploads/
         //接受主图
         $request->file("z_pic")->move($destinationPath,$fileName);
         // var_dump($data);die;
@@ -199,6 +199,7 @@ class GoodsController extends Controller
             }
 
         }
+
          // 在判断 附图是否为空
         if (!empty($data['pic'])) {
 
@@ -222,18 +223,21 @@ class GoodsController extends Controller
                         
                    
                 }
+
             // 如果为空 就不修改他啊
             // $pic  = DB::table('goods')->where("id","=",$id)->first();
             // $data['z_pic'] = $pic->z_pic;
 
 
         }
+
         // 如果不为空就操作 发送过去操作
         // 调用upload的方法 upload的方法在app/Libary里
         $app  = uploads($request->file("pic"));
 
 
         // 下面是做 附图有的和主图也有时候才做的事情
+
        if(($app['msg']['msg'] == 1) && (!empty($data['z_pic']))){
             if ($app['msg']['msg'] ==1 ) {
                 $f_pic          = implode(',',$app['pic']);
