@@ -18,6 +18,7 @@ class LoginController extends Controller
     public function index()
     {
         //
+        return view("Home.Login.login");
     }
 
     /**
@@ -27,8 +28,13 @@ class LoginController extends Controller
      */
     public function create()
     {
+
+      
+        
+
         //
-        return view("Home.Login.login");
+
+        
     }
     /**
      * 验证码的引入
