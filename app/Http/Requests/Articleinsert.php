@@ -28,7 +28,8 @@ class Articleinsert extends FormRequest
             'title'=>'required|regex:/^[\p{Han}_a-zA-Z0-9]{1,20}$/u',
             // 'l_pic'=>'required',
             'status'=>'required',
-            'content'=>'required',
+            'content'=>'required|regex:/<img.*?src="(.*?)".*?>/',
+
         ];
     }
     public function messages(){
@@ -38,6 +39,7 @@ class Articleinsert extends FormRequest
             // 'l_pic.required'=>'请上传图片',
             'status.required'=>'状态不能为空',
             'content.required'=>'文章内容不能为空',
+            'content.regex'=>'文章必须添加图片',
         ];
     }
 }

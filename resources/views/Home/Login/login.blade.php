@@ -12,53 +12,53 @@
   }
  </style>
  <body>
-  <div class="page-section mb-80"> 
-   <div class="container"> 
-    <div class="row"> 
-     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 mb-30"> 
-      <!-- Login Form s--> 
-      <form action="/hlogin" method="post" id="form"> 
+  <div class="page-section mb-80">
+   <div class="container">
+    <div class="row">
+     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 mb-30">
+      <!-- Login Form s-->
+      <form action="/hlogin" method="post" id="form">
         {{csrf_field()}}
-       <div class="login-form"> 
-        <h4 class="login-title " style="float: left;">登陆|</h4><h4 class="login-title regi " >注册</h4> 
-        <div class="row"> 
-         <div class="col-md-12 col-12 mb-20"> 
-          <label>用户名*</label> 
+       <div class="login-form">
+        <h4 class="login-title " style="float: left;">登陆|</h4><h4 class="login-title regi " >注册</h4>
+        <div class="row">
+         <div class="col-md-12 col-12 mb-20">
+          <label>用户名*</label>
           <input class="mb-0 "  reminder="请输入手机"  type="text" placeholder="phone" name="uname" />
-           <span class="input-group-btn ps"></span> 
-         </div> 
-         <div class="col-12 mb-20"> 
-          <label>Password</label> 
-          <input class="mb-0  "  reminder="请输入密码" type="password" placeholder="Password"  name="upwd" /> 
+           <span class="input-group-btn ps"></span>
+         </div>
+         <div class="col-12 mb-20">
+          <label>Password</label>
+          <input class="mb-0  "  reminder="请输入密码" type="password" placeholder="Password"  name="upwd" />
            <span class="input-group-btn pwd "></span>
          </div>
 
 
-          <div class="col-6 mb-20"> 
-          <label>验证码</label> 
-          <input class="mb-0" type="text"  reminder="请输入验证码"  placeholder="vcode"  name="vcode" /> 
+          <div class="col-6 mb-20">
+          <label>验证码</label>
+          <input class="mb-0" type="text"  reminder="请输入验证码"  placeholder="vcode"  name="vcode" />
           <span class="input-group-btn ss"></span>
          </div>
 
-         <div class="col-6 mb-20" style="padding-top: 25px"> 
+         <div class="col-6 mb-20" style="padding-top: 25px">
           <img src="/code" onclick="this.src=this.src+'?a=1'">
          </div>
 
 
 
-         <div class="col-md-4 mt-10 mb-20 text-left text-md-right"> 
-          <a href="#">忘记密码?</a> 
-         </div> 
-         <div class="col-md-12"> 
-          <button class="register-button mt-0">Login</button> 
-         </div> 
-        </div> 
-       </div> 
-      </form> 
-     </div> 
-     
-    </div> 
-   </div> 
+         <div class="col-md-4 mt-10 mb-20 text-left text-md-right">
+          <a href="#">忘记密码?</a>
+         </div>
+         <div class="col-md-12">
+          <button class="register-button mt-0">Login</button>
+         </div>
+        </div>
+       </div>
+      </form>
+     </div>
+
+    </div>
+   </div>
   </div>
   <script>
     phone       = false;
@@ -84,7 +84,7 @@
 
      //手机
      $("input[name='uname']").blur(function(){
-        
+
           uname = $(this).val();
           if(uname ==""){
               ps = $(".ps");
@@ -98,7 +98,7 @@
 
 
      $("input[name='upwd']").blur(function(){
-        
+
           uname = $(this).val();
           if(uname ==""){
               pwd = $(".pwd");
@@ -153,7 +153,7 @@
         }
      });
 
-     
+
 
   </script>
  </body>

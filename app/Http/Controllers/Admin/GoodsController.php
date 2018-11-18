@@ -91,7 +91,11 @@ class GoodsController extends Controller
                     // 批量删除
                     $unlink= unlink($value);
                 }
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> c542a2309a35e5afe408e7afa8faa8aaf9c6ec87
 
                 return redirect('/agoods')->with('error','商品上传失败');
             }

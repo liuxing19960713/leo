@@ -172,16 +172,19 @@
         <nav class="category-menu">
          <ul>
           @foreach($cate as $row)
-          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">{{$row->name}}</a>
-          @if(count($row->dev))
-           <!-- Mega Category Menu Start -->
+
+
+          <li class="menu-item-has-children"><a href="/search/{{$row->id}}">{{$row->name}}</a>
+          @if(count($row->dev)) 
+           <!-- Mega Category Menu Start --> 
            <ul class="category-mega-menu">
-            @foreach($row->dev as $rows)
-            <li class="menu-item-has-children"> <a class="megamenu-head" href="shop-left-sidebar.html">{{$rows->name}}</a>
-              @if(count($rows->dev))
+            @foreach($row->dev as $rows) 
+            <li class="menu-item-has-children"> <a class="megamenu-head" href="/search/{{$rows->id}}">{{$rows->name}}</a>
+              @if(count($rows->dev)) 
              <ul>
-                @foreach($rows->dev as $rowss)
-              <li><a href="shop-left-sidebar.html">{{$rowss->name}}</a></li>
+                @foreach($rows->dev as $rowss) 
+              <li><a href="/search/{{$rowss->id}}">{{$rowss->name}}</a></li> 
+
                @endforeach
 
 
@@ -199,104 +202,104 @@
 
          </ul>
 
+        </nav> 
+       </div> 
+       <!--=======  End of category menu =======--> 
+      </div> 
+      <div class="col-12 col-lg-9"> 
+       <!-- navigation section --> 
+       <div class="main-menu"> 
+        <nav> 
+         <ul> 
+          <li class="active menu-item-has-children"><a href="#">HOME</a> 
+           <ul class="sub-menu"> 
+            <li><a href="index.html">Home Shop 1</a></li> 
+            <li><a href="index-2.html">Home Shop 2</a></li> 
+            <li><a href="index-3.html">Home Shop 3</a></li> 
+            <li><a href="index-4.html">Home Shop 4</a></li> 
+           </ul> </li> 
+          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">Shop</a> 
+           <ul class="sub-menu"> 
+            <li class="menu-item-has-children"><a href="shop-4-column.html">shop grid</a> 
+             <ul class="sub-menu"> 
+              <li><a href="shop-3-column.html">shop 3 column</a></li> 
+              <li><a href="shop-4-column.html">shop 4 column</a></li> 
+              <li><a href="shop-left-sidebar.html">shop left sidebar</a></li> 
+              <li><a href="shop-right-sidebar.html">shop right sidebar</a></li> 
+             </ul> </li> 
+            <li class="menu-item-has-children"><a href="shop-list.html">shop List</a> 
+             <ul class="sub-menu"> 
+              <li><a href="shop-list.html">shop List</a></li> 
+              <li><a href="shop-list-left-sidebar.html">shop List Left Sidebar</a></li> 
+              <li><a href="shop-list-right-sidebar.html">shop List Right Sidebar</a></li> 
+             </ul> </li> 
+            <li class="menu-item-has-children"><a href="single-product.html">Single Product</a> 
+             <ul class="sub-menu"> 
+              <li><a href="single-product.html">Single Product</a></li> 
+              <li><a href="single-product-variable.html">Single Product variable</a></li> 
+              <li><a href="single-product-affiliate.html">Single Product affiliate</a></li> 
+              <li><a href="single-product-group.html">Single Product group</a></li> 
+              <li><a href="single-product-tabstyle-2.html">Tab Style 2</a></li> 
+              <li><a href="single-product-tabstyle-3.html">Tab Style 3</a></li> 
+              <li><a href="single-product-gallery-left.html">Gallery Left</a></li> 
+              <li><a href="single-product-gallery-right.html">Gallery Right</a></li> 
+              <li><a href="single-product-sticky-left.html">Sticky Left</a></li> 
+              <li><a href="single-product-sticky-right.html">Sticky Right</a></li> 
+              <li><a href="single-product-slider-box.html">Slider Box</a></li> 
+             </ul> </li> 
+           </ul> </li> 
+          <li class="menu-item-has-children"><a href="#">PAGES</a> 
+           <ul class="mega-menu three-column"> 
+            <li><a href="#">Column One</a> 
+             <ul> 
+              <li><a href="cart.html">Cart</a></li> 
+              <li><a href="checkout.html">Checkout</a></li> 
+              <li><a href="wishlist.html">Wishlist</a></li> 
+             </ul> </li> 
+            <li><a href="#">Column Two</a> 
+             <ul> 
+              <li><a href="my-account.html">My Account</a></li> 
+              <li><a href="login-register.html">Login Register</a></li> 
+              <li><a href="faq.html">FAQ</a></li> 
+             </ul> </li> 
+            <li><a href="#">Column Three</a> 
+             <ul> 
+              <li><a href="compare.html">Compare</a></li> 
+              <li><a href="contact.html">Contact</a></li> 
+              <li><a href="about.html">About Us</a></li> 
+             </ul> </li> 
+           </ul> </li> 
+          <li class="menu-item-has-children"><a href="#">BLOG</a> 
+           <ul class="sub-menu"> 
+            <li><a href="/articlehome">Blog 3 column</a></li> 
+            <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li> 
+            <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li> 
+            <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li> 
+            <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li> 
+            <li><a href="blog-post-left-sidebar.html">Blog Post Left Sidebar</a></li> 
+            <li><a href="blog-post-right-sidebar.html">Blog Post Right Sidebar</a></li> 
+            <li><a href="blog-post-image-format.html">Blog Post Image Format</a></li> 
+            <li><a href="blog-post-image-gallery.html">Blog Post Image Gallery Format</a></li> 
+            <li><a href="blog-post-audio-format.html">Blog Post Audio Format</a></li> 
+            <li><a href="blog-post-video-format.html">Blog Post Video Format</a></li> 
+           </ul> </li> 
+          <li><a href="/contact">关于我们</a></li> 
+         </ul> 
+        </nav> 
+       </div> 
+       <!-- end of navigation section --> 
+      </div> 
+      <div class="col-12 d-block d-lg-none"> 
+       <!-- Mobile Menu --> 
+       <div class="mobile-menu"></div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <!--=======  End of navigation menu  =======--> 
+  </div> 
+  <!--=====  End of Header One  ======--> 
 
-        </nav>
-       </div>
-       <!--=======  End of category menu =======-->
-      </div>
-      <div class="col-12 col-lg-9">
-       <!-- navigation section -->
-       <div class="main-menu">
-        <nav>
-         <ul>
-          <li class="active menu-item-has-children"><a href="#">HOME</a>
-           <ul class="sub-menu">
-            <li><a href="index.html">Home Shop 1</a></li>
-            <li><a href="index-2.html">Home Shop 2</a></li>
-            <li><a href="index-3.html">Home Shop 3</a></li>
-            <li><a href="index-4.html">Home Shop 4</a></li>
-           </ul> </li>
-          <li class="menu-item-has-children"><a href="shop-left-sidebar.html">Shop</a>
-           <ul class="sub-menu">
-            <li class="menu-item-has-children"><a href="shop-4-column.html">shop grid</a>
-             <ul class="sub-menu">
-              <li><a href="shop-3-column.html">shop 3 column</a></li>
-              <li><a href="shop-4-column.html">shop 4 column</a></li>
-              <li><a href="shop-left-sidebar.html">shop left sidebar</a></li>
-              <li><a href="shop-right-sidebar.html">shop right sidebar</a></li>
-             </ul> </li>
-            <li class="menu-item-has-children"><a href="shop-list.html">shop List</a>
-             <ul class="sub-menu">
-              <li><a href="shop-list.html">shop List</a></li>
-              <li><a href="shop-list-left-sidebar.html">shop List Left Sidebar</a></li>
-              <li><a href="shop-list-right-sidebar.html">shop List Right Sidebar</a></li>
-             </ul> </li>
-            <li class="menu-item-has-children"><a href="single-product.html">Single Product</a>
-             <ul class="sub-menu">
-              <li><a href="single-product.html">Single Product</a></li>
-              <li><a href="single-product-variable.html">Single Product variable</a></li>
-              <li><a href="single-product-affiliate.html">Single Product affiliate</a></li>
-              <li><a href="single-product-group.html">Single Product group</a></li>
-              <li><a href="single-product-tabstyle-2.html">Tab Style 2</a></li>
-              <li><a href="single-product-tabstyle-3.html">Tab Style 3</a></li>
-              <li><a href="single-product-gallery-left.html">Gallery Left</a></li>
-              <li><a href="single-product-gallery-right.html">Gallery Right</a></li>
-              <li><a href="single-product-sticky-left.html">Sticky Left</a></li>
-              <li><a href="single-product-sticky-right.html">Sticky Right</a></li>
-              <li><a href="single-product-slider-box.html">Slider Box</a></li>
-             </ul> </li>
-           </ul> </li>
-          <li class="menu-item-has-children"><a href="#">PAGES</a>
-           <ul class="mega-menu three-column">
-            <li><a href="#">Column One</a>
-             <ul>
-              <li><a href="cart.html">Cart</a></li>
-              <li><a href="checkout.html">Checkout</a></li>
-              <li><a href="wishlist.html">Wishlist</a></li>
-             </ul> </li>
-            <li><a href="#">Column Two</a>
-             <ul>
-              <li><a href="my-account.html">My Account</a></li>
-              <li><a href="login-register.html">Login Register</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-             </ul> </li>
-            <li><a href="#">Column Three</a>
-             <ul>
-              <li><a href="compare.html">Compare</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="about.html">About Us</a></li>
-             </ul> </li>
-           </ul> </li>
-          <li class="menu-item-has-children"><a href="#">BLOG</a>
-           <ul class="sub-menu">
-            <li><a href="/article">Blog 3 column</a></li>
-            <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>
-            <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-            <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li>
-            <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-            <li><a href="blog-post-left-sidebar.html">Blog Post Left Sidebar</a></li>
-            <li><a href="blog-post-right-sidebar.html">Blog Post Right Sidebar</a></li>
-            <li><a href="blog-post-image-format.html">Blog Post Image Format</a></li>
-            <li><a href="blog-post-image-gallery.html">Blog Post Image Gallery Format</a></li>
-            <li><a href="blog-post-audio-format.html">Blog Post Audio Format</a></li>
-            <li><a href="blog-post-video-format.html">Blog Post Video Format</a></li>
-           </ul> </li>
-          <li><a href="/contact">关于我们</a></li>
-         </ul>
-        </nav>
-       </div>
-       <!-- end of navigation section -->
-      </div>
-      <div class="col-12 d-block d-lg-none">
-       <!-- Mobile Menu -->
-       <div class="mobile-menu"></div>
-      </div>
-     </div>
-    </div>
-   </div>
-   <!--=======  End of navigation menu  =======-->
-  </div>
-  <!--=====  End of Header One  ======-->
   <!--=============================================
   =            Hero Area One         =
   =============================================-->
