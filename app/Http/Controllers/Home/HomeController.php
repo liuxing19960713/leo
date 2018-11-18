@@ -53,7 +53,7 @@ class HomeController extends Controller
         // dd($info);
         // dd($sear);
         //首页方法
-
+        // dd(session());
         return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
 
 

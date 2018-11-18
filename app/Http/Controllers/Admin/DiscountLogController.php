@@ -21,7 +21,7 @@ class DiscountLogController extends Controller
         // echo '123';
         // $data = DB::table('discount_log')->get();
         // dd($data);
-        $data = DB::table('discount_log')->join('user','user.id','uid')->join('order','order.id','oid')->join('discount','discount.id','did')->select('discount_log.*','user.uname','order.order_code','discount.dname')->where('user.uname','like',$k.'%')->paginate(4);
+        $data = DB::table('discount_log')->join('user','user.id','uid')->join('discount','discount.id','did')->select('discount_log.*','user.uname','discount.dname')->where('user.uname','like',$k.'%')->paginate(4);
         // dd($data);
         // $cdata = DiscountLog::get();
         return view('Admin.DiscountLog.index',['data'=>$data,'request'=>$request->all()]);

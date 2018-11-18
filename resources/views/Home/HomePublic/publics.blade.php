@@ -44,13 +44,13 @@
         <!--=======  single dropdown  =======-->
         <div class="single-dropdown">
           <span id="accountMenuName">
-          @if(null !== (session('name')))
-        欢迎{{session('name')}}</span>&nbsp;&nbsp;
+          @if(null !== (session('username')))
+        欢迎{{session('username')}}</span>&nbsp;&nbsp;
           @endif
          |&nbsp;&nbsp;<a href="#" id="changeAccount"><span id="accountMenuName">我的账户<i class="fa fa-angle-down"></i></span></a>
          <div class="language-currency-list hidden" id="accountList">
           <ul>
-            @if(null !== (session('name')))
+            @if(null !== (session('username')))
            <li><a href="/mypersonal">我的账户</a></li>
            <li><a href="checkout.html">结算</a></li>
            <li><a href="/hlogin/loginout/{{session('id')}}">登出</a></li>
