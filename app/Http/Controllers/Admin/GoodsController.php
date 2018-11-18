@@ -26,7 +26,7 @@ class GoodsController extends Controller
         //
         $k = $request->input('keyword');
         //商品信息
-        $info = DB::table('goods')->where('goods_name','like',"%$k%")->join('category','goods.cate_id','=','category.id')->select('goods.id as gid','goods.goods_name','goods.brank','goods.status','goods.stock','goods.updated_at','goods.created_at','category.name')->paginate(5);
+        $info = DB::table('goods')->where('goods_name','like',"%$k%")->join('category','goods.cate_id','=','category.id')->select('goods.id as gid','goods.goods_name','goods.brank','goods.status','goods.stock','goods.updated_at','goods.created_at','category.name')->orderBy('goods.id','ASC')->paginate(5);
         // $info = paginate(2);
         return view('Admin.Goods.index',['info'=>$info,'request'=>$request->all()]);
     }
@@ -66,12 +66,13 @@ class GoodsController extends Controller
         $request->file("z_pic")->move($destinationPath,$fileName);
         // var_dump($data);die;
         //商品图片转成字符串
-        $f_pic          = implode(',',$app['pic']);
+        $f_pic          = implode(',',$app['pic']); 
 
         $data['pic']    = $f_pic; //商品图片
 
         $data['z_pic'] = $fileName; //商品主图
 
+      
         if($app['msg']){
             $data['status'] = 1;
             $data['sale']   = 0;
@@ -81,7 +82,7 @@ class GoodsController extends Controller
             }else{
 
                 $pic    = explode(',',$f_pic);
-                // $pic[]
+                // $pic[] 
                 // $count  = count($pic);
                 foreach ($pic as $key => $value) {
                     // var_dump($value)
@@ -91,11 +92,8 @@ class GoodsController extends Controller
                     // 批量删除
                     $unlink= unlink($value);
                 }
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> c542a2309a35e5afe408e7afa8faa8aaf9c6ec87
+              
 
                 return redirect('/agoods')->with('error','商品上传失败');
             }
@@ -118,7 +116,7 @@ class GoodsController extends Controller
         //获取该id的详细信息
         $pic = array();
         $info   = Goods::where('id','=',$id)->first();
-            //将副图片转为数组
+            //将副图片转为数组 
         $arr    = $info->pic;
         $pic['pic']    = explode(',',$arr);
         // dd($pic);
@@ -127,7 +125,7 @@ class GoodsController extends Controller
         return view('Admin.goods.info',['info'=>$info,'pic'=>$value]);
     }
 
-
+     
 
     /**
      * Show the form for editing the specified resource.
@@ -147,7 +145,7 @@ class GoodsController extends Controller
         // 获取当前的商品信息
         $good_info= DB::table('goods')->where("id","=",$id)->first();
         // 加载模板
-        return view('Admin.Goods.edit',['cateinfo'=>$cateinfo,'good_info'=>$good_info]);
+        return view('Admin.Goods.edit',['cateinfo'=>$cateinfo,'good_info'=>$good_info]);                
     }
 
     /**
@@ -185,7 +183,8 @@ class GoodsController extends Controller
 
              $pic  = DB::table('goods')->where("id","=",$id)->first();
                  $value = './static/admin/uploads/z_goods/'.($pic->z_pic);
-                // dd($value);
+
+          
              if(unlink($value))
             {
                     $z_pic =$request->file("z_pic");
@@ -204,7 +203,8 @@ class GoodsController extends Controller
             }
 
         }
-        // dd(1);
+
+         
 
          // 在判断 附图是否为空
         if (!empty($data['pic'])) {
@@ -225,12 +225,9 @@ class GoodsController extends Controller
 
                         // return redirect('/agoods/'.$id.'/edit')->with('error','删除附图失败');
                      }
-
-
-
+          
+                   
                 }
-
-                // dd($app);
 
             // 如果为空 就不修改他啊
             // $pic  = DB::table('goods')->where("id","=",$id)->first();
@@ -238,7 +235,8 @@ class GoodsController extends Controller
 
 
         }
-        // dd($data);
+
+         
 
         // 如果不为空就操作 发送过去操作
         // 调用upload的方法 upload的方法在app/Libary里
@@ -260,6 +258,7 @@ class GoodsController extends Controller
                 return redirect('/agoods/'.$id.'/edit')->with('errror','发生了网络错误');
             }
 
+         
             // 只做只有附图
         }elseif (($app['msg']['msg'] == 1) && empty($data['z_pic'])){
             unset($data['z_pic']);
@@ -302,7 +301,7 @@ class GoodsController extends Controller
         $info   = DB::table('goods')->where("id","=",$id)->select('pic','z_pic')->first();
         // 将图片转为数组然后拼接路劲
         $pic    = explode(',',$info->pic);
-        // $pic[]
+        // $pic[] 
         // $count  = count($pic);
 
         foreach ($pic as $key => $value) {

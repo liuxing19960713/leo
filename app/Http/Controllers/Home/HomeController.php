@@ -37,17 +37,19 @@ class HomeController extends Controller
        
 
         // dd($id);
-        $data=DB::table("category")->where('path','like',"0,$id")->paginate(12);
+
+        $data=DB::table("category")->where('path','like',"0,$id")->get();
+
 
         $ids='';
         foreach($data as $value)
         {
-            $ids.=$value->id.',';
+            $ids[]=$value->id;
 
         }
-        $ids=$ids.$id;
-        // dd($ids);
-        $sear=DB::select("SELECT * FROM goods WHERE `status`=1 and cate_id in({$ids})");
+        $ids[]=$id;
+        
+        $sear=DB::table('goods') ->whereIn('cate_id',$ids) ->paginate(8);
         // dd($sear);
         return $sear;
 
@@ -56,16 +58,8 @@ class HomeController extends Controller
     public function index()
     {
 
-
         // 轮播图
         $wheel=$this->wheel();
-
-      
-
-
-        
-
-
         // dd(111);
         $info=DB::table('goods')->where('status','=',1)->get();
         // 
@@ -73,14 +67,6 @@ class HomeController extends Controller
         // dd($info);
         // dd($wheel);
         //首页方法
-<<<<<<< HEAD
-        // dd(session());
-=======
-
-        
-
-
->>>>>>> c542a2309a35e5afe408e7afa8faa8aaf9c6ec87
         return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
 
 
@@ -133,19 +119,27 @@ class HomeController extends Controller
         $pic['pic']    = explode(',',$arr);
         foreach ($pic as $key => $value) {
         }
-        // dd($value);
+        $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
+        // dd($data);
         // $value = '/static/uploads/goods/'.$value;
         // dd($value);
 
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value]);
+       
+
+
+
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data]);
+
     }
     //商品列表页
     public function search(Request $request,$id)
     {
-        // dd($id);
+         //dd($id);
         $search=$this->getsear($id);
         // dd($search);
+
         return view("Home.Home.search",['search'=>$search]);
+
     }
     public function create()
     {
