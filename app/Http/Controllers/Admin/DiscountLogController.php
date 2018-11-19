@@ -97,4 +97,5 @@ class DiscountLogController extends Controller
             return redirect('discountlog')->with('error','删除失败');
         }
     }
+   
 }

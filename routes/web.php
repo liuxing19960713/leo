@@ -89,6 +89,7 @@ Route::resource("/discount","Admin\DiscountController");
 Route::get("/discountsta",'Admin\DiscountController@sta');
 // 用户拥有优惠券详情
 Route::resource('/discountlog','Admin\DiscountLogController');
+
  //文章管理
  Route::resource('/article','Admin\ArticleController');
  //文章ajax删除
@@ -115,14 +116,23 @@ Route::get("/chvcode","Home\LoginController@chvcode");
 //前台首页
 Route::resource("/","Home\HomeController");
 
-//前台中间件结合路由组使用
-Route::group(["middleware"=>"hlogin"],function()
-{
+
+//用户优惠卷ajax领取
+Route::get("/discounta","Home\PersonalController@ajax");
 
 //前台文章栏目
 Route::get("/articlehome","Home\HomeController@article");
 //前台文章栏目详情
 Route::get("/articleshome/{id}","Home\HomeController@articles");
+
+
+
+//前台中间件结合路由组使用
+Route::group(["middleware"=>"hlogin"],function()
+{
+
+
+
 
 //购物车增加数量
 Route::get("/addcart","Home\CartController@addcart");
@@ -134,8 +144,6 @@ Route::get("/jiancart","Home\CartController@jiancart");
 Route::get("ajaxadd","Home\CartController@ajaxadd");
 //购物车的删除
 Route::get("/cartdel","Home\CartController@cartdel");
-// 前台个人用户主页
-Route::resource('/mypersonal','Home\PersonalController');
 // 前台个人用户主页
 Route::resource('/mypersonal','Home\PersonalController');
 //添加个人收货地址

@@ -19,6 +19,10 @@
      <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 mb-30"> 
       <!-- Login Form s--> 
 
+      <form action="/hlogin" method="post" id="form"> 
+
+
+
         {{csrf_field()}}
        <div class="login-form">
         <h4 class="login-title " style="float: left;">登陆|</h4><h4 class="login-title regi " >注册</h4>

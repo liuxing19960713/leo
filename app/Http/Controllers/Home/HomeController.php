@@ -57,7 +57,7 @@ class HomeController extends Controller
 
     public function index()
     {
-
+        // dd(session());
         // 轮播图
         $wheel=$this->wheel();
         // dd(111);
@@ -120,15 +120,38 @@ class HomeController extends Controller
         foreach ($pic as $key => $value) {
         }
         $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
+        $cate=DB::table('category')->where('id','=',$info->cate_id)->first();
+
+         $ca=explode(",",$cate->path);
+         $c=(count($ca));
+
+         //dd($ca[1]);
+         //var_dump($ca[1]);
+         if(($c)>1){
+            //echo 1;
+          $category=DB::table('category')->where('id','=',$ca[1])->first();  
+         }else{
+            //echo 2;
+            $category=DB::table('category')->where('id','=',$info->cate_id)->first();
+         }
+         $discount=DB::table('discount')->where('cid','=',$category->id)->join('category','category.id','cid')->select('discount.*','category.name')->get();
         // dd($data);
         // $value = '/static/uploads/goods/'.$value;
         // dd($value);
 
-       
-
-
-
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data]);
+       // 获取用户所拥有的优惠券的did数组
+       // 用户id
+        $uid = session('hid');
+        // dd($uid);
+        $dlogs = array();
+        $d = DB::table('discount_log')->where('uid','=',$uid)->pluck('did');
+         // dd($d);
+        foreach ($d as  $ds) {
+            $dlogs[] = $ds;
+        }
+        // 上面就是来存储用户拥有的优惠券的did
+        // dd($dds);
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs]);
 
     }
     //商品列表页
@@ -141,6 +164,7 @@ class HomeController extends Controller
         return view("Home.Home.search",['search'=>$search]);
 
     }
+    
     public function create()
     {
 
