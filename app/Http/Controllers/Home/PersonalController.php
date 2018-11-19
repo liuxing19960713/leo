@@ -14,10 +14,10 @@ class PersonalController extends Controller
      */
     public function index(Request $request)
     {
-    	// dd(session('id'));
-    	$uid = session('id');
-    	// dd($uid);
-    	return view('Home.Personal.index');
+        // dd(session('id'));
+        $uid = session('id');
+        // dd($uid);
+        return view('Home.Personal.index');
         // echo '个人主页'
     }
 
@@ -30,18 +30,12 @@ class PersonalController extends Controller
     {
         //
     }
-    public function adress(Request $request)
+     public function city(Request $request)
     {
       
-        // echo $request->input($id)
-        // var_dump($_GET['upid']);
-        $upid = $request->input('upid');
-        // echo $upid;
-        //获取当前子类下的所有商品数据
-        // $data=DB::table("district")->where("upid",'=',$upid)->get();
-        $data = DB::table('district')->where('upid', '=', $upid)->get();
-        // var_dump($data);
-        return $data;
+        $upid  = $request->input('upid');
+        $data = DB::table('district')->where('upid','=',$upid)->get();
+        echo json_encode($data);
     }
     /**
      * Store a newly created resource in storage.

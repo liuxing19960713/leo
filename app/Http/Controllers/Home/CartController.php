@@ -14,51 +14,41 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
-        // var_dump(session('hid'));
-
-        $goods = session('cart');
+        $goods = session('cart.html');
+        $info  = array();
         if(!empty($goods)){
-            $info  = $this->select($goods);
-
-            $countprice = "";
-            foreach ($info as $key => $value) {
-                $countprice += $value->total; //支付总额
+            $countprice = ""; 
+            $ids  =array();
+            $total="";
+            $num  =array();
+            foreach ($goods as $key => $value) {
+                $ids[] = $value['id'];
+                $num[]   = $value['cartnum'];
             }
-            // dd($info);
-             return view("Home.Cart.cart",['info'=>$info,"countprice"=>$countprice]);
-            // var_dump($countprice);
+        
+            $info = DB::table('goods')->whereIn("id",$ids)->select('price','id','z_pic','goods_name')->get();
+          
+            foreach ($num as $key =>$val) {
+
+                $info[$key]->num  = $val;
+            }
+            foreach ($info as $key => $v) {
+                // var_dump($v);
+                $total[]    =  $v->price * $v->num;
+                $countprice += $v->price * $v->num;
+                $info[$key]->total = $v->price * $v->num;
+            }
+            session(['cart.total'=>$total]);
+            session(['cart.countprice'=>$countprice]);
+            return view("Home.Cart.cart",['info'=>$info,"countprice"=>$countprice]);
+
         }else{
             $countprice =""; //支付总额
             $info = "";
-                return view("Home.Cart.cart",['info'=>$info,"countprice"=>$countprice]);
+          return view("Home.Cart.cart",['info'=>$info,"countprice"=>$countprice]);
         }
     }
-    /**
-     * 负责查询购物车的信息  goods 表
-     * @author 刘兴
-     * @DateTime 2018-11-16T09:57:06+0800
-     * @param    [type]                   $value [description]
-     * @return   [type]                          [description]
-     */
-    public function select($value)
-    {
-        // dd($value);
-        $cart = $value;
-        $arr  = array();
-        foreach ($cart as $key => $value) {
-            // var_dump($value['cartnum']);
-            $list = DB::table('goods')->where("id","=",$value['id'])->select('id','z_pic','goods_name','price')->first();
-            $list->num   = $value['cartnum'];
-            // var_dump($list->price);
-            $total       = $list->price * $list->num;  //总价
-            $list->total = $total;
-            // var_dump($list);
-            $arr[] = $list;
-        }
-            // var_dump($arr);
-
-        return $arr;
-    }
+    
 
     /**
      * 增加数量
@@ -70,19 +60,13 @@ class CartController extends Controller
     public function addcart(Request $request)
     {
         $id     = $request->input('id');
-        // dd($id);
-        $cart   = session("cart");
-        // var_dump($cart);
+        $cart   = session("cart.html");
         foreach ($cart as $key => $value) {
-            // var_dump($value);
             if($value['id'] == $id){
-                // echo '1';
                 $count = $cart[$key]['cartnum']+=1;  //商品的数量
             }
-           
-
         }
-        session(['cart'=>$cart]);
+        session(['cart.html'=>$cart]);
         return redirect("/hcart");
 
     }
@@ -98,7 +82,7 @@ class CartController extends Controller
     {
         $id     = $request->input('id');
         // dd($id);
-        $cart   = session("cart");
+        $cart   = session("cart.html");
         // var_dump($cart);
         foreach ($cart as $key => $value) {
             // var_dump($value);
@@ -115,7 +99,7 @@ class CartController extends Controller
            
 
         }
-        session(['cart'=>$cart]);
+        session(['cart.html'=>$cart]);
         return redirect("/hcart");
 
     }
@@ -137,45 +121,13 @@ class CartController extends Controller
                 unset($goods[$key]);
 
             }
-            // dd($goods);
-
         }
          session(['cart'=>$goods]);
         return redirect("/hcart");
-
     }
 
-    /**
-     * [ajaxadd ajax做购物车的增加]
-     * @author 刘兴
-     * @DateTime 2018-11-17T12:56:02+0800
-     * @param    Request                  $request [description]
-     * @return   [type]                            [description]
-     */
-    public function ajaxadd(Request $request)
-    {
-        $id     = $request->input('id');
-        echo $id;die;
-        $info   = DB::table('goods')->where("id","=",$id)->first();
-        $goods = session('cart');
-        foreach ($goods as $key => $value) {
-            if($value['id'] == $id){
-                $num = $goods[$key]['cartnum'] += 1;
-            }
-        }
-        session(['cart'=>$goods]);
-        $count = $info->price * $num; //单价商品的总价
-        foreach ($goods as $key => $v) {
-           dd($v);       
-        }     
-    }
+    
 
-    public function addnum(Request $request)
-    {
-        $num = $request->input('num');
-        $num+=1;
-        return$num;
-    }
 
    
     /**
@@ -202,12 +154,12 @@ class CartController extends Controller
         //获取客户加入的商品i
         // $data = $request->only(['id','cartnum']);
         // var_dump($data);
-        $goods =  session('cart');
+        $goods =  session('cart.html');
         //判断session是否为空，如果为空，则返回false
         if(empty($goods)) return false;
         foreach ($goods as $key => $value) {
             // var_dump($value);
-            if($value['id']  == $id){
+            if($value['id'] == $id){
                 return true;
             }
         }
@@ -227,16 +179,16 @@ class CartController extends Controller
         
         if(!$this->checkexit($data['id'])){
             //如果session为空，则向里面加一条信息
-            $request->session()->push('cart',$data);
+            $request->session()->push('cart.html',$data);
         }else{
                 //拿session
-                $goods = session('cart');
+                $goods = session('cart.html');
                 foreach ($goods as $key => $value) {
                    if($value['id']==$data['id']){
                         $num = $value['cartnum']+$data['cartnum'];
                         $goods[$key]['cartnum'] = $num;
                         //写回session
-                        session(['cart'=>$goods]);
+                        session(['cart.html'=>$goods]);
 
                    }
             }

@@ -13,12 +13,11 @@
  </style>
  <body>
 
-  <div class="page-section mb-80">
-   <div class="container">
-    <div class="row">
-     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 mb-30">
-      <!-- Login Form s-->
-      <form action="/hlogin" method="post" id="form">
+  <div class="page-section mb-80"> 
+   <div class="container"> 
+    <div class="row"> 
+     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 mb-30"> 
+      <!-- Login Form s--> 
 
         {{csrf_field()}}
        <div class="login-form">
