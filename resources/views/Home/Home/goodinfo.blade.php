@@ -2,6 +2,40 @@
 @section('home')
 <html>
  <head></head>
+
+<style>
+/*.a{width: 200px;height: 100px;}*/
+.stamp {width: 260px;height: 120px;padding: 0 10px;position: relative;overflow: hidden;}
+.stamp:before {content: '';position: absolute;top:0;bottom:0;left:10px;right:10px;z-index: -1;}
+.stamp:after {content: '';position: absolute;left: 10px;top: 10px;right: 10px;bottom: 10px;box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);z-index: -2;}
+.stamp i{position: absolute;left: 25%;top: 45px;height: 200px;width: 270px;background-color: rgba(255,255,255,.15);transform: rotate(-30deg);}
+.stamp .par{float: left;padding-left: 8px;width: 110px;border-right:2px dashed rgba(255,255,255,.3);text-align: left;margin-right: 7px;padding-right: 10px;}
+.stamp .par p{color:#fff;}
+.stamp .par span{font-size: 15px;color:#fff;margin-right: 5px;}
+.stamp .par .sign{font-size: 13px;}
+.stamp .par sub{position: relative;top:-5px;color:rgba(255,255,255,.8);}
+.stamp .copy{display: inline-block;padding:10px 10px;width:100px;vertical-align: text-bottom;font-size: 17px;color:rgb(255,255,255);margin: 0;width: 120px;}
+.stamp .copy p{font-size: 16px;margin-top: 4px;}
+.stamp p{font-size: 15px;margin-top:5px;}
+/*上面是公共的*/
+
+/*第一张*/
+.stamp01{background: #F39B00;background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #F39B00 5px);
+  /*background-size: 15px 15px;*/
+  cursor: pointer;
+  background-position: 9px 3px;}
+.stamp01:before{background-color:#F39B00;}
+
+/*蓝色*/
+.stamp04{width: 260px;background: #50ADD3;background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 4px, #50ADD3 4px);background-size: 12px 8px;background-position: -5px 10px;}
+.stamp04:before{background-color:#50ADD3;left: 5px;right: 5px;}
+.stamp04 .copy{padding: 10px 6px 10px 12px;font-size: 17px;}
+.stamp04 .copy p{font-size: 16px;margin-top: 5px;margin-bottom: 8px;}
+
+/*灰色*/
+.stamp03{background: #808080;background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #808080 5px);/*background-size: 15px 15px*/;background-position: 9px 3px;}
+.stamp03:before{background-color:#808080;}
+  </style>
  <body>
   <script src="/js/cart.js"></script>
   <div class="breadcrumb-area breadcrumb-bg pt-85 pb-85 mb-80"> 
@@ -151,18 +185,32 @@
          <p class="product-desc">{{$info->desrc}}</p> 
         </div> 
         <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab"> 
-         <table class="table-data-sheet"> 
-          <tbody> 
-           <tr class="odd"> 
-            <td>Name</td> 
-            <td>Kaoreet lobortis sagittis laoreet</td> 
-           </tr> 
-           <tr class="even"> 
-            <td>Color</td> 
-            <td>Yellow</td> 
-           </tr> 
-          </tbody> 
-         </table> 
+          @foreach($discount as $row)
+          @if(in_array($row->id,$dlogs))
+        <!--  <a href="javascript:void(0)" class="a">{{$row->id}}</a>
+          -->
+        <a class="quanok" style="float:left;display:inline-block;margin:10px;">
+          <div class="stamp stamp03" >
+          <input type="hidden" name="val" value="{{$row->id}}">
+          <div class="par" style="margin-top:20px"><p>灯饰人生</p><sub class="sign">￥</sub><span>{{$row->minus}}</span><sub>优惠券</sub><p>订单满{{$row->max}}元</p></div>
+         <!--  <div class="copy" style="margin-top:20px">领券<p><br><span>{{($row->start_time)}}</span><span>{{$row->end_time}}</span></p></div> -->
+        <div class="copy" style="margin-top:20px">领劵<p>{{date('Y-m-d',time($row->start_time))}}<br>{{date('Y-m-d',time($row->end_time))}}</p></div>
+          <i></i>
+          </div>
+        </a>
+        
+          @else
+        <a class="quan" style="float:left;display:inline-block;margin:10px;">
+          <div class="stamp stamp01" >
+          <input type="hidden" name="val" value="{{$row->id}}">
+          <div class="par" style="margin-top:20px"><p>灯饰人生</p><sub class="sign">￥</sub><span>{{$row->minus}}</span><sub>优惠券</sub><p>订单满{{$row->max}}元</p></div>
+          <div class="copy" style="margin-top:20px">领券<p>{{date('Y-m-d',time($row->start_time))}}<br>{{date('Y-m-d',time($row->end_time))}}</p></div>
+          <i></i>
+          </div>
+        </a>
+       
+        @endif
+          @endforeach
         </div> 
         <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab"> 
          <div class="product-ratting-wrap"> 
@@ -355,6 +403,60 @@
   </div> 
   <!--=====  End of related product slider  ======--> 
  </body>
+ <script type="text/javascript">
+
+$('.quan').on('click',function(){
+  if ($(this).attr('disabled') === undefined) {
+    // 获取当前a标签对象
+    a = $(this);
+  
+    // 获取当前div对象
+    divs = $(this).find('div:first');
+    // alert(div);
+    // 获取当前id
+    id = $(this).find('input:first').val();
+    // alert(id);
+    
+    
+    $.ajax({
+      url: '/discounta',
+      data: {id:id},
+      // dataType: 'json',
+      success: function(data){
+        // console.log(typeof data);
+        // 返回的是字符串，就是因为加了两行空行
+        data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
+        // console.log(obj.msg);
+        
+        if (obj.msg == 1) {
+          // alert(obj.msg);
+          //变换a标签的className
+          a.off();
+          alert('领券成功!');
+          a.attr('class','quanok');
+          a.attr('disabled','true');
+          a.attr('datahref',a.attr("href"));
+          a.removeAttr('href');
+          divs.attr('class','stamp stamp03');
+          // return false;
+        } else if(obj.msg == 2) {
+            alert('请先登录');
+            // 这里要修改路径
+            $(location).attr('href','//www.gugu.com/hlogin')
+        }else if(obj.msg == 3){
+            alert('你已领取');
+        }else{
+            alert('发生数据错误');
+        }
+      },
+      error: function(res) {
+        console.log('res');
+      }
+    });
+  }
+});
+ </script>
 </html>
 @endsection
 @section('title','灯饰人生')

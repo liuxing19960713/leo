@@ -42,6 +42,7 @@ class RegisterController extends Controller
     {
         $code =  $request->cookie('code');
         $codes= $request->input('code');
+        // dd($codes);
         if(!$codes == $code){
             return back()->with("error","验证错误");
         }else{
