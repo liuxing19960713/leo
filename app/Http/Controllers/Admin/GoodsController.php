@@ -71,7 +71,8 @@ class GoodsController extends Controller
         $data['pic']    = $f_pic; //商品图片
 
         $data['z_pic'] = $fileName; //商品主图
-        
+
+      
         if($app['msg']){
             $data['status'] = 1;
             $data['sale']   = 0;
@@ -91,7 +92,8 @@ class GoodsController extends Controller
                     // 批量删除
                     $unlink= unlink($value);
                 }
-                
+
+              
 
                 return redirect('/agoods')->with('error','商品上传失败');
             }
@@ -117,6 +119,7 @@ class GoodsController extends Controller
             //将副图片转为数组 
         $arr    = $info->pic;
         $pic['pic']    = explode(',',$arr);
+        // dd($pic);
         foreach ($pic as $key => $value) {
         }
         return view('Admin.goods.info',['info'=>$info,'pic'=>$value]);
@@ -180,7 +183,8 @@ class GoodsController extends Controller
 
              $pic  = DB::table('goods')->where("id","=",$id)->first();
                  $value = './static/admin/uploads/z_goods/'.($pic->z_pic);
-                // dd($value);           
+
+          
              if(unlink($value))
             {
                     $z_pic =$request->file("z_pic");
@@ -199,6 +203,8 @@ class GoodsController extends Controller
             }
 
         }
+
+         
 
          // 在判断 附图是否为空
         if (!empty($data['pic'])) {
@@ -219,8 +225,7 @@ class GoodsController extends Controller
 
                         // return redirect('/agoods/'.$id.'/edit')->with('error','删除附图失败');
                      }
-                   
-                        
+          
                    
                 }
 
@@ -230,6 +235,8 @@ class GoodsController extends Controller
 
 
         }
+
+         
 
         // 如果不为空就操作 发送过去操作
         // 调用upload的方法 upload的方法在app/Libary里
@@ -250,7 +257,8 @@ class GoodsController extends Controller
             }else{
                 return redirect('/agoods/'.$id.'/edit')->with('errror','发生了网络错误');
             }
-            
+
+         
             // 只做只有附图
         }elseif (($app['msg']['msg'] == 1) && empty($data['z_pic'])){
             unset($data['z_pic']);

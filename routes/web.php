@@ -101,6 +101,7 @@ Route::resource('/discountlog','Admin\DiscountLogController');
 Route::resource("/hlogin","Home\LoginController");
 // 前台注册
 Route::resource("/hregi","Home\RegisterController");
+Route::get("/loginout","Home\LoginController@loginout");
 
 //ajax验证用户是否存在
 Route::get("/checkuname","Home\RegisterController@checkuname");
@@ -123,14 +124,14 @@ Route::get("/discounta","Home\PersonalController@ajax");
 Route::get("/articlehome","Home\HomeController@article");
 //前台文章栏目详情
 Route::get("/articleshome/{id}","Home\HomeController@articles");
-//商品详情页
-Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
-//商品列表页
-Route::get("/search/{id}","Home\HomeController@search");
+
+
 
 //前台中间件结合路由组使用
 Route::group(["middleware"=>"hlogin"],function()
 {
+
+
 
 
 //购物车增加数量
@@ -146,6 +147,9 @@ Route::get("/cartdel","Home\CartController@cartdel");
 // 前台个人用户主页
 Route::resource('/mypersonal','Home\PersonalController');
 //添加个人收货地址
+Route::get('/city','Home\PersonalController@city');
+
+//添加个人收货地址
 Route::get('/adress','Home\PersonalController@adress');
 //处理收货数据
   
@@ -157,6 +161,11 @@ Route::get("/checkexit","Home\CartController@checkexit");
 Route::get("/select","Home\CartController@select");
 });
 
+
+//商品详情页
+Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
+//商品列表页
+Route::get("/search/{id}","Home\HomeController@search");
 
 
 

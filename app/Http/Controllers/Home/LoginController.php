@@ -28,13 +28,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-
-      
-        
-
-        //
-
-        
+               
     }
     /**
      * 验证码的引入
@@ -112,6 +106,16 @@ class LoginController extends Controller
         }elseif($code!=$vcode){
             echo 3;
         }
+    }
+
+    public function loginout(Request $request)
+    {
+        $request->session()->pull('hid');
+        $request->session()->pull('username');
+        // dd(session('username'));
+        return redirect('/');
+
+
 
 
     }
@@ -125,6 +129,7 @@ class LoginController extends Controller
     public function show($id)
     {
         //
+       echo $id;
     }
 
     /**

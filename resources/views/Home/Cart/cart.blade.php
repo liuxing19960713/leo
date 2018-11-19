@@ -3,6 +3,7 @@
 <html>
  <head></head>
  <!-- <script src="/js/"></script> -->
+  <script src="/static/js/jquery-1.8.3.min.js"></script>
  <body>
   <div class="page-section mb-80"> 
    <div class="container"> 
@@ -25,7 +26,6 @@
          <tbody>
           @if(!empty($info))
 		  @foreach($info as $key=>$r)
-          {{var_dump($key)}}
 		  <tr>
 	        <td class="pro-thumbnail">
 	           	 <a href="single-product.html"><img src="" class="img-fluid" alt="Product" /></a>
@@ -35,12 +35,11 @@
 	        </td> 
 	           <td class="pro-price"><span>${{$r->price}}</span></td> 
 	           <td class="quantity">
-	          <!--  	 <a href="/addcart?id={{$r->id}}"   style="position: relative;left: -44px;top: 22px">+</i></a> -->
-	           	<button  class="jia" value="{{$r->id}}" style="position: relative;left: -44px;top: 24px">+</button>
-
-	           <input type="text" value="{{$r->num}}" style="width: 50px"/>
-	           <!--   <a href="/jiancart/?id={{$r->id}}"  class="jian" style="position: relative;left: 41px;top: -23px">-</a> -->
-	           <button  class="jian" value="{{$r->id}}" style="position: relative;left: 44px;top: -26px">-</button>
+	           	 <a href="/addcart?id={{$r->id}}"   style="position: relative;left: -44px;top: 22px">+</i></a>
+	           	 <!-- <button  class="jia" value="{{$r->id}}" style="margin-right:120px;position: relative;top: 22px" >+</button>  -->
+				 <input type="text" value="{{$r->num}}" style="width: 50px"/> 
+	             <a href="/jiancart/?id={{$r->id}}"  class="jian" style="position: relative;left: 41px;top: -23px">-</a>
+	            <!-- <button  class="jian" value="{{$r->id}}" style="padding-top: ">-</button>  -->
 	         </td> 
 	           <td class="pro-subtotal "><span class="shoptotal">{{$r->total}}</span>
 	           </td> 
@@ -61,11 +60,11 @@
       <div class="row"> 
        <div class="col-lg-6 col-12"> 
         <!--=======  Calculate Shipping  =======--> 
-       	  <div class="myaccount-content"> 
+       	 <!--  <div class="myaccount-content"> 
 			   <h3>Billing Address</h3> 
 			   <address> <p><strong>Alex Tuntuni</strong></p> <p>1355 Market St, Suite 900 <br /> San Francisco, CA 94103</p> <p>Mobile: (123) 456-7890</p> </address> 
 			   <a href="javscript:void(0);" class="btn d-inline-block edit-address-btn"><i class="fa fa-edit"></i>Edit Address</a> 
-  		  </div>
+  		  </div> -->
         <!--=======  End of Calculate Shipping  =======--> 
         <!--=======  Discount Coupon  =======--> 
        
@@ -99,33 +98,34 @@
    </div> 
   </div>
   <script>
-	$(".jian").click(function(){
-		// id = $(".goods").val();
-		id =  $(this).val();
-		alert(id);
-	})
+	// $(".jian").click(function(){
+	// 	// id = $(".goods").val();
+	// 	id =  $(this).val();
+	// 	alert(id);
+	// })
 	
-	
-	$(".jia").click(function(){
-		// alert(num);
-		num = $(this).next().val();
-		$.get("/addnum",{num:num},function(res){
+	// //
+	// $(".jia").click(function(){
+	// 	num = $(this).next().val();
+	// 	nums = $(this).next().val();
+	// 	$.get("/addnum",{num:num},function(res){
+	// 		num = tirm(res);
+	// 		alert(num);
+	// 		// newData=res.replace(/\s/g,'');
+	// 	 // 	nums = newData;
+	// 	 // 	num = nums;
+	// 	 	// alert(newData);
+	// 	});
+	// })
 
-			// alert(res);
-			n=res.replace(/\s/g,'');
-		 	// num ="";
-		 	alert(n);
-		});
-	})
+	// $(".jia").click(function(){
+	// 	id =  $(this).val();
+	// 	// alert(id);
+	// 		$.get("/ajaxadd",{id:id},function(result){
+	// 			// alert(result);
 
-	$(".jia").click(function(){
-		id =  $(this).val();
-		// alert(id);
-			$.get("/ajaxadd",{id:id},function(result){
-				// alert(result);
-
-			});
-	})
+	// 		});
+	// });
 
  	// $(".jiahao").click(function(){
  	// 	// 获取id
