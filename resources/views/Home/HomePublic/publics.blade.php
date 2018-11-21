@@ -57,7 +57,7 @@
             @if(null !== (session('username')))
            <li><a href="/mypersonal">我的账户</a></li>
            <li><a href="checkout.html">结算</a></li>
-           <li><a href="/hlogin/loginout/{{session('hid')}}">退出</a></li>
+           <li><a href="/loginout">退出</a></li>
             @else
            <li><a href="/hlogin">登录</a></li>
            <li><a href="/hregi/create">注册</a></li>
@@ -110,7 +110,7 @@
        <div class="menu-top-icons d-flex justify-content-center align-items-center justify-content-md-end">
         <!--=======  single icon  =======-->
         <div class="single-icon mr-20">
-         <a href="wishlist.html"> <i class="lnr lnr-heart"></i> <span class="text">愿望清单</span> <span class="count">0</span> </a>
+         <a href="/mypersonal"> <i class="lnr lnr-heart"></i> <span class="text">愿望清单</span> <span class="count">0</span> </a>
         </div>
         <!--=======  End of single icon  =======-->
         <!--=======  single icon  =======-->

@@ -175,9 +175,9 @@ class AdministratorController extends Controller
             $id=$request->input('id');
             if(Administrator::destroy($id)){
                 //json格式
-                return response()->json(['msg'=>1]);
+                return json_encode(['msg'=>1]);
             }else{
-                return response()->json(['msg'=>0]);
+                return json_encode(['msg'=>0]);
             }
         }
 }

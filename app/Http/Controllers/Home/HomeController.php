@@ -64,10 +64,65 @@ class HomeController extends Controller
         $info=DB::table('goods')->where('status','=',1)->get();
         // 
         $sear=$this->getsear(7);
+       
         // dd($info);
         // dd($wheel);
+        // 首页商品收藏方法
+        // 找到此用户收藏的商品
+        $cogoods=DB::table('cogoods')->where('uid','=',session('hid'))->get();
+            // dd($cogoods[0]);
+            
+            if(!empty($cogoods[0])){
+            foreach($cogoods as $row){
+                $goods[]=$row->gid;
+            }
+            
+           foreach ($info as $rows){
+        //判断此商品是否被此用户收藏
+           if(in_array($rows->id,$goods)){
+            // echo 1;
+            $search['id']=$rows->id;
+            $search['goods_name']=$rows->goods_name;
+            $search['price']=$rows->price;
+            $search['desrc']=$rows->desrc;
+            $search['z_pic']=$rows->z_pic;
+            //已被收藏
+            $search['status']=1;
+           }else{
+            $search['id']=$rows->id;
+            $search['goods_name']=$rows->goods_name;
+            $search['price']=$rows->price;
+            $search['desrc']=$rows->desrc;
+            $search['z_pic']=$rows->z_pic;
+            //未被收藏
+            $search['status']=0;
+           }
+           $se[]=$search;
+           
+        }
+        //var_dump($se);
+        
+    }else{
+        
+         foreach ($info as $rows){
+            $search['id']=$rows->id;
+            $search['goods_name']=$rows->goods_name;
+            $search['price']=$rows->price;
+            $search['desrc']=$rows->desrc;
+            $search['z_pic']=$rows->z_pic;
+            $search['status']=0;
+            $se[]=$search;
+
+        }
+        
+    }
+    //如果该用户没有收藏商品
+    if(!isset($se)){
+        $se=$info;
+    }
+   
         //首页方法
-        return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
+        return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel,'se'=>$se]);
 
 
 
@@ -120,6 +175,7 @@ class HomeController extends Controller
         foreach ($pic as $key => $value) {
         }
         $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
+
         $cate=DB::table('category')->where('id','=',$info->cate_id)->first();
 
          $ca=explode(",",$cate->path);
@@ -151,7 +207,19 @@ class HomeController extends Controller
         }
         // 上面就是来存储用户拥有的优惠券的did
         // dd($dds);
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs]);
+        //判断是否已收藏商品
+        //dd
+        $user=DB::table('user')->where('uname','=',session('username'))->get();
+        //dd($user);
+        $cogoods=DB::table('cogoods')->where('uid','=',$uid)->where('gid','=',$info->id)->first();
+        // dd($cogoods);
+        if(empty($cogoods)){
+            $cogoods=1;
+        }else{
+            $cogoods=2;
+        }
+        //dd(3);
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs,'cogoods'=>$cogoods]);
 
     }
     //商品列表页
@@ -159,9 +227,63 @@ class HomeController extends Controller
     {
          //dd($id);
         $search=$this->getsear($id);
-        // dd($search);
+         //dd($search);
+        
+            $cogoods=DB::table('cogoods')->where('uid','=',session('hid'))->get();
+            // dd($cogoods[0]);
+            
+            if(!empty($cogoods[0])){
+            foreach($cogoods as $row){
+                $goods[]=$row->gid;
+            }
+            
+           foreach ($search as $rows){
+           if(in_array($rows->id,$goods)){
+            // echo 1;
+            $sear['id']=$rows->id;
+            $sear['goods_name']=$rows->goods_name;
+            $sear['price']=$rows->price;
+            $sear['desrc']=$rows->desrc;
+            $sear['z_pic']=$rows->z_pic;
+            $sear['status']=1;
+           }else{
+            $sear['id']=$rows->id;
+            $sear['goods_name']=$rows->goods_name;
+            $sear['price']=$rows->price;
+            $sear['desrc']=$rows->desrc;
+            $sear['z_pic']=$rows->z_pic;
+            $sear['status']=0;
+           }
+           $se[]=$sear;
+           
+        }
+        //var_dump($se);
+        
+    }else{
+        
+         foreach ($search as $rows){
+            $sear['id']=$rows->id;
+            $sear['goods_name']=$rows->goods_name;
+            $sear['price']=$rows->price;
+            $sear['desrc']=$rows->desrc;
+            $sear['z_pic']=$rows->z_pic;
+            $sear['status']=0;
+            $se[]=$sear;
 
-        return view("Home.Home.search",['search'=>$search]);
+        }
+        
+    }
+    //var_dump($se);        
+            
+            
+    //dd($se);
+    //dd(10);
+        //var_dump($good);
+        //dd($se);
+        if(!isset($se)){
+            $se=$search;
+        }
+        return view("Home.Home.search",['search'=>$search,'se'=>$se]);
 
     }
     

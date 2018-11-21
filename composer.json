@@ -31,8 +31,8 @@
             "app/Library/Uploads.php",
             "app/Library/Ucpaas.php",
             "app/Library/Sendcode.php",
-            "app/Library/Ups.php"
-
+            "app/Library/Ups.php",
+            "app/Library/helper.php"
 
         ]
     },

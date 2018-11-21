@@ -61,7 +61,7 @@ class GoodsController extends Controller
         //重新命名
         $fileName = str_random(10).uniqid().'.'.$z_ext;
         // 单文件上传
-        $destinationPath = 'static/admin/uploads/z_goods'; //public 文件夹下面建 uploads/
+        $destinationPath = './static/admin/uploads/z_goods'; //public 文件夹下面建 uploads/
         //接受主图
         $request->file("z_pic")->move($destinationPath,$fileName);
         // var_dump($data);die;

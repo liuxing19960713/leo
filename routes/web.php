@@ -75,11 +75,11 @@ Route::group(["middleware"=>"adminlogin"],function()
 	// 轮播图的路由
 	Route::resource('/wheel','Admin\WheelController');
 
+//分配权限
 	// 轮播图Ajax 修改状态
 	Route::get('/wheelsta','Admin\WheelController@Ajax');
 	//强结束
 
-//分配权限
 	Route::get("/rolelist/{id}","Admin\AdministratorController@rolelist");
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
@@ -96,6 +96,10 @@ Route::resource('/discountlog','Admin\DiscountLogController');
  Route::get('/articledel',"Admin\ArticleController@del");
 //文章状态ajax修改)
  Route::get('/articleajax',"Admin\ArticleController@ajax");
+ //添加快递单号
+ Route::get('/courier/{id}',"Admin\OrderController@courier");
+ //存入快递单号
+ Route::post('/upcourier',"Admin\OrderController@upcourier");
 });
 // 前台登录
 Route::resource("/hlogin","Home\LoginController");
@@ -159,13 +163,56 @@ Route::resource("/hcart","Home\CartController");
 Route::get("/checkexit","Home\CartController@checkexit");
 // 查询购物车里面的信息
 Route::get("/select","Home\CartController@select");
+//购物车增加数量
+Route::get("/addcart","Home\CartController@addcart");
+Route::get("/addnum","Home\CartController@addnum");
+
+//购物车减数量
+Route::get("/jiancart","Home\CartController@jiancart");
+// ajax数量增加
+Route::get("/ajaxadd","Home\CartController@ajaxadd");
+//总计减少量的量
+Route::get("jcart","Home\CartController@jcart");
+
+Route::get("/ajaxjian","Home\CartController@ajaxjian");
+//购物车的删除
+Route::get("/cartdel","Home\CartController@cartdel");
+ 
+//前台结算页：
+Route::resource("/pay","Home\PayController");
+
+
 });
+//用户收藏商品
+Route::get("/cogoods","Home\PersonalController@cogoods");
+
 
 
 //商品详情页
 Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
 //商品列表页
 Route::get("/search/{id}","Home\HomeController@search");
+//购物车增加数量
+Route::get("/addcart","Home\CartController@addcart");
+Route::get("/addnum","Home\CartController@addnum");
+
+//购物车减数量
+Route::get("/jiancart","Home\CartController@jiancart");
+// ajax数量增加
+Route::get("/ajaxadd","Home\CartController@ajaxadd");
+//总计减少量的量
+Route::get("jcart","Home\CartController@jcart");
+
+Route::get("/ajaxjian","Home\CartController@ajaxjian");
+//购物车的删除
+Route::get("/cartdel","Home\CartController@cartdel");
+  
+//前台结算页：
+Route::resource("/pay","Home\PayController");
+//支付宝接口调用
+Route::get("/pays","Home\PayController@pays");
+//通知给客户端的界面
+Route::get("/returnurl","Home\PayController@returnurl");
 
 
 

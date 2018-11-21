@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Model\DiscountLog;
+
 class PersonalController extends Controller
 {
     /**
@@ -16,9 +17,25 @@ class PersonalController extends Controller
     public function index(Request $request)
     {
         // dd(session('id'));
-        $uid = session('id');
+        
+        $order=DB::table('order')->get();
+
+        $user=DB::table('user')->where('uname','=',session('username'))->first();
+        
+        //dd($user->id);
+        // $goods=DB::table('cogoods')->join('goods','goods.id','cid')->select('cogoods.*','goods_name')->where('uid','=',$uid);
+        $cogoods=DB::table('cogoods')->where('uid','=',$user->id)->get();
+        //dd($cogoods);
+       $cogoods=DB::table('cogoods')->join('goods','goods.id','gid')->select('cogoods.*','goods.goods_name','goods.price','goods.z_pic','goods.id')->get();
+
+        
+
+        //dd($goods);
+        //dd($cogoods);
+
+        //dd($order);
         // dd($uid);
-        return view('Home.Personal.index');
+        return view("Home.Personal.index",['order'=>$order,'cogoods'=>$cogoods]);
         // echo '个人主页'
     }
 
@@ -27,6 +44,7 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function create()
     {
         //
@@ -145,5 +163,42 @@ class PersonalController extends Controller
         }
         
         
+    }
+    //用户收藏商品
+    public function cogoods(Request $request){
+        if(empty(session('username'))){
+            return json_encode(['msg'=>4]);
+        }
+        
+        $id=$request->input('id');
+        //通过传递的id查商品id
+        $goods=DB::table('goods')->where('id','=',$id)->first();
+        
+        //查出执行收藏操作的用户id
+        $user=DB::table('user')->where('uname','=',session('username'))->first();
+        
+      
+        $cogoods['uid']=$user->id;
+        //dd($id);
+        $cogoods['gid']=$goods->id;
+
+        $cogoods['create_at']=date('Y-m-d,H:i:s',time());
+        $cogood=DB::table('cogoods')->where('uid','=',$user->id)->where('gid','=',$goods->id)->first();
+         
+         //商品已收藏，删除选择
+        if(!empty($cogood)){
+            if(DB::table('cogoods')->delete($cogood->id)){
+                return json_encode(['msg'=>0]);
+            }else{
+                return json_encode(['msg'=>1]);
+            }
+        }else{
+            //将数据添加进用户收藏表
+            if(DB::table('cogoods')->insert($cogoods)){
+                return json_encode(['msg'=>2]);
+            }else{
+                return json_encode(['msg'=>3]);
+            }
+        }
     }
 }

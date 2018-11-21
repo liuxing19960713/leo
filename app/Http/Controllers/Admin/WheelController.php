@@ -143,9 +143,9 @@ class WheelController extends Controller
             // 把sta转换为中文
             $sta = $arr[$sta];
 
-            return response()->json(['msg'=>1,'sta'=>$sta]);
+            return json_encode(['msg'=>1,'sta'=>$sta]);
         }else{
-            return response()->json(['msg'=>0]);
+            return json_encode(['msg'=>0]);
         }
     }
     /**

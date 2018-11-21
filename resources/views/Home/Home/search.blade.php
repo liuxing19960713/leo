@@ -2,6 +2,7 @@
 @section('home')
 <html>
  <head></head>
+ <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
  <style type="text/css">
  	.font{color:red;}
  </style>
@@ -54,22 +55,23 @@
       <!--=======  End of shop header  =======--> 
       <!--=======  shop product wrap   =======--> 
       <div class="shop-product-wrap list row"> 
-       @foreach($search as $data)
+       @foreach($se as $data)
        <!--遍历开始--> 
        <div class="col-lg-4 col-md-6 col-sm-6 col-12"> 
         <!--=======  grid view product  =======--> 
-        <div class="ptk-product shop-grid-view-product"> 
+        <div class="ptk-product shop-grid-view-product">
+        
          <div class="image"> 
-          <a href="single-product.html"> <img src="/static/admin/uploads/z_goods/{{$data->z_pic}}" class="img-fluid" alt="" /> </a> 
+          <a href="single-product.html"> <img src="/static/admin/uploads/z_goods/{{$data['z_pic']}}" class="img-fluid" alt="" /> </a> 
           <!--=======  hover icons  =======--> 
           <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-          <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
+          <a class="hover-icon " href="#"><i class="lnr lnr-heart"></i></a> 
           <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
           <!--=======  End of hover icons  =======--> 
-         </div> 
+         </div> s
          <div class="content"> 
-          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="single-product.html">{{$data->goods_name}}</a></p> 
-          <p class="product-price">  <span class="discounted-price">￥{{$data->price}}</span> </p> 
+          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="single-product.html">{{$data['goods_name']}}</a></p> 
+          <p class="product-price">  <span class="discounted-price">￥{{$data['price']}}</span> </p> 
          </div> 
          <div class="rating"> 
           <i class="lnr lnr-star active"></i> 
@@ -83,10 +85,11 @@
         <!--=======  product list view  =======--> 
         <div class="ptk-product shop-list-view-product"> 
          <div class="image"> 
-          <a href="/goodinfo/{{$data->id}}"> <img src="/static/admin/uploads/z_goods/{{$data->z_pic}}" class="img-fluid" alt="" /> </a> 
+          <a href="/goodinfo/{{$data['id']}}"> <img src="/static/admin/uploads/z_goods/{{$data['z_pic']}}" class="img-fluid" alt="" /> </a> 
          </div> 
-         <div class="content"> 
-          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$data->id}}">{{$data->goods_name}}</a></p> 
+         <div class="content">
+
+          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$data['id']}}">{{$data['goods_name']}}</a></p> 
           <div class="rating "> 
            <i class="lnr lnr-star active"></i> 
            <i class="lnr lnr-star active"></i> 
@@ -94,13 +97,17 @@
            <i class="lnr lnr-star active"></i> 
            <i class="lnr lnr-star"></i> 
           </div> 
-          <p class="product-price">  <span class="discounted-price">￥{{$data->price}}</span> </p> 
-          <p class="product-description">{{$data->desrc}}</p> 
+          <p class="product-price">  <span class="discounted-price">￥{{$data['price']}}</span> </p> 
+          <p class="product-description">{{$data['desrc']}}</p> 
           <!--=======  hover icons  =======--> 
           <div class="hover-icons"> 
-           <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-           <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
-           <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
+           <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+           @if($data['status']==1) 
+           <a gid="{{$data['id']}}" class="hover-icon t" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
+          @else
+          <a gid="{{$data['id']}}" class="hover-icon t" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
+          @endif
+           <a class="hover-icon" href=""><i class="lnr lnr-cart"></i></a> 
           </div> 
           <!--=======  End of hover icons  =======--> 
          </div> 
@@ -141,11 +148,51 @@
   <!--=====  End of shop page content  ======--> 
  </body>
  <script type="text/javascript">
-  function check(obj)
-  {
-    order=$(obj).val();
-    alert(order);
-  }
+ $(".t").bind('click',function(){
+ //console.log(2);
+
+
+  id=$(this).attr('gid');
+  console.log(id);
+  gg =$(this);
+   $.ajax({
+      url: '/cogoods',
+      data: {id:id},
+
+      // dataType: 'json',
+      success: function(data){
+        console.log(typeof data);
+        // 返回的是字符串，就是因为加了两行空行
+        data = data.replace(/\s/g, '');
+        var ob = JSON.parse(data);
+        console.log(ob);
+
+        if(ob.msg==0){
+          alert('已取消收藏');
+          gg.html('<i class="lnr lnr-heart "></i>');
+        }else if(ob.msg==1){
+          alert('取消收藏失败');
+         
+
+         
+        }else if(ob.msg==2){
+          alert('添加收藏成功');
+          gg.html('<i class="fa fa-heart "></i>');
+        }else if(ob.msg==3){
+          alert('取消收藏失败')
+        }else if(ob.msg==4){
+          alert('请先登录');
+          $(location).attr('href','/hlogin');
+        }
+
+        
+      },
+      error: function(res) {
+        console.log('res');
+      }
+    });
+
+});
  </script>
 </html>
 @endsection
