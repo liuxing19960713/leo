@@ -68,10 +68,13 @@
           // 找到当前id
           id = $(this).parents("tr").find("td:first").html();
           // alert(id);
-          //找到当前tr
+          // //找到当前tr
           tr = $(this).parents("tr");
+          // console.log(tr);
           $.get('/acadel',{id:id},function(data){
+            alert(data);
             if(data==1){
+
               tr.remove();
               alert('删除success');
             }else if(data==3){
@@ -79,7 +82,7 @@
             }else{
               alert("删除error");
             }
-          },'json')
+          })
        });
  </script>
  </body>
