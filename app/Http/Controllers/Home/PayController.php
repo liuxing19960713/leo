@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use DB;
+
 class PayController extends Controller
 {
     /**
@@ -12,6 +14,7 @@ class PayController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     //结算页
     public function index(Request $request)
     {
@@ -55,11 +58,13 @@ class PayController extends Controller
         return view("Home.Pay.index",['info'=>$info,'total'=>$total,'data'=>$data,'demo'=>$demo,'countprice'=>$countprice,'minus'=>$minus]);
     }
   
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     //支付宝 接口调用
     public function pays(Request $request)
     {   
@@ -123,12 +128,13 @@ class PayController extends Controller
      * Store a newly created resource in storage.
      *     id  商品id
      *     cartnum 购买数量 
+
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -175,4 +181,23 @@ class PayController extends Controller
     {
         //
     }
+
+    //支付宝 接口调用
+    public function pays(){
+        //商户订单号
+        $out_trade_no=87955251;
+        //订单名称
+        $subject=195471794;
+        //付款金额
+        $total_fee=0.01;
+        //商品描述
+        $body="jaj28568ja";
+        pay($out_trade_no,$subject,$total_fee,$body);
+    } 
+    //通知界面
+    public function returnurl(){
+        echo "支付成功";
+    }
+
+
 }

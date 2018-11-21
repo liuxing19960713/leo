@@ -102,20 +102,26 @@
     // // 获取当前状态
     sta = $(this).parents('tr').find('td:nth-child(4)').find('label').html();
     // alert(sta);
-    $.get('/wheelsta',{id:id,sta:sta},function(data){
+     $.ajax({
+      url: '/wheelsta',
+      data: {id:id,sta:sta},
+      success:function(data){
+      data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
    //    // alert(data.msg);
    //    // alert(data.sta);
-      if (data.msg == 1) {
+      if (obj.msg == 1) {
         alert('状态修改成功!');
-        if (data.sta == '启用') {
-          s.attr('class','badge badge-success sta').html(data.sta);
+        if (obj.sta == '启用') {
+          s.attr('class','badge badge-success sta').html(obj.sta);
         }else{
-           s.attr('class','badge badge-danger sta').html(data.sta);
+           s.attr('class','badge badge-danger sta').html(obj.sta);
         }
       }else{
         alert('状态修改失败!');
       }
-    },'json');
+    }
+    });
    });
  </script>
 </html>
