@@ -33,7 +33,7 @@
 	        <td class="pro-title">
 		          <a href="single-product.html">{{$r->goods_name}}</a>
 	        </td> 
-	           <td class="pro-price"><span>${{$r->price}}</span></td> 
+	           <td class="pro-price"><span>￥{{$r->price}}</span></td> 
 	           <td class="quantity">
 	           	 <a href="/addcart?id={{$r->id}}"   style="position: relative;left: -44px;top: 22px">+</i></a>
 	           	 <!-- <button  class="jia" value="{{$r->id}}" style="margin-right:120px;position: relative;top: 22px" >+</button>  -->
@@ -59,37 +59,26 @@
       </form> 
       <div class="row"> 
        <div class="col-lg-6 col-12"> 
-        <!--=======  Calculate Shipping  =======--> 
-       	 <!--  <div class="myaccount-content"> 
-			   <h3>Billing Address</h3> 
-			   <address> <p><strong>Alex Tuntuni</strong></p> <p>1355 Market St, Suite 900 <br /> San Francisco, CA 94103</p> <p>Mobile: (123) 456-7890</p> </address> 
-			   <a href="javscript:void(0);" class="btn d-inline-block edit-address-btn"><i class="fa fa-edit"></i>Edit Address</a> 
-  		  </div> -->
-        <!--=======  End of Calculate Shipping  =======--> 
-        <!--=======  Discount Coupon  =======--> 
-       
-        <!--=======  End of Discount Coupon  =======--> 
+
        </div> 
        <div class="col-lg-6 col-12 d-flex"> 
         <!--=======  Cart summery  =======--> 
-        <div class="cart-summary"> 
+        <div class="cart-summary">
+         @if(!empty(session('cart.html')))
          <div class="cart-summary-wrap dl"> 
           <h4>Cart Summary</h4> 
-          @if(!empty($countprice))
-          <p>Sub Total <span class="total">${{$countprice}}</span></p> 
-          <p>Shipping Cost <span>$00.00</span></p> 
-          <h2>Grand Total <span class="count">${{$countprice}}</span></h2> 
-          @else
-            <p>Sub Total  <span>$00.00</span></p> 
-              <h2>Grand Total <span>$00.00</span></h2> 
-         @endif
+          
+          <p>小计<span class="total">￥{{$countprice}}</span></p> 
+          <p>运费<span>￥00.00</span></p> 
+          <h2>总计 <span class="count">￥{{$countprice}}</span></h2> 
          </div> 
          <div class="cart-summary-button">
-          <button class="checkout-btn">Checkout</button> 
+          <a href="/pay" class="checkout-btn"> <button class="update-btn index">提交订单</button></a>  
            <a href="/" class="checkout-btn"> <button class="update-btn index">继续购物</button></a> 
          <!-- 继续购物  -->
-         </div> 
-        </div> 
+         </div>
+         @endif 
+        </div>  
         <!--=======  End of Cart summery  =======--> 
        </div> 
       </div> 

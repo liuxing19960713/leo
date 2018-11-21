@@ -20,7 +20,7 @@ class HomeController extends Controller
     }
 
 
-   
+
 
 
 
@@ -31,6 +31,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     // 遍历客厅的方法 搜索方法
+
     public function getsear($id)
     {
         $data=DB::table("category")->where('path','like',"0,$id")->get();
@@ -41,7 +42,7 @@ class HomeController extends Controller
 
         }
         $ids[]=$id;
-        
+
         $sear=DB::table('goods') ->whereIn('cate_id',$ids) ->paginate(8);
         // dd($sear);
         return $sear;
@@ -62,6 +63,9 @@ class HomeController extends Controller
  
        
         // dd($info);
+
+        //首页方法
+
         // dd($wheel);
         // 首页商品收藏方法
         // 找到此用户收藏的商品
@@ -109,6 +113,7 @@ class HomeController extends Controller
             $search['status']=0;
             $se[]=$search;
 
+
         }
         
     }
@@ -124,9 +129,23 @@ class HomeController extends Controller
 
  
     }
+    //前台商品详情模态框
+    public function modal(Request $request)
+    {
+        $id = $request->input('id');
+        $info=DB::table('goods')->where('id','=',$id)->first();
+        //以下是详情信息获取方法
+        // $arr    = $info->pic;
+        $info->pic = explode(',',$info->pic);
+        // dd($info);exit;
+        // foreach ($pic as $key => $value) 
+        // }
+        // $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
+        return json_encode($info);
+    }
     //首页文章栏目
     public function article(){
-  
+
         //连表查询获取添加者名字
         $article=DB::table('article')->join('admin','admin.id','admin_id')->select('article.*','admin.name')->paginate(9);
         // dd($article);
@@ -141,8 +160,9 @@ class HomeController extends Controller
             $rows[$k]['status']=$row->status;
             //将多张图片分离,第一张图片作为封面图
             $rows[$k]['thumb']=explode(',',$row->thumb);
-            
+
         }
+
         /******时尚杂志接口******************************************/
         $url = "http://v.juhe.cn/toutiao/index?type=shishang&key=d89e6a75ac9ce8ae46f190d7d4b2a2e8";
         $method = "get";
@@ -151,6 +171,7 @@ class HomeController extends Controller
         $arr    = json_decode($info,true);//解析json
         $news   = $arr['result']['data'];
         return view("Home.Home.article",['rows'=>$rows,'article'=>$article,'news'=>$news]);
+
     }
     //首页文章栏目详情
     public function articles($id){
@@ -158,7 +179,7 @@ class HomeController extends Controller
         //分离多张图片
         //$info->thumb=explode(',',$info->thumb);
 
-        
+
         return view("Home.Home.articles",['info'=>$info]);
     }
     /**
@@ -204,6 +225,7 @@ class HomeController extends Controller
         // $value = '/static/uploads/goods/'.$value;
         // dd($value);
 
+
        // 获取用户所拥有的优惠券的did数组
        // 用户id
         $uid = session('hid');
@@ -231,7 +253,9 @@ class HomeController extends Controller
         //dd(3);
        
 
+
         return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs,'comnum'=>$comnum,'uname'=>$uname,'cogoods'=>$cogoods,'comlist'=>$comlist]);
+
 
 
 
