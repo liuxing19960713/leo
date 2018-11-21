@@ -91,9 +91,17 @@ class HomeController extends Controller
             $rows[$k]['thumb']=explode(',',$row->thumb);
             
         }
-        //dd($rows);
+        //url
+        $url = "http://v.juhe.cn/toutiao/index?type=shishang&key=d89e6a75ac9ce8ae46f190d7d4b2a2e8";
+        $method = "get";
+        $post_data = 0;
+        $info   = News($url,$method,$post_data);
+        // dd($info);
       
-         return view("Home.Home.article",['rows'=>$rows,'article'=>$article]);
+        $arr    = json_decode($info,true);
+        $news   = $arr['result']['data'];
+      
+        return view("Home.Home.article",['rows'=>$rows,'article'=>$article,'news'=>$news]);
     }
     //首页文章栏目详情
     public function articles($id){

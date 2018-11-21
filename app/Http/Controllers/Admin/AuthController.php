@@ -19,7 +19,7 @@ class AuthController extends Controller
     public function index()
     {
         // echo '模块添加';
-        $info = DB::table('node')->get();
+        $info = DB::table('node')->paginate(8);
         
         return view('Admin.Auth.index',['info'=>$info]);
     }

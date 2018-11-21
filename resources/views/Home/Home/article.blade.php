@@ -59,6 +59,39 @@
         </div>
           @endif
          @endforeach
+
+
+          @foreach($news as $rr)
+       
+        
+
+        <div class="col-lg-4 col-md-6"> 
+         <!--=======  single blog post  =======--> 
+         <div class="single-blog-post mb-35"> 
+          <div class="row"> 
+           <div class="col-lg-12"> 
+            <div class="single-blog-post-media mb-20"> 
+             <div class="image"> 
+             <img src="{{$rr['thumbnail_pic_s']}}" class="img-fluid" alt="" /> 
+             </div> 
+            </div> 
+           </div> 
+           <div class="col-lg-12"> 
+            <div class="single-blog-post-content"> 
+             <h3 class="post-title"></h3> 
+             <div class="post-meta"> 
+              <p><span><i class="fa fa-user-circle"></i> </span> <a href="{{$rr['url']}}">{{$rr['title']}}</a> <span class="separator">/</span> <span><i class="fa fa-calendar"></i> <a href="#">{{$rr['date']}}</a></span></p> 
+             </div> 
+            
+              
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+         <!--=======  End of single blog post  =======--> 
+        </div>
+    
+         @endforeach
          
          
          
@@ -68,25 +101,7 @@
       </div> 
       <!--=======  End of blog post container  =======--> 
       <!--=======  Pagination container  =======--> 
-      <div class="pagination-container pb-20 mb-md-80 mb-sm-80"> 
-       <div class="container"> 
-        <div class="row"> 
-         <div class="col-lg-12"> 
-          <!--=======  pagination-content  =======--> 
-          <div class="pagination-content text-center">
-         {{$article->render()}}
-           <ul> 
-            <li><a href="#"><i class="fa fa-angle-left"></i> Previous</a></li> 
-            <li><a class="active" href="#">1</a></li>       
-            <li><a href="#">4</a></li> 
-            <li><a href="#">Next <i class="fa fa-angle-right"></i> </a></li> 
-           </ul> 
-          </div> 
-          <!--=======  End of pagination-content  =======--> 
-         </div> 
-        </div> 
-       </div> 
-      </div> 
+     
       <!--=======  End of Pagination container  =======--> 
      </div> 
     </div> 

@@ -109,6 +109,7 @@
     </div>
  </body>
  <script>
+  //状态禁用
   $('.sta').on('click',function(){
     // alert(1);
     // 获取对象
@@ -120,7 +121,10 @@
     label = $(this).parents('tr').find('td:nth-child(3)').find('label');
     $.get('/discountsta',{id:id,sta:sta},function(data)
     {
-        // alert(data.msg);
+        data = data.replace(/\s/g, '');
+        var ob = JSON.parse(data);
+        // alert(ob);
+        console.log(ob);
         if (data.msg == 1) {
           if (data.sta == '启用') {
             label.attr('class','badge badge-gradient-success sta').html(data.sta);
@@ -129,7 +133,7 @@
           }
           alert('状态修改成功!');
         }
-    });
+    },'json');
   });
 
  </script>
