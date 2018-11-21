@@ -951,40 +951,57 @@
          <!-- Single Tab Content End -->
          <!-- Single Tab Content Start -->
          <div class="tab-pane fade" id="account-info" role="tabpanel">
-          <div class="myaccount-content">
+           <div class="myaccount-content">
            <h3>账户详情</h3>
            <div class="account-details-form">
-            <form action="#">
+            @if($user == '')
+                
+                  <a style="text-align: center;" href="/huserinfo/{{$uid}}" class="save-change-btn">填写个人资料</a>
+                
+            @else
+            <form action="/hupuser" method="post">
+              {{csrf_field()}}
              <div class="row">
-              <div class="col-lg-6 col-12 mb-30">
-               <input id="first-name" placeholder="First Name" type="text" />
-              </div>
-              <div class="col-lg-6 col-12 mb-30">
-               <input id="last-name" placeholder="Last Name" type="text" />
+              <div class="col-12 mb-30">
+                姓名：
+               <input id="display-name" placeholder="Name" type="text" name="username" value="{{$user->username}}" />
               </div>
               <div class="col-12 mb-30">
-               <input id="display-name" placeholder="Display Name" type="text" />
+                年龄：
+               <input id="age" placeholder="Age" type="text" name="age" value="{{$user->age}}" />
+              </div>
+              <input type="hidden" name="uid" value="{{$user->uid}}">
+              <div class="col-12 mb-30">
+                性别：
+               <label class="am-radio-inline">
+                      <input type="radio" name="sex" value="0" {{$user->sex==0?'checked':''}}  > 女
+                    </label>
+                    <label class="am-radio-inline">
+                      <input type="radio" name="sex" value="1" {{$user->sex==1?'checked':''}}  > 男
+                    </label>
+                    <label class="am-radio-inline">
+                      <input type="radio" name="sex" value="2" {{$user->sex==2?'checked':''}}  > 保密
+                    </label>
               </div>
               <div class="col-12 mb-30">
-               <input id="email" placeholder="Email Address" type="email" />
+                邮箱：
+               <input id="email" placeholder="Email Address" type="email" name="email" value="{{$user->email}}" />
               </div>
               <div class="col-12 mb-30">
-               <h4>Password change</h4>
+                电话：
+               <input id="phone" placeholder="Phone" type="tel" name="phone" value="{{$user->phone}}" />
               </div>
               <div class="col-12 mb-30">
-               <input id="current-pwd" placeholder="Current Password" type="password" />
-              </div>
-              <div class="col-lg-6 col-12 mb-30">
-               <input id="new-pwd" placeholder="New Password" type="password" />
-              </div>
-              <div class="col-lg-6 col-12 mb-30">
-               <input id="confirm-pwd" placeholder="Confirm Password" type="password" />
+                家庭地址：
+               <input id="address" placeholder="Address" type="text" name="address" value="{{$user->address}}" />
               </div>
               <div class="col-12">
-               <button class="save-change-btn">Save Changes</button>
+               <button class="save-change-btn">保存</button>
               </div>
              </div>
             </form>
+           
+            @endif
            </div>
           </div>
          </div>

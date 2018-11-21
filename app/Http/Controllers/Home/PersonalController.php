@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-
+use App\Http\Requests\Home\UserInfoInsert;
 use Logistics;
 
 use App\Model\DiscountLog;
@@ -22,16 +22,29 @@ class PersonalController extends Controller
         // dd(session('id'));
         $uid = session('hid');
 
-        // dd($uid);
-           //公告消息
+        /*******************************************/
+        //公告消息
         $notice = DB::table('notice')->paginate(2);
         // 公告条数
         $count  = DB::table('notice')->where('status',"=","1")->count();
+        /*******************************************/
         //订单信息
         $sql = "SELECT od.price,od.gname,od.onum,o.total,od.gid,o.`status`,o.addtime,od.oid,o.order_code,od.pic FROM `user` as u,`order` as o ,odetail as od WHERE o.id = od.oid AND u.id=o.uid  AND u.id = $uid";
         $order = DB::select(DB::raw($sql));
+        /*****用户详情开始*****************************/
+        //查询用户详情
+        $user = DB::table('user_info')->where('uid','=',$uid)->first();
+        if ($user) {
+            $user = $user;
+        }else{
+            $user = '';
+        }
+        // dd($user);
+
+        /***用户详情结束*****************************/
+
         // dd($order);
-        return view('Home.Personal.index',['notice'=>$notice,'count'=>$count,'order'=>$order]);
+        return view('Home.Personal.index',['notice'=>$notice,'count'=>$count,'order'=>$order,'user'=>$user,'uid'=>$uid]);
         // echo '个人主页'
     }
     /**
@@ -74,6 +87,7 @@ class PersonalController extends Controller
         // $address = $value->in
         return view('Home.Personal.horderinfo',['infos'=>$infos]);
     }
+
     /**
      * [logistics 查询物流信息]
      * @author 刘兴
@@ -119,6 +133,51 @@ class PersonalController extends Controller
         return view('Home.Personal.logistics',['list'=>$list,'order'=>$order]);
 
     }
+    /**
+     * [huserinfo 用户详情信息编辑]
+     * @author 刘兴
+     * @DateTime 2018-11-21T14:05:34+0800
+     * @param    [type]                   $id [description]
+     * @return   [type]                       [description]
+     */
+    public function huserinfo($id)
+    {
+        // dd($id);
+        return view('Home.Personal.huserinfo',['id'=>$id]);
+    }
+    /**
+     * [hsaveuser 个人信息保存]
+     * @author 刘兴
+     * @DateTime 2018-11-21T15:25:42+0800
+     * @param    UserInfoInsert           $request [description]
+     * @return   [type]                            [description]
+     */
+    public function hsaveuser(UserInfoInsert $request)
+    {
+        
+        $user = $request->except(['_token']);
+     // dd($user);
+        if(DB::table("user_info")->insert($user)){
+            return redirect("/mypersonal")->with("success","添加成功");
+        }else{
+            return redirect("/huserinfo/{{$id}}")->with("添加失败");
+        }
+
+    }
+
+    public function hupuser(Request $request)
+    {
+        $uid    = $request->input('uid');
+        $user   = $request->except(['_token','uid']);
+        // dd($uid);
+        $update = DB::table('user_info')->where("uid","=",$uid)->update($user);
+        if ($update) {
+            return redirect("/mypersonal")->with("success","更新成功");
+        } else{
+            return redirect("/mypersonal")->with("error","更新失败");
+        }
+        // dd();
+    }
 
 
 
@@ -130,7 +189,7 @@ class PersonalController extends Controller
      */
     public function create()
     {
-        //
+      
     }
      public function city(Request $request)
     {
