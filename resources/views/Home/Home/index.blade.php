@@ -142,13 +142,14 @@
          <div class="image"> 
           <a href="/goodinfo/{{$row['id']}}" > <img src="/static/admin/uploads/z_goods/{{$row['z_pic']}}" class="img-fluid" alt="" height="198px" /> </a> 
           <!--=======  hover icons  =======--> 
-          <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+
+          <a class="hover-icon mm" index="{{$row->id}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
           @if($row['status']==1) 
           <a gid="{{$row['id']}}" class="hover-icon l" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
           @else
           <a gid="{{$row['id']}}" class="hover-icon l" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
           @endif
-          <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
+
           <!--=======  End of hover icons  =======--> 
           <!--=======  badge  =======--> 
           <div class="product-badge"> 
@@ -221,13 +222,15 @@
            <div class="image"> 
             <a href="/goodinfo/{{$row['id']}}"> <img src="/static/admin/uploads/z_goods/{{$row['z_pic']}}" class="img-fluid" alt="" /> </a> 
             <!--=======  hover icons  =======--> 
-            <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+
+            <a class="hover-icon mm" index="{{$row->id}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
             @if($row['status']==1) 
             <a gid="{{$row['id']}}" class="hover-icon a" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
             @else
             <a gid="{{$row['id']}}" class="hover-icon a" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
             @endif
             <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
+
             <!--=======  End of hover icons  =======--> 
             <!--=======  badge  =======--> 
             <div class="product-badge"> 
@@ -350,12 +353,14 @@
          <div class="image"> 
           <a href="/goodinfo/{{$row['id']}}"> <img src="/static/admin/uploads/z_goods/{{$row['z_pic']}}" class="img-fluid" alt="" /> </a> 
           <!--=======  hover icons  =======--> 
-          <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+
+          <a class="hover-icon mm" index="{{$row->id}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
           @if($row['status']==1) 
           <a gid="{{$row['id']}}" class="hover-icon r" href="javascript:void(0)"><i class="fa fa-heart"></i></a>@else
           <a gid="{{$row['id']}}" class="hover-icon r" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
           @endif
           <a class="hover-icon " href="#"><i class="lnr lnr-cart"></i></a> 
+
           <!--=======  End of hover icons  =======--> 
           <!--=======  badge  =======--> 
           <div class="product-badge"> 
@@ -526,6 +531,105 @@
     </div>
    </div>
   </div>
+  <!--商品模态框-->
+  <div class="modal fade quick-view-modal-container" id="quick-view-modal-container" tabindex="-1" role="dialog" aria-hidden="true"> 
+   <div class="modal-dialog modal-dialog-centered" role="document"> 
+    <div class="modal-content"> 
+     <div class="modal-header"> 
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> 
+     </div> 
+     <div class="modal-body">
+
+      <div class="row"> 
+       <div class="col-lg-6 col-md-6 col-xs-12"> 
+        <!-- product quickview image gallery --> 
+        <div class="product-image-slider quickview-product-image-slider flex-row-reverse"> 
+         <!--Modal Tab Content Start-->
+          <!--遍历模态框右侧图片--> 
+         <div class="tab-content product-large-image-list quickview-product-large-image-list cc"> 
+          
+           
+         </div> 
+         <!--Modal Content 遍历结束--> 
+         <!--Modal Tab Menu Start-->
+         <!--遍历模态框左侧图片--> 
+         <div class="product-small-image-list quickview-product-small-image-list"> 
+          <div class="nav small-image-slider quickview-small-image-slider dd" role="tablist" > 
+             
+          </div> 
+         </div> 
+         <!--Modal Tab Menu 遍历结束--> 
+        </div> 
+        <!-- end of product quickview image gallery --> 
+       </div> 
+       <div class="col-lg-6 col-md-6 col-xs-12"> 
+        <!-- product quick view description --> 
+        <div class="product-feature-details"> 
+         <h2 class="product-title mb-15" id="goods_name">Kaoreet lobortis sagittis laoreet</h2> 
+         <h2 class="product-price mb-15"><span class="discounted-price" id="price"> $10.00</span></h2> 
+         <p class="product-description mb-20" id="desrc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus</p> 
+         <div class="cart-buttons mb-20">
+         <form action="/hcart" method="post">
+            {{csrf_field()}}
+          <input type="hidden" name="id" value="1" id="id"> 
+         <div class="pro-qty mr-10"> 
+            <input type="text" value="1" class="cartnum" name="cartnum" /> 
+         </div> 
+          <div class="add-to-cart-btn"> 
+           <input type="submit" value="添加到购物车" class="pataku-btn"> 
+          </div>
+          </form>  
+         </div>
+         
+         <div class="social-share-buttons"> 
+          <h3>share this product</h3> 
+          <ul> 
+           <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li> 
+           <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li> 
+           <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li> 
+           <li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li> 
+          </ul> 
+         </div> 
+        </div> 
+        <!-- end of product quick view description --> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div>
+ </body>
+ <script type="text/javascript">
+
+    //模态框商品详情jq
+   $('.mm').click(function(){
+    var id = $(this).attr('index');
+
+     $.get("/modal",{id:id},function(data)
+      {
+        var data = data.replace(/\s*/g,"");
+        var obj = JSON.parse(data);
+        //将返回的数据插到首页模态框
+        $('#price').text('￥'+obj.price);
+        $('#goods_name').text(obj.goods_name);
+        $('#desrc').text(obj.desrc);
+        $('#id').attr('value',obj.id);
+        var pic=obj.pic;
+        for(i=0;i<pic.length;i++){
+          var a = '<div class="single-small-image img-full"><a data-toggle="tab" id="single-slide-tab-quick-'+i+'" href="#single-slide-quick-'+i+'"><img src="/static/admin/uploads/goods/'+pic[i]+'" class="img-fluid" alt="" /></a></div>';
+          if (i == 0) {
+            var b= '<div class="tab-pane fade show active c'+i+'" id="single-slide-quick-'+i+'" role="tabpanel" aria-labelledby="single-slide-tab-quick-'+i+'"></div>';
+          }else{
+            var b= '<div class="tab-pane fade c'+i+'" id="single-slide-quick-'+i+'" role="tabpanel" aria-labelledby="single-slide-tab-quick-'+i+'"></div>';
+          }
+          var c= '<div class="single-product-img img-full"> <img src="/static/admin/uploads/goods/'+pic[i]+'" class="img-fluid" alt="" /></div>';
+          $('.dd').append(a);
+          $('.cc').append(b);
+          $('.c'+i).append(c);       
+        }
+      });
+   })
+ </script>
  </body>
   <script type="text/javascript">
  $(".l").bind('click',function(){

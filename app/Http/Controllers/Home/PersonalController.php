@@ -9,7 +9,11 @@ use App\Http\Requests\Home\UserInfoInsert;
 use Logistics;
 
 use App\Model\DiscountLog;
-
+use App\Model\Home\Personaladdress;
+// 引入修改地址校验类
+use App\Http\Requests\Home\AddressEdit;
+// 引入添加地址校验类
+use App\Http\Requests\Home\AddressInsert;
 class PersonalController extends Controller
 {
     /**
@@ -40,6 +44,17 @@ class PersonalController extends Controller
         $uid = session('hid');
 
         /*******************************************/
+        // 查询该用户拥有的所有优惠券
+        $Log = DB::table('discount_log')->where('uid','=',$uid)->join('discount','discount_log.did','=','discount.id')->select('discount_log.*','discount.status as dstatus','discount.max','discount.minus','discount.start_time','discount.end_time','discount.describe','discount.cid')->get();
+        //$Log->first() 是判断是否为空
+        if ($Log->first()) {
+            // dd('不为空');
+            // dd($Log);
+            $Log = $Log;
+        }else{
+            // dd($Log);
+            $Log = '';
+        }
         //公告消息
         $notice = DB::table('notice')->paginate(2);
         // 公告条数
@@ -61,7 +76,10 @@ class PersonalController extends Controller
         /***用户详情结束*****************************/
 
         // dd($order);
-        return view('Home.Personal.index',['notice'=>$notice,'count'=>$count,'order'=>$order,'user'=>$user,'uid'=>$uid,'cogoods'=>$cogoods]);
+
+
+        return view('Home.Personal.index',['notice'=>$notice,'count'=>$count,'order'=>$order,'user'=>$user,'uid'=>$uid,'cogoods'=>$cogoods,'Log'=>$Log]);
+
 
         // echo '个人主页'
     }
@@ -217,17 +235,155 @@ class PersonalController extends Controller
         $data = DB::table('district')->where('upid','=',$upid)->get();
         echo json_encode($data);
     }
+    public function haddaddress(){
+        // echo '地址管理';
+        return view('Home.Personal.addaddress');
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddressInsert $request)
     {
+        $data = $request->except(['_token','xiang','city']);
+        $uid = $request->input('uid');
+        // dd($request->all());
+        $city = $request->input('city');
+        // dd(gettype($city));
+        $citys = (str_replace('--请选择--', '', $city));
+        $citys = (str_replace(',' , '', $citys));
+        // dd($citys);
+        $xi = $request->input('xiang');
+        // dd($xi);
+        $data['address']=$citys.$xi;
+        // $data
+        // dd($request->all());
+        //获取该用户是否已经拥有了地址
+        //默认第一个添加的地址是默认地址
         //
-    }
+        $info = Personaladdress::where('uid','=',$uid)->get();
+        // 要判断是否有默认地址  如果没有的话 就把这个新添加的变为默认地址
+        // dd(123);
+        // 获取当前用户的所有的默认字段
+        $default = Personaladdress::where('uid','=',$uid)->where('isDefault','=',1)->get();
 
+        // dd($default);
+
+        if($info->count()){
+            // dd('不为空');
+            // 0为非默认地址
+            // 不为空的时候还要判断是否有默认地址
+            if ($default->count()) {
+                $data['isDefault']=0;
+            } else {
+                 $data['isDefault']=1;
+            }
+        }else{
+            // 1为默认
+            $data['isDefault']=1;
+            // dd('为空');
+        }
+        // dd($data);
+        if (Personaladdress::create($data)) {
+            // dd('插入成功');
+            return redirect('/haddress/'.$uid)->with('success','添加成功');
+        }else{
+            // dd('插入失败');
+            return redirect('/haddress/'.$uid)->with('error','添加失败');
+
+        }
+    }
+    // 这是管理地址页面
+    public function haddress($uid){
+        // dd($request->all());
+        $id = $uid;
+        // dd($id);
+        $address = DB::table('user_address')->where('uid','=',$uid)->get();
+        if ($address->first()) {
+            $address = $address;
+        }else{
+            $address = '';
+        }
+        return view('Home.Personal.address',['address'=>$address]);
+
+    }
+    // 管理页面地址删除
+    public function haddressdel($uid,$aid)
+    {
+        // dd($request->all());
+        $uid = $uid;
+        $aid = $aid;
+        // dd($aid);
+        // dd($uid);
+        if ($uid == session('hid')) {
+            if (Personaladdress::destroy($aid)) {
+                return redirect('/haddress/'.$uid)->with('success','删除成功');
+            }else{
+                return redirect('/haddress/'.$uid)->with('error','删除失败');
+            }
+        }else{
+            return redirect('/mypersonal')->with('error','数据出错');
+        }
+    }
+    // 收货地址的修改
+    public function haddressedit($uid,$aid)
+    {
+        $uid = $uid;
+        $aid = $aid;
+        // dd($aid);
+
+        $address = Personaladdress::find($aid);
+        if ($address->first()) {
+                $address = $address;
+        }else{
+            $address = '';
+        }
+        // dd($address);
+        return view('Home.Personal.editaddress',['address'=>$address,'aid'=>$aid]);
+    }
+    // 收货地址修改的页面
+    public function haddressupdate(AddressEdit $request,$aid)
+    {
+        // dd($aid);
+        // dd($request->all());
+        // $aid = '';
+        $aid = $aid;
+        $uid = session('hid');
+        $data = $request->except(['uid','_token']);
+        // dd($data);
+        if ($uid == $request->input('uid')) {
+            if (Personaladdress::where('uid','=',$uid)->where('id','=',$aid)->update($data)) {
+                // dd('更新成功!');
+                return redirect('/haddress/'.$uid)->with('success','更新成功');
+            }else{
+                // dd('更新失败');
+                return redirect('/haddress/'.$uid)->with('error','更新失败');
+            }
+        }
+
+    }
+    // 修改默认地址
+    public function haddressmo($aid)
+    {
+        // dd($aid);
+        $uid = session('hid');
+        //更新旧的默认地址的默认字段变为不是默认
+        if (Personaladdress::where('isDefault','=',1)->update(['isDefault'=>0])) {
+            // dd('更新成功');
+            // 更新该字段
+            if (Personaladdress::where('id','=',$aid)->update(['isDefault'=>1])) {
+                return redirect('/haddress/'.$uid)->with('success','设置默认地址成功');
+            }else{
+                return redirect('/haddress/'.$uid)->with('error','数据出错');
+            }
+        }else{
+            // dd('更新失败');
+            return redirect('/haddress/'.$uid)->with('error','数据出错');
+        }
+
+    }
     /**
      * Display the specified resource.
      *

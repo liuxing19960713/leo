@@ -160,9 +160,11 @@ Route::get("ajaxadd","Home\CartController@ajaxadd");
 Route::get("/cartdel","Home\CartController@cartdel");
 // 前台个人用户主页
 Route::resource('/mypersonal','Home\PersonalController');
+
 //添加个人收货地址
 Route::get('/city','Home\PersonalController@city');
-
+//前台模态商品详情
+Route::get('/modal','Home\HomeController@modal');
 // 个人详细信息
 Route::get("/huserinfo/{id}","Home\PersonalController@huserinfo");
 
@@ -212,6 +214,31 @@ Route::get("/horderinfo/{id}","Home\PersonalController@horderinfo");
 
 //查看物流Logistics
 Route::get("/logistics/{id}","Home\PersonalController@logistics");
+
+//前台结算页：
+Route::resource("/pay","Home\PayController");
+//支付宝接口调用
+Route::get("/pays","Home\PayController@pays");
+//通知给客户端的界面
+Route::get("/returnurl","Home\PayController@returnurl");
+//地址管理
+//获取三级联动地址
+Route::get('/city','Home\PersonalController@city');
+//添加个人收货地址
+Route::get('/haddaddress','Home\PersonalController@haddaddress');
+//处理收货地址数据
+Route::get('/haddress/{hid}','Home\PersonalController@haddress');
+// 地址删除
+Route::get('/haddressdel/{uid}-{aid}','Home\PersonalController@haddressdel');
+// 地址修改页面
+Route::get('/haddressedit/{uid}-{aid}','Home\PersonalController@haddressedit');
+// 地址修改提交处理方式
+Route::post('/haddressupdate/{aid}','Home\PersonalController@haddressupdate');
+// 设置默认地址
+Route::get('/haddressmo/{aid}','Home\PersonalController@haddressmo');
+//地址管理结束
+
+
 
 });
 //用户收藏商品

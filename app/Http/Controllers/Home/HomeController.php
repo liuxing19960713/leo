@@ -31,8 +31,10 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     // 遍历客厅的方法 搜索方法
+
     public function getsear($id)
     {
+
         $data=DB::table("category")->where('path','like',"0,$id")->get();
         $ids='';
         foreach($data as $value)
@@ -123,6 +125,20 @@ class HomeController extends Controller
 
 
  
+    }
+    //前台商品详情模态框
+    public function modal(Request $request)
+    {
+        $id = $request->input('id');
+        $info=DB::table('goods')->where('id','=',$id)->first();
+        //以下是详情信息获取方法
+        // $arr    = $info->pic;
+        $info->pic = explode(',',$info->pic);
+        // dd($info);exit;
+        // foreach ($pic as $key => $value) 
+        // }
+        // $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
+        return json_encode($info);
     }
     //首页文章栏目
     public function article(){
