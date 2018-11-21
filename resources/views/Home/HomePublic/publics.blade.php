@@ -11,7 +11,7 @@
   <link rel="icon" href="/static/home/assets/images/favicon.ico" />
     <!-- 分页样式 -->
   <link rel="stylesheet" href="/static/admins/css/mypage.css" /> 
-
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
   <!-- CSS
   ============================================ -->
   <!-- Bootstrap CSS -->
@@ -28,6 +28,7 @@
   <link href="/static/home/assets/css/main.css" rel="stylesheet" />
   <!-- Modernizer JS -->
   <script src="/static/home/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
   
  </head>
  <body>
@@ -57,7 +58,7 @@
             @if(null !== (session('username')))
            <li><a href="/mypersonal">我的账户</a></li>
            <li><a href="checkout.html">结算</a></li>
-           <li><a href="/hlogin/loginout/{{session('hid')}}">退出</a></li>
+           <li><a href="/loginout">退出</a></li>
             @else
            <li><a href="/hlogin">登录</a></li>
            <li><a href="/hregi/create">注册</a></li>

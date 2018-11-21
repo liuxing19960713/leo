@@ -113,6 +113,7 @@ class HomeController extends Controller
     //商品详情页
     public function goodinfo(Request $request,$id)
     {
+       
         $info=DB::table('goods')->where('id','=',$id)->first();
         //以下是详情信息获取方法
         $arr    = $info->pic;
@@ -120,6 +121,15 @@ class HomeController extends Controller
         foreach ($pic as $key => $value) {
         }
         $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
+
+        // dd(session('hid'));
+        $id     = session('hid');
+        $uname  = DB::table('user')->where("id","=",$id)->value('uname');//用户信息
+        // $value = '/static/uploads/goods/'.$value;
+         
+        //评论总数
+        $comnum = DB::table('comment')->count();
+
         $cate=DB::table('category')->where('id','=',$info->cate_id)->first();
 
          $ca=explode(",",$cate->path);
@@ -151,7 +161,8 @@ class HomeController extends Controller
         }
         // 上面就是来存储用户拥有的优惠券的did
         // dd($dds);
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs]);
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs,'comnum'=>$comnum,'uname'=>$uname]);
+
 
     }
     //商品列表页
@@ -164,11 +175,16 @@ class HomeController extends Controller
         return view("Home.Home.search",['search'=>$search]);
 
     }
+
+  
+
     
     public function create()
+
     {
 
     }
+
 
     /**
      * Store a newly created resource in storage.

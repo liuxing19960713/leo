@@ -79,23 +79,29 @@ Route::group(["middleware"=>"adminlogin"],function()
 	Route::get('/wheelsta','Admin\WheelController@Ajax');
 	//强结束
 
-//分配权限
+	//分配权限
 	Route::get("/rolelist/{id}","Admin\AdministratorController@rolelist");
+
+	// 关键词模块
+	Route::resource("/key","Admin\KeyWordsController");
+
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
-// 优惠券模块
-Route::resource("/discount","Admin\DiscountController");
-// 优惠券模块状态ajax
-Route::get("/discountsta",'Admin\DiscountController@sta');
-// 用户拥有优惠券详情
-Route::resource('/discountlog','Admin\DiscountLogController');
 
- //文章管理
- Route::resource('/article','Admin\ArticleController');
- //文章ajax删除
- Route::get('/articledel',"Admin\ArticleController@del");
-//文章状态ajax修改)
- Route::get('/articleajax',"Admin\ArticleController@ajax");
+	// 优惠券模块
+	Route::resource("/discount","Admin\DiscountController");
+	// 优惠券模块状态ajax
+	Route::get("/discountsta",'Admin\DiscountController@sta');
+	// 用户拥有优惠券详情
+	Route::resource('/discountlog','Admin\DiscountLogController');
+	 //文章管理
+	 Route::resource('/article','Admin\ArticleController');
+	 //文章ajax删除
+	 Route::get('/articledel',"Admin\ArticleController@del");
+	//文章状态ajax修改)
+	 Route::get('/articleajax',"Admin\ArticleController@ajax");
+
+
 });
 // 前台登录
 Route::resource("/hlogin","Home\LoginController");
@@ -159,11 +165,32 @@ Route::resource("/hcart","Home\CartController");
 Route::get("/checkexit","Home\CartController@checkexit");
 // 查询购物车里面的信息
 Route::get("/select","Home\CartController@select");
+
+// 公告详情
+Route::get("/noteinfo/{id}","Home\PersonalController@noteinfo");
+
+//前台评论添加
+Route::Resource("/hcomment","Home\CommentController");
+
+//确认收货
+Route::get("/confirm/{id}","Home\PersonalController@confirm");
+
+//订单详情
+Route::get("/horderinfo/{id}","Home\PersonalController@horderinfo");
+
+//查看物流Logistics
+Route::get("/logistics/{id}","Home\PersonalController@logistics");
+
+
+
 });
 
 
 //商品详情页
 Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
+
+
+
 //商品列表页
 Route::get("/search/{id}","Home\HomeController@search");
 

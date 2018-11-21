@@ -15,7 +15,6 @@
         <th>商品数量</th>
         <th>价格</th>
         <th>商品名字</th>
-        <th>添加时间</th> 
        </tr> 
       </thead> 
       <tbody> 
@@ -24,7 +23,6 @@
         <td>{{$data->onum}}</td>
         <td>{{$data->price}}</td>
         <td>{{$data->gname}}</td>
-        <td>{{$data->addtime}}</td>
        </tr> 
       </tbody> 
      </table> 
