@@ -142,6 +142,7 @@ class HomeController extends Controller
             $rows[$k]['name']=$row->name;
             $rows[$k]['admin_id']=$row->admin_id;
             $rows[$k]['status']=$row->status;
+            $rows[$k]['created_at']=$row->created_at;
             //将多张图片分离,第一张图片作为封面图
             $rows[$k]['thumb']=explode(',',$row->thumb);
             

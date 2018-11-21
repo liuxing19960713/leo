@@ -47,7 +47,7 @@
             <div class="single-blog-post-content"> 
              <h3 class="post-title"> <a href="/articleshome/{{$rowss['id']}}">{{$rowss['title']}}</a></h3>{{csrf_field()}} 
              <div class="post-meta"> 
-              <p><span><i class="fa fa-user-circle"></i> </span> <a href="/articleshome/{{$rowss['id']}}">{{$rowss['name']}}</a> <span class="separator">/</span> <span><i class="fa fa-calendar"></i> <a href="#">24 August, 2018</a></span></p> 
+              <p><span><i class="fa fa-user-circle"></i> </span> <a href="/articleshome/{{$rowss['id']}}">{{$rowss['name']}}</a> <span class="separator">/</span> <span><i class="fa fa-calendar"></i> <a href="#">{{$rowss['created_at']}}</a></span></p> 
              </div> 
              <p class="post-excerpt">{{$rowss['head']}}</p> 
              <a href="/articleshome/{{$rowss['id']}}" class="blog-readmore-btn">continue <i class="fa fa-long-arrow-right"></i></a> 

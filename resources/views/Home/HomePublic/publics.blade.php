@@ -92,7 +92,7 @@
       <div class="col-12 col-lg-3 col-md-3 text-center text-md-left mb-sm-20">
        <!--=======  logo  =======-->
        <div class="logo">
-        <a href="index.html"> <img src="/static/home/assets/images/logo.png" class="img-fluid" alt="" /> </a>
+        <a href="/"> <img src="/static/home/assets/images/logo.png" class="img-fluid" alt="" /> </a>
        </div>
        <!--=======  End of logo  =======-->
       </div>
