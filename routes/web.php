@@ -155,6 +155,13 @@ Route::resource('/mypersonal','Home\PersonalController');
 //添加个人收货地址
 Route::get('/city','Home\PersonalController@city');
 
+// 个人详细信息
+Route::get("/huserinfo/{id}","Home\PersonalController@huserinfo");
+
+//保存个人信息功能
+Route::post("/hsaveuser","Home\PersonalController@hsaveuser");
+
+Route::post("/hupuser","Home\PersonalController@hupuser");
 //添加个人收货地址
 Route::get('/adress','Home\PersonalController@adress');
 //处理收货数据
@@ -180,6 +187,7 @@ Route::get("/horderinfo/{id}","Home\PersonalController@horderinfo");
 
 //查看物流Logistics
 Route::get("/logistics/{id}","Home\PersonalController@logistics");
+
 
 
 
