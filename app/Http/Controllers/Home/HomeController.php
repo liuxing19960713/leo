@@ -146,9 +146,17 @@ class HomeController extends Controller
             $rows[$k]['thumb']=explode(',',$row->thumb);
             
         }
-        //dd($rows);
+        //url
+        $url = "http://v.juhe.cn/toutiao/index?type=shishang&key=d89e6a75ac9ce8ae46f190d7d4b2a2e8";
+        $method = "get";
+        $post_data = 0;
+        $info   = News($url,$method,$post_data);
+        // dd($info);
       
-         return view("Home.Home.article",['rows'=>$rows,'article'=>$article]);
+        $arr    = json_decode($info,true);
+        $news   = $arr['result']['data'];
+      
+        return view("Home.Home.article",['rows'=>$rows,'article'=>$article,'news'=>$news]);
     }
     //首页文章栏目详情
     public function articles($id){
@@ -168,6 +176,7 @@ class HomeController extends Controller
     //商品详情页
     public function goodinfo(Request $request,$id)
     {
+       
         $info=DB::table('goods')->where('id','=',$id)->first();
         //以下是详情信息获取方法
         $arr    = $info->pic;
@@ -175,6 +184,14 @@ class HomeController extends Controller
         foreach ($pic as $key => $value) {
         }
         $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
+
+        // dd(session('hid'));
+        $id     = session('hid');
+        $uname  = DB::table('user')->where("id","=",$id)->value('uname');//用户信息
+        // $value = '/static/uploads/goods/'.$value;
+         
+        //评论总数
+        $comnum = DB::table('comment')->count();
 
         $cate=DB::table('category')->where('id','=',$info->cate_id)->first();
 
@@ -207,6 +224,7 @@ class HomeController extends Controller
         }
         // 上面就是来存储用户拥有的优惠券的did
         // dd($dds);
+
         //判断是否已收藏商品
         //dd
         $user=DB::table('user')->where('uname','=',session('username'))->get();
@@ -219,7 +237,11 @@ class HomeController extends Controller
             $cogoods=2;
         }
         //dd(3);
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs,'cogoods'=>$cogoods]);
+       
+
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs,'comnum'=>$comnum,'uname'=>$uname,'cogoods'=>$cogoods]);
+
+
 
     }
     //商品列表页
@@ -286,11 +308,16 @@ class HomeController extends Controller
         return view("Home.Home.search",['search'=>$search,'se'=>$se]);
 
     }
+
+  
+
     
     public function create()
+
     {
 
     }
+
 
     /**
      * Store a newly created resource in storage.

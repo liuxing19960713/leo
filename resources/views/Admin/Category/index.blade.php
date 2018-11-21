@@ -68,8 +68,9 @@
           // 找到当前id
           id = $(this).parents("tr").find("td:first").html();
           // alert(id);
-          //找到当前tr
+          // //找到当前tr
           tr = $(this).parents("tr");
+
            $.ajax({
         url: '/acadel',
         data: {id:id},
@@ -77,6 +78,7 @@
         data = data.replace(/\s/g, '');
         var obj = JSON.parse(data);
             if(obj.msg==1){
+
               tr.remove();
               alert('删除成功');
             }else if(obj.msg==3){
@@ -84,7 +86,10 @@
             }else{
               alert("删除error");
             }
+
           }
+
+
           })
        });
  </script>

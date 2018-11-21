@@ -129,7 +129,8 @@ class LoginController extends Controller
     public function show($id)
     {
         //
-       echo $id;
+       // echo $id;
+        // $id = 
     }
 
     /**

@@ -80,9 +80,18 @@ Route::group(["middleware"=>"adminlogin"],function()
 	Route::get('/wheelsta','Admin\WheelController@Ajax');
 	//强结束
 
+
+
+	//分配权限
+
 	Route::get("/rolelist/{id}","Admin\AdministratorController@rolelist");
+
+	// 关键词模块
+	Route::resource("/key","Admin\KeyWordsController");
+
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
+
 // 优惠券模块
 Route::resource("/discount","Admin\DiscountController");
 // 优惠券模块状态ajax
@@ -100,6 +109,7 @@ Route::resource('/discountlog','Admin\DiscountLogController');
  Route::get('/courier/{id}',"Admin\OrderController@courier");
  //存入快递单号
  Route::post('/upcourier',"Admin\OrderController@upcourier");
+
 });
 // 前台登录
 Route::resource("/hlogin","Home\LoginController");
@@ -153,6 +163,13 @@ Route::resource('/mypersonal','Home\PersonalController');
 //添加个人收货地址
 Route::get('/city','Home\PersonalController@city');
 
+// 个人详细信息
+Route::get("/huserinfo/{id}","Home\PersonalController@huserinfo");
+
+//保存个人信息功能
+Route::post("/hsaveuser","Home\PersonalController@hsaveuser");
+
+Route::post("/hupuser","Home\PersonalController@hupuser");
 //添加个人收货地址
 Route::get('/adress','Home\PersonalController@adress');
 //处理收货数据
@@ -163,6 +180,7 @@ Route::resource("/hcart","Home\CartController");
 Route::get("/checkexit","Home\CartController@checkexit");
 // 查询购物车里面的信息
 Route::get("/select","Home\CartController@select");
+
 //购物车增加数量
 Route::get("/addcart","Home\CartController@addcart");
 Route::get("/addnum","Home\CartController@addnum");
@@ -180,7 +198,20 @@ Route::get("/cartdel","Home\CartController@cartdel");
  
 //前台结算页：
 Route::resource("/pay","Home\PayController");
+// 公告详情
+Route::get("/noteinfo/{id}","Home\PersonalController@noteinfo");
 
+//前台评论添加
+Route::Resource("/hcomment","Home\CommentController");
+
+//确认收货
+Route::get("/confirm/{id}","Home\PersonalController@confirm");
+
+//订单详情
+Route::get("/horderinfo/{id}","Home\PersonalController@horderinfo");
+
+//查看物流Logistics
+Route::get("/logistics/{id}","Home\PersonalController@logistics");
 
 });
 //用户收藏商品
@@ -190,6 +221,9 @@ Route::get("/cogoods","Home\PersonalController@cogoods");
 
 //商品详情页
 Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
+
+
+
 //商品列表页
 Route::get("/search/{id}","Home\HomeController@search");
 //购物车增加数量

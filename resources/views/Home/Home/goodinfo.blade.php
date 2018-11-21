@@ -185,7 +185,7 @@
         <div class="nav nav-tabs" id="nav-tab" role="tablist"> 
          <a class="nav-item nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-selected="true">描述</a> 
          <a class="nav-item nav-link" id="features-tab" data-toggle="tab" href="#features" role="tab" aria-selected="false">优惠劵</a> 
-         <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-selected="false">评论(3)</a> 
+         <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-selected="false">评论({{$comnum}})</a> 
         </div> 
        </nav> 
        <div class="tab-content" id="nav-tabContent"> 
@@ -269,34 +269,8 @@
            </div> 
           </div> 
           <div class="rattings-wrapper"> 
-           <div class="sin-rattings"> 
-            <div class="ratting-author"> 
-             <h3>Cristopher Lee</h3> 
-             <div class="ratting-star"> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <span>(5)</span> 
-             </div> 
-            </div> 
-            <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli</p> 
-           </div> 
-           <div class="sin-rattings"> 
-            <div class="ratting-author"> 
-             <h3>Nirob Khan</h3> 
-             <div class="ratting-star"> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <span>(5)</span> 
-             </div> 
-            </div> 
-            <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli</p> 
-           </div> 
+           
+            
            <div class="sin-rattings"> 
             <div class="ratting-author"> 
              <h3>Rashed Mahmud</h3> 
@@ -314,7 +288,8 @@
           </div> 
           <div class="ratting-form-wrapper fix"> 
            <h3>Add your Comments</h3> 
-           <form action="#"> 
+           <form action="/hcomment" method="post">
+           {{csrf_field()}} 
             <div class="ratting-form row"> 
              <div class="col-12 mb-15"> 
               <h5>Rating:</h5> 
@@ -328,15 +303,15 @@
              </div> 
              <div class="col-md-6 col-12 mb-15"> 
               <label for="name">Name:</label> 
-              <input id="name" placeholder="Name" type="text" /> 
+              <input id="uname" placeholder="Name" disabled type="text" value="{{$uname}}" /> 
              </div> 
              <div class="col-md-6 col-12 mb-15"> 
-              <label for="email">Email:</label> 
-              <input id="email" placeholder="Email" type="text" /> 
+               
              </div> 
+              <input type="hidden" name="gid" value="{{$info->id}}">
              <div class="col-12 mb-15"> 
-              <label for="your-review">Your Review:</label> 
-              <textarea name="review" id="your-review" placeholder="Write a review"></textarea> 
+              <label for="your-review">Your Comment:</label> 
+              <textarea name="comment" id="your-review" placeholder="Write a review"></textarea> 
              </div> 
              <div class="col-12"> 
               <input value="add review" type="submit" /> 
@@ -344,6 +319,7 @@
             </div> 
            </form> 
           </div> 
+
          </div> 
         </div> 
        </div> 
@@ -524,7 +500,6 @@ $('.quan').on('click',function(){
     });
   }
 });
-
 
  </script>
 </html>
