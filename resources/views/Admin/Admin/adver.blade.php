@@ -7,7 +7,7 @@
    <div class="card"> 
     <div class="card-body"> 
      <h4 class="card-title">广告管理</h4> 
-    <form class="d-flex align-items-center h-100" action="/adver" method="get"> 
+    <form class="d-flex align-items-center h-20" action="/adver" method="get"> 
        <div class="input-group">
         <div class="input-group-prepend bg-transparent">
         <button type="submit">

@@ -36,8 +36,7 @@
        <tr> 
         <td>{{$row->id}}</td> 
         <td>{{$row->name}}</td>
-        <td>{{$row->rid}}
-        <td>{{$row->level}}</td>
+        <td>{{$row->rid}}</td>
         <td>{{$row->updated_at}}</td> 
         <td>{{$row->created_at}}</td> 
       <td>
