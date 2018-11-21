@@ -14,7 +14,10 @@
   <link href="/static/public/css/amazeui.css" rel="stylesheet" type="text/css">
   <link href="/static/public/css/personal.css" rel="stylesheet" type="text/css">
   <link href="/static/public/css/cpstyle.css" rel="stylesheet" type="text/css">
-  <link href="/static/public/css/infstyle.css" rel="stylesheet" type="text/css">   
+  <link href="/static/public/css/infstyle.css" rel="stylesheet" type="text/css">
+  
+  <link href="/static/public/css/orstyle.css" rel="stylesheet" type="text/css">
+
   <script src="/static/public/jquery.min.js"></script>
   <script src="/static/public/js/amazeui.js"></script>
 
@@ -51,7 +54,7 @@
          <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> 我的优惠劵</a>
          <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> 地址</a>
          <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> 账户详细资料</a>
-        <a href="#announce" data-toggle="tab"><i class="fa fa-user"></i>消息</a>
+        <a href="#announce" data-toggle="tab"><i class="fa fa-user"></i>消息<span class="count">  <i class="lnr lnr-heart"></i> ({{$count}})</span></a>
          <a href="login-register.html"><i class="fa fa-sign-out"></i> 登出</a>
         </div>
        </div>
@@ -75,46 +78,548 @@
          <div class="tab-pane fade" id="orders" role="tabpanel">
           <div class="myaccount-content">
            <h3>订单</h3>
-           <div class="myaccount-table table-responsive text-center">
-            <table class="table table-bordered">
-             <thead class="thead-light">
-              <tr>
-               <th>No</th>
-               <th>Name</th>
-               <th>Date</th>
-               <th>Status</th>
-               <th>Total</th>
-               <th>Action</th>
-              </tr>
-             </thead>
-             <tbody>
-              <tr>
-               <td>1</td>
-               <td>Mostarizing Oil</td>
-               <td>Aug 22, 2018</td>
-               <td>Pending</td>
-               <td>$45</td>
-               <td><a href="cart.html" class="btn">View</a></td>
-              </tr>
-              <tr>
-               <td>2</td>
-               <td>Katopeno Altuni</td>
-               <td>July 22, 2018</td>
-               <td>Approved</td>
-               <td>$100</td>
-               <td><a href="cart.html" class="btn">View</a></td>
-              </tr>
-              <tr>
-               <td>3</td>
-               <td>Murikhete Paris</td>
-               <td>June 12, 2017</td>
-               <td>On Hold</td>
-               <td>$99</td>
-               <td><a href="cart.html" class="btn">View</a></td>
-              </tr>
-             </tbody>
-            </table>
-           </div>
+            
+            <!-- 订单开始 -->
+            <div class="user-order"> 
+             <!--标题 --> 
+             <div class="am-cf am-padding"> 
+              <div class="am-fl am-cf">
+               <strong class="am-text-danger am-text-lg">订单管理</strong> / 
+               <small>Order</small>
+              </div> 
+             </div> 
+             <hr /> 
+             <div class="am-tabs am-tabs-d2 am-margin" data-am-tabs=""> 
+              <ul class="am-avg-sm-5 am-tabs-nav am-nav am-nav-tabs"> 
+               <li class="am-active"><a href="#tab1">所有订单</a></li> 
+               <li class=""><a href="#tab2">待付款</a></li> 
+               <li class=""><a href="#tab3">待发货</a></li> 
+               <li class=""><a href="#tab4">待收货</a></li> 
+               <li class=""><a href="#tab5">待评价</a></li> 
+              </ul> 
+              <div class="am-tabs-bd" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"> 
+               <div class="am-tab-panel am-fade am-active am-in" id="tab1"> 
+                <div class="order-top"> 
+                 <div class="th th-item">
+                   商品 
+                 </div> 
+                 <div class="th th-price">
+                   单价 
+                 </div> 
+                 <div class="th th-number">
+                   数量 
+                 </div> 
+                 <div class="th th-operation">
+                   商品操作 
+                 </div> 
+                 <div class="th th-amount">
+                   合计 
+                 </div> 
+                 <div class="th th-status">
+                   交易状态 
+                 </div> 
+                 <div class="th th-change">
+                   交易操作 
+                 </div> 
+                </div> 
+                <div class="order-main"> 
+                 <div class="order-list"> 
+
+                  <!--交易成功--> 
+                  @foreach($order as $da)
+                  {{var_dump($da->status)}}
+                  <div class="order-status5"> 
+                   <div class="order-title"> 
+                    <div class="dd-num">
+                     订单编号8--所有订单
+                     <a href="javascript:;">{{$da->order_code}}0</a>
+                    </div> 
+                    <span>成交时间：{{$da->addtime}}</span> 
+                    <!--    <em>店铺：小桔灯</em>--> 
+                   </div> 
+                   <div class="order-content"> 
+                    <div class="order-left"> 
+                     <ul class="item-list"> 
+                      <li class="td td-item"> 
+                       <div class="item-pic"> 
+                        <a href="#" class="J_MakePoint"> <img src="/static/admin/uploads/z_goods/{{$da->pic}}" class="itempic J_ItemImg" /> </a> 
+                       </div> 
+                       <div class="item-info"> 
+                        <div class="item-basic-info"> 
+                         <a href="#"> <p>{{$da->gname}}</p></a> 
+                        </div> 
+                       </div> </li> 
+                      <li class="td td-price"> 
+                       <div class="item-price">
+                         {{$da->price}}
+                       </div> </li> 
+                      <li class="td td-number"> 
+                       <div class="item-number"> 
+                        <span>&times;</span>{{$da->onum}} 
+                       </div> </li> 
+                      <li class="td td-operation"> 
+                       <div class="item-operation"> 
+                       </div> </li> 
+                     </ul> 
+                    </div> 
+                    <div class="order-right"> 
+                     <li class="td td-amount"> 
+                      <div class="item-amount">
+                        合计：{{$da->total}} 
+                       <p>含优惠券<span>10.00</span></p> 
+                      </div> </li> 
+                          
+
+                     <div class="move-right"> 
+                      @if($da->status=='0')
+                           <li class="td td-status"> 
+                           <div class="item-status"> 
+                            <p class="Mystatus">等待买家付款</p> 
+                           </div> </li>
+                           <li class="td td-change"> 
+                             <a href="/pays/{{$da->oid}}" class="am-btn am-btn-danger anniu">
+                               一键支付
+                             </a> </li> 
+
+                        @elseif($da->status == '1')
+                             <li class="td td-status"> 
+                             <div class="item-status"> 
+                              <p class="Mystatus">买家已付款</p> 
+                              <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p> 
+                              <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
+                             </div> </li> 
+                            <li class="td td-change"> 
+                             <div class="am-btn am-btn-danger anniu">
+                               删除订单
+                             </div></li>
+                            @elseif($da->status== '2')
+                              <li class="td td-status"> 
+                             <div class="item-status"> 
+                              <p class="Mystatus">卖家已发货</p> 
+                              <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p> 
+                              <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
+                              <p class="order-info"><a href="logistics.html">延长收货</a></p> 
+
+                             </div> </li> 
+                            <li class="td td-change"> 
+                             <div class="am-btn am-btn-danger anniu">
+                               确认收货
+                             </div></li>
+
+                              @elseif($da->status == '3')
+                                 <li class="td td-status"> 
+                                 <div class="item-status"> 
+                                  <p class="Mystatus">交易成功</p> 
+                                  <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p> 
+                                  <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
+                                 </div> </li> 
+                                <li class="td td-change"> 
+                                 <div class="am-btn am-btn-danger anniu">
+                                   评价商品
+                                 </div> </li> 
+                              @else
+                               <li class="td td-status"> 
+                                 <div class="item-status"> 
+                                  <p class="Mystatus">交易完成</p> 
+                                  <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p>
+                                  <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
+                                 </div> </li> 
+                      @endif
+                     </div> 
+                    </div> 
+                   </div> 
+                  </div> 
+                  @endforeach
+                  <!-- 所有订单 -->
+
+
+                 </div> 
+                </div> 
+               </div> 
+               <div class="am-tab-panel am-fade" id="tab2"> 
+                <div class="order-top"> 
+                 <div class="th th-item">
+                   商品 
+                 </div> 
+                 <div class="th th-price">
+                   单价 
+                 </div> 
+                 <div class="th th-number">
+                   数量 
+                 </div> 
+                 <div class="th th-operation">
+                   商品操作 
+                 </div> 
+                 <div class="th th-amount">
+                   合计 
+                 </div> 
+                 <div class="th th-status">
+                   交易状态 
+                 </div> 
+                 <div class="th th-change">
+                   交易操作 
+                 </div> 
+                </div> 
+                <div class="order-main"> 
+                 <div class="order-list">
+                  @foreach($order as $d)
+                  @if($d->status==0)
+                  <div class="order-status1"> 
+                   <div class="order-title"> 
+                    <div class="dd-num">
+                     订单编号3：--待付款
+                     <a href="javascript:;">{{$d->order_code}}</a>
+                    </div> 
+                    <span>成交时间：{{$d->addtime}}</span> 
+                    <!--    <em>店铺：小桔灯</em>--> 
+                   </div> 
+                   <div class="order-content"> 
+                    <div class="order-left"> 
+                    
+                      
+                     <ul class="item-list"> 
+                      <li class="td td-item"> 
+                       <div class="item-pic"> 
+                        <a href="#" class="J_MakePoint"> <img src="/static/admin/uploads/z_goods/{{$d->pic}}" class="itempic J_ItemImg" /> </a> 
+                       </div> 
+                       <div class="item-info"> 
+                        <div class="item-basic-info"> 
+                         <a href="#"> <p>{{$d->gname}}</p>  </a> 
+                        </div> 
+                       </div> </li> 
+                      <li class="td td-price"> 
+                       <div class="item-price">
+                         {{$d->price}}
+                       </div> </li> 
+                      <li class="td td-number"> 
+                       <div class="item-number"> 
+                        <span>&times;</span>{{$d->onum}} 
+                       </div> </li> 
+                      <li class="td td-operation"> 
+                       <div class="item-operation"> 
+                       </div> </li> 
+                     </ul> 
+                    </div> 
+                    <div class="order-right"> 
+                     <li class="td td-amount"> 
+                      <div class="item-amount">
+                        合计：{{$d->total}}
+                       <!-- <p>含优惠券<span>10.00</span></p>  -->
+                      </div> </li> 
+                     <div class="move-right"> 
+                      <li class="td td-status"> 
+                       <div class="item-status"> 
+                        <p class="Mystatus">等待买家付款</p> 
+                        <p class="order-info"><a href="#">取消订单</a></p> 
+                       </div> </li> 
+                      <li class="td td-change"> <a href="pay.html"> 
+                        <a href="/pays/{{$d->oid}}" class="am-btn am-btn-danger anniu">
+                          一键支付
+                        </a></a> </li> 
+                     </div> 
+                    </div> 
+                   </div> 
+                  </div> 
+                  @endif
+                  @endforeach
+                 </div> 
+                </div> 
+               </div> 
+               <div class="am-tab-panel am-fade" id="tab3"> 
+                <div class="order-top"> 
+                 <div class="th th-item">
+                   商品 
+                 </div> 
+                 <div class="th th-price">
+                   单价 
+                 </div> 
+                 <div class="th th-number">
+                   数量 
+                 </div> 
+                 <div class="th th-operation">
+                   商品操作 
+                 </div> 
+                 <div class="th th-amount">
+                   合计 
+                 </div> 
+                 <div class="th th-status">
+                   交易状态 
+                 </div> 
+                 <div class="th th-change">
+                   交易操作 
+                 </div> 
+                </div> 
+                <div class="order-main"> 
+                 <div class="order-list">
+                  @foreach($order as $df)
+                  @if($df->status ==1)
+                  <div class="order-status2"> 
+                   <div class="order-title"> 
+                    <div class="dd-num">
+                     订单编号4：//代发货
+                     <a href="javascript:;">{{$df->order_code}}</a>
+                    </div> 
+                    <span>成交时间：{{$df->addtime}}</span> 
+                    <!--    <em>店铺：小桔灯</em>--> 
+                   </div> 
+                   <div class="order-content"> 
+                    <div class="order-left"> 
+                   
+                    
+                     <ul class="item-list"> 
+                      <li class="td td-item"> 
+                       <div class="item-pic"> 
+                        <a href="#" class="J_MakePoint"> <img src="/static/admin/uploads/z_goods/{{$df->pic}}" class="itempic J_ItemImg" /> </a> 
+                       </div> 
+                       <div class="item-info"> 
+                        <div class="item-basic-info"> 
+                         <a href="#"> <p>{{$df->gname}}</p> </a> 
+                        </div> 
+                       </div> </li> 
+                      <li class="td td-price"> 
+                       <div class="item-price">
+                       {{$df->price}}
+                       </div> </li> 
+                      <li class="td td-number"> 
+                       <div class="item-number"> 
+                        <span>&times;</span>2 
+                       </div> </li> 
+                      <li class="td td-operation"> 
+                       <div class="item-operation"> 
+                        <a href="refund.html">退款</a> 
+                       </div> </li> 
+                     </ul> 
+                    </div> 
+                    <div class="order-right"> 
+                     <li class="td td-amount"> 
+                      <div class="item-amount">
+                        合计：{{$df->total}}
+                       <!-- <p>含优惠券<span>10.00</span></p>  -->
+                      </div> </li> 
+                     <div class="move-right"> 
+                      <li class="td td-status"> 
+                       <div class="item-status"> 
+                        <p class="Mystatus">买家已付款</p> 
+                        <p class="order-info"><a href="/horderinfo/{{$df->oid}}">订单详情</a></p> 
+                       </div> </li> 
+                      <li class="td td-change"> 
+                       <div  class="am-btn am-btn-danger anniu tixing" disabled>
+                         等待发货
+                       </div> </li> 
+                     </div> 
+                    </div> 
+                   </div> 
+                  </div>
+                  @endif
+                  @endforeach
+
+                 </div> 
+                </div> 
+               </div> 
+               <div class="am-tab-panel am-fade" id="tab4"> 
+                <div class="order-top"> 
+                 <div class="th th-item">
+                   商品 
+                 </div> 
+                 <div class="th th-price">
+                   单价 
+                 </div> 
+                 <div class="th th-number">
+                   数量 
+                 </div> 
+                 <div class="th th-operation">
+                   商品操作 
+                 </div> 
+                 <div class="th th-amount">
+                   合计 
+                 </div> 
+                 <div class="th th-status">
+                   交易状态 
+                 </div> 
+                 <div class="th th-change">
+                   交易操作 
+                 </div> 
+                </div> 
+                <div class="order-main"> 
+                 <div class="order-list">
+                  <!--  -->
+                  @foreach($order as $ds)
+                  @if($ds->status == 2)
+                  <div class="order-status3"> 
+                   <div class="order-title"> 
+                    <div class="dd-num">
+                     订单编号5：//待收货
+                     <a href="javascript:;">{{$ds->order_code}}</a>
+                    </div> 
+                    <span>成交时间：{{$ds->addtime}}</span> 
+                    <!--    <em>店铺：小桔灯</em>--> 
+                   </div> 
+                   <div class="order-content"> 
+                    <div class="order-left"> 
+                     <ul class="item-list"> 
+                      <li class="td td-item"> 
+                       <div class="item-pic"> 
+                        <a href="#" class="J_MakePoint"> <img src="/static/admin/uploads/z_goods/{{$ds->pic}}" class="itempic J_ItemImg" /> </a> 
+                       </div> 
+                       <div class="item-info"> 
+                        <div class="item-basic-info"> 
+                         <a href="#"> <p>{{$ds->gname}} </p> </a> 
+                        </div> 
+                       </div> </li> 
+                      <li class="td td-price"> 
+                       <div class="item-price">
+                         {{$ds->price}}
+                       </div> </li> 
+                      <li class="td td-number"> 
+                       <div class="item-number"> 
+                        <span>&times;</span>2 
+                       </div> </li> 
+                      <li class="td td-operation"> 
+                       <div class="item-operation"> 
+                        <a href="refund.html">退款/退货</a> 
+                       </div> </li> 
+                     </ul> 
+                    </div> 
+                    <div class="order-right"> 
+                     <li class="td td-amount"> 
+                      <div class="item-amount">
+                        合计：{{$ds->total}}
+                       <!-- <p>含优惠券<span>10.00</span></p>  -->
+                      </div> </li> 
+                     <div class="move-right"> 
+                      <li class="td td-status"> 
+                       <div class="item-status"> 
+                        <p class="Mystatus">卖家已发货</p> 
+                        <p class="order-info"><a href="/horderinfo/{{$ds->oid}}">订单详情</a></p> 
+                        <p class="order-info"><a href="/wuliu/{{$ds->order_code}}">查看物流</a></p> 
+                        <p class="order-info"><a href="#">延长收货</a></p> 
+                       </div> </li> 
+                      <li class="td td-change"> 
+                       <a href="/confirm/{{$ds->oid}}" class="am-btn am-btn-danger anniu">
+                         确认收货
+                       </a> </li> 
+                     </div> 
+                    </div> 
+                   </div> 
+                  </div> 
+                  @endif
+                  @endforeach
+
+                 </div> 
+                </div> 
+               </div> 
+               <div class="am-tab-panel am-fade" id="tab5"> 
+                <div class="order-top"> 
+                 <div class="th th-item">
+                   商品 
+                 </div> 
+                 <div class="th th-price">
+                   单价 
+                 </div> 
+                 <div class="th th-number">
+                   数量 
+                 </div> 
+                 <div class="th th-operation">
+                   商品操作 
+                 </div> 
+                 <div class="th th-amount">
+                   合计 
+                 </div> 
+                 <div class="th th-status">
+                   交易状态 
+                 </div> 
+                 <div class="th th-change">
+                   交易操作 
+                 </div> 
+                </div> 
+                <div class="order-main"> 
+                 <div class="order-list"> 
+                  <!--不同状态的订单 --> 
+                  @foreach($order as $pj)
+                  @if($pj->status==3)
+                  <div class="order-status4"> 
+                   <div class="order-title"> 
+                    <div class="dd-num">
+                     订单编号7：
+                     <!-- 待评价 -->
+                     <a href="javascript:;">{{$pj->order_code}}</a>
+                    </div> 
+                    <span>成交时间：{{$pj->addtime}}</span> 
+                    <!--    <em>店铺：小桔灯</em>--> 
+                   </div> 
+                   <div class="order-content"> 
+                    <div class="order-left"> 
+                      
+                    
+                     <ul class="item-list"> 
+                      <li class="td td-item"> 
+                       <div class="item-pic"> 
+                        <a href="#" class="J_MakePoint"> <img src="/static/admin/uploads/z_goods/{{$pj->pic}}" class="itempic J_ItemImg" /> </a> 
+                       </div> 
+                       <div class="item-info"> 
+                        <div class="item-basic-info"> 
+                         <a href="#"> <p>{{$pj->gname}}</p> </a> 
+                        </div> 
+                       </div> </li> 
+                      <li class="td td-price"> 
+                       <div class="item-price">
+                        {{$pj->price}}
+                       </div> </li> 
+                      <li class="td td-number"> 
+                       <div class="item-number"> 
+                        <span>&times;</span>{{$pj->onum}} 
+                       </div> </li> 
+                      <li class="td td-operation"> 
+                       <div class="item-operation"> 
+                        <a href="refund.html">退款/退货</a> 
+                       </div> </li> 
+                     </ul> 
+                    </div> 
+                    <div class="order-right"> 
+                     <li class="td td-amount"> 
+                      <div class="item-amount">
+                        合计：{{$pj->total}} 
+                       <p>含优惠券<span>10.00</span></p> 
+                      </div> </li> 
+                     <div class="move-right"> 
+                      <li class="td td-status"> 
+                       <div class="item-status"> 
+                        <p class="Mystatus">交易成功</p> 
+                        <p class="order-info"><a href="/horderinfo/{{$pj->oid}}">订单详情</a></p> 
+                        <p class="order-info"><a href="/wuliu/{{$pj->order_code}}">查看物流</a></p> 
+                       </div> </li> 
+                      <li class="td td-change"> <a href="commentlist.html"> 
+                        <a href="/hcomment/{{$pj->oid}}-{{$pj->gid}}" class="am-btn am-btn-danger anniu">
+                          评价商品
+                        </a> </a> </li> 
+                     </div> 
+                    </div> 
+                   </div> 
+                  </div> 
+                 </div>
+                 @endif
+                 @endforeach 
+                </div> 
+               </div> 
+              </div> 
+             </div> 
+            </div>
+            <!-- 订单结束 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
          </div>
          <!-- Single Tab Content End -->
@@ -265,10 +770,10 @@
                       <div class="coupon-list">
                         <div class="c-type">
                           <div class="c-class">
-                            <strong>运费券</strong>
+                            <strong>优惠券</strong>
                           </div>
                           <div class="c-price">
-                            <strong>可抵运费</strong>
+                            <strong>可抵优惠券/strong>
                           </div>
                           <div class="c-limit">
                             【不含偏远地区】
@@ -344,11 +849,11 @@
                       <div class="coupon-list">
                         <div class="c-type">
                           <div class="c-class">
-                            <strong>运费券</strong>
+                            <strong>优惠券</strong>
                             <span class="am-icon-trash"></span>
                           </div>
                           <div class="c-price">
-                            <strong>可抵运费</strong>
+                            <strong>可抵优惠券/strong>
                           </div>
                           <div class="c-limit">
                             【不含偏远地区】
@@ -489,9 +994,33 @@
           <div class="tab-pane fade" id="announce" role="tabpanel">
           <div class="myaccount-content">
            <h3>消息</h3>
-           <div class="account-details-form">
-            ss
-           </div>
+            @foreach($notice as $r)
+          
+                <div class="row"> 
+               <div class="col-lg-12"> 
+                <div class="faq-wrapper"> 
+                 <div id="accordion"> 
+                  
+                 
+                  
+                  <div class="card"> 
+                   <div class="card-header" id="headingSix"> 
+                    <h5 class="mb-0"> <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">{{$r->created_at}}<span> <i class="fa fa-chevron-down"></i> <i class="fa fa-chevron-up"></i> </span> </button> </h5> 
+                   </div> 
+                   <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion"> 
+                    <div class="card-body"> 
+                     <a href="/mypersonal/{{$r->id}}" style="text-transform: 30">{{$r->title}}</a>
+                    </div> 
+                   </div> 
+                  </div> 
+                 </div> 
+                </div> 
+               </div> 
+              </div>
+            
+            @endforeach
+              {{$notice->render()}}
+
           </div>
          </div>
 
@@ -564,7 +1093,9 @@
         })
         //将得到的数组直接赋值给隐藏域的value值即可
         $('input[name=city]').val(arr);
-    })
+    });
+    // alert($);
+
 </script>
 </html>
 @endsection

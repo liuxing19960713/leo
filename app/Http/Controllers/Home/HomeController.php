@@ -114,6 +114,7 @@ class HomeController extends Controller
     //商品详情页
     public function goodinfo(Request $request,$id)
     {
+        dd($request->all());
         $info=DB::table('goods')->where('id','=',$id)->first();
         //以下是详情信息获取方法
         $arr    = $info->pic;
@@ -121,15 +122,14 @@ class HomeController extends Controller
         foreach ($pic as $key => $value) {
         }
         $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
-        // dd($data);
+        // dd(session('hid'));
+        $id     = session('hid');
+        $uname  = DB::table('user')->where("id","=",$id)->value('uname');//用户信息
         // $value = '/static/uploads/goods/'.$value;
-        // dd($value);
-
-       
-
-
-
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data]);
+         
+        //评论总数
+        $comnum = DB::table('comment')->count();
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'comnum'=>$comnum,'uname'=>$uname]);
 
     }
     //商品列表页
@@ -142,11 +142,32 @@ class HomeController extends Controller
         return view("Home.Home.search",['search'=>$search]);
 
     }
-    public function create()
+  
+    public function create(Request $request)
     {
 
     }
 
+    /**
+     * 评论添加
+     * @author 刘兴
+     * @DateTime 2018-11-19T20:09:21+0800
+     * @param    string                   $value [description]
+     * @return   [type]                          [description]
+     */
+    public function hcomment(Request $request)
+    {
+
+        $data           = $request->except(['_token']);
+        dd($data);
+        // $data['uid']    = session('hid');
+        // $data['addtime']= time();
+        // if(DB::table('comment')->insert($data)){
+
+        //     return redirect("goodinfo/{{$data['gid']}}")->with('success',"评论添加成功");
+        // } 
+        // dd($data);
+    }
     /**
      * Store a newly created resource in storage.
      *

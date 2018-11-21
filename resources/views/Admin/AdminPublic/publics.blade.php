@@ -103,6 +103,13 @@
          <li class="nav-item"> <a class="nav-link" href="/acate/create">分类添加</a></li>
         </ul>
        </div> </li>
+        <!--  <li class="nav-item"> <a class="nav-link" href="#fenlei" aria-expanded="false" aria-controls="fenlei" data-toggle="collapse"> <span class="menu-title">关键词模块</span> <i class="menu-arrow"></i> <i class="mdi mdi-format-list-bulleted menu-icon"></i> </a>
+       <div class="collapse" id="fenlei">
+        <ul class="nav flex-column sub-menu">
+         <li class="nav-item"> <a class="nav-link" href="/acate">关键词列表</a></li>
+         <li class="nav-item"> <a class="nav-link" href="/key/create">关键词更新</a></li>
+        </ul>
+       </div> </li> -->
       <li class="nav-item"> <a class="nav-link" href="#shop" aria-expanded="false" aria-controls="shop" data-toggle="collapse"> <span class="menu-title">商品管理</span> <i class="menu-arrow"></i> <i class="mdi mdi-shopping menu-icon"></i> </a>
        <div class="collapse" id="shop">
         <ul class="nav flex-column sub-menu">
