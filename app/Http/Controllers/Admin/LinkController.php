@@ -210,9 +210,9 @@ class LinkController extends Controller
        if (DB::table('link')->where('id','=',$data['id'])->update(['status'=>$sta])) {
         //更新成功的话就把sta 转换成 中文
         $sta = $arr[$sta];
-            return response()->json(['msg'=>'1','sta'=>$sta]);
+            return json_encode(['msg'=>'1','sta'=>$sta]);
        }else{
-            return response()->json(['msg'=>'0']);
+            return json_encode(['msg'=>'0']);
        }
 
     }

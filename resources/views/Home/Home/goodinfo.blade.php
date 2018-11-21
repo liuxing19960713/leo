@@ -2,7 +2,7 @@
 @section('home')
 <html>
  <head></head>
-
+<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
 <style>
 /*.a{width: 200px;height: 100px;}*/
 .stamp {width: 260px;height: 120px;padding: 0 10px;position: relative;overflow: hidden;}
@@ -115,7 +115,8 @@
      <div class="col-lg-6"> 
       <!--=======  single product details  =======--> 
 
-      <div class="single-product-details-container"> 
+      <div class="single-product-details-container">
+      <input type="hidden" name="val" value="{{$info->id}}">
        <p class="product-title mb-15">{{$info->goods_name}}</p> 
        <div class="rating d-inline-block mb-15"> 
         <i class="lnr lnr-star active"></i> 
@@ -129,7 +130,7 @@
        <p class="product-description mb-15"> {{$info->desrc}}</p> 
        <form action="/hcart" method="post">
         {{csrf_field()}}
-          <input type="hidden" name="id" value="{{$info->id}}">
+         
 
        <div class="cart-buttons mb-30"> 
         <p class="mb-15">数量</p> 
@@ -139,7 +140,14 @@
         <input type="submit" value="添加到购物车" class="pataku-btn"> 
        </div> 
        </form>
-       <p class="wishlist-link mb-30"><a href="#"> <i class="fa fa-heart"></i> 加入到愿望清单</a></p> 
+       @if($cogoods==1)
+       <p class="wishlist-link mb-30"><a gid="{{$info->id}}" href="javascript:void(0)" class="t"> 
+        <i class="lnr lnr-heart "></i> 加入到愿望清单
+       </a></p>
+       
+       @else
+       <p class="wishlist-link mb-30"><a gid="{{$info->id}}" href="javascript:void(0)" class="t"> <i class="fa fa-heart "></i> 已加入到愿望清单</a></p>
+       @endif
        <div class="social-share-buttons mb-30"> 
         <p>分享</p> 
         <ul> 
@@ -379,17 +387,72 @@
   </div> 
   <!--=====  End of related product slider  ======--> 
  </body>
-<<<<<<< HEAD
- <script>
-   alert($);
-=======
  <script type="text/javascript">
+ $(".t").bind('click',function(){
+ //console.log(2);
 
+// console.log($.session.get('hid'));
+  id=$(this).attr('gid');
+  // console.log(id);
+ // return false;
+ // console.log($(this).html());
+ // return false;
+ // 该次事件的 对象
+  gg =$(this);
+   $.ajax({
+      url: '/cogoods',
+      data: {id:id},
+
+      
+      // dataType: 'json',
+      success: function(data){
+        //console.log(typeof data);
+        // 返回的是字符串，就是因为加了两行空行
+       //console.log(data);
+        data = data.replace(/\s/g, '');
+        var ob = JSON.parse(data);//将json的字符串解析为对象
+        // console.log(ob);
+
+        if(ob.msg==0){
+          alert('已取消收藏');
+         gg.html('<i class="lnr lnr-heart "></i> 加入到愿望清单');
+        }else if(ob.msg==1){
+          alert('取消收藏失败');
+         
+
+         
+        }else if(ob.msg==2){
+          alert('添加收藏成功');
+         gg.html('<i class="fa fa-heart "></i> 已加入到愿望清单');
+        }else if(ob.msg==3){
+          alert('添加收藏失败');
+        }else if(ob.msg==4){
+          //console.log(5);
+          alert('请先登录');
+          $(location).attr('href','/hlogin');
+          
+        }
+
+        
+      },
+      error: function(res) {
+        // alert('请先登录');
+            // 
+            // return true;
+            
+        
+      }
+    
+
+    });
+
+});
+//alert(1);
 $('.quan').on('click',function(){
   if ($(this).attr('disabled') === undefined) {
     // 获取当前a标签对象
     a = $(this);
-  
+    
     // 获取当前div对象
     divs = $(this).find('div:first');
     // alert(div);
@@ -421,9 +484,7 @@ $('.quan').on('click',function(){
           divs.attr('class','stamp stamp03');
           // return false;
         } else if(obj.msg == 2) {
-            alert('请先登录');
-            // 这里要修改路径
-            $(location).attr('href','//www.gugu.com/hlogin')
+            
         }else if(obj.msg == 3){
             alert('你已领取');
         }else{
@@ -432,11 +493,14 @@ $('.quan').on('click',function(){
       },
       error: function(res) {
         console.log('res');
+        alert('请先登录');
+            // 这里要修改路径
+            $(location).attr('href','/hlogin');
       }
     });
   }
 });
->>>>>>> 0545a982d6ce5dd18b1ea59450bc2ce8dfeaf2ae
+
  </script>
 </html>
 @endsection

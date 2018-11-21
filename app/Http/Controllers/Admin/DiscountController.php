@@ -60,9 +60,9 @@ class DiscountController extends Controller
         if (DB::table('discount')->where('id','=',$id)->update(['status'=>$sta])) {
             // 把状态切换回状态
             $sta = ($sta==1?'启用':'禁用');
-            return response()->json(['msg'=>1,'sta'=>$sta]);
+            return json_encode(['msg'=>1,'sta'=>$sta]);
         }else{
-            return response()->json(['msg'=>0]);
+            return json_encode(['msg'=>0]);
         }
 
     }

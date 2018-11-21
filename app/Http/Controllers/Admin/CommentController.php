@@ -109,9 +109,9 @@ class CommentController extends Controller
         // return $request->input('id');
         $id = $request->input('id');
         if (DB::table('comment')->where('id','=',$id)->delete()) {
-            return response()->json(['msg'=>1]);
+            return json_encode(['msg'=>1]);
         }else{
-            return response()->json(['msg'=>0]);
+            return json_encode(['msg'=>0]);
         }
     }
 }

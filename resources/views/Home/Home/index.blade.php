@@ -2,6 +2,7 @@
 @section('home')
 <html>
  <head></head>
+  <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
  <body>
   <div class="hero-area pt-15 mb-80">
    <div class="container">
@@ -134,15 +135,19 @@
       <!--=======  top selling product slider container  =======-->
       <div class="ptk-slider double-row-slider-container" data-row="2">
       <!--所有商品遍历开始--> 
-      @foreach($info as $row) 
+      @foreach($se as $row) 
        <div class="col"> 
         <!--=======  single product  =======--> 
         <div class="ptk-product"> 
          <div class="image"> 
-          <a href="/goodinfo/{{$row->id}}" > <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" height="198px" /> </a> 
+          <a href="/goodinfo/{{$row['id']}}" > <img src="/static/admin/uploads/z_goods/{{$row['z_pic']}}" class="img-fluid" alt="" height="198px" /> </a> 
           <!--=======  hover icons  =======--> 
-          <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-          <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
+          <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+          @if($row['status']==1) 
+          <a gid="{{$row['id']}}" class="hover-icon l" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
+          @else
+          <a gid="{{$row['id']}}" class="hover-icon l" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
+          @endif
           <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
           <!--=======  End of hover icons  =======--> 
           <!--=======  badge  =======--> 
@@ -151,8 +156,8 @@
           <!--=======  End of badge  =======--> 
          </div> 
          <div class="content"> 
-          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="/goodinfo/{{$row->id}}" style="font-size:15px;">{{$row->goods_name}}</a></p> 
-          <p class="product-price"><span class="discounted-price">￥{{$row->price}}</span> </p> 
+          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="/goodinfo/{{$row['id']}}" style="font-size:15px;">{{$row['goods_name']}}</a></p> 
+          <p class="product-price"><span class="discounted-price">￥{{$row['price']}}</span> </p> 
          </div> 
          <div class="rating"> 
           <i class="lnr lnr-star active"></i> 
@@ -208,16 +213,20 @@
         <!--=======  deal slider container  =======-->
         <div class="ptk-slider deal-slider-container">
         <!--优惠商品遍历开始-->
-        @foreach($info as $row) 
+        @foreach($se as $row) 
          <div class="col"> 
           <!--=======  single product  =======--> 
           <div class="product-countdown" data-countdown="2020/05/01"></div> 
           <div class="ptk-product"> 
            <div class="image"> 
-            <a href="/goodinfo/{{$row->id}}"> <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" /> </a> 
+            <a href="/goodinfo/{{$row['id']}}"> <img src="/static/admin/uploads/z_goods/{{$row['z_pic']}}" class="img-fluid" alt="" /> </a> 
             <!--=======  hover icons  =======--> 
-            <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-            <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
+            <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+            @if($row['status']==1) 
+            <a gid="{{$row['id']}}" class="hover-icon a" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
+            @else
+            <a gid="{{$row['id']}}" class="hover-icon a" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
+            @endif
             <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
             <!--=======  End of hover icons  =======--> 
             <!--=======  badge  =======--> 
@@ -228,8 +237,8 @@
             <!--=======  End of badge  =======--> 
            </div> 
            <div class="content"> 
-            <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="/goodinfo/{{$row->id}}">{{$row->goods_name}}</a></p> 
-            <p class="product-price">  <span class="discounted-price">￥{{$row->price}}</span> </p> 
+            <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="/goodinfo/{{$row['id']}}">{{$row['goods_name']}}</a></p> 
+            <p class="product-price">  <span class="discounted-price">￥{{$row['price']}}</span> </p> 
            </div> 
            <div class="rating"> 
             <i class="lnr lnr-star active"></i> 
@@ -334,16 +343,19 @@
       <!--=======  top selling product slider container  =======-->
       <div class="ptk-slider top-selling-product-slider-container">
       <!--商品遍历-->
-      @foreach($info as $row) 
+      @foreach($se as $row) 
        <div class="col"> 
         <!--=======  single product  =======--> 
         <div class="ptk-product"> 
          <div class="image"> 
-          <a href="/goodinfo/{{$row->id}}"> <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" /> </a> 
+          <a href="/goodinfo/{{$row['id']}}"> <img src="/static/admin/uploads/z_goods/{{$row['z_pic']}}" class="img-fluid" alt="" /> </a> 
           <!--=======  hover icons  =======--> 
-          <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-          <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
-          <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
+          <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+          @if($row['status']==1) 
+          <a gid="{{$row['id']}}" class="hover-icon r" href="javascript:void(0)"><i class="fa fa-heart"></i></a>@else
+          <a gid="{{$row['id']}}" class="hover-icon r" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
+          @endif
+          <a class="hover-icon " href="#"><i class="lnr lnr-cart"></i></a> 
           <!--=======  End of hover icons  =======--> 
           <!--=======  badge  =======--> 
           <div class="product-badge"> 
@@ -353,8 +365,8 @@
           <!--=======  End of badge  =======--> 
          </div> 
          <div class="content"> 
-          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$row->id}}">{{$row->goods_name}}</a></p> 
-          <p class="product-price"> <span class="discounted-price">￥{{$data->price}}</span> </p> 
+          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$row['id']}}">{{$row['goods_name']}}</a></p> 
+          <p class="product-price"> <span class="discounted-price">￥{{$row['price']}}</span> </p> 
          </div> 
          <div class="rating"> 
           <i class="lnr lnr-star active"></i> 
@@ -515,6 +527,167 @@
    </div>
   </div>
  </body>
+  <script type="text/javascript">
+ $(".l").bind('click',function(){
+ //console.log(2);
+
+
+  id=$(this).attr('gid');
+  gg =$(this);
+  console.log(id);
+   $.ajax({
+      url: '/cogoods',
+      data: {id:id},
+
+      
+      // dataType: 'json',
+      success: function(data){
+        //console.log(typeof data);
+        // 返回的是字符串，就是因为加了两行空行
+       
+        data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
+        console.log(obj);
+
+        if(obj.msg==0){
+          alert('已取消收藏');
+          gg.html('<i class="lnr lnr-heart "></i>');
+        }else if(obj.msg==1){
+          alert('取消收藏失败');
+         
+
+         
+        }else if(obj.msg==2){
+          alert('添加收藏成功');
+          gg.html('<i class="fa fa-heart "></i>');
+        }else if(obj.msg==3){
+          alert('添加收藏失败');
+        }else if(obj.msg==4){
+          //console.log(5);
+          alert('请先登录');
+             $(location).attr('href','/hlogin');
+        }
+
+        
+      },
+      error: function(res) {
+         
+            // return true;
+            
+        
+      }
+    
+
+    });
+
+});
+$(".a").bind('click',function(){
+ //console.log(2);
+
+
+  id=$(this).attr('gid');
+  gg =$(this);
+  console.log(id);
+   $.ajax({
+      url: '/cogoods',
+      data: {id:id},
+
+      
+      // dataType: 'json',
+      success: function(data){
+        //console.log(typeof data);
+        // 返回的是字符串，就是因为加了两行空行
+       
+        data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
+        console.log(obj);
+
+        if(obj.msg==0){
+          alert('已取消收藏');
+          gg.html('<i class="lnr lnr-heart "></i>');
+        }else if(obj.msg==1){
+          alert('取消收藏失败');
+         
+
+         
+        }else if(obj.msg==2){
+          alert('添加收藏成功');
+          gg.html('<i class="fa fa-heart "></i>');
+        }else if(obj.msg==3){
+          alert('添加收藏失败');
+        }else if(obj.msg==4){
+          //console.log(5);
+          alert('请先登录');
+             $(location).attr('href','/hlogin');
+        }
+
+        
+      },
+      error: function(res) {
+         
+            // return true;
+            
+        
+      }
+    
+
+    });
+
+});
+$(".r").bind('click',function(){
+ //console.log(2);
+
+
+  id=$(this).attr('gid');
+  gg =$(this);
+  console.log(id);
+   $.ajax({
+      url: '/cogoods',
+      data: {id:id},
+
+      
+      // dataType: 'json',
+      success: function(data){
+        //console.log(typeof data);
+        // 返回的是字符串，就是因为加了两行空行
+       
+        data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
+        console.log(obj);
+
+        if(obj.msg==0){
+          alert('已取消收藏');
+          gg.html('<i class="lnr lnr-heart "></i>');
+        }else if(obj.msg==1){
+          alert('取消收藏失败');
+         
+
+         
+        }else if(obj.msg==2){
+          alert('添加收藏成功');
+          gg.html('<i class="fa fa-heart "></i>');
+        }else if(obj.msg==3){
+          alert('添加收藏失败');
+        }else if(obj.msg==4){
+          //console.log(5);
+          alert('请先登录');
+             $(location).attr('href','/hlogin');
+        }
+
+        
+      },
+      error: function(res) {
+         
+            // return true;
+            
+        
+      }
+    
+
+    });
+
+});
+ </script>
 </html>
 @endsection
 @section('title','灯饰人生')

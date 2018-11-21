@@ -93,16 +93,22 @@
     sta = $(this).parents('tr').find('td:nth-child(5)').html();
     // alert(sta);
     //ajax
-    $.get('/linkss',{id:id,sta:sta},function(data){
+    $.ajax({
+      url: '/linkss',
+      data: {id:id,sta:sta},
+      success:function(data){
+      data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
       // alert(data);
-      if (data.msg == 1) {
+      if (obj.msg == 1) {
         alert('修改成功');
         // alert(data.sta);
-        s.html(data.sta);
+        s.html(obj.sta);
       }else{
         alert('修改失败！');
       }
-    },'json');
+      }
+    });
   });
  </script>
 </html>

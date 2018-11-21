@@ -23,7 +23,7 @@ class Re_CommentController extends Controller
         $ks = $request->input('keywordss');
         // echo '主页';
         $data = DB::table('re_comment')->join('admin','re_comment.admin_id','=','admin.id')->select('re_comment.*','admin.name')->where('name','like','%'.$k.'%')->where('comm_id','like','%'.$ks.'%')->paginate(3);
-        // dd($data);
+         //dd($data);
         return view('Admin.Admin.Comment.recomment',['data'=>$data,'request'=>$request->all()]);
     }
 
@@ -188,9 +188,9 @@ class Re_CommentController extends Controller
         $id = $request->input('id');
         // return json_encode($id);
         if (DB::table('re_comment')->where('id','=',$id)->delete()) {
-            return response()->json(['msg'=>1]);
+            return json_encode(['msg'=>1]);
         }else{
-            return response()->json(['msg'=>0]);
+            return json_encode(['msg'=>0]);
         }
     }
 }
