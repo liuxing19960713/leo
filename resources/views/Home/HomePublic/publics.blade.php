@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
- <head> 
-  <meta charset="utf-8" /> 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
-  <title>@yield('title')</title> 
-  <meta name="description" content="" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-  <!-- Favicon --> 
+ <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>@yield('title')</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicon -->
   <link rel="icon" href="/static/home/assets/images/favicon.ico" />
     <!-- 分页样式 -->
+
   <link rel="stylesheet" href="/static/admins/css/mypage.css" /> 
-    <script src="/static/js/jquery-1.8.3.min.js"></script>
+
+
   <!-- CSS
   ============================================ -->
   <!-- Bootstrap CSS -->
@@ -28,8 +30,8 @@
   <link href="/static/home/assets/css/main.css" rel="stylesheet" />
   <!-- Modernizer JS -->
   <script src="/static/home/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="/static/js/jquery-1.8.3.min.js"></script>
 
-  
  </head>
  <body>
   <!--=============================================
@@ -61,7 +63,7 @@
            <li><a href="/loginout">退出</a></li>
             @else
            <li><a href="/hlogin">登录</a></li>
-           <li><a href="/hregi/create">注册</a></li>
+           <li><a href="/hregi">注册</a></li>
             @endif
           </ul>
          </div>
@@ -98,9 +100,9 @@
       </div>
       <div class="col-12 col-lg-6 col-md-5 mb-sm-20">
        <!--=======  Search bar  =======-->
-       <form action="index.html">
+       <form action="/keywords" method="get"> 
         <div class="search-bar">
-         <input type="search" placeholder="Search entire store here ..." />
+         <input type="search" name="keywords" placeholder="Search entire store here ..." />
          <button><i class="lnr lnr-magnifier"></i></button>
         </div>
        </form>
@@ -180,15 +182,15 @@
 
 
           <li class="menu-item-has-children"><a href="/search/{{$row->id}}">{{$row->name}}</a>
-          @if(count($row->dev)) 
-           <!-- Mega Category Menu Start --> 
+          @if(count($row->dev))
+           <!-- Mega Category Menu Start -->
            <ul class="category-mega-menu">
-            @foreach($row->dev as $rows) 
+            @foreach($row->dev as $rows)
             <li class="menu-item-has-children"> <a class="megamenu-head" href="/search/{{$rows->id}}">{{$rows->name}}</a>
-              @if(count($rows->dev)) 
+              @if(count($rows->dev))
              <ul>
-                @foreach($rows->dev as $rowss) 
-              <li><a href="/search/{{$rowss->id}}">{{$rowss->name}}</a></li> 
+                @foreach($rows->dev as $rowss)
+              <li><a href="/search/{{$rowss->id}}">{{$rowss->name}}</a></li>
 
                @endforeach
 
@@ -206,6 +208,7 @@
           <li><a href="#" id="more-btn"><span class="lnr lnr-plus-circle"></span> More Categories</a></li>
 
          </ul>
+
 
         </nav> 
        </div> 
@@ -310,7 +313,7 @@
         </div>
         </div>
         @endif
-      @if(session('success'))
+  @if(session('success'))
 
     <!-- 错误提示信息结束 -->
 

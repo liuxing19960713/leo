@@ -90,6 +90,7 @@
  });
 
  $('.status').click(function(){
+
      // alert('hah ');
     //获取该链接的id
     id = $(this).parents('tr').find('td:first').html();
@@ -101,6 +102,7 @@
     sta = $(this).parents('tr').find('td:nth-child(5)').html();
       //alert(sta);
     //ajax
+
     ///articleajax
     
       $.ajax({
@@ -109,6 +111,7 @@
       success:function(data){
       data = data.replace(/\s/g, '');
         var obj = JSON.parse(data);
+
         // console.log(dad.sta);
        if (obj.msg == 1) {
          alert('修改成功');

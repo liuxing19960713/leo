@@ -17,7 +17,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        //
+        return view("Home.Register.register");
     }
 
     /**
@@ -29,7 +29,7 @@ class RegisterController extends Controller
     {
         //
         // echo '注册页面';
-        return view("Home.Register.register");
+
     }
 
     /**
@@ -41,8 +41,10 @@ class RegisterController extends Controller
     public function store(RegisterInsert $request)
     {
         $code =  $request->cookie('code');
+
         $codes= $request->input('code');
         // dd($codes);
+
         if(!$codes == $code){
             return back()->with("error","验证错误");
         }else{
