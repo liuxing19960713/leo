@@ -40,7 +40,7 @@
         <td>{{$row->title}}</td>
         <td>{{$row->head}}</td>
         
-        <td>{{$row->admin->name}}</td>
+        <td>{{$row->admin['name']}}</td>
         <td class=" status btn btn-gradient-dark" style="margin-top: 20px;">{{$row->status}}</td>
         <td>{{$row->created_at}}</td> 
          
@@ -69,17 +69,24 @@
     //alert(s);
     //Ajax
     // alert('1');
-    $.get("/articledel",{id:id},function(data){
+    // /articledel
+    $.ajax({
+      url: '/articledel',
+      data: {id:id},
       // alert(1);
       // alert(data);
-       if(data.msg==1){
+      success:function(data){
+        data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
+       if(obj.msg==1){
          alert("删除成功");
          //移除删除数据所在的tr
          s.remove();
        }else{
          alert("删除失败");
        }
-    },'json');
+     }
+    });
  });
 
  $('.status').click(function(){
@@ -89,23 +96,32 @@
     id = $(this).parents('tr').find('td:first').html();
     // alert(id);
     //存储 该状态的td 的对象
-    s = $(this).parents('tr').find('td:nth-child(6)');
+    s = $(this).parents('tr').find('td:nth-child(5)');
     //获取状态
     // console.log(s);
-    sta = $(this).parents('tr').find('td:nth-child(6)').html();
-     // alert(sta);
+    sta = $(this).parents('tr').find('td:nth-child(5)').html();
+      //alert(sta);
     //ajax
-    $.get('/articleajax',{id:id,sta:sta},function(data){
-      alert(data);
+
+    ///articleajax
+    
+      $.ajax({
+      url: '/articleajax',
+      data: {id:id,sta:sta},
+      success:function(data){
+      data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
+
         // console.log(dad.sta);
-       if (data.msg == 1) {
+       if (obj.msg == 1) {
          alert('修改成功');
       //   console.log(data.sta);
-        s.html(data.sta);
+        s.html(obj.sta);
        }else{
          alert('修改失败！');
        }
-    },'json');
+      }
+    });
 
   });
 

@@ -22,6 +22,7 @@ class ArticleController extends Controller
         $k=$request->input('keywords');
         //文章列表
         $data=Article::where("title",'like','%'.$k.'%')->orderBy('id','ASC')->paginate(3);
+        //dd($data);
         return view("Admin.Article.index",['data'=>$data,'request'=>$request->all()]);
     }
 
@@ -220,9 +221,9 @@ class ArticleController extends Controller
                 unlink(".".$value);
             }
             //json格式
-            return response()->json(['msg'=>1]);
+            return json_encode(['msg'=>1]);
         }else{
-            return response()->json(['msg'=>0]);
+            return json_encode(['msg'=>0]);
         }
     }
 
@@ -238,7 +239,7 @@ class ArticleController extends Controller
        $sta=array_search($data['sta'], $arr);
        if ($sta == 0) {
             $sta = 1;
-       }else{
+       }else if($sta == 1){
             $sta = 0;
        }
        if ($sta > 1 || $sta < 0) {
@@ -248,9 +249,9 @@ class ArticleController extends Controller
        if (DB::table('article')->where('id','=',$data['id'])->update(['status'=>$sta])) {
         //更新成功的话就把sta 转换成 中文
         $sta = $arr[$sta];
-            return response()->json(['msg'=>'1','sta'=>$sta]);
+            return json_encode(['msg'=>'1','sta'=>$sta]);
        }else{
-            return response()->json(['msg'=>'0']);
+            return json_encode(['msg'=>'0']);
        }
 
     }

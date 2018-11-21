@@ -63,15 +63,21 @@
     //获取删除数据所在的tr
     s=$(this).parents("tr");
     //Ajax
-    $.get("/administratordel",{id:id},function(data){
-       if(data.msg==1){
+   $.ajax({
+      url: '/administratordel',
+      data: {id:id},
+      success:function(data){
+      data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
+       if(obj.msg==1){
          alert("删除成功");
          //移除删除数据所在的tr
          s.remove();
        }else{
          alert("删除失败");
        }
-    },'json');
+     }
+    });
  });
  </script>
 </html>

@@ -97,14 +97,20 @@
     tr = $(this).parents('tr');
 
     //ajax
-    $.get('/recommentdel',{id:id},function(data){
+     $.ajax({
+      url: '/recommentdel',
+      data: {id:id},
+      success:function(data){
+      data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
       // alert(data);
-      if (data.msg == 1) {
+      if (obj.msg == 1) {
         tr.remove();
         alert('删除成功!');
       }else{
         alert('删除失败!');
       }
+    }
     });
  });
 

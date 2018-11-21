@@ -41,9 +41,10 @@
         <td>{{$row->status}}</td>
         <td>{{$row->total}}</td>
         <td>{{$row->addtime}}</td>
-        <td><a href="/order/{{$row->id}}" class="btn btn-sm btn-gradient-success ajdel">订单详情</a>
-
-      <a href="javascript:void(0)" class="btn btn-sm btn-gradient-info edit">{{$row->status}}</a></td> 
+       
+        <td><a href="/order/{{$row->id}}" class="btn btn-sm btn-gradient-success ajdel">订单详情</a> 
+        <a href="javascript:void(0)" class="btn btn-sm btn-gradient-info edit">{{$row->status}}</a></td>
+     
        </tr>
        @endforeach 
       </tbody> 
@@ -58,7 +59,7 @@
   kkk = $(this).parents("tr").find("td:first");
   id=$(this).parents("tr").find("td:first").html();
   status=$(this).html();
-  // alert(status);
+   //alert(status);
   $(this).removeClass('disable');
    
   // alert(status);
@@ -80,21 +81,29 @@
   if (!st) {
     return false;
   };
+   if(status=="已支付"){
+   $(location).attr('href','/courier/'+id);
+ }
   //Ajax
-  //
-  $.get("/orderAjax",{id:id,status:status},function(data){
-    
+  //orderAjax
+  
+     $.ajax({
+      url: '/orderAjax',
+      data: {id:id,status:status},
+      success:function(data){
+      data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
     // console.log($(".edit").html());
     // 获取对应的数据  替换掉a标签里面html内容
-    if (data.msg == 1) {
+    if (obj.msg == 1) {
     // alert(data.status);
     // console.log(kkk.parent().find('.edit').html(data.status));
-      kkk.parent().find('.edit').html(data.status);
+      kkk.parent().find('.edit').html(obj.status);
     }else{
       alert('发生未知错误,修改失败!');
     };
-
- },'json');
+    }
+ });
   // alert(dos);
 });
  </script>

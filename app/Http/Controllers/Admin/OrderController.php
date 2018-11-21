@@ -114,15 +114,33 @@ class OrderController extends Controller
         // $status = $arr[$status];
 
         // return json_encode($status);
-
+        
         if (DB::table('order')->where('id','=',$id)->update(['status'=>$status])) {
             //替换 成对应的状态中文
             $status = $arr[$status];
             //传递回去数据
-            return response()->json(['msg'=>'1','status'=>$status]);
+            return json_encode(['msg'=>'1','status'=>$status]);
         }else{
-            return response()->json(['msg'=>'0']);
+            return json_encode(['msg'=>'0']);
         }
     }
+    //添加快递单号
+    public function Courier($id){
+      
+       
+        // return view('')
+        //dd($id);
+        $order=DB::table('order')->where('id','=',$id)->first();
+        // dd($order);
+        return view('Admin.Order.add',['order'=>$order]);
+        // $order=DB::table('order')->where('id','=',$id)->update($data)
+    }
+    //存入快递单号
+    public function upCourier(Request $request){
+       $data=$request->except(['_token']);
+       $order=DB::table('order')->where('order_code','=',$data['order_code'])->update($data);
+       return redirect("/order");
+    }
+
    
 }
