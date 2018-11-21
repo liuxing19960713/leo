@@ -54,7 +54,7 @@
          <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> 账户详细资料</a>
 
 
-        <a href="#announce" data-toggle="tab"><i class="fa fa-user"></i>消息<span class="count">  <i class="lnr lnr-heart"></i> ({{$count}})</span></a>
+        <a href="#announce" data-toggle="tab"><i class="glyphicon glyphicon-bullhorn"></i>消息<span class="count">({{$count}})</span></a>
 
          <a href="login-register.html"><i class="fa fa-sign-out"></i> 登出</a>
         </div>

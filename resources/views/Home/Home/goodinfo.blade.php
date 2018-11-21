@@ -270,21 +270,20 @@
           </div> 
           <div class="rattings-wrapper"> 
            
-            
+           @foreach($comlist as $pl)
            <div class="sin-rattings"> 
             <div class="ratting-author"> 
-             <h3>Rashed Mahmud</h3> 
+             <h3>{{$uname}}</h3> 
              <div class="ratting-star"> 
               <i class="fa fa-star"></i> 
               <i class="fa fa-star"></i> 
               <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <span>(5)</span> 
+              <span>({{$pl->score}})</span> 
              </div> 
             </div> 
-            <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli</p> 
+            <p>{{$pl->comment}}</p> 
            </div> 
+           @endforeach
           </div> 
           <div class="ratting-form-wrapper fix"> 
            <h3>Add your Comments</h3> 
@@ -311,7 +310,8 @@
               <input type="hidden" name="gid" value="{{$info->id}}">
              <div class="col-12 mb-15"> 
               <label for="your-review">Your Comment:</label> 
-              <textarea name="comment" id="your-review" placeholder="Write a review"></textarea> 
+              <!-- <textarea name="comment" id="your-review" placeholder="Write a review"></textarea>  -->
+              <input type="range" value="3">
              </div> 
              <div class="col-12"> 
               <input value="add review" type="submit" /> 
