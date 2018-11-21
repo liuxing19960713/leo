@@ -179,17 +179,16 @@ class HomeController extends Controller
         $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
 
         // dd(session('hid'));
-        $id     = session('hid');
-        $uname  = DB::table('user')->where("id","=",$id)->value('uname');//用户信息
+        $uid     = session('hid');
+        //用户信息
+        $uname  = DB::table('user')->where("id","=",$uid)->value('uname');
         // $value = '/static/uploads/goods/'.$value;
-         
-        //评论总数
-        $comnum = DB::table('comment')->count();
-
+        /********评论信息******评论总数*******************/
+        $comnum =count($comlist = DB::table('comment')->where("gid","=",$info->id)->get());
+        /********评论信息******评论总数*******************/
         $cate=DB::table('category')->where('id','=',$info->cate_id)->first();
-
-         $ca=explode(",",$cate->path);
-         $c=(count($ca));
+        $ca=explode(",",$cate->path);
+        $c=(count($ca));
 
          //dd($ca[1]);
          //var_dump($ca[1]);
@@ -232,7 +231,7 @@ class HomeController extends Controller
         //dd(3);
        
 
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs,'comnum'=>$comnum,'uname'=>$uname,'cogoods'=>$cogoods]);
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs,'comnum'=>$comnum,'uname'=>$uname,'cogoods'=>$cogoods,'comlist'=>$comlist]);
 
 
 
