@@ -7,7 +7,9 @@
    <div class="card"> 
     <div class="card-body"> 
      <h4 class="card-title">公告列表</h4> 
+
     <form class="d-flex align-items-center h-10" action="/company" method="get"> 
+
        <div class="input-group">
         <div class="input-group-prepend bg-transparent">
         <button type="submit">
