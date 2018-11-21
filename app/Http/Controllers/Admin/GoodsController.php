@@ -152,73 +152,135 @@ class GoodsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+       public function update(Request $request, $id)
     {
         $data = $request->except(['_token','_method']);
         // 商品图片
+        // dd($data);
         $id   = $id;
         // $count  = count($pic);
         // var_dump($data);exit();
-        if(!empty($data['z_pic'])){
+        if ((empty($data['pic']))&&(empty($data['z_pic']))) {
+             // 这里都是为空的
+            // 直接更新数据库
+            unset($data['pic']);
+            unset($data['z_pic']);
+            if (Goods::where('id','=',$id)->update($data)) {
+                return redirect('/agoods')->with('success','更新成功');
+            }else{
+                return redirect('/agoods/'.$id.'/edit')->with('error','更新失败');
+            }
+        }
+
+        // dd(1);
+        // 判断主图是否为空
+        if(!empty($data['z_pic']))
+        {
             // 主图不为空的时候
+
              $pic  = DB::table('goods')->where("id","=",$id)->first();
-             $value = './static/admin/uploads/z_goods/'.$pic->z_pic;
-             if(unlink($value)) {
+                 $value = './static/admin/uploads/z_goods/'.($pic->z_pic);
+                // dd($value);           
+             if(unlink($value))
+            {
                     $z_pic =$request->file("z_pic");
                     // 后缀
                     $z_ext= $z_pic->getClientOriginalExtension();
                     //重新命名
                     $fileName = str_random(10).uniqid().'.'.$z_ext;
                     // 单文件上传
-                    $destinationPath = 'static/admin/uploads/z_goods'; //public 文件夹下面建 uploads/
+                    $destinationPath = './static/admin/uploads/z_goods'; //public 文件夹下面建 uploads/
                     //接受主图
                     $request->file("z_pic")->move($destinationPath,$fileName);
                     $data['z_pic'] = $fileName;
-                 }
-        }else{
-            // 如果为空
-            $pic  = DB::table('goods')->where("id","=",$id)->first();
-            $data['z_pic'] = $pic->z_pic;
 
-
-        }
-        if(!empty($data['pic'])){
-             //查出原来图片的路径
-            $pic  = DB::table('goods')->where("id","=",$id)->value('pic');
-            $pic    = explode(',',$pic);
-            foreach ($pic as $key => $value) {
-                 $value = './static/admin/uploads/goods/'.$value;
-                // 批量删除
-               unlink($value);
+            }else{
+                return redirect('/agoods/'.$id.'/edit')->with('error','发生数据错误');
             }
+
         }
-          
-        
+        // dd(1);
+
+         // 在判断 附图是否为空
+        if (!empty($data['pic'])) {
+
+
+                // 查出原先的图片 全部删除掉
+                 $pic   =   DB::table('goods')->where("id","=",$id)->value('pic');
+                 $pic   =   explode(',',$pic);
+                 // dd($pic);
+                foreach ($pic as $key => $value)
+                {
+                     $cc = './static/admin/uploads/goods/'.$value;
+                    // 批量删除
+                     if(file_exists($cc)){
+                        unlink($cc);
+                     }else{
+                      echo '删除附图失败';
+
+                        // return redirect('/agoods/'.$id.'/edit')->with('error','删除附图失败');
+                     }
+                   
+                        
+                   
+                }
+                
+                // dd($app);
+               
+            // 如果为空 就不修改他啊
+            // $pic  = DB::table('goods')->where("id","=",$id)->first();
+            // $data['z_pic'] = $pic->z_pic;
+
+
+        }
+        // dd($data);
+
+        // 如果不为空就操作 发送过去操作
         // 调用upload的方法 upload的方法在app/Libary里
-       $app  = uploads($request->file("pic"));
-       if($app['msg'] == 1){
+        $app  = uploads($request->file("pic"));
+
+
+        // 下面是做 附图有的和主图也有时候才做的事情
+
+       if(($app['msg']['msg'] == 1) && (!empty($data['z_pic']))){
+            if ($app['msg']['msg'] ==1 ) {
+                $f_pic          = implode(',',$app['pic']);
+                $data['pic']    = $f_pic;
+                if(Goods::where("id","=",$id)->update($data)) {
+                    return redirect('/agoods')->with('success','更新成功');
+                }else{
+                    return redirect('/agoods/'.$id.'/edit')->with('error','更新失败');
+                }
+            }else{
+                return redirect('/agoods/'.$id.'/edit')->with('errror','发生了网络错误');
+            }
+            
+            // 只做只有附图
+        }elseif (($app['msg']['msg'] == 1) && empty($data['z_pic'])){
+            unset($data['z_pic']);
             $f_pic          = implode(',',$app['pic']);
             $data['pic']    = $f_pic;
-            $data['status'] = 1;
-            $data['sale']   = 0;
             if(Goods::where("id","=",$id)->update($data)) {
                 return redirect('/agoods')->with('success','更新成功');
             }else{
-                return redirect('/agoods/$id/edit')->with('error','更新失败');
+                return redirect('/agoods/'.$id.'/edit')->with('error','更新失败');
             }
-        }else{
-              // 如果没有图片上传直接存取查询出来的信息
-            $pic  = DB::table('goods')->where("id","=",$id)->value('pic');
-            $data['pic'] = $pic; 
+            // 只有主图
+        }elseif (empty($data['pic'])&&(!empty($data['z_pic']))){
+                unset($data['pic']);
             if(Goods::where("id","=",$id)->update($data)) {
-                return redirect('/agoods')->with('success','更新成功');
-            }else{
-                return redirect('/agoods/$id/edit')->with('error','更新失败');
-            }
 
+                    return redirect('/agoods')->with('success','更新成功');
+
+                }else{
+
+                    return redirect('/agoods/'.$id.'/edit')->with('error','更新失败');
+                }
+        }else{
+            return redirect('/agoods/'.$id.'/edit')->with('error','数据出错');
         }
-    
-       
+
+
     }
 
     /**

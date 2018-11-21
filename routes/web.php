@@ -130,3 +130,63 @@ Route::get("/code","Home\LoginController@code");
 //检验登录校验码
 Route::get("/chvcode","Home\LoginController@chvcode");
 
+// 前台个人用户主页
+Route::resource('/mypersonal','Home\PersonalController');
+//前台模态用户详情
+Route::get('/modal','Home\HomeController@modal');
+//添加个人收货地址
+Route::get('/city','Home\PersonalController@city');
+//前台购物车：
+Route::resource("/hcart","Home\CartController");
+// 检测是否有重复的商品
+Route::get("/checkexit","Home\CartController@checkexit");
+// 查询购物车里面的信息
+Route::get("/select","Home\CartController@select");
+//购物车增加数量
+Route::get("/addcart","Home\CartController@addcart");
+Route::get("/addnum","Home\CartController@addnum");
+
+//购物车减数量
+Route::get("/jiancart","Home\CartController@jiancart");
+// ajax数量增加
+Route::get("/ajaxadd","Home\CartController@ajaxadd");
+
+//总计减少量的量
+Route::get("jcart","Home\CartController@jcart");
+
+Route::get("/ajaxjian","Home\CartController@ajaxjian");
+
+//购物车的删除
+Route::get("/cartdel","Home\CartController@cartdel");
+//前台购物车：
+Route::resource("/order","Home\OrderController");
+//前台结算页：
+Route::resource("/pay","Home\PayController");
+//支付宝接口调用
+Route::get("/pays","Home\PayController@pays");
+//通知给客户端的界面
+Route::get("/returnurl","Home\PayController@returnurl");
+
+
+
+
+
+//地址管理
+//获取三级联动地址
+Route::get('/city','Home\PersonalController@city');
+//添加个人收货地址
+Route::get('/haddaddress','Home\PersonalController@haddaddress');
+//处理收货地址数据
+Route::get('/haddress/{hid}','Home\PersonalController@haddress');
+// 地址删除
+Route::get('/haddressdel/{uid}-{aid}','Home\PersonalController@haddressdel');
+// 地址修改页面
+Route::get('/haddressedit/{uid}-{aid}','Home\PersonalController@haddressedit');
+// 地址修改提交处理方式
+Route::post('/haddressupdate/{aid}','Home\PersonalController@haddressupdate');
+// 设置默认地址
+Route::get('/haddressmo/{aid}','Home\PersonalController@haddressmo');
+//地址管理结束
+
+
+

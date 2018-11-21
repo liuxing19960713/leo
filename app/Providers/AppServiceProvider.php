@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         return $link;
     }
 
-
+    
     /**
      * 
      * Bootstrap any application services.

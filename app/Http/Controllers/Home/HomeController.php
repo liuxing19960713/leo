@@ -27,22 +27,22 @@ class HomeController extends Controller
 
     public function getsear($id){
         // dd($id);
-        $data=DB::table("category")->where('path','like',"0,$id")->paginate(12);
+        $data=DB::table("category")->where('path','like',"0,$id")->get();
         $ids='';
         foreach($data as $value)
         {
-            $ids.=$value->id.',';
+            $ids[]=$value->id;
 
         }
-        $ids=$ids.$id;
-        // dd($ids);
-        $sear=DB::select("SELECT * FROM goods WHERE `status`=1 and cate_id in({$ids})");
+        $ids[]=$id;
+        
+        $sear=DB::table('goods') ->whereIn('cate_id',$ids) ->paginate(8);
         // dd($sear);
         return $sear;
 
     }
 
-    public function index()
+    public function index(Request $request)
     {
 
 
@@ -51,13 +51,28 @@ class HomeController extends Controller
         // dd(111);
         $info=DB::table('goods')->where('status','=',1)->get();
         $sear=$this->getsear(7);
-        // dd($info);
+        // var_dump($request->input('id'));       // dd($info);
         // dd($wheel);
+        
         //首页方法
 
         return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
 
 
+    }
+    //前台商品详情模态框
+    public function modal(Request $request)
+    {
+        $id = $request->input('id');
+        $info=DB::table('goods')->where('id','=',$id)->first();
+        //以下是详情信息获取方法
+        // $arr    = $info->pic;
+        $info->pic = explode(',',$info->pic);
+        // dd($info);exit;
+        // foreach ($pic as $key => $value) 
+        // }
+        // $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
+        return json_encode($info);
     }
     //首页文章栏目
     public function article(){
@@ -80,11 +95,12 @@ class HomeController extends Controller
         $pic['pic']    = explode(',',$arr);
         foreach ($pic as $key => $value) {
         }
-        // dd($value);
+        $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
+        // dd($data);
         // $value = '/static/uploads/goods/'.$value;
         // dd($value);
 
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value]);
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data]);
     }
     //商品列表页
     public function search(Request $request,$id)
@@ -92,6 +108,7 @@ class HomeController extends Controller
         // dd($id);
         $search=$this->getsear($id);
         // dd($search);
+
         return view("Home.Home.search",['search'=>$search]);
     }
     public function create()
