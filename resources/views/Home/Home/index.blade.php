@@ -133,37 +133,37 @@
      <div class="col-lg-12">
       <!--=======  top selling product slider container  =======-->
       <div class="ptk-slider double-row-slider-container" data-row="2">
-      <!--所有商品遍历开始--> 
-      @foreach($info as $row) 
-       <div class="col"> 
-        <!--=======  single product  =======--> 
-        <div class="ptk-product"> 
-         <div class="image"> 
-          <a href="/goodinfo/{{$row->id}}" > <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" height="198px" /> </a> 
-          <!--=======  hover icons  =======--> 
-          <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-          <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
-          <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
-          <!--=======  End of hover icons  =======--> 
-          <!--=======  badge  =======--> 
-          <div class="product-badge"> 
-          </div> 
-          <!--=======  End of badge  =======--> 
-         </div> 
-         <div class="content"> 
-          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="/goodinfo/{{$row->id}}" style="font-size:15px;">{{$row->goods_name}}</a></p> 
-          <p class="product-price"><span class="discounted-price">￥{{$row->price}}</span> </p> 
-         </div> 
-         <div class="rating"> 
-          <i class="lnr lnr-star active"></i> 
-          <i class="lnr lnr-star active"></i> 
-          <i class="lnr lnr-star active"></i> 
-          <i class="lnr lnr-star active"></i> 
-          <i class="lnr lnr-star"></i> 
-         </div> 
-        </div> 
-        <!--=======  End of single product  =======--> 
-       </div>  
+      <!--所有商品遍历开始-->
+      @foreach($info as $row)
+       <div class="col">
+        <!--=======  single product  =======-->
+        <div class="ptk-product">
+         <div class="image">
+          <a href="/goodinfo/{{$row->id}}" > <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" height="198px" /> </a>
+          <!--=======  hover icons  =======-->
+          <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+          <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a>
+          <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a>
+          <!--=======  End of hover icons  =======-->
+          <!--=======  badge  =======-->
+          <div class="product-badge">
+          </div>
+          <!--=======  End of badge  =======-->
+         </div>
+         <div class="content">
+          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="/goodinfo/{{$row->id}}" style="font-size:15px;">{{$row->goods_name}}</a></p>
+          <p class="product-price"><span class="discounted-price">￥{{$row->price}}</span> </p>
+         </div>
+         <div class="rating">
+          <i class="lnr lnr-star active"></i>
+          <i class="lnr lnr-star active"></i>
+          <i class="lnr lnr-star active"></i>
+          <i class="lnr lnr-star active"></i>
+          <i class="lnr lnr-star"></i>
+         </div>
+        </div>
+        <!--=======  End of single product  =======-->
+       </div>
        @endforeach
        <!--所有商品遍历结束-->
       </div>
@@ -208,38 +208,38 @@
         <!--=======  deal slider container  =======-->
         <div class="ptk-slider deal-slider-container">
         <!--优惠商品遍历开始-->
-        @foreach($info as $row) 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="product-countdown" data-countdown="2020/05/01"></div> 
-          <div class="ptk-product"> 
-           <div class="image"> 
-            <a href="/goodinfo/{{$row->id}}"> <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" /> </a> 
-            <!--=======  hover icons  =======--> 
-            <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-            <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
-            <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
-            <!--=======  End of hover icons  =======--> 
-            <!--=======  badge  =======--> 
-            <div class="product-badge"> 
-             <span class="new-badge">NEW</span> 
-             <span class="discount-badge">-8%</span> 
-            </div> 
-            <!--=======  End of badge  =======--> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="/goodinfo/{{$row->id}}">{{$row->goods_name}}</a></p> 
-            <p class="product-price">  <span class="discounted-price">￥{{$row->price}}</span> </p> 
-           </div> 
-           <div class="rating"> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star active"></i> 
-            <i class="lnr lnr-star"></i> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
+        @foreach($info as $row)
+         <div class="col">
+          <!--=======  single product  =======-->
+          <div class="product-countdown" data-countdown="2020/05/01"></div>
+          <div class="ptk-product">
+           <div class="image">
+            <a href="/goodinfo/{{$row->id}}"> <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" /> </a>
+            <!--=======  hover icons  =======-->
+            <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+            <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a>
+            <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a>
+            <!--=======  End of hover icons  =======-->
+            <!--=======  badge  =======-->
+            <div class="product-badge">
+             <span class="new-badge">NEW</span>
+             <span class="discount-badge">-8%</span>
+            </div>
+            <!--=======  End of badge  =======-->
+           </div>
+           <div class="content">
+            <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:100%;"><a href="/goodinfo/{{$row->id}}">{{$row->goods_name}}</a></p>
+            <p class="product-price">  <span class="discounted-price">￥{{$row->price}}</span> </p>
+           </div>
+           <div class="rating">
+            <i class="lnr lnr-star active"></i>
+            <i class="lnr lnr-star active"></i>
+            <i class="lnr lnr-star active"></i>
+            <i class="lnr lnr-star active"></i>
+            <i class="lnr lnr-star"></i>
+           </div>
+          </div>
+          <!--=======  End of single product  =======-->
          </div>
          @endforeach
         <!--优惠商品遍历结束-->
@@ -260,26 +260,26 @@
         <!--=======  popular product slider  =======-->
         <div class="ptk-slider popular-product-slider" data-row="2">
         <!--客厅类商品遍历-->
-        @foreach($sear as $data) 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="ptk-product"> 
-           <div class="image"> 
-            <a href="/goodinfo/{{$data->id}}"> <img src="/static/admin/uploads/z_goods/{{$data->z_pic}}" class="img-fluid" alt="" /> </a> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$data->id}}">{{$data->goods_name}}</a></p> 
-            <p class="product-price"><span class="discounted-price">￥{{$data->price}}</span> </p> 
-            <div class="rating rating-product-style-2"> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star"></i> 
-            </div> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
+        @foreach($sear as $data)
+         <div class="col">
+          <!--=======  single product  =======-->
+          <div class="ptk-product">
+           <div class="image">
+            <a href="/goodinfo/{{$data->id}}"> <img src="/static/admin/uploads/z_goods/{{$data->z_pic}}" class="img-fluid" alt="" /> </a>
+           </div>
+           <div class="content">
+            <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$data->id}}">{{$data->goods_name}}</a></p>
+            <p class="product-price"><span class="discounted-price">￥{{$data->price}}</span> </p>
+            <div class="rating rating-product-style-2">
+             <i class="lnr lnr-star active"></i>
+             <i class="lnr lnr-star active"></i>
+             <i class="lnr lnr-star active"></i>
+             <i class="lnr lnr-star active"></i>
+             <i class="lnr lnr-star"></i>
+            </div>
+           </div>
+          </div>
+          <!--=======  End of single product  =======-->
          </div>
          @endforeach
          <!--客厅类商品遍历结束-->
@@ -334,37 +334,37 @@
       <!--=======  top selling product slider container  =======-->
       <div class="ptk-slider top-selling-product-slider-container">
       <!--商品遍历-->
-      @foreach($info as $row) 
-       <div class="col"> 
-        <!--=======  single product  =======--> 
-        <div class="ptk-product"> 
-         <div class="image"> 
-          <a href="/goodinfo/{{$row->id}}"> <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" /> </a> 
-          <!--=======  hover icons  =======--> 
-          <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
-          <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
-          <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
-          <!--=======  End of hover icons  =======--> 
-          <!--=======  badge  =======--> 
-          <div class="product-badge"> 
-           <span class="new-badge">NEW</span> 
-           <span class="discount-badge">-8%</span> 
-          </div> 
-          <!--=======  End of badge  =======--> 
-         </div> 
-         <div class="content"> 
-          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$row->id}}">{{$row->goods_name}}</a></p> 
-          <p class="product-price"> <span class="discounted-price">￥{{$data->price}}</span> </p> 
-         </div> 
-         <div class="rating"> 
-          <i class="lnr lnr-star active"></i> 
-          <i class="lnr lnr-star active"></i> 
-          <i class="lnr lnr-star active"></i> 
-          <i class="lnr lnr-star active"></i> 
-          <i class="lnr lnr-star"></i> 
-         </div> 
-        </div> 
-        <!--=======  End of single product  =======--> 
+      @foreach($info as $row)
+       <div class="col">
+        <!--=======  single product  =======-->
+        <div class="ptk-product">
+         <div class="image">
+          <a href="/goodinfo/{{$row->id}}"> <img src="/static/admin/uploads/z_goods/{{$row->z_pic}}" class="img-fluid" alt="" /> </a>
+          <!--=======  hover icons  =======-->
+          <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+          <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a>
+          <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a>
+          <!--=======  End of hover icons  =======-->
+          <!--=======  badge  =======-->
+          <div class="product-badge">
+           <span class="new-badge">NEW</span>
+           <span class="discount-badge">-8%</span>
+          </div>
+          <!--=======  End of badge  =======-->
+         </div>
+         <div class="content">
+          <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$row->id}}">{{$row->goods_name}}</a></p>
+          <p class="product-price"> <span class="discounted-price">￥{{$data->price}}</span> </p>
+         </div>
+         <div class="rating">
+          <i class="lnr lnr-star active"></i>
+          <i class="lnr lnr-star active"></i>
+          <i class="lnr lnr-star active"></i>
+          <i class="lnr lnr-star active"></i>
+          <i class="lnr lnr-star"></i>
+         </div>
+        </div>
+        <!--=======  End of single product  =======-->
        </div>
        @endforeach
        <!--商品遍历结束-->

@@ -20,7 +20,7 @@ class HomeController extends Controller
     }
 
 
-   
+
 
 
 
@@ -33,8 +33,8 @@ class HomeController extends Controller
     // 遍历客厅的方法 搜索方法
     public function getsear($id){
 
-        
-       
+
+
 
         // dd($id);
 
@@ -48,7 +48,7 @@ class HomeController extends Controller
 
         }
         $ids[]=$id;
-        
+
         $sear=DB::table('goods') ->whereIn('cate_id',$ids) ->paginate(8);
         // dd($sear);
         return $sear;
@@ -62,10 +62,10 @@ class HomeController extends Controller
         $wheel=$this->wheel();
         // dd(111);
         $info=DB::table('goods')->where('status','=',1)->get();
-        // 
+        //
         $sear=$this->getsear(7);
         // dd($info);
-        // dd($wheel);
+        // dd($sear);
         //首页方法
 
         return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
@@ -75,7 +75,7 @@ class HomeController extends Controller
     }
     //首页文章栏目
     public function article(){
-  
+
         //连表查询获取添加者名字
         $article=DB::table('article')->join('admin','admin.id','admin_id')->select('article.*','admin.name')->paginate(9);
         // dd($article);
@@ -90,10 +90,10 @@ class HomeController extends Controller
             $rows[$k]['status']=$row->status;
             //将多张图片分离,第一张图片作为封面图
             $rows[$k]['thumb']=explode(',',$row->thumb);
-            
+
         }
         //dd($rows);
-      
+
          return view("Home.Home.article",['rows'=>$rows,'article'=>$article]);
     }
     //首页文章栏目详情
@@ -102,7 +102,7 @@ class HomeController extends Controller
         //分离多张图片
         //$info->thumb=explode(',',$info->thumb);
 
-        
+
         return view("Home.Home.articles",['info'=>$info]);
     }
 
@@ -125,7 +125,7 @@ class HomeController extends Controller
         // $value = '/static/uploads/goods/'.$value;
         // dd($value);
 
-       
+
 
 
 

@@ -115,6 +115,11 @@ Route::get("/chvcode","Home\LoginController@chvcode");
 //前台首页
 Route::resource("/","Home\HomeController");
 
+// 忘记密码
+Route::resource('/forget','Home\ForgetController');
+// 验证该用户是否存在
+Route::get('/comfire','Home\ForgetController@Comfire');
+
 //前台中间件结合路由组使用
 Route::group(["middleware"=>"hlogin"],function()
 {
@@ -134,17 +139,43 @@ Route::get("/jiancart","Home\CartController@jiancart");
 Route::get("ajaxadd","Home\CartController@ajaxadd");
 //购物车的删除
 Route::get("/cartdel","Home\CartController@cartdel");
-// 前台个人用户主页
-Route::resource('/mypersonal','Home\PersonalController');
-// 前台个人用户主页
-Route::resource('/mypersonal','Home\PersonalController');
-//添加个人收货地址
-Route::get('/city','Home\PersonalController@city');
 
+
+// 前台个人用户主页
+Route::resource('/mypersonal','Home\PersonalController');
+
+
+
+//地址管理
+//获取三级联动地址
+Route::get('/city','Home\PersonalController@city');
 //添加个人收货地址
-Route::get('/adress','Home\PersonalController@adress');
-//处理收货数据
-  
+Route::get('/haddaddress','Home\PersonalController@haddaddress');
+//处理收货地址数据
+Route::get('/haddress/{hid}','Home\PersonalController@haddress');
+// 地址删除
+Route::get('/haddressdel/{uid}-{aid}','Home\PersonalController@haddressdel');
+// 地址修改页面
+Route::get('/haddressedit/{uid}-{aid}','Home\PersonalController@haddressedit');
+// 地址修改提交处理方式
+Route::post('/haddressupdate/{aid}','Home\PersonalController@haddressupdate');
+// 设置默认地址
+Route::get('/haddressmo/{aid}','Home\PersonalController@haddressmo');
+//地址管理结束
+
+// 个人密码修改
+Route::get('/mypwdchange/{uid}','Home\PersonalController@changepwd');
+// 验证码发送
+Route::get('/exem','Home\PersonalController@exem');
+// 修改页面
+Route::post('/editpwd','Home\PersonalController@editpwd');
+// 更新方法
+Route::post('/upwd','Home\PersonalController@upwd');
+// 个人密码结束
+
+
+
+
   //前台购物车：
 Route::resource("/hcart","Home\CartController");
 // 检测是否有重复的商品

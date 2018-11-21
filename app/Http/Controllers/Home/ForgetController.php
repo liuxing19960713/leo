@@ -1,32 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
-use App\Model\DiscountLog;
-class DiscountLogController extends Controller
+
+class ForgetController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        // 获取关键词
-        $k = $request->input('keyword');
-
-        // echo '123';
-        // $data = DB::table('discount_log')->get();
-        // dd($data);
-        $data = DB::table('discount_log')->join('user','user.id','uid')->join('discount','discount.id','did')->select('discount_log.*','user.uname','discount.dname')->where('user.uname','like',$k.'%')->paginate(4);
-        // dd($data);
-        // $cdata = DiscountLog::get();
-        return view('Admin.DiscountLog.index',['data'=>$data,'request'=>$request->all()]);
+        echo '修改密码主页';
+       // dd(123);
+        // return view('Home.Forget.repwd');
     }
 
+    // ajax 确认是否存在该用户并且发送短信
+    public function Comfire(Request $request)
+    {
+        $num =$request->input('num');
+        return json_encode($num);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -90,11 +88,6 @@ class DiscountLogController extends Controller
      */
     public function destroy($id)
     {
-        // echo $id;
-        if (DB::table('discount_log')->where('id','=',$id)->delete()) {
-            return redirect('/discountlog')->with('success','删除成功!');
-        }else{
-            return redirect('discountlog')->with('error','删除失败');
-        }
+        //
     }
 }

@@ -46,7 +46,6 @@
       <tr align="center">
        <th> 编号 </th>
        <th style="color:red"> 用户名 </th>
-       <th style="color:blue">  订单号 </th>
        <th style="color:purple"> 优惠券属性 </th>
        <th> 状态 </th>
        <th> 领取时间 </th>
@@ -61,10 +60,7 @@
       <tr align="center">
        <td>  {{$row->id}} </td>
        <td class="text-danger">  {{$row->uname}} </td>
-       <td class="text-info">
-          {{$row->order_code}}
 
-       </td>
        <td >
         {{$row->dname}}
       </td>
