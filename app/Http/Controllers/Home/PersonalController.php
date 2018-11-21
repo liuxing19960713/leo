@@ -251,10 +251,6 @@ class PersonalController extends Controller
         // echo '地址管理';
         return view('Home.Personal.addaddress');
     }
-    public function haddaddress(){
-        // echo '地址管理';
-        return view('Home.Personal.addaddress');
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -354,43 +350,7 @@ class PersonalController extends Controller
         }
 
     }
-    // 收货地址的修改
-    public function haddressedit($uid,$aid)
-    {
-        $uid = $uid;
-        $aid = $aid;
-        // dd($aid);
-
-        $address = Personaladdress::find($aid);
-        if ($address->first()) {
-                $address = $address;
-        }else{
-            $address = '';
-        }
-        // dd($address);
-        return view('Home.Personal.editaddress',['address'=>$address,'aid'=>$aid]);
-    }
-    // 收货地址修改的页面
-    public function haddressupdate(AddressEdit $request,$aid)
-    {
-        // dd($aid);
-        // dd($request->all());
-        // $aid = '';
-        $aid = $aid;
-        $uid = session('hid');
-        $data = $request->except(['uid','_token']);
-        // dd($data);
-        if ($uid == $request->input('uid')) {
-            if (Personaladdress::where('uid','=',$uid)->where('id','=',$aid)->update($data)) {
-                // dd('更新成功!');
-                return redirect('/haddress/'.$uid)->with('success','更新成功');
-            }else{
-                // dd('更新失败');
-                return redirect('/haddress/'.$uid)->with('error','更新失败');
-            }
-        }
-
-    }
+   
     // 修改默认地址
     public function haddressmo($aid)
     {
@@ -452,7 +412,7 @@ class PersonalController extends Controller
                 return redirect('/haddress/'.$uid)->with('error','更新失败');
             }
         }
-
+    }
 
     //修改密码页面
     public function changepwd($uid)

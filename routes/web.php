@@ -111,6 +111,7 @@ Route::resource('/discountlog','Admin\DiscountLogController');
  Route::post('/upcourier',"Admin\OrderController@upcourier");
 
 });
+
 // 前台登录
 Route::resource("/hlogin","Home\LoginController");
 // 前台注册
@@ -130,27 +131,18 @@ Route::get("/chvcode","Home\LoginController@chvcode");
 //前台首页
 Route::resource("/","Home\HomeController");
 
-
 // 忘记密码
 Route::resource('/forget','Home\ForgetController');
 // 验证该用户是否存在
 Route::get('/comfire','Home\ForgetController@Comfire');
 
-//前台中间件结合路由组使用
-Route::group(["middleware"=>"hlogin"],function()
-{
-
-
 //用户优惠卷ajax领取
 Route::get("/discounta","Home\PersonalController@ajax");
-
 
 //前台文章栏目
 Route::get("/articlehome","Home\HomeController@article");
 //前台文章栏目详情
 Route::get("/articleshome/{id}","Home\HomeController@articles");
-
-
 
 //前台中间件结合路由组使用
 Route::group(["middleware"=>"hlogin"],function()
@@ -173,9 +165,6 @@ Route::get("/cartdel","Home\CartController@cartdel");
 
 // 前台个人用户主页
 Route::resource('/mypersonal','Home\PersonalController');
-
-
-
 
 //地址管理
 //获取三级联动地址
@@ -214,9 +203,6 @@ Route::post('/editpwd','Home\PersonalController@editpwd');
 // 更新方法
 Route::post('/upwd','Home\PersonalController@upwd');
 // 个人密码结束
-
-
-
 
   //前台购物车：
 Route::resource("/hcart","Home\CartController");
@@ -280,18 +266,12 @@ Route::post('/haddressupdate/{aid}','Home\PersonalController@haddressupdate');
 Route::get('/haddressmo/{aid}','Home\PersonalController@haddressmo');
 //地址管理结束
 
-
-
 });
 //用户收藏商品
 Route::get("/cogoods","Home\PersonalController@cogoods");
 
-
-
 //商品详情页
 Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
-
-
 
 //商品列表页
 Route::get("/search/{id}","Home\HomeController@search");
@@ -316,14 +296,5 @@ Route::resource("/pay","Home\PayController");
 Route::get("/pays","Home\PayController@pays");
 //通知给客户端的界面
 Route::get("/returnurl","Home\PayController@returnurl");
-
-
+// 搜素
 Route::get("/keywords","Home\HomeController@keywords");
-
-
-
-
-
-
-
-
