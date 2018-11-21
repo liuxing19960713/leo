@@ -13,50 +13,50 @@
   }
  </style>
  <body>
-  <div class="page-section mb-80"> 
-   <div class="container"> 
-    <div class="row"> 
-       
-     <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"> 
+  <div class="page-section mb-80">
+   <div class="container">
+    <div class="row">
+
+     <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
       <form action="/hregi" method="post" id="form">
-      {{csrf_field()}} 
-       <div class="login-form"> 
-        <h4 class="login-title">Register</h4> 
-        <div class="row"> 
-         
-         <div class="col-md-12 mb-20"> 
-          <label>用户*</label><span class="n"></span> 
+      {{csrf_field()}}
+       <div class="login-form">
+        <h4 class="login-title">Register</h4>
+        <div class="row">
+
+         <div class="col-md-12 mb-20">
+          <label>用户*</label><span class="n"></span>
           <input class="mb-0 uname"   reminder="手机不能为空"  type="text" name="uname" placeholder="phone" />  <span class="ss"></span>
-         </div> 
-         <div class="col-md-12 mb-20"> 
-          <label>密 码</label> <label class="pwd"></label>
-          <input class="mb-0 upwd"  reminder="密码不能为空"  type="password" placeholder="Password" name="upwd" /> 
-         </div> 
-         <div class="col-md-12 mb-20"> 
-          <label>确认 密码</label>  <label class="repwd"></label>
-          <input class="mb-0 rupwd " reminder="确认密码不能为空"  type="password" placeholder="Confirm Password" name="rupwd" /> 
          </div>
-         <div class="col-md-6 col-12 mb-20"> 
-          <label>验证码</label> 
-          <input class="mb-0 " reminder="填写验证码不能为空" type="text" placeholder="填写验证码" name="code" /> 
+         <div class="col-md-12 mb-20">
+          <label>密 码</label> <label class="pwd"></label>
+          <input class="mb-0 upwd"  reminder="密码不能为空"  type="password" placeholder="Password" name="upwd" />
+         </div>
+         <div class="col-md-12 mb-20">
+          <label>确认 密码</label>  <label class="repwd"></label>
+          <input class="mb-0 rupwd " reminder="确认密码不能为空"  type="password" placeholder="Confirm Password" name="rupwd" />
+         </div>
+         <div class="col-md-6 col-12 mb-20">
+          <label>验证码</label>
+          <input class="mb-0 " reminder="填写验证码不能为空" type="text" placeholder="填写验证码" name="code" />
          <span  class="cc"></span>
 
-         </div>  
-         <div class="col-md-6 col-12 mb-20" style="padding-top: 30px"> 
+         </div>
+         <div class="col-md-6 col-12 mb-20" style="padding-top: 30px">
              <span  class="register-button mt-0 code sendcode">Send</span>
 
-         </div> 
+         </div>
 
-         <div class="col-12"> 
-          <button class="register-button mt-0">Register</button> 
-         </div> 
-        </div> 
-       </div> 
-      </form> 
+         <div class="col-12">
+          <button class="register-button mt-0">Register</button>
+         </div>
+        </div>
+       </div>
+      </form>
 
-     </div> 
-    </div> 
-   </div> 
+     </div>
+    </div>
+   </div>
   </div>
   <script>
     phone = false;
@@ -70,9 +70,9 @@
     //添加样式
     $(this).addClass('cur');
   })
-     
 
-    
+
+
   var pwd   = $(".pwd");
    $(".upwd").blur(function(){
       // alert('222');
@@ -104,7 +104,7 @@
     });
 
 
-    
+
 
 
 
@@ -115,7 +115,7 @@
     var phone = $(".uname").val();
       $.get("/hsend",{phone:phone},function(data){
          newData=data.replace(/\s/g,'');
-      
+
         dad =  eval('(' +  newData + ')');
           if(dad.code== 000000){
             msg = 60;
@@ -147,8 +147,8 @@
         ss = $('.ss');
          ss.css('red','red').html("不能为空");
          ss.addClass("curs");
-         // 
-         phone = false; 
+         //
+         phone = false;
       }else{
         phone = true;
       }
@@ -175,7 +175,7 @@
                 } else {
                     ss.css('color','red').html("账号太守欢迎,请重新填写");
                     ss.addClass("curs");
-                    phone = false;  
+                    phone = false;
                 }*/
                 if(data== 1){
                     ss.css('color','blue').html("可以使用");
@@ -185,7 +185,7 @@
                 }else{
                    ss.css('color','red').html("账号太守欢迎,请重新填写");
                     ss.addClass("curs");
-                    phone = false; 
+                    phone = false;
                 }
               },
               error: function(data){
@@ -208,7 +208,7 @@
 
 
       // alert('aa');
-       
+
         // alert('aaa');
     // $(".sendcode").click(function(){
     //   var phone = $(".uname").val();
@@ -219,7 +219,7 @@
     //     data: {phone:phone},
     //     dataType: 'json',
     //     success: function(data){
-    //       // 
+    //       //
     //       alert(data.code);
     //     },
     //     error: function(data){

@@ -12,7 +12,6 @@
   }
  </style>
  <body>
-
   <div class="page-section mb-80"> 
    <div class="container"> 
     <div class="row"> 
@@ -20,9 +19,6 @@
       <!-- Login Form s--> 
 
       <form action="/hlogin" method="post" id="form"> 
-
-
-
         {{csrf_field()}}
        <div class="login-form">
         <h4 class="login-title " style="float: left;">登陆|</h4><h4 class="login-title regi " >注册</h4>
@@ -53,10 +49,11 @@
 
 
          <div class="col-md-4 mt-10 mb-20 text-left text-md-right">
-          <a href="#">忘记密码?</a>
+          <a href="/forget">忘记密码?</a>
          </div>
          <div class="col-md-12">
-          <button class="register-button mt-0">Login</button>
+          <input type="submit" class="register-button mt-0"  value="Login">
+
          </div>
         </div>
        </div>
@@ -65,8 +62,6 @@
 
     </div>
    </div>
-
-
   </div>
   <script>
     phone       = false;
@@ -74,7 +69,7 @@
     CODE        = false;
   	$(".regi").click(function(){
   		// $(window).attr('/hregi',"${pageContext.request.contextPath }/http");
-  		$(location).attr('href', '/hregi/create');
+  		$(location).attr('href', '/hregi');
   		// alert('aa');
   	});
 

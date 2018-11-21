@@ -4,25 +4,27 @@
     =            Breadcrumb Area         =
     =============================================-->
 <html>
- <head></head>
- <script src="/static/jquery-1.7.2.min.js"></script>
+
+ <head>
+  <link rel="stylesheet" href="cbootstrap.min.css">
   <link rel="stylesheet" href="/static/public/css/bootstrap.min.css">
-  <script src="/static/public/js/jquery.min.js"></script>
-  <script src="/static/public/js/bootstrap.min.js"></script>
-  <script src="/static/public/js/holder.min.js"></script>
   <link href="/static/public/css/admin.css" rel="stylesheet" type="text/css">
   <link href="/static/public/css/amazeui.css" rel="stylesheet" type="text/css">
   <link href="/static/public/css/personal.css" rel="stylesheet" type="text/css">
   <link href="/static/public/css/cpstyle.css" rel="stylesheet" type="text/css">
   <link href="/static/public/css/infstyle.css" rel="stylesheet" type="text/css">
-  
   <link href="/static/public/css/orstyle.css" rel="stylesheet" type="text/css">
-
+  <script src="/static/jquery-1.7.2.min.js"></script>
+  <script src="/static/public/js/jquery.min.js"></script>
+  <script src="/static/public/js/bootstrap.min.js"></script>
+  <script src="/static/public/js/holder.min.js"></script> 
   <script src="/static/public/jquery.min.js"></script>
   <script src="/static/public/js/amazeui.js"></script>
+</head>
+<body>
 
- <body>
-  <div class="breadcrumb-area breadcrumb-bg pt-85 pb-85 mb-80">
+
+<div class="breadcrumb-area breadcrumb-bg pt-85 pb-85 mb-80">
    <div class="container">
     <div class="row">
      <div class="col-lg-12">
@@ -35,11 +37,7 @@
      </div>
     </div>
    </div>
-  </div>
-  <!--=====  End of Breadcrumb Area  ======-->
-  <!--=============================================
-    =            My Account page content         =
-    =============================================-->
+</div>
   <div class="page-section mb-80">
    <div class="container">
     <div class="row">
@@ -644,6 +642,97 @@
          </div>
          <!-- Single Tab Content End -->
          <!-- Single Tab Content Start -->
+         <div class="tab-pane fade" id="download" role="tabpanel">
+          <div class="myaccount-content">
+           <div class="user-safety">
+            <div class="am-cf am-padding">
+              <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">账户安全</strong> / <small>Set&nbsp;up&nbsp;Safety</small></div>
+            </div>
+            <hr>
+            <div class="check">
+              <ul>
+                <li>
+                  <i class="i-safety-lock"></i>
+                  <div class="m-left">
+                    <div class="fore1">登录密码</div>
+                    <div class="fore2"><small>为保证您购物安全，建议您定期更改密码以保护账户安全。</small></div>
+                  </div>
+                  <div class="fore3">
+                    <a href="/mypwdchange/{{session('hid')}}">
+                      <div class="am-btn am-btn-secondary">修改</div>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <i class="i-safety-wallet"></i>
+                  <div class="m-left">
+                    <div class="fore1">支付密码</div>
+                    <div class="fore2"><small>启用支付密码功能，为您资产账户安全加把锁。</small></div>
+                  </div>
+                  <div class="fore3">
+                    <a href="setpay.html">
+                      <div class="am-btn am-btn-secondary">立即启用</div>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <i class="i-safety-iphone"></i>
+                  <div class="m-left">
+                    <div class="fore1">手机验证</div>
+                    <div class="fore2"><small>您验证的手机：186XXXXXXXX 若已丢失或停用，请立即更换</small></div>
+                  </div>
+                  <div class="fore3">
+                    <a href="bindphone.html">
+                      <div class="am-btn am-btn-secondary">换绑</div>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <i class="i-safety-mail"></i>
+                  <div class="m-left">
+                    <div class="fore1">邮箱验证</div>
+                    <div class="fore2"><small>您验证的邮箱：5831XXX@qq.com 可用于快速找回登录密码</small></div>
+                  </div>
+                  <div class="fore3">
+                    <a href="/hlogin/{{session('hid')}}">
+                      <div class="am-btn am-btn-secondary">换绑</div>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <i class="i-safety-idcard"></i>
+                  <div class="m-left">
+                    <div class="fore1">实名认证</div>
+                    <div class="fore2"><small>用于提升账号的安全性和信任级别，认证后不能修改认证信息。</small></div>
+                  </div>
+                  <div class="fore3">
+                    <a href="idcard.html">
+                      <div class="am-btn am-btn-secondary">认证</div>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <i class="i-safety-security"></i>
+                  <div class="m-left">
+                    <div class="fore1">安全问题</div>
+                    <div class="fore2"><small>保护账户安全，验证您身份的工具之一。</small></div>
+                  </div>
+                  <div class="fore3">
+                    <a href="question.html">
+                      <div class="am-btn am-btn-secondary">认证</div>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+          </div>
+         </div>
+         <!-- Single Tab Content End -->
+         <!-- Single Tab Content Start -->
+         <!-- 强改的 -->
+
          <div class="tab-pane fade" id="payment-method" role="tabpanel">
           <div class="myaccount-content">
 
@@ -664,8 +753,19 @@
               </ul>
 
               <div class="am-tabs-bd" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <!-- 这里是可使用的优惠券 -->
                 <div class="am-tab-panel am-fade am-in am-active" id="tab1">
                   <div class="coupon-items">
+                    <!-- 这里开始遍历 -->
+                    @if($Log == '')
+                         <div class="coupon-item coupon-item-d">
+                            <p>暂无优惠券,快去领券</p>
+                         </div>
+                    @else
+
+                    @foreach($Log as $rr)
+
+                      @if(($rr->status) == 1 )
                     <div class="coupon-item coupon-item-d">
                       <div class="coupon-list">
                         <div class="c-type">
@@ -673,12 +773,12 @@
                             <strong>购物券</strong>
                           </div>
                           <div class="c-price">
-                            <strong>￥8</strong>
+                            <strong>￥{{$rr->minus}}</strong>
                           </div>
                           <div class="c-limit">
-                            【消费满&nbsp;95元&nbsp;可用】
+                            【消费满&nbsp;{{$rr->max}}元&nbsp;可用】
                           </div>
-                          <div class="c-time"><span>使用期限</span>2015-12-21--2015-12-31</div>
+                          <div class="c-time"><span>使用期限</span>{{$rr->start_time}}~~{{$rr->end_time}}</div>
                           <div class="c-type-top"></div>
 
                           <div class="c-type-bottom"></div>
@@ -689,69 +789,42 @@
                             <div class="range-all">
                               <div class="range-item">
                                 <span class="label">券&nbsp;编&nbsp;号：</span>
-                                <span class="txt">35730144</span>
+                                <span class="txt">{{$rr->did}}</span>
                               </div>
                             </div>
                           </div>
                           <div class="op-btns">
-                            <a href="#" class="btn"><span class="txt">立即使用</span><b></b></a>
+                            <a href="/search/{{$rr->cid}}" class="btn"><span class="txt">立即使用</span><b></b></a>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="coupon-item coupon-item-yf">
-                      <div class="coupon-list">
-                        <div class="c-type">
-                          <div class="c-class">
-                            <strong>优惠券</strong>
-                          </div>
-                          <div class="c-price">
-                            <strong>可抵优惠券/strong>
-                          </div>
-                          <div class="c-limit">
-                            【不含偏远地区】
-                          </div>
-                          <div class="c-time"><span>使用期限</span>2015-12-21--2015-12-31</div>
-                          <div class="c-type-top"></div>
-
-                          <div class="c-type-bottom"></div>
-                        </div>
-
-                        <div class="c-msg">
-                          <div class="c-range">
-                            <div class="range-all">
-                              <div class="range-item">
-                                <span class="label">券&nbsp;编&nbsp;号：</span>
-                                <span class="txt">35728267</span>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div class="op-btns">
-                            <a href="#" class="btn"><span class="txt">立即使用</span><b></b></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    @endif
+                    @endforeach
+                  @endif
+                    <!-- 这里结束 -->
                   </div>
 
                 </div>
+                <!-- 这里是已使用和过期的优惠券 -->
                 <div class="am-tab-panel am-fade" id="tab2">
                   <div class="coupon-items">
-                    <div class="coupon-item coupon-item-d">
+                <!-- 开始遍历 -->
+                @if($Log == '')
+                      <div class="coupon-item coupon-item-yf">
                       <div class="coupon-list">
                         <div class="c-type">
                           <div class="c-class">
-                            <strong>购物券</strong>
+                            <strong>暂无数据</strong>
                             <span class="am-icon-trash"></span>
                           </div>
                           <div class="c-price">
-                            <strong>￥8</strong>
+                            <strong></strong>
                           </div>
                           <div class="c-limit">
-                            【消费满&nbsp;95元&nbsp;可用】
+
                           </div>
-                          <div class="c-time"><span>使用期限</span>2015-12-21--2015-12-31</div>
+                          <div class="c-time"><span></span></div>
                           <div class="c-type-top"></div>
 
                           <div class="c-type-bottom"></div>
@@ -761,23 +834,26 @@
                           <div class="c-range">
                             <div class="range-all">
                               <div class="range-item">
-                                <span class="label">券&nbsp;编&nbsp;号：</span>
-                                <span class="txt">35730144</span>
+                                <span class="label"></span>
+                                <span class="txt"></span>
                               </div>
                             </div>
+
                           </div>
                           <div class="op-btns c-del">
-                            <a href="#" class="btn"><span class="txt">删除</span><b></b></a>
+
                           </div>
                         </div>
-                        
+
                         <li class="td td-usestatus ">
                           <div class="item-usestatus ">
-                            <span><img src="../images/gift_stamp_31.png" <="" span="">
-                          </span></div>
-                        </li>                       
+                            </div>
+                        </li>
                       </div>
                     </div>
+                @else
+                @foreach($Log as $rrs)
+                  @if( $rrs->status != 1 )
                     <div class="coupon-item coupon-item-yf">
                       <div class="coupon-list">
                         <div class="c-type">
@@ -786,12 +862,12 @@
                             <span class="am-icon-trash"></span>
                           </div>
                           <div class="c-price">
-                            <strong>可抵优惠券/strong>
+                            <strong>￥{{$rrs->minus}}</strong>
                           </div>
                           <div class="c-limit">
-                            【不含偏远地区】
+                            【消费满&nbsp;{{$rrs->max}}元&nbsp;可用】
                           </div>
-                          <div class="c-time"><span>使用期限</span>2015-12-21--2015-12-31</div>
+                          <div class="c-time"><span>使用期限</span>{{$rrs->start_time}}~~{{$rrs->end_time}}</div>
                           <div class="c-type-top"></div>
 
                           <div class="c-type-bottom"></div>
@@ -802,25 +878,30 @@
                             <div class="range-all">
                               <div class="range-item">
                                 <span class="label">券&nbsp;编&nbsp;号：</span>
-                                <span class="txt">35728267</span>
+                                <span class="txt">{{$rrs->did}}</span>
                               </div>
                             </div>
 
                           </div>
                           <div class="op-btns c-del">
-                            <a href="#" class="btn"><span class="txt">删除</span><b></b></a>
+                            <span class="txt"></span><b></b>
                           </div>
                         </div>
-                        
+
                         <li class="td td-usestatus ">
                           <div class="item-usestatus ">
-                            <span><img src="../images/gift_stamp_21.png" <="" span="">
-                          </span></div>
+                            </div>
                         </li>
                       </div>
                     </div>
+
+
+                    @endif
+                    @endforeach
+                    @endif
+                    <!-- 结束 -->
                   </div>
-                  
+
                 </div>
               </div>
 
@@ -834,53 +915,15 @@
          <div class="tab-pane fade" id="address-edit" role="tabpanel">
           <div class="myaccount-content">
            <h3>地址管理</h3>
-           <address> <p><strong>Alex Tuntuni</strong></p> <p>1355 Market St, Suite 900 <br /> San Francisco, CA 94103</p> <p>Mobile: (123) 456-7890</p> </address>
-           <a href="#" class="btn d-inline-block edit-address-btn"><i class="fa fa-edit"></i>Edit Address</a>
-           <button class="save-change-btn" data-toggle="modal" data-target="#mymodal">添加收货地址</button>
-            <div class="modal fade" id="mymodal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <!-- 这是模态框的头 -->
-                  <div class="modal-header">
-                  <!-- 关闭modal框的 data-dismiss -->
-                    <h3>添加收货地址</h3>
-                    </div>
-                  <div class="modal-body">
-                <form action="">
-                  <div class="am-form-group-8">
-                      <label for="user-name" class="am-form-label">收货人：</label>
-                        <input type="text" id="user-name" name="name" placeholder="收货人" size="22">
-                    </div>
-                  <div class="am-form-group">
-                      <label for="phone" class="am-form-label">联系电话：</label>
-                        <input type="tel" id="pgone" name="phone" placeholder="手机号必填">
-                    </div>
-                 <div class="form-group">
-                   <font color="red"></font>联系地址: <select id="sid">
-                    <option value="" class="ss" >--请选择--</option>
-                  </select>
-                  </div>
-                  <div class="form-group">
-                  <input type="hidden" name="city">
-                  </div>
-                  <div class="am-form-group">
-                      <label for="address" class="am-form-label">详细地址：</label>
-                        <input type="text" id="pgone" name="address" placeholder="请输入详细地址" size="40">
-                    </div>
-              <div class="form-group">
-                  <button type="submit" class="save-change-btn" >保存</button>
-                </div>
-                </form>
-              </div>
-            <div class="modal-footer">
-                    <button class="save-change-btn" data-dismiss="modal">关闭</button>
-                  </div>
-                </div>
+           <address> <p><strong>亲爱的您您</strong></p> <p>请您移步到下面的管理地址那里查看你所有添加的地址 <br />如果疑问请联系客服</p> <p>爱你哟（づ￣3￣）づ╭❤～</p> </address>
+           <a href="/haddress/{{session('hid')}}" class="btn d-inline-block edit-address-btn"><i class="fa fa-edit"></i>管理地址</a>
+             <a href="/haddaddress" class="btn d-inline-block edit-address-btn"><i class="fa fa-edit"></i>添加地址</a>
 
-              </div>
-            </div>
+
           </div>
          </div>
+         <!-- 强改完 -->
+
          <!-- Single Tab Content End -->
          <!-- Single Tab Content Start -->
          <div class="tab-pane fade" id="account-info" role="tabpanel">
@@ -946,15 +989,11 @@
           <div class="tab-pane fade" id="announce" role="tabpanel">
           <div class="myaccount-content">
            <h3>消息</h3>
-            @foreach($notice as $r)
-          
+            @foreach($notice as $r)        
                 <div class="row"> 
                <div class="col-lg-12"> 
                 <div class="faq-wrapper"> 
-                 <div id="accordion"> 
-                  
-                 
-                  
+                 <div id="accordion">                           
                   <div class="card"> 
                    <div class="card-header" id="headingSix"> 
                     <h5 class="mb-0"> <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">{{$r->created_at}}<span> <i class="fa fa-chevron-down"></i> <i class="fa fa-chevron-up"></i> </span> </button> </h5> 
@@ -973,6 +1012,7 @@
             @endforeach
               {{$notice->render()}}
 
+
           </div>
          </div>
 
@@ -986,7 +1026,7 @@
    </div>
   </div>
   <!--=====  End of My Account page content  ======-->
- </body>
+</body>
  <script type="text/javascript">
     // 第一级别获取
     $.get('/city',{upid:0},function(data){

@@ -134,6 +134,7 @@
      <div class="col-lg-12">
       <!--=======  top selling product slider container  =======-->
       <div class="ptk-slider double-row-slider-container" data-row="2">
+
       <!--所有商品遍历开始--> 
       @foreach($se as $row) 
        <div class="col"> 
@@ -143,7 +144,7 @@
           <a href="/goodinfo/{{$row['id']}}" > <img src="/static/admin/uploads/z_goods/{{$row['z_pic']}}" class="img-fluid" alt="" height="198px" /> </a> 
           <!--=======  hover icons  =======--> 
 
-          <a class="hover-icon mm" index="{{$row->id}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+          <a class="hover-icon mm" index="{{$row['id']}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
           @if($row['status']==1) 
           <a gid="{{$row['id']}}" class="hover-icon l" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
           @else
@@ -223,7 +224,7 @@
             <a href="/goodinfo/{{$row['id']}}"> <img src="/static/admin/uploads/z_goods/{{$row['z_pic']}}" class="img-fluid" alt="" /> </a> 
             <!--=======  hover icons  =======--> 
 
-            <a class="hover-icon mm" index="{{$row->id}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+            <a class="hover-icon mm" index="{{$row['id']}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
             @if($row['status']==1) 
             <a gid="{{$row['id']}}" class="hover-icon a" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
             @else
@@ -272,26 +273,26 @@
         <!--=======  popular product slider  =======-->
         <div class="ptk-slider popular-product-slider" data-row="2">
         <!--客厅类商品遍历-->
-        @foreach($sear as $data) 
-         <div class="col"> 
-          <!--=======  single product  =======--> 
-          <div class="ptk-product"> 
-           <div class="image"> 
-            <a href="/goodinfo/{{$data->id}}"> <img src="/static/admin/uploads/z_goods/{{$data->z_pic}}" class="img-fluid" alt="" /> </a> 
-           </div> 
-           <div class="content"> 
-            <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$data->id}}">{{$data->goods_name}}</a></p> 
-            <p class="product-price"><span class="discounted-price">￥{{$data->price}}</span> </p> 
-            <div class="rating rating-product-style-2"> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star active"></i> 
-             <i class="lnr lnr-star"></i> 
-            </div> 
-           </div> 
-          </div> 
-          <!--=======  End of single product  =======--> 
+        @foreach($sear as $data)
+         <div class="col">
+          <!--=======  single product  =======-->
+          <div class="ptk-product">
+           <div class="image">
+            <a href="/goodinfo/{{$data->id}}"> <img src="/static/admin/uploads/z_goods/{{$data->z_pic}}" class="img-fluid" alt="" /> </a>
+           </div>
+           <div class="content">
+            <p class="product-title" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:50%;"><a href="/goodinfo/{{$data->id}}">{{$data->goods_name}}</a></p>
+            <p class="product-price"><span class="discounted-price">￥{{$data->price}}</span> </p>
+            <div class="rating rating-product-style-2">
+             <i class="lnr lnr-star active"></i>
+             <i class="lnr lnr-star active"></i>
+             <i class="lnr lnr-star active"></i>
+             <i class="lnr lnr-star active"></i>
+             <i class="lnr lnr-star"></i>
+            </div>
+           </div>
+          </div>
+          <!--=======  End of single product  =======-->
          </div>
          @endforeach
          <!--客厅类商品遍历结束-->
@@ -354,7 +355,7 @@
           <a href="/goodinfo/{{$row['id']}}"> <img src="/static/admin/uploads/z_goods/{{$row['z_pic']}}" class="img-fluid" alt="" /> </a> 
           <!--=======  hover icons  =======--> 
 
-          <a class="hover-icon mm" index="{{$row->id}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
+          <a class="hover-icon mm" index="{{$row['id']}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
           @if($row['status']==1) 
           <a gid="{{$row['id']}}" class="hover-icon r" href="javascript:void(0)"><i class="fa fa-heart"></i></a>@else
           <a gid="{{$row['id']}}" class="hover-icon r" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
