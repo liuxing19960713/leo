@@ -57,7 +57,7 @@ class HomeController extends Controller
 
     public function index()
     {
-
+        // dd(session());
         // 轮播图
         $wheel=$this->wheel();
         // dd(111);
@@ -67,7 +67,6 @@ class HomeController extends Controller
         // dd($info);
         // dd($wheel);
         //首页方法
-
         return view("Home.Home.index",['sear'=>$sear,'info'=>$info,'wheel'=>$wheel]);
 
 
@@ -114,7 +113,7 @@ class HomeController extends Controller
     //商品详情页
     public function goodinfo(Request $request,$id)
     {
-        dd($request->all());
+       
         $info=DB::table('goods')->where('id','=',$id)->first();
         //以下是详情信息获取方法
         $arr    = $info->pic;
@@ -122,6 +121,7 @@ class HomeController extends Controller
         foreach ($pic as $key => $value) {
         }
         $data=DB::table('goods')->where('cate_id','=',$info->cate_id)->get();
+
         // dd(session('hid'));
         $id     = session('hid');
         $uname  = DB::table('user')->where("id","=",$id)->value('uname');//用户信息
@@ -129,7 +129,40 @@ class HomeController extends Controller
          
         //评论总数
         $comnum = DB::table('comment')->count();
-        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'comnum'=>$comnum,'uname'=>$uname]);
+
+        $cate=DB::table('category')->where('id','=',$info->cate_id)->first();
+
+         $ca=explode(",",$cate->path);
+         $c=(count($ca));
+
+         //dd($ca[1]);
+         //var_dump($ca[1]);
+         if(($c)>1){
+            //echo 1;
+          $category=DB::table('category')->where('id','=',$ca[1])->first();  
+         }else{
+            //echo 2;
+            $category=DB::table('category')->where('id','=',$info->cate_id)->first();
+         }
+         $discount=DB::table('discount')->where('cid','=',$category->id)->join('category','category.id','cid')->select('discount.*','category.name')->get();
+        // dd($data);
+        // $value = '/static/uploads/goods/'.$value;
+        // dd($value);
+
+       // 获取用户所拥有的优惠券的did数组
+       // 用户id
+        $uid = session('hid');
+        // dd($uid);
+        $dlogs = array();
+        $d = DB::table('discount_log')->where('uid','=',$uid)->pluck('did');
+         // dd($d);
+        foreach ($d as  $ds) {
+            $dlogs[] = $ds;
+        }
+        // 上面就是来存储用户拥有的优惠券的did
+        // dd($dds);
+        return view("Home.Home.goodinfo",['info'=>$info,'pic'=>$value,'data'=>$data,'discount'=>$discount,'dlogs'=>$dlogs,'comnum'=>$comnum,'uname'=>$uname]);
+
 
     }
     //商品列表页
@@ -142,32 +175,17 @@ class HomeController extends Controller
         return view("Home.Home.search",['search'=>$search]);
 
     }
+
   
-    public function create(Request $request)
+
+    
+    public function create()
+
     {
 
     }
 
-    /**
-     * 评论添加
-     * @author 刘兴
-     * @DateTime 2018-11-19T20:09:21+0800
-     * @param    string                   $value [description]
-     * @return   [type]                          [description]
-     */
-    public function hcomment(Request $request)
-    {
 
-        $data           = $request->except(['_token']);
-        dd($data);
-        // $data['uid']    = session('hid');
-        // $data['addtime']= time();
-        // if(DB::table('comment')->insert($data)){
-
-        //     return redirect("goodinfo/{{$data['gid']}}")->with('success',"评论添加成功");
-        // } 
-        // dd($data);
-    }
     /**
      * Store a newly created resource in storage.
      *

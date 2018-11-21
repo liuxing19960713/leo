@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+
 use Logistics;
+
+use App\Model\DiscountLog;
+
 class PersonalController extends Controller
 {
     /**
@@ -200,6 +204,7 @@ class PersonalController extends Controller
     {
         //
     }
+
     /**
      * [公告详情 noteinfo]
      * @author 刘兴
@@ -207,4 +212,59 @@ class PersonalController extends Controller
      * @param    string                   $value [description]
      */
     
+
+     //用户优惠卷ajax添加
+    public function ajax(Request $request){
+        // echo json_encode(['status'=>1, 'msg'=>'成功']);exit;
+        // 获取用户id
+        $uid = session('hid');
+        // 优先判断是否登录了
+        if (!empty($uid)) {
+            // 获取did 优惠券id  
+             $did=$request->input('id');
+             //dd(input::all());
+             //dd($id);
+             
+             $discount=DB::table('discount')->where('id','=',$did)->first();
+             
+             $data['did']=$did;
+             $data['name']=$discount->dname;
+             $data['status']=1;
+             $data['uid']=session('hid');
+             // 查询所有该用户的拥有的优惠券  有的话就不能再领取了
+             $dlogs = array();
+             $dd = DB::table('discount_log')->where('id','=',session('hid'))->pluck('did');
+             foreach ($dd as  $ds) {
+                    $dlogs = $ds;
+             }
+             // 判断该优惠券是否已经领取
+                if (in_array($did,$dlogs)) {
+                    
+                    //在数组里面的话就是已经领取了
+                    return json_encode(['msg'=>3]);
+
+                }else{
+                    // 不存在就领取  插入数据库
+                     if (DiscountLog::create($data)) {
+                        return json_encode(['msg'=>1]);
+                     }else{
+                        return json_encode(['msg'=>0]);
+                     }
+                }
+            // return json_encode(['uid'=>$data['uid']]);
+             // if (DiscountLog::create($data)) {
+             //    return json_encode(['msg'=>1]);
+             // }else{
+             //    return json_encode(['msg'=>0]);
+             // }
+
+             // else是没有登录的
+        }else{
+
+            return json_encode(['msg'=>2]);
+        }
+        
+        
+    }
+
 }
