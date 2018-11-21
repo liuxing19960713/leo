@@ -2,6 +2,40 @@
 @section('home')
 <html>
  <head></head>
+<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+<style>
+/*.a{width: 200px;height: 100px;}*/
+.stamp {width: 260px;height: 120px;padding: 0 10px;position: relative;overflow: hidden;}
+.stamp:before {content: '';position: absolute;top:0;bottom:0;left:10px;right:10px;z-index: -1;}
+.stamp:after {content: '';position: absolute;left: 10px;top: 10px;right: 10px;bottom: 10px;box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);z-index: -2;}
+.stamp i{position: absolute;left: 25%;top: 45px;height: 200px;width: 270px;background-color: rgba(255,255,255,.15);transform: rotate(-30deg);}
+.stamp .par{float: left;padding-left: 8px;width: 110px;border-right:2px dashed rgba(255,255,255,.3);text-align: left;margin-right: 7px;padding-right: 10px;}
+.stamp .par p{color:#fff;}
+.stamp .par span{font-size: 15px;color:#fff;margin-right: 5px;}
+.stamp .par .sign{font-size: 13px;}
+.stamp .par sub{position: relative;top:-5px;color:rgba(255,255,255,.8);}
+.stamp .copy{display: inline-block;padding:10px 10px;width:100px;vertical-align: text-bottom;font-size: 17px;color:rgb(255,255,255);margin: 0;width: 120px;}
+.stamp .copy p{font-size: 16px;margin-top: 4px;}
+.stamp p{font-size: 15px;margin-top:5px;}
+/*上面是公共的*/
+
+/*第一张*/
+.stamp01{background: #F39B00;background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #F39B00 5px);
+  /*background-size: 15px 15px;*/
+  cursor: pointer;
+  background-position: 9px 3px;}
+.stamp01:before{background-color:#F39B00;}
+
+/*蓝色*/
+.stamp04{width: 260px;background: #50ADD3;background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 4px, #50ADD3 4px);background-size: 12px 8px;background-position: -5px 10px;}
+.stamp04:before{background-color:#50ADD3;left: 5px;right: 5px;}
+.stamp04 .copy{padding: 10px 6px 10px 12px;font-size: 17px;}
+.stamp04 .copy p{font-size: 16px;margin-top: 5px;margin-bottom: 8px;}
+
+/*灰色*/
+.stamp03{background: #808080;background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #808080 5px);/*background-size: 15px 15px*/;background-position: 9px 3px;}
+.stamp03:before{background-color:#808080;}
+  </style>
  <body>
   <script src="/js/cart.js"></script>
   <div class="breadcrumb-area breadcrumb-bg pt-85 pb-85 mb-80"> 
@@ -81,7 +115,8 @@
      <div class="col-lg-6"> 
       <!--=======  single product details  =======--> 
 
-      <div class="single-product-details-container"> 
+      <div class="single-product-details-container">
+      <input type="hidden" name="val" value="{{$info->id}}">
        <p class="product-title mb-15">{{$info->goods_name}}</p> 
        <div class="rating d-inline-block mb-15"> 
         <i class="lnr lnr-star active"></i> 
@@ -95,7 +130,7 @@
        <p class="product-description mb-15"> {{$info->desrc}}</p> 
        <form action="/hcart" method="post">
         {{csrf_field()}}
-          <input type="hidden" name="id" value="{{$info->id}}">
+         
 
        <div class="cart-buttons mb-30"> 
         <p class="mb-15">数量</p> 
@@ -105,7 +140,14 @@
         <input type="submit" value="添加到购物车" class="pataku-btn"> 
        </div> 
        </form>
-       <p class="wishlist-link mb-30"><a href="#"> <i class="fa fa-heart"></i> 加入到愿望清单</a></p> 
+       @if($cogoods==1)
+       <p class="wishlist-link mb-30"><a gid="{{$info->id}}" href="javascript:void(0)" class="t"> 
+        <i class="lnr lnr-heart "></i> 加入到愿望清单
+       </a></p>
+       
+       @else
+       <p class="wishlist-link mb-30"><a gid="{{$info->id}}" href="javascript:void(0)" class="t"> <i class="fa fa-heart "></i> 已加入到愿望清单</a></p>
+       @endif
        <div class="social-share-buttons mb-30"> 
         <p>分享</p> 
         <ul> 
@@ -143,7 +185,7 @@
         <div class="nav nav-tabs" id="nav-tab" role="tablist"> 
          <a class="nav-item nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-selected="true">描述</a> 
          <a class="nav-item nav-link" id="features-tab" data-toggle="tab" href="#features" role="tab" aria-selected="false">优惠劵</a> 
-         <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-selected="false">评论(3)</a> 
+         <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-selected="false">评论({{$comnum}})</a> 
         </div> 
        </nav> 
        <div class="tab-content" id="nav-tabContent"> 
@@ -151,18 +193,32 @@
          <p class="product-desc">{{$info->desrc}}</p> 
         </div> 
         <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab"> 
-         <table class="table-data-sheet"> 
-          <tbody> 
-           <tr class="odd"> 
-            <td>Name</td> 
-            <td>Kaoreet lobortis sagittis laoreet</td> 
-           </tr> 
-           <tr class="even"> 
-            <td>Color</td> 
-            <td>Yellow</td> 
-           </tr> 
-          </tbody> 
-         </table> 
+          @foreach($discount as $row)
+          @if(in_array($row->id,$dlogs))
+        <!--  <a href="javascript:void(0)" class="a">{{$row->id}}</a>
+          -->
+        <a class="quanok" style="float:left;display:inline-block;margin:10px;">
+          <div class="stamp stamp03" >
+          <input type="hidden" name="val" value="{{$row->id}}">
+          <div class="par" style="margin-top:20px"><p>灯饰人生</p><sub class="sign">￥</sub><span>{{$row->minus}}</span><sub>优惠券</sub><p>订单满{{$row->max}}元</p></div>
+         <!--  <div class="copy" style="margin-top:20px">领券<p><br><span>{{($row->start_time)}}</span><span>{{$row->end_time}}</span></p></div> -->
+        <div class="copy" style="margin-top:20px">领劵<p>{{date('Y-m-d',time($row->start_time))}}<br>{{date('Y-m-d',time($row->end_time))}}</p></div>
+          <i></i>
+          </div>
+        </a>
+        
+          @else
+        <a class="quan" style="float:left;display:inline-block;margin:10px;">
+          <div class="stamp stamp01" >
+          <input type="hidden" name="val" value="{{$row->id}}">
+          <div class="par" style="margin-top:20px"><p>灯饰人生</p><sub class="sign">￥</sub><span>{{$row->minus}}</span><sub>优惠券</sub><p>订单满{{$row->max}}元</p></div>
+          <div class="copy" style="margin-top:20px">领券<p>{{date('Y-m-d',time($row->start_time))}}<br>{{date('Y-m-d',time($row->end_time))}}</p></div>
+          <i></i>
+          </div>
+        </a>
+       
+        @endif
+          @endforeach
         </div> 
         <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab"> 
          <div class="product-ratting-wrap"> 
@@ -213,34 +269,8 @@
            </div> 
           </div> 
           <div class="rattings-wrapper"> 
-           <div class="sin-rattings"> 
-            <div class="ratting-author"> 
-             <h3>Cristopher Lee</h3> 
-             <div class="ratting-star"> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <span>(5)</span> 
-             </div> 
-            </div> 
-            <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli</p> 
-           </div> 
-           <div class="sin-rattings"> 
-            <div class="ratting-author"> 
-             <h3>Nirob Khan</h3> 
-             <div class="ratting-star"> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-              <span>(5)</span> 
-             </div> 
-            </div> 
-            <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli</p> 
-           </div> 
+           
+            
            <div class="sin-rattings"> 
             <div class="ratting-author"> 
              <h3>Rashed Mahmud</h3> 
@@ -258,7 +288,8 @@
           </div> 
           <div class="ratting-form-wrapper fix"> 
            <h3>Add your Comments</h3> 
-           <form action="#"> 
+           <form action="/hcomment" method="post">
+           {{csrf_field()}} 
             <div class="ratting-form row"> 
              <div class="col-12 mb-15"> 
               <h5>Rating:</h5> 
@@ -272,15 +303,15 @@
              </div> 
              <div class="col-md-6 col-12 mb-15"> 
               <label for="name">Name:</label> 
-              <input id="name" placeholder="Name" type="text" /> 
+              <input id="uname" placeholder="Name" disabled type="text" value="{{$uname}}" /> 
              </div> 
              <div class="col-md-6 col-12 mb-15"> 
-              <label for="email">Email:</label> 
-              <input id="email" placeholder="Email" type="text" /> 
+               
              </div> 
+              <input type="hidden" name="gid" value="{{$info->id}}">
              <div class="col-12 mb-15"> 
-              <label for="your-review">Your Review:</label> 
-              <textarea name="review" id="your-review" placeholder="Write a review"></textarea> 
+              <label for="your-review">Your Comment:</label> 
+              <textarea name="comment" id="your-review" placeholder="Write a review"></textarea> 
              </div> 
              <div class="col-12"> 
               <input value="add review" type="submit" /> 
@@ -288,6 +319,7 @@
             </div> 
            </form> 
           </div> 
+
          </div> 
         </div> 
        </div> 
@@ -355,6 +387,121 @@
   </div> 
   <!--=====  End of related product slider  ======--> 
  </body>
+ <script type="text/javascript">
+ $(".t").bind('click',function(){
+ //console.log(2);
+
+// console.log($.session.get('hid'));
+  id=$(this).attr('gid');
+  // console.log(id);
+ // return false;
+ // console.log($(this).html());
+ // return false;
+ // 该次事件的 对象
+  gg =$(this);
+   $.ajax({
+      url: '/cogoods',
+      data: {id:id},
+
+      
+      // dataType: 'json',
+      success: function(data){
+        //console.log(typeof data);
+        // 返回的是字符串，就是因为加了两行空行
+       //console.log(data);
+        data = data.replace(/\s/g, '');
+        var ob = JSON.parse(data);//将json的字符串解析为对象
+        // console.log(ob);
+
+        if(ob.msg==0){
+          alert('已取消收藏');
+         gg.html('<i class="lnr lnr-heart "></i> 加入到愿望清单');
+        }else if(ob.msg==1){
+          alert('取消收藏失败');
+         
+
+         
+        }else if(ob.msg==2){
+          alert('添加收藏成功');
+         gg.html('<i class="fa fa-heart "></i> 已加入到愿望清单');
+        }else if(ob.msg==3){
+          alert('添加收藏失败');
+        }else if(ob.msg==4){
+          //console.log(5);
+          alert('请先登录');
+          $(location).attr('href','/hlogin');
+          
+        }
+
+        
+      },
+      error: function(res) {
+        // alert('请先登录');
+            // 
+            // return true;
+            
+        
+      }
+    
+
+    });
+
+});
+//alert(1);
+$('.quan').on('click',function(){
+  if ($(this).attr('disabled') === undefined) {
+    // 获取当前a标签对象
+    a = $(this);
+    
+    // 获取当前div对象
+    divs = $(this).find('div:first');
+    // alert(div);
+    // 获取当前id
+    id = $(this).find('input:first').val();
+    // alert(id);
+    
+    
+    $.ajax({
+      url: '/discounta',
+      data: {id:id},
+      // dataType: 'json',
+      success: function(data){
+        // console.log(typeof data);
+        // 返回的是字符串，就是因为加了两行空行
+        data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
+        // console.log(obj.msg);
+        
+        if (obj.msg == 1) {
+          // alert(obj.msg);
+          //变换a标签的className
+          a.off();
+          alert('领券成功!');
+          a.attr('class','quanok');
+          a.attr('disabled','true');
+          a.attr('datahref',a.attr("href"));
+          a.removeAttr('href');
+          divs.attr('class','stamp stamp03');
+          // return false;
+        } else if(obj.msg == 2) {
+            
+        }else if(obj.msg == 3){
+            alert('你已领取');
+        }else{
+            alert('发生数据错误');
+        }
+      },
+      error: function(res) {
+        console.log('res');
+        alert('请先登录');
+            // 这里要修改路径
+            $(location).attr('href','/hlogin');
+      }
+    });
+  }
+});
+
+ </script>
 </html>
 @endsection
 @section('title','灯饰人生')

@@ -109,27 +109,44 @@
     </div>
  </body>
  <script>
+  //状态禁用
   $('.sta').on('click',function(){
     // alert(1);
-    // 获取对象
+    // 获取对象discountsta
     id = $(this).parents('tr').find('td').first().text();
     // alert(id);
     // 获取状态
     sta = $(this).parents('tr').find('td:nth-child(3)').find('label').html();
     // alert(sta);
     label = $(this).parents('tr').find('td:nth-child(3)').find('label');
-    $.get('/discountsta',{id:id,sta:sta},function(data)
-    {
+
+     $.ajax({
+      url: '/discountsta',
+      data: {id:id,sta:sta},
+      success:function(data){
+      data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
         // alert(data.msg);
-        if (data.msg == 1) {
-          if (data.sta == '启用') {
-            label.attr('class','badge badge-gradient-success sta').html(data.sta);
+        // console.log(typeof data);
+        // console.log(typeof obj);
+        // console.log(obj);
+        // console.log(obj.sta);
+        if (obj.msg == 1) {
+          if (obj.sta == '启用') {
+            label.attr('class','badge badge-gradient-success sta').html(obj.sta);
+
+
           }else{
-            label.attr('class','badge badge-gradient-danger sta').html(data.sta);
+            label.attr('class','badge badge-gradient-danger sta').html(obj.sta);
           }
           alert('状态修改成功!');
         }
+
+      }
     });
+
+
+
   });
 
  </script>

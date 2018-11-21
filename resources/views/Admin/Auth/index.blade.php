@@ -32,8 +32,10 @@
           <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div> 
          </div> </td> 
        </tr> 
+
       </tbody> 
-     </table> 
+     </table>
+      {{$info->render()}} 
     </div> 
    </div> 
   </div>

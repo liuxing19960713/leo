@@ -108,12 +108,12 @@ class CategoryController extends Controller
         $id     = $_GET['id'];
         $info   = DB::table('category')->where('pid','=',$id)->count();
         if($info>0){
-            echo 3;
+            return json_encode(['msg'=>3]);
         }else{
             if (DB::table('category')->where("id",'=',$id)->delete()) {
-                echo 1;
+                return json_encode(['msg'=>1]);
             }else{
-                echo 0;
+                return json_encode(['msg'=>0]);
             }
         }
         // echo $id;

@@ -39,6 +39,7 @@ class LoginController extends Controller
      */
     public function code()
     {
+        
         ob_clean();
         $builder = new CaptchaBuilder;
         //设置图片的宽高以及字体
@@ -67,6 +68,7 @@ class LoginController extends Controller
         $vcode = session('vcode');
         $code  = $request->input('vcode');
         // echo $vcode.':'.$code;
+        // dd($code);
         if($code!=$vcode){
             return back()->with('error',"验证码不一致");
         }else{
@@ -74,9 +76,9 @@ class LoginController extends Controller
             // dd($name);
             $info = DB::table('user')->where('uname',"=",$name)->first();
             $pwd  = $request->input('upwd');
-
+            // dd(11);
             if($info){
-                // echo 11;
+                
                 if(Hash::check($pwd,$info->upwd)){
 
                     session(['hid'=>$info->id]);//
@@ -127,7 +129,8 @@ class LoginController extends Controller
     public function show($id)
     {
         //
-       echo $id;
+       // echo $id;
+        // $id = 
     }
 
     /**

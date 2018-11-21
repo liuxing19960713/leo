@@ -68,18 +68,29 @@
           // 找到当前id
           id = $(this).parents("tr").find("td:first").html();
           // alert(id);
-          //找到当前tr
+          // //找到当前tr
           tr = $(this).parents("tr");
-          $.get('/acadel',{id:id},function(data){
-            if(data==1){
+
+           $.ajax({
+        url: '/acadel',
+        data: {id:id},
+        success:function(data){
+        data = data.replace(/\s/g, '');
+        var obj = JSON.parse(data);
+            if(obj.msg==1){
+
               tr.remove();
-              alert('删除success');
-            }else if(data==3){
+              alert('删除成功');
+            }else if(obj.msg==3){
               alert('还存在子分类');              
             }else{
               alert("删除error");
             }
-          },'json')
+
+          }
+
+
+          })
        });
  </script>
  </body>

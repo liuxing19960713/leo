@@ -44,13 +44,11 @@
         <td>{{$add->mailbox}}</td>
         <td>{{$add->address}}</td>
         <td>
-
           @if($add->isDefault == 1)
             <span style="color: #CC3366;">默认</span>
           @else
             <span style="color :rgb(0,255,255)"><a href="/haddressmo/{{$add->id}}">设置为默认</a></span>
           @endif
-
         </td>
         <td>{{$add->created_at}}</td>
         <td>{{$add->updated_at}}</td>

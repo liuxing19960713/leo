@@ -42,6 +42,13 @@ class DiscountController extends Controller
         // dd($data);
         return view('Admin.Discount.index',['data'=>$data,'request'=>$request->all()]);
     }
+    /**
+     * [sta ajax禁用方法]
+     * @author 余伟强
+     * @DateTime 2018-11-21T10:42:34+0800
+     * @param    Request                  $request [description]
+     * @return   [type]                            [description]
+     */
     public function sta(Request $request){
 
                 // ($request->input('sta'));
@@ -53,9 +60,9 @@ class DiscountController extends Controller
         if (DB::table('discount')->where('id','=',$id)->update(['status'=>$sta])) {
             // 把状态切换回状态
             $sta = ($sta==1?'启用':'禁用');
-            return response()->json(['msg'=>1,'sta'=>$sta]);
+            return json_encode(['msg'=>1,'sta'=>$sta]);
         }else{
-            return response()->json(['msg'=>0]);
+            return json_encode(['msg'=>0]);
         }
 
     }

@@ -5,13 +5,20 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+
 use Hash;
+
+use App\Http\Requests\Home\UserInfoInsert;
+use Logistics;
+
+use App\Model\DiscountLog;
 // 添加地址管理的Model
 use App\Model\Home\Personaladdress;
 // 引入地址添加校验类
 use App\Http\Requests\Home\AddressInsert;
 // 引入地址修改校验类
 use App\Http\Requests\Home\AddressEdit;
+
 class PersonalController extends Controller
 {
     /**
@@ -22,13 +29,30 @@ class PersonalController extends Controller
     public function index(Request $request)
     {
         // dd(session('id'));
-        $uid = session('hid');
+
+
+        $user1=DB::table('user')->where('uname','=',session('username'))->first();
+        
+        //dd($user->id);
+        // $goods=DB::table('cogoods')->join('goods','goods.id','cid')->select('cogoods.*','goods_name')->where('uid','=',$uid);
+        $cogoods=DB::table('cogoods')->where('uid','=',$user1->id)->get();
+        //dd($cogoods);
+       $cogoods=DB::table('cogoods')->join('goods','goods.id','gid')->select('cogoods.*','goods.goods_name','goods.price','goods.z_pic','goods.id')->get();
+
+        
+
+        //dd($goods);
+        //dd($cogoods);
+
+        //dd($order);
         // dd($uid);
+     
+        $uid = session('hid');
+
+        /*******************************************/
         // 查询该用户拥有的所有优惠券
         $Log = DB::table('discount_log')->where('uid','=',$uid)->join('discount','discount_log.did','=','discount.id')->select('discount_log.*','discount.status as dstatus','discount.max','discount.minus','discount.start_time','discount.end_time','discount.describe','discount.cid')->get();
-        // dd($Log);
-           //公告消息
-        $notice = DB::table('notice')->get();
+
         //$Log->first() 是判断是否为空
         if ($Log->first()) {
             // dd('不为空');
@@ -39,19 +63,178 @@ class PersonalController extends Controller
             $Log = '';
         }
 
+        //公告消息
+        $notice = DB::table('notice')->paginate(2);
+        // 公告条数
+        $count  = DB::table('notice')->where('status',"=","1")->count();
+        /*******************************************/
+        //订单信息
+        $sql = "SELECT od.price,od.gname,od.onum,o.total,od.gid,o.`status`,o.addtime,od.oid,o.order_code,od.pic FROM `user` as u,`order` as o ,odetail as od WHERE o.id = od.oid AND u.id=o.uid  AND u.id = $uid";
+        $order = DB::select(DB::raw($sql));
+        /*****用户详情开始*****************************/
+        //查询用户详情
+        $user = DB::table('user_info')->where('uid','=',$uid)->first();
+        if ($user) {
+            $user = $user;
+        }else{
+            $user = '';
+        }
+        // dd($user);
 
-        return view('Home.Personal.index',['notice'=>$notice,'Log'=>$Log]);
+        /***用户详情结束*****************************/
+
+        // dd($order);
+
+
+        return view('Home.Personal.index',['notice'=>$notice,'count'=>$count,'order'=>$order,'user'=>$user,'uid'=>$uid,'cogoods'=>$cogoods,'Log'=>$Log]);
+
+
         // echo '个人主页'
+    }
+    /**
+     * [confirm 确认收货]
+     * @author 刘兴
+     * @DateTime 2018-11-20T10:43:05+0800
+     * @param    string   oid [订单id]
+     * @return   [type]                          [description]
+     */
+    public function confirm($id)
+    {
+        $time = time();
+        if (DB::table('order')->where("id","=",$id)->update(['status'=>3,'endtime'=>$time])) {
+            return redirect("/mypersonal")->with("success","已确认收货,请填写评价吧~");
+        }else{
+            return redirect("/mypersonal")->with("error","服务器正在升级中，请稍后再试");
+        }
+    }
+    /**
+     * [horderinfo 订单详情]
+     * @author 刘兴
+     * @DateTime 2018-11-20T13:56:03+0800
+     * @param    [type]                   $id [订单详情表id关联order-id]
+     * @return   [type]                       [description]
+     */
+    public function horderinfo($id)
+    {
+        $sql = "SELECT *  FROM `order` AS o ,odetail AS od  where od.oid = o.id AND  o.id = $id";
+        $info = DB::select($sql);
+        // dd($order_info);
+        $infos = "";
+        $address = "";
+        foreach ($info as $key => $value) {
+          
+            $info  = $value->address;
+        }
+        $infos  = $value;
+        // dd($infos);
+       
+        // $address = $value->in
+        return view('Home.Personal.horderinfo',['infos'=>$infos]);
     }
 
     /**
+     * [logistics 查询物流信息]
+     * @author 刘兴
+     * @DateTime 2018-11-20T16:12:55+0800
+     * @return  [com 需要查询的快递公司编号   ]
+     *          [no 需要查询的快递单号]  默认返回是json
+     */
+    public function logistics($id)
+    {
+        $sql = "SELECT o.wl_type,o.wl_code,od.pic  FROM `order` AS o ,odetail AS od  where od.oid = o.id AND  o.id = $id";
+        $info = DB::select($sql);
+        // dd($info);
+        // dd($id);
+        foreach ($info as $key => $value) {
+        }
+
+        $order = $value;
+        $key = "07f4dc96b3147de7151b1372454c4955"; 
+        $com = $order->wl_type; 
+        $no  = $order->wl_code;
+        
+ 
+
+
+        header('Content-type:text/html;charset=utf-8');
+        $params = array(
+          'key' =>  $key, //您申请的快递appkey
+          'com' =>  $com, //快递公司编码，可以通过$exp->getComs()获取支持的公司列表
+          'no'  =>  $no //快递编号
+        );
+        $exp = new Logistics($params['key']); //初始化类
+         
+        $result = $exp->query($params['com'],$params['no']); //执行查询
+         
+        if($result['error_code'] == 0){//查询成功
+          $list = $result['result']['list'];
+          
+        }else{
+          echo "获取失败，原因：".$result['reason'];
+        }
+
+        // var_dump($list);
+        return view('Home.Personal.logistics',['list'=>$list,'order'=>$order]);
+
+    }
+    /**
+     * [huserinfo 用户详情信息编辑]
+     * @author 刘兴
+     * @DateTime 2018-11-21T14:05:34+0800
+     * @param    [type]                   $id [description]
+     * @return   [type]                       [description]
+     */
+    public function huserinfo($id)
+    {
+        // dd($id);
+        return view('Home.Personal.huserinfo',['id'=>$id]);
+    }
+    /**
+     * [hsaveuser 个人信息保存]
+     * @author 刘兴
+     * @DateTime 2018-11-21T15:25:42+0800
+     * @param    UserInfoInsert           $request [description]
+     * @return   [type]                            [description]
+     */
+    public function hsaveuser(UserInfoInsert $request)
+    {
+        
+        $user = $request->except(['_token']);
+     // dd($user);
+        if(DB::table("user_info")->insert($user)){
+            return redirect("/mypersonal")->with("success","添加成功");
+        }else{
+            return redirect("/huserinfo/{{$id}}")->with("添加失败");
+        }
+
+    }
+
+    public function hupuser(Request $request)
+    {
+        $uid    = $request->input('uid');
+        $user   = $request->except(['_token','uid']);
+        // dd($uid);
+        $update = DB::table('user_info')->where("uid","=",$uid)->update($user);
+        if ($update) {
+            return redirect("/mypersonal")->with("success","更新成功");
+        } else{
+            return redirect("/mypersonal")->with("error","更新失败");
+        }
+        // dd();
+    }
+
+
+
+
+    /**
      * Show the form for creating a new resource.
-     *
+     *   三级联动
      * @return \Illuminate\Http\Response
      */
+    
     public function create()
     {
-        //
+      
     }
 
     public function city(Request $request)
@@ -68,13 +251,19 @@ class PersonalController extends Controller
         // echo '地址管理';
         return view('Home.Personal.addaddress');
     }
+    public function haddaddress(){
+        // echo '地址管理';
+        return view('Home.Personal.addaddress');
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     // 添加送货地址
+
     public function store(AddressInsert $request)
     {
         $data = $request->except(['_token','xiang','city']);
@@ -125,6 +314,7 @@ class PersonalController extends Controller
 
         }
 
+
     }
 
     // 这是管理地址页面
@@ -139,7 +329,9 @@ class PersonalController extends Controller
             $address = '';
         }
 
+
         // dd($address);
+
         return view('Home.Personal.address',['address'=>$address]);
 
     }
@@ -160,6 +352,7 @@ class PersonalController extends Controller
         }else{
             return redirect('/mypersonal')->with('error','数据出错');
         }
+
     }
     // 收货地址的修改
     public function haddressedit($uid,$aid)
@@ -224,6 +417,42 @@ class PersonalController extends Controller
         }
 
     }
+    // 收货地址的修改
+    public function haddressedit($uid,$aid)
+    {
+        $uid = $uid;
+        $aid = $aid;
+        // dd($aid);
+
+        $address = Personaladdress::find($aid);
+        if ($address->first()) {
+                $address = $address;
+        }else{
+            $address = '';
+        }
+        // dd($address);
+        return view('Home.Personal.editaddress',['address'=>$address,'aid'=>$aid]);
+    }
+    // 收货地址修改的页面
+    public function haddressupdate(AddressEdit $request,$aid)
+    {
+        // dd($aid);
+        // dd($request->all());
+        // $aid = '';
+        $aid = $aid;
+        $uid = session('hid');
+        $data = $request->except(['uid','_token']);
+        // dd($data);
+        if ($uid == $request->input('uid')) {
+            if (Personaladdress::where('uid','=',$uid)->where('id','=',$aid)->update($data)) {
+                // dd('更新成功!');
+                return redirect('/haddress/'.$uid)->with('success','更新成功');
+            }else{
+                // dd('更新失败');
+                return redirect('/haddress/'.$uid)->with('error','更新失败');
+            }
+        }
+
 
     //修改密码页面
     public function changepwd($uid)
@@ -311,6 +540,7 @@ class PersonalController extends Controller
     }
 
 
+
     /**
      * Display the specified resource.
      *
@@ -320,6 +550,16 @@ class PersonalController extends Controller
     public function show($id)
     {
         //
+        // echo $id;
+        $id     = $id;
+        $info   = DB::table('notice')->where("id","=",$id)->first();
+        // dd($info);
+        $info->status = 0;
+        DB::table('notice')->where("id","=",$id)->update(['status'=>0]);
+        // dd($info);
+        return view("/Home.Personal.notice",['info'=>$info]);
+        // dd($info);
+
     }
 
     /**
@@ -355,4 +595,107 @@ class PersonalController extends Controller
     {
         //
     }
+
+    /**
+     * [公告详情 noteinfo]
+     * @author 刘兴
+     * @DateTime 2018-11-19T10:46:07+0800
+     * @param    string                   $value [description]
+     */
+    
+
+     //用户优惠卷ajax添加
+    public function ajax(Request $request){
+        // echo json_encode(['status'=>1, 'msg'=>'成功']);exit;
+        // 获取用户id
+        $uid = session('hid');
+        // 优先判断是否登录了
+        if (!empty($uid)) {
+            // 获取did 优惠券id  
+             $did=$request->input('id');
+             //dd(input::all());
+             //dd($id);
+             
+             $discount=DB::table('discount')->where('id','=',$did)->first();
+             
+             $data['did']=$did;
+             $data['name']=$discount->dname;
+             $data['status']=1;
+             $data['uid']=session('hid');
+             // 查询所有该用户的拥有的优惠券  有的话就不能再领取了
+             $dlogs = array();
+             $dd = DB::table('discount_log')->where('id','=',session('hid'))->pluck('did');
+             foreach ($dd as  $ds) {
+                    $dlogs = $ds;
+             }
+             // 判断该优惠券是否已经领取
+                if (in_array($did,$dlogs)) {
+                    
+                    //在数组里面的话就是已经领取了
+                    return json_encode(['msg'=>3]);
+
+                }else{
+                    // 不存在就领取  插入数据库
+                     if (DiscountLog::create($data)) {
+                        return json_encode(['msg'=>1]);
+                     }else{
+                        return json_encode(['msg'=>0]);
+                     }
+                }
+            // return json_encode(['uid'=>$data['uid']]);
+             // if (DiscountLog::create($data)) {
+             //    return json_encode(['msg'=>1]);
+             // }else{
+             //    return json_encode(['msg'=>0]);
+             // }
+
+             // else是没有登录的
+        }else{
+
+            return json_encode(['msg'=>2]);
+        }
+        
+        
+    }
+
+    //用户收藏商品
+    public function cogoods(Request $request){
+        if(empty(session('username'))){
+            return json_encode(['msg'=>4]);
+        }
+        
+        $id=$request->input('id');
+        //通过传递的id查商品id
+        $goods=DB::table('goods')->where('id','=',$id)->first();
+        
+        //查出执行收藏操作的用户id
+        $user=DB::table('user')->where('uname','=',session('username'))->first();
+        
+      
+        $cogoods['uid']=$user->id;
+        //dd($id);
+        $cogoods['gid']=$goods->id;
+
+        $cogoods['create_at']=date('Y-m-d,H:i:s',time());
+        $cogood=DB::table('cogoods')->where('uid','=',$user->id)->where('gid','=',$goods->id)->first();
+         
+         //商品已收藏，删除选择
+        if(!empty($cogood)){
+            if(DB::table('cogoods')->delete($cogood->id)){
+                return json_encode(['msg'=>0]);
+            }else{
+                return json_encode(['msg'=>1]);
+            }
+        }else{
+            //将数据添加进用户收藏表
+            if(DB::table('cogoods')->insert($cogoods)){
+                return json_encode(['msg'=>2]);
+            }else{
+                return json_encode(['msg'=>3]);
+            }
+        }
+    }
+
+
+
 }

@@ -75,26 +75,41 @@ Route::group(["middleware"=>"adminlogin"],function()
 	// 轮播图的路由
 	Route::resource('/wheel','Admin\WheelController');
 
+//分配权限
 	// 轮播图Ajax 修改状态
 	Route::get('/wheelsta','Admin\WheelController@Ajax');
 	//强结束
 
-//分配权限
+
+
+	//分配权限
+
 	Route::get("/rolelist/{id}","Admin\AdministratorController@rolelist");
+
+	// 关键词模块
+	Route::resource("/key","Admin\KeyWordsController");
+
 	// 保存分配权限信息
 	Route::post("/save_rolelist","Admin\AdministratorController@save_rolelist");
+
 // 优惠券模块
 Route::resource("/discount","Admin\DiscountController");
 // 优惠券模块状态ajax
 Route::get("/discountsta",'Admin\DiscountController@sta');
 // 用户拥有优惠券详情
 Route::resource('/discountlog','Admin\DiscountLogController');
+
  //文章管理
  Route::resource('/article','Admin\ArticleController');
  //文章ajax删除
  Route::get('/articledel',"Admin\ArticleController@del");
 //文章状态ajax修改)
  Route::get('/articleajax',"Admin\ArticleController@ajax");
+ //添加快递单号
+ Route::get('/courier/{id}',"Admin\OrderController@courier");
+ //存入快递单号
+ Route::post('/upcourier',"Admin\OrderController@upcourier");
+
 });
 // 前台登录
 Route::resource("/hlogin","Home\LoginController");
@@ -115,6 +130,7 @@ Route::get("/chvcode","Home\LoginController@chvcode");
 //前台首页
 Route::resource("/","Home\HomeController");
 
+
 // 忘记密码
 Route::resource('/forget','Home\ForgetController');
 // 验证该用户是否存在
@@ -124,10 +140,24 @@ Route::get('/comfire','Home\ForgetController@Comfire');
 Route::group(["middleware"=>"hlogin"],function()
 {
 
+
+//用户优惠卷ajax领取
+Route::get("/discounta","Home\PersonalController@ajax");
+
+
 //前台文章栏目
 Route::get("/articlehome","Home\HomeController@article");
 //前台文章栏目详情
 Route::get("/articleshome/{id}","Home\HomeController@articles");
+
+
+
+//前台中间件结合路由组使用
+Route::group(["middleware"=>"hlogin"],function()
+{
+
+
+
 
 //购物车增加数量
 Route::get("/addcart","Home\CartController@addcart");
@@ -146,9 +176,21 @@ Route::resource('/mypersonal','Home\PersonalController');
 
 
 
+
 //地址管理
 //获取三级联动地址
 Route::get('/city','Home\PersonalController@city');
+  
+//前台模态商品详情
+Route::get('/modal','Home\HomeController@modal');
+// 个人详细信息
+Route::get("/huserinfo/{id}","Home\PersonalController@huserinfo");
+
+//保存个人信息功能
+Route::post("/hsaveuser","Home\PersonalController@hsaveuser");
+
+Route::post("/hupuser","Home\PersonalController@hupuser");
+
 //添加个人收货地址
 Route::get('/haddaddress','Home\PersonalController@haddaddress');
 //处理收货地址数据
@@ -182,16 +224,101 @@ Route::resource("/hcart","Home\CartController");
 Route::get("/checkexit","Home\CartController@checkexit");
 // 查询购物车里面的信息
 Route::get("/select","Home\CartController@select");
+
+//购物车增加数量
+Route::get("/addcart","Home\CartController@addcart");
+Route::get("/addnum","Home\CartController@addnum");
+
+//购物车减数量
+Route::get("/jiancart","Home\CartController@jiancart");
+// ajax数量增加
+Route::get("/ajaxadd","Home\CartController@ajaxadd");
+//总计减少量的量
+Route::get("jcart","Home\CartController@jcart");
+
+Route::get("/ajaxjian","Home\CartController@ajaxjian");
+//购物车的删除
+Route::get("/cartdel","Home\CartController@cartdel");
+ 
+//前台结算页：
+Route::resource("/pay","Home\PayController");
+// 公告详情
+Route::get("/noteinfo/{id}","Home\PersonalController@noteinfo");
+
+//前台评论添加
+Route::Resource("/hcomment","Home\CommentController");
+
+//确认收货
+Route::get("/confirm/{id}","Home\PersonalController@confirm");
+
+//订单详情
+Route::get("/horderinfo/{id}","Home\PersonalController@horderinfo");
+
+//查看物流Logistics
+Route::get("/logistics/{id}","Home\PersonalController@logistics");
+
+//前台结算页：
+Route::resource("/pay","Home\PayController");
+//支付宝接口调用
+Route::get("/pays","Home\PayController@pays");
+//通知给客户端的界面
+Route::get("/returnurl","Home\PayController@returnurl");
+//地址管理
+//获取三级联动地址
+Route::get('/city','Home\PersonalController@city');
+//添加个人收货地址
+Route::get('/haddaddress','Home\PersonalController@haddaddress');
+//处理收货地址数据
+Route::get('/haddress/{hid}','Home\PersonalController@haddress');
+// 地址删除
+Route::get('/haddressdel/{uid}-{aid}','Home\PersonalController@haddressdel');
+// 地址修改页面
+Route::get('/haddressedit/{uid}-{aid}','Home\PersonalController@haddressedit');
+// 地址修改提交处理方式
+Route::post('/haddressupdate/{aid}','Home\PersonalController@haddressupdate');
+// 设置默认地址
+Route::get('/haddressmo/{aid}','Home\PersonalController@haddressmo');
+//地址管理结束
+
+
+
 });
+//用户收藏商品
+Route::get("/cogoods","Home\PersonalController@cogoods");
+
 
 
 //商品详情页
 Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
+
+
+
 //商品列表页
 Route::get("/search/{id}","Home\HomeController@search");
+//购物车增加数量
+Route::get("/addcart","Home\CartController@addcart");
+Route::get("/addnum","Home\CartController@addnum");
+
+//购物车减数量
+Route::get("/jiancart","Home\CartController@jiancart");
+// ajax数量增加
+Route::get("/ajaxadd","Home\CartController@ajaxadd");
+//总计减少量的量
+Route::get("jcart","Home\CartController@jcart");
+
+Route::get("/ajaxjian","Home\CartController@ajaxjian");
+//购物车的删除
+Route::get("/cartdel","Home\CartController@cartdel");
+  
+//前台结算页：
+Route::resource("/pay","Home\PayController");
+//支付宝接口调用
+Route::get("/pays","Home\PayController@pays");
+//通知给客户端的界面
+Route::get("/returnurl","Home\PayController@returnurl");
 
 
-
+Route::get("/keywords","Home\HomeController@keywords");
 
 
 

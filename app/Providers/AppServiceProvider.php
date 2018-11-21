@@ -63,8 +63,6 @@ class AppServiceProvider extends ServiceProvider
         return view("Home.Home.articles",['info'=>$info]);
     }
 
-
-
     /**
      * 
      * Bootstrap any application services.
@@ -75,14 +73,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $cate = $this->getCategoryBypid(0);
-
-       
-
-        
-
-
         view()->share('cate',$cate);
- 
         // 友情链接
         $link=$this->link();
         view()->share('link',$link);
@@ -90,6 +81,7 @@ class AppServiceProvider extends ServiceProvider
 
 
     }
+    
 
     /**
      * Register any application services.

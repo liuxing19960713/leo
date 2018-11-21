@@ -41,7 +41,10 @@ class RegisterController extends Controller
     public function store(RegisterInsert $request)
     {
         $code =  $request->cookie('code');
-        $codes=  $request->input('code');
+
+        $codes= $request->input('code');
+        // dd($codes);
+
         if(!$codes == $code){
             return back()->with("error","验证错误");
         }else{

@@ -10,7 +10,9 @@
   <!-- Favicon -->
   <link rel="icon" href="/static/home/assets/images/favicon.ico" />
     <!-- 分页样式 -->
-  <link rel="stylesheet" href="/static/admins/css/mypage.css" />
+
+  <link rel="stylesheet" href="/static/admins/css/mypage.css" /> 
+
 
   <!-- CSS
   ============================================ -->
@@ -29,6 +31,7 @@
   <!-- Modernizer JS -->
   <script src="/static/home/assets/js/vendor/modernizr-2.8.3.min.js"></script>
   <script src="/static/js/jquery-1.8.3.min.js"></script>
+
  </head>
  <body>
   <!--=============================================
@@ -91,15 +94,15 @@
       <div class="col-12 col-lg-3 col-md-3 text-center text-md-left mb-sm-20">
        <!--=======  logo  =======-->
        <div class="logo">
-        <a href="index.html"> <img src="/static/home/assets/images/logo.png" class="img-fluid" alt="" /> </a>
+        <a href="/"> <img src="/static/home/assets/images/logo.png" class="img-fluid" alt="" /> </a>
        </div>
        <!--=======  End of logo  =======-->
       </div>
       <div class="col-12 col-lg-6 col-md-5 mb-sm-20">
        <!--=======  Search bar  =======-->
-       <form action="index.html">
+       <form action="/keywords" method="get"> 
         <div class="search-bar">
-         <input type="search" placeholder="Search entire store here ..." />
+         <input type="search" name="keywords" placeholder="Search entire store here ..." />
          <button><i class="lnr lnr-magnifier"></i></button>
         </div>
        </form>
@@ -110,7 +113,7 @@
        <div class="menu-top-icons d-flex justify-content-center align-items-center justify-content-md-end">
         <!--=======  single icon  =======-->
         <div class="single-icon mr-20">
-         <a href="wishlist.html"> <i class="lnr lnr-heart"></i> <span class="text">愿望清单</span> <span class="count">0</span> </a>
+         <a href="/mypersonal"> <i class="lnr lnr-heart"></i> <span class="text">愿望清单</span> <span class="count">0</span> </a>
         </div>
         <!--=======  End of single icon  =======-->
         <!--=======  single icon  =======-->
