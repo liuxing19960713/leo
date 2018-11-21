@@ -203,7 +203,7 @@ Route::get("/goodinfo/{id}","Home\HomeController@goodinfo");
 Route::get("/search/{id}","Home\HomeController@search");
 
 
-
+Route::get("/keywords","Home\HomeController@keywords");
 
 
 

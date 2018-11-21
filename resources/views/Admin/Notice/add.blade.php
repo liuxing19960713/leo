@@ -22,7 +22,7 @@
      <div class="form-group row"> 
       <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">公告内容</font></font></label> 
       
-        <script id="editor" name="content" type="text/plain" style="width:900px;height:500px;"></script>
+        <script id="editor" name="content" type="text/plain" style="width:1200px;height:500px;"></script>
        
      </div> 
      {{csrf_field()}}
