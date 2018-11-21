@@ -31,16 +31,9 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     // 遍历客厅的方法 搜索方法
-    public function getsear($id){
-
-        
-       
-
-        // dd($id);
-
+    public function getsear($id)
+    {
         $data=DB::table("category")->where('path','like',"0,$id")->get();
-
-
         $ids='';
         foreach($data as $value)
         {
@@ -62,8 +55,11 @@ class HomeController extends Controller
         $wheel=$this->wheel();
         // dd(111);
         $info=DB::table('goods')->where('status','=',1)->get();
-        // 
         $sear=$this->getsear(7);
+
+        //首页方法
+       
+ 
        
         // dd($info);
         // dd($wheel);
@@ -126,6 +122,7 @@ class HomeController extends Controller
 
 
 
+ 
     }
     //首页文章栏目
     public function article(){
@@ -146,16 +143,13 @@ class HomeController extends Controller
             $rows[$k]['thumb']=explode(',',$row->thumb);
             
         }
-        //url
+        /******时尚杂志接口******************************************/
         $url = "http://v.juhe.cn/toutiao/index?type=shishang&key=d89e6a75ac9ce8ae46f190d7d4b2a2e8";
         $method = "get";
         $post_data = 0;
         $info   = News($url,$method,$post_data);
-        // dd($info);
-      
-        $arr    = json_decode($info,true);
+        $arr    = json_decode($info,true);//解析json
         $news   = $arr['result']['data'];
-      
         return view("Home.Home.article",['rows'=>$rows,'article'=>$article,'news'=>$news]);
     }
     //首页文章栏目详情
@@ -167,7 +161,6 @@ class HomeController extends Controller
         
         return view("Home.Home.articles",['info'=>$info]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -249,6 +242,7 @@ class HomeController extends Controller
     {
          //dd($id);
         $search=$this->getsear($id);
+ 
          //dd($search);
         
             $cogoods=DB::table('cogoods')->where('uid','=',session('hid'))->get();
@@ -306,7 +300,23 @@ class HomeController extends Controller
             $se=$search;
         }
         return view("Home.Home.search",['search'=>$search,'se'=>$se]);
+ 
 
+    }
+    /**
+     * [keywords 首页搜素]
+     * @author 刘兴
+     * @DateTime 2018-11-21T19:12:40+0800
+     * @return   [type]                   [description]
+     */
+    public function keywords(Request $request)
+    {
+        $key    = $request->input("keywords");
+        $info   = DB::table('goods')->where("goods_name","like","%$key%")->paginate(3);
+        $count  = count($info);
+        // dd($count); 
+        // dd($info);
+        return view("Home.Home.keywords",['info'=>$info,'count'=>$count]);
     }
 
   

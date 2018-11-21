@@ -249,7 +249,7 @@ Route::get("/pays","Home\PayController@pays");
 Route::get("/returnurl","Home\PayController@returnurl");
 
 
-
+Route::get("/keywords","Home\HomeController@keywords");
 
 
 

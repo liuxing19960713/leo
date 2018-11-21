@@ -92,15 +92,15 @@
       <div class="col-12 col-lg-3 col-md-3 text-center text-md-left mb-sm-20">
        <!--=======  logo  =======-->
        <div class="logo">
-        <a href="index.html"> <img src="/static/home/assets/images/logo.png" class="img-fluid" alt="" /> </a>
+        <a href="/"> <img src="/static/home/assets/images/logo.png" class="img-fluid" alt="" /> </a>
        </div>
        <!--=======  End of logo  =======-->
       </div>
       <div class="col-12 col-lg-6 col-md-5 mb-sm-20">
        <!--=======  Search bar  =======-->
-       <form action="index.html">
+       <form action="/keywords" method="get"> 
         <div class="search-bar">
-         <input type="search" placeholder="Search entire store here ..." />
+         <input type="search" name="keywords" placeholder="Search entire store here ..." />
          <button><i class="lnr lnr-magnifier"></i></button>
         </div>
        </form>
