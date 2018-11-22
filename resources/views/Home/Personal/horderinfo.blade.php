@@ -37,7 +37,23 @@
             <hr/>
             <!--进度条-->
             <div class="m-progress">
-              <div class="m-progress-list">
+          
+            <div class="order-infoaside">
+              <div class="order-logistics">
+                <i>
+                  <div class="icon-log">
+                   
+                  </div>
+                   @if(!empty($infos->endtime))
+                  <div class="latest-logistics">
+                    <p class="text">已签收,签收人是{{$infos->linkname}}签收，感谢使用天天快递，期待再次为您服务</p>
+                    <div class="time-list">
+                      <i><img src="/static/home/order_info/images/receive.png"></i>
+                      <span class="date">{{date('Y-m-d H:i:s',$infos->endtime)}} </span>
+                    </div>
+                    @endif
+                      @if($infos->status==2)
+                          <div class="m-progress-list">
                 <span class="step-1 step">
                                    <em class="u-progress-stage-bg"></em>
                                    <i class="u-stage-icon-inner">1<em class="bg"></em></i>
@@ -64,25 +80,15 @@
                 <div class="u-progress-bar-inner"></div>
               </div>
             </div>
-            <div class="order-infoaside">
-              <div class="order-logistics">
-                <i>
-                  <div class="icon-log">
-                    <i><img src="/static/home/order_info/images/receive.png"></i>
-                  </div>
-                   @if(!empty($infos->endtime))
-                  <div class="latest-logistics">
-                    <p class="text">已签收,签收人是{{$infos->linkname}}签收，感谢使用天天快递，期待再次为您服务</p>
-                    <div class="time-list">
-                     
-                      <span class="date">{{date('Y-m-d H:i:s',$infos->endtime)}} </span>
-                    </div>
-                    @endif
+
                     <div class="inquire">
                       <span class="package-detail">物流：天天快递</span>
                       <span class="package-detail">快递单号: </span>
-                      <span class="package-number">373269427868</span>
-                      <a href="/logistics/{{$infos->oid}}">查看</a>
+                      <span class="package-number">{{$infos->order_code}}</span>
+                      <a href="/logistics/{{$infos->oid}}">查看物流</a>
+                      @else
+                      等待商家发货
+                      @endif
                     </div>
                   </div>
                   <span class="am-icon-angle-right icon"></span>
@@ -173,13 +179,16 @@
                       <li class="td td-amount">
                         <div class="item-amount">
                           合计：{{$infos->total}}
-                          <p>优惠金额：<span>10.00</span></p>
+                          <p>优惠金额：<span>{{$infos->minus}}</span></p>
                         </div>
                       </li>
+                       @if($infos->status==2)
                       <div class="move-right">
                         <li class="td td-status">
                           <div class="item-status">
+                            
                             <p class="Mystatus">卖家已发货</p>
+                           
                             <p class="order-info"><a href="/logistics/{{$infos->oid}}">查看物流</a></p>
                             <p class="order-info"><a href="#">延长收货</a></p>
                           </div>
@@ -187,8 +196,23 @@
                         <li class="td td-change">
                           <div class="am-btn am-btn-danger anniu">
                             确认收货</div>
+
+                        </li>
+                        @elseif($infos->status == 4)
+                         <li class="td td-change">
+                              <div class="am-btn anniu tixing ">
+                            订单完成</div>
+
+                        </li>
+                          @elseif($infos->status== 1)
+                            <li class="td td-change">
+                              <div class="am-btn am-btn-danger anniu tixing fahuo">
+                            提醒商家发货</div>
+
                         </li>
                       </div>
+                      @endif
+
                     </div>
                   </div>
 
@@ -204,6 +228,12 @@
 
   </body>
 
+  <script>
+    $('.tixing').click(function(){
+      $('.fahuo').removeClass('am-btn am-btn-danger anniu tixing fahuo');
+      $('.fahuo').removeClass('fahuo');
+    })
+  </script>
 </html>
 
 @endsection

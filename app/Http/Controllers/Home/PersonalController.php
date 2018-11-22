@@ -116,7 +116,7 @@ class PersonalController extends Controller
      */
     public function horderinfo($id)
     {
-        $sql = "SELECT *  FROM `order` AS o ,odetail AS od  where od.oid = o.id AND  o.id = $id";
+        $sql = "SELECT *  FROM `order` AS o ,odetail AS od, discount AS d where od.oid = o.id AND d.id=o.did AND  o.id = $id";
         $info = DB::select($sql);
         // dd($order_info);
         $infos = "";
@@ -126,8 +126,6 @@ class PersonalController extends Controller
             $info  = $value->address;
         }
         $infos  = $value;
-        // dd($infos);
-       
         // $address = $value->in
         return view('Home.Personal.horderinfo',['infos'=>$infos]);
     }
@@ -143,7 +141,6 @@ class PersonalController extends Controller
     {
         $sql = "SELECT o.wl_type,o.wl_code,od.pic  FROM `order` AS o ,odetail AS od  where od.oid = o.id AND  o.id = $id";
         $info = DB::select($sql);
-        // dd($info);
         // dd($id);
         foreach ($info as $key => $value) {
         }
@@ -155,7 +152,7 @@ class PersonalController extends Controller
         
  
 
-
+        $list = array();
         header('Content-type:text/html;charset=utf-8');
         $params = array(
           'key' =>  $key, //您申请的快递appkey
@@ -173,7 +170,6 @@ class PersonalController extends Controller
           echo "获取失败，原因：".$result['reason'];
         }
 
-        // var_dump($list);
         return view('Home.Personal.logistics',['list'=>$list,'order'=>$order]);
 
     }

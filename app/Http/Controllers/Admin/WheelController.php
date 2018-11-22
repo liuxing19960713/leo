@@ -196,7 +196,7 @@ class WheelController extends Controller
             // 做是否符合文件的验证
             $arr = ['jpg','jpeg'];
             // 获取旧图片的路径
-            $old = Wheel::where('id','=',$id)->first()->value('l_pic');
+            $old = Wheel::where('id','=',$id)->value('l_pic');
             // dd($old);
             // 遍历多文件
             foreach ($file as  $v) {

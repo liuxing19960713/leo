@@ -103,7 +103,7 @@
           <div class="hover-icons"> 
            <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
            @if($data['status']==1) 
-           <a gid="{{$data['id']}}" class="hover-icon t" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
+           <a gid="{{$data['id']}}" class="hover-icon t" href="javascript:void(0)"><i class="fa fa-heart" style="margin-top:12px;"></i></a>
           @else
           <a gid="{{$data['id']}}" class="hover-icon t" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
           @endif
@@ -177,7 +177,7 @@
          
         }else if(ob.msg==2){
           alert('添加收藏成功');
-          gg.html('<i class="fa fa-heart "></i>');
+          gg.html('<i class="fa fa-heart" style="margin-top:12px;"></i>');
         }else if(ob.msg==3){
           alert('取消收藏失败')
         }else if(ob.msg==4){

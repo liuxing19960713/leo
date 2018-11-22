@@ -146,7 +146,7 @@
 
           <a class="hover-icon mm" index="{{$row['id']}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
           @if($row['status']==1) 
-          <a gid="{{$row['id']}}" class="hover-icon l" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
+          <a gid="{{$row['id']}}" class="hover-icon l" href="javascript:void(0)"><i class="fa fa-heart" style="margin-top:12px;"></i></a>
           @else
           <a gid="{{$row['id']}}" class="hover-icon l" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
           @endif
@@ -226,11 +226,11 @@
 
             <a class="hover-icon mm" index="{{$row['id']}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
             @if($row['status']==1) 
-            <a gid="{{$row['id']}}" class="hover-icon a" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
+            <a gid="{{$row['id']}}" class="hover-icon a" href="javascript:void(0)"><i class="fa fa-heart" style="margin-top:12px;"></i></a>
             @else
             <a gid="{{$row['id']}}" class="hover-icon a" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
             @endif
-            <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
+            
 
             <!--=======  End of hover icons  =======--> 
             <!--=======  badge  =======--> 
@@ -357,10 +357,10 @@
 
           <a class="hover-icon mm" index="{{$row['id']}}" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a>
           @if($row['status']==1) 
-          <a gid="{{$row['id']}}" class="hover-icon r" href="javascript:void(0)"><i class="fa fa-heart"></i></a>@else
+          <a gid="{{$row['id']}}" class="hover-icon r" href="javascript:void(0)"><i class="fa fa-heart" style="margin-top:12px;"></i></a>@else
           <a gid="{{$row['id']}}" class="hover-icon r" href="javascript:void(0)"><i class="lnr lnr-heart"></i></a>
           @endif
-          <a class="hover-icon " href="#"><i class="lnr lnr-cart"></i></a> 
+          
 
           <!--=======  End of hover icons  =======--> 
           <!--=======  badge  =======--> 
@@ -664,7 +664,7 @@
          
         }else if(obj.msg==2){
           alert('添加收藏成功');
-          gg.html('<i class="fa fa-heart "></i>');
+          gg.html('<i class="fa fa-heart " style="margin-top:12px;"></i>');
         }else if(obj.msg==3){
           alert('添加收藏失败');
         }else if(obj.msg==4){
@@ -717,7 +717,7 @@ $(".a").bind('click',function(){
          
         }else if(obj.msg==2){
           alert('添加收藏成功');
-          gg.html('<i class="fa fa-heart "></i>');
+          gg.html('<i class="fa fa-heart " style="margin-top:12px;"></i>');
         }else if(obj.msg==3){
           alert('添加收藏失败');
         }else if(obj.msg==4){
@@ -770,7 +770,7 @@ $(".r").bind('click',function(){
          
         }else if(obj.msg==2){
           alert('添加收藏成功');
-          gg.html('<i class="fa fa-heart "></i>');
+          gg.html('<i class="fa fa-heart " style="margin-top:12px;"></i>');
         }else if(obj.msg==3){
           alert('添加收藏失败');
         }else if(obj.msg==4){

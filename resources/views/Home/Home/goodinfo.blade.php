@@ -131,7 +131,7 @@
        <form action="/hcart" method="post">
         {{csrf_field()}}
          
-
+        <input type="hidden" name="id" value="{{$info->id}}">
        <div class="cart-buttons mb-30"> 
         <p class="mb-15">数量</p> 
         <div class="pro-qty mr-10"> 
@@ -354,7 +354,7 @@
           <!--=======  hover icons  =======--> 
           <a class="hover-icon" href="#" data-toggle="modal" data-target="#quick-view-modal-container"><i class="lnr lnr-eye"></i></a> 
           <a class="hover-icon" href="#"><i class="lnr lnr-heart"></i></a> 
-          <a class="hover-icon" href="#"><i class="lnr lnr-cart"></i></a> 
+          
           <!--=======  End of hover icons  =======--> 
           <!--=======  badge  =======--> 
           <div class="product-badge"> 

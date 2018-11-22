@@ -4,228 +4,229 @@
     =            Breadcrumb Area         =
     =============================================-->
 <html>
-
  <head>
   <link rel="stylesheet" href="cbootstrap.min.css">
-  <link rel="stylesheet" href="/static/public/css/bootstrap.min.css">
   <link href="/static/public/css/admin.css" rel="stylesheet" type="text/css">
   <link href="/static/public/css/amazeui.css" rel="stylesheet" type="text/css">
   <link href="/static/public/css/personal.css" rel="stylesheet" type="text/css">
   <link href="/static/public/css/cpstyle.css" rel="stylesheet" type="text/css">
-  <link href="/static/public/css/infstyle.css" rel="stylesheet" type="text/css">
   <link href="/static/public/css/orstyle.css" rel="stylesheet" type="text/css">
+  <link href="/static/public/css/infstyle.css" rel="stylesheet" type="text/css">
   <script src="/static/jquery-1.7.2.min.js"></script>
   <script src="/static/public/js/jquery.min.js"></script>
   <script src="/static/public/js/bootstrap.min.js"></script>
-  <script src="/static/public/js/holder.min.js"></script> 
+  <script src="/static/public/js/holder.min.js"></script>
   <script src="/static/public/jquery.min.js"></script>
   <script src="/static/public/js/amazeui.js"></script>
 </head>
-<body>
 
+ <body>
 
-<div class="breadcrumb-area breadcrumb-bg pt-85 pb-85 mb-80">
+<div class="breadcrumb-area breadcrumb-bg pt-85 pb-85 mb-80" style="background-image:none;">
    <div class="container">
     <div class="row">
      <div class="col-lg-12">
-      <div class="breadcrumb-container">
+      <div class="">
        <ul>
-        <li><a href="/">主页</a> <span class="separator">/</span></li>
-        <li class="active">我的账户</li>
+        
        </ul>
       </div>
      </div>
     </div>
    </div>
 </div>
-  <div class="page-section mb-80">
-   <div class="container">
-    <div class="row">
-     <div class="col-12">
-      <div class="row">
-       <!-- My Account Tab Menu Start -->
-       <div class="col-lg-3 col-12">
-        <div class="myaccount-tab-menu nav" role="tablist">
-         <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i> 仪表板</a>
-         <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> 订单</a>
-         <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i> 收藏</a>
-         <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> 付款方式</a>
-         <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> 地址</a>
-         <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> 账户详细资料</a>
+  <!--=====  End of Breadcrumb Area  ======-->
+  <!--=============================================
+    =            My Account page content         =
+    =============================================-->
+<div class="page-section mb-80">
+<div class="container">
+<div class="row">
+<div class="col-12">
+<div class="row">
+ <!-- My Account Tab Menu Start -->
+ <div class="col-lg-3 col-12">
+  <div class="myaccount-tab-menu nav" role="tablist">
+   <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i> 仪表板</a>
+   <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> 订单</a>
+   <a href="#cogoods" data-toggle="tab"><i class="fa fa-cloud-download"></i> 收藏</a>
+   <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i>安全设置</a>
+   <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> 我的优惠劵</a>
+   <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> 地址</a>
+   <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> 账户详细资料</a>
+  <a href="#announce" data-toggle="tab"><i class="fa fa-user"></i>消息</a>
+   <a href="login-register.html"><i class="fa fa-sign-out"></i> 登出</a>
+  </div>
+ </div>
+ <!-- My Account Tab Menu End -->
+ <!-- My Account Tab Content Start -->
+ <div class="col-lg-9 col-12">
+  <div class="tab-content" id="myaccountContent">
+   <!-- Single Tab Content Start -->
+   <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+    <div class="myaccount-content">
+     <h3>欢迎</h3>
+     <div class="welcome mb-20">
+      <p>你好, <strong>{{session('username')}}</strong> (如果不是 <strong>Tuntuni !</strong><a href="/loginout/{{session('hid')}}" class="logout"> 退出</a>)</p>
+     </div>
+     <p class="mb-0">来自您的帐户信息中心。您可以轻松查看和查看最近的订单,管理您的送货和帐单地址，以及修改密码和帐户详细信息。</p>
+    </div>
+   </div>
 
-
-        <a href="#announce" data-toggle="tab"><i class="glyphicon glyphicon-bullhorn"></i>消息<span class="count">({{$count}})</span></a>
-
-         <a href="login-register.html"><i class="fa fa-sign-out"></i> 登出</a>
-        </div>
-       </div>
-       <!-- My Account Tab Menu End -->
-       <!-- My Account Tab Content Start -->
-       <div class="col-lg-9 col-12">
-        <div class="tab-content" id="myaccountContent">
-         <!-- Single Tab Content Start -->
-         <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+   <!-- Single Tab Content End -->
+   <!-- Single Tab Content Start -->
+   <div class="tab-pane fade" id="orders" role="tabpanel">
+    <div class="myaccount-content">
+     
+     <div class="myaccount-table table-responsive text-center" style="width: 150%">
+      <table class="table table-bordered">
           <div class="myaccount-content">
-           <h3>欢迎</h3>
-           <div class="welcome mb-20">
-            <p>你好, <strong>{{session('name')}}</strong> (如果不是 <strong>Tuntuni !</strong><a href="/hlogin/loginout/{{session('id')}}" class="logout"> 退出</a>)</p>
-           </div>
-           <p class="mb-0">来自您的帐户信息中心。您可以轻松查看和查看最近的订单,管理您的送货和帐单地址，以及修改密码和帐户详细信息。</p>
-          </div>
-         </div>
-         <!-- Single Tab Content End -->
-         <!-- Single Tab Content Start -->
-         <div class="tab-pane fade" id="orders" role="tabpanel">
-          <div class="myaccount-content">
-           <h3>订单</h3>
+      
 
 
-            
-            <!-- 订单开始 -->
-            <div class="user-order"> 
-             <!--标题 --> 
-             <div class="am-cf am-padding"> 
-              <div class="am-fl am-cf">
-               <strong class="am-text-danger am-text-lg">订单管理</strong> / 
-               <small>Order</small>
+      
+      <!-- 订单开始 -->
+      <div class="user-order"> 
+       <!--标题 --> 
+       <div class="am-cf am-padding"> 
+       
+       </div> 
+       <hr /> 
+       <div class="am-tabs am-tabs-d2 am-margin" data-am-tabs=""> 
+        <ul class="am-avg-sm-5 am-tabs-nav am-nav am-nav-tabs"> 
+         <li class="am-active"><a href="#tab1">所有订单</a></li> 
+         <li class=""><a href="#tab2">待付款</a></li> 
+         <li class=""><a href="#tab3">待发货</a></li> 
+         <li class=""><a href="#tab4">待收货</a></li> 
+         <li class=""><a href="#tab5">待评价</a></li> 
+        </ul> 
+        <div class="am-tabs-bd" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"> 
+         <div class="am-tab-panel am-fade am-active am-in" id="tab1"> 
+          <div class="order-top"> 
+           <div class="th th-item">
+             商品 
+           </div> 
+           <div class="th th-price">
+             单价 
+           </div> 
+           <div class="th th-number">
+             数量 
+           </div> 
+           <div class="th th-operation">
+             商品操作 
+           </div> 
+           <div class="th th-amount">
+             合计 
+           </div> 
+           <div class="th th-status">
+             交易状态 
+           </div> 
+           <div class="th th-change">
+             交易操作 
+           </div> 
+          </div> 
+          <div class="order-main"> 
+           <div class="order-list"> 
+
+            <!--交易成功--> 
+            @foreach($order as $da)
+       
+            <div class="order-status5"> 
+             <div class="order-title"> 
+              <div class="dd-num">
+               订单编号8--所有订单
+               <a href="javascript:;">{{$da->order_code}}0</a>
               </div> 
+              <span>成交时间：{{$da->addtime}}</span> 
+              <!--    <em>店铺：小桔灯</em>--> 
              </div> 
-             <hr /> 
-             <div class="am-tabs am-tabs-d2 am-margin" data-am-tabs=""> 
-              <ul class="am-avg-sm-5 am-tabs-nav am-nav am-nav-tabs"> 
-               <li class="am-active"><a href="#tab1">所有订单</a></li> 
-               <li class=""><a href="#tab2">待付款</a></li> 
-               <li class=""><a href="#tab3">待发货</a></li> 
-               <li class=""><a href="#tab4">待收货</a></li> 
-               <li class=""><a href="#tab5">待评价</a></li> 
-              </ul> 
-              <div class="am-tabs-bd" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"> 
-               <div class="am-tab-panel am-fade am-active am-in" id="tab1"> 
-                <div class="order-top"> 
-                 <div class="th th-item">
-                   商品 
+             <div class="order-content"> 
+              <div class="order-left"> 
+               <ul class="item-list"> 
+                <li class="td td-item"> 
+                 <div class="item-pic"> 
+                  <a href="#" class="J_MakePoint"> <img src="/static/admin/uploads/z_goods/{{$da->pic}}" class="itempic J_ItemImg" /> </a> 
                  </div> 
-                 <div class="th th-price">
-                   单价 
-                 </div> 
-                 <div class="th th-number">
-                   数量 
-                 </div> 
-                 <div class="th th-operation">
-                   商品操作 
-                 </div> 
-                 <div class="th th-amount">
-                   合计 
-                 </div> 
-                 <div class="th th-status">
-                   交易状态 
-                 </div> 
-                 <div class="th th-change">
-                   交易操作 
-                 </div> 
-                </div> 
-                <div class="order-main"> 
-                 <div class="order-list"> 
+                 <div class="item-info"> 
+                  <div class="item-basic-info"> 
+                   <a href="#"> <p>{{$da->gname}}</p></a> 
+                  </div> 
+                 </div> </li> 
+                <li class="td td-price"> 
+                 <div class="item-price">
+                   {{$da->price}}
+                 </div> </li> 
+                <li class="td td-number"> 
+                 <div class="item-number"> 
+                  <span>&times;</span>{{$da->onum}} 
+                 </div> </li> 
+                <li class="td td-operation"> 
+                 <div class="item-operation"> 
+                 </div> </li> 
+               </ul> 
+              </div> 
+              <div class="order-right"> 
+               <li class="td td-amount"> 
+                <div class="item-amount" >
+                  合计：{{$da->total}} 
+                 <p>含优惠券<span>10.00</span></p> 
+                </div> </li> 
+                    
 
-                  <!--交易成功--> 
-                  @foreach($order as $da)
-                  {{var_dump($da->status)}}
-                  <div class="order-status5"> 
-                   <div class="order-title"> 
-                    <div class="dd-num">
-                     订单编号8--所有订单
-                     <a href="javascript:;">{{$da->order_code}}0</a>
-                    </div> 
-                    <span>成交时间：{{$da->addtime}}</span> 
-                    <!--    <em>店铺：小桔灯</em>--> 
-                   </div> 
-                   <div class="order-content"> 
-                    <div class="order-left"> 
-                     <ul class="item-list"> 
-                      <li class="td td-item"> 
-                       <div class="item-pic"> 
-                        <a href="#" class="J_MakePoint"> <img src="/static/admin/uploads/z_goods/{{$da->pic}}" class="itempic J_ItemImg" /> </a> 
-                       </div> 
-                       <div class="item-info"> 
-                        <div class="item-basic-info"> 
-                         <a href="#"> <p>{{$da->gname}}</p></a> 
-                        </div> 
-                       </div> </li> 
-                      <li class="td td-price"> 
-                       <div class="item-price">
-                         {{$da->price}}
-                       </div> </li> 
-                      <li class="td td-number"> 
-                       <div class="item-number"> 
-                        <span>&times;</span>{{$da->onum}} 
-                       </div> </li> 
-                      <li class="td td-operation"> 
-                       <div class="item-operation"> 
-                       </div> </li> 
-                     </ul> 
-                    </div> 
-                    <div class="order-right"> 
-                     <li class="td td-amount"> 
-                      <div class="item-amount">
-                        合计：{{$da->total}} 
-                       <p>含优惠券<span>10.00</span></p> 
-                      </div> </li> 
-                          
+               <div class="move-right"> 
+                @if($da->status=='0')
+                     <li class="td td-status"> 
+                     <div class="item-status"> 
+                      <p class="Mystatus">等待买家付款</p> 
+                     </div> </li>
+                     <li class="td td-change"> 
+                       <a href="/pays/{{$da->oid}}" class="am-btn am-btn-danger anniu">
+                         一键支付
+                       </a> </li> 
 
-                     <div class="move-right"> 
-                      @if($da->status=='0')
+                  @elseif($da->status == '1')
+                       <li class="td td-status"> 
+                       <div class="item-status"> 
+                        <p class="Mystatus">买家已付款</p> 
+                        <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p> 
+                        <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
+                       </div> </li> 
+                      <li class="td td-change"> 
+                       <div class="am-btn am-btn-danger anniu">
+                         删除订单
+                       </div></li>
+                      @elseif($da->status== '2')
+                        <li class="td td-status"> 
+                       <div class="item-status"> 
+                        <p class="Mystatus">卖家已发货</p> 
+                        <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p> 
+                        <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
+                        <p class="order-info"><a href="logistics.html">延长收货</a></p> 
+
+                       </div> </li> 
+                      <li class="td td-change"> 
+                       <a href="/confirm/{{$da->oid}}" class="am-btn am-btn-danger anniu">
+                         确认收货
+                       </a></li>
+
+                        @elseif($da->status == '3')
                            <li class="td td-status"> 
                            <div class="item-status"> 
-                            <p class="Mystatus">等待买家付款</p> 
-                           </div> </li>
-                           <li class="td td-change"> 
-                             <a href="/pays/{{$da->oid}}" class="am-btn am-btn-danger anniu">
-                               一键支付
-                             </a> </li> 
-
-                        @elseif($da->status == '1')
-                             <li class="td td-status"> 
-                             <div class="item-status"> 
-                              <p class="Mystatus">买家已付款</p> 
-                              <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p> 
-                              <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
-                             </div> </li> 
-                            <li class="td td-change"> 
-                             <div class="am-btn am-btn-danger anniu">
-                               删除订单
-                             </div></li>
-                            @elseif($da->status== '2')
-                              <li class="td td-status"> 
-                             <div class="item-status"> 
-                              <p class="Mystatus">卖家已发货</p> 
-                              <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p> 
-                              <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
-                              <p class="order-info"><a href="logistics.html">延长收货</a></p> 
-
-                             </div> </li> 
-                            <li class="td td-change"> 
-                             <div class="am-btn am-btn-danger anniu">
-                               确认收货
-                             </div></li>
-
-                              @elseif($da->status == '3')
-                                 <li class="td td-status"> 
-                                 <div class="item-status"> 
-                                  <p class="Mystatus">交易成功</p> 
-                                  <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p> 
-                                  <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
-                                 </div> </li> 
-                                <li class="td td-change"> 
-                                 <div class="am-btn am-btn-danger anniu">
-                                   评价商品
-                                 </div> </li> 
-                              @else
-                               <li class="td td-status"> 
-                                 <div class="item-status"> 
-                                  <p class="Mystatus">交易完成</p> 
-                                  <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p>
-                                  <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
-                                 </div> </li> 
+                            <p class="Mystatus">交易成功</p> 
+                            <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p> 
+                            <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
+                           </div> </li> 
+                          <li class="td td-change"> 
+                           <div class="am-btn am-btn-danger anniu">
+                             评价商品
+                           </div> </li> 
+                        @else
+                         <li class="td td-status"> 
+                           <div class="item-status"> 
+                            <p class="Mystatus">交易完成</p> 
+                            <p class="order-info"><a href="/horderinfo/{{$da->oid}}">订单详情</a></p>
+                            <p class="order-info"><a href="/wuliu/{{$da->order_code}}">查看物流</a></p> 
+                           </div> </li> 
                       @endif
                      </div> 
                     </div> 
@@ -304,7 +305,7 @@
                     </div> 
                     <div class="order-right"> 
                      <li class="td td-amount"> 
-                      <div class="item-amount">
+                      <div class="item-amount" >
                         合计：{{$d->total}}
                        <!-- <p>含优惠券<span>10.00</span></p>  -->
                       </div> </li> 
@@ -394,7 +395,7 @@
                     </div> 
                     <div class="order-right"> 
                      <li class="td td-amount"> 
-                      <div class="item-amount">
+                      <div class="item-amount" >
                         合计：{{$df->total}}
                        <!-- <p>含优惠券<span>10.00</span></p>  -->
                       </div> </li> 
@@ -484,7 +485,7 @@
                     </div> 
                     <div class="order-right"> 
                      <li class="td td-amount"> 
-                      <div class="item-amount">
+                      <div class="item-amount" >
                         合计：{{$ds->total}}
                        <!-- <p>含优惠券<span>10.00</span></p>  -->
                       </div> </li> 
@@ -579,7 +580,7 @@
                     </div> 
                     <div class="order-right"> 
                      <li class="td td-amount"> 
-                      <div class="item-amount">
+                      <div class="item-amount" >
                         合计：{{$pj->total}} 
                        <p>含优惠券<span>10.00</span></p> 
                       </div> </li> 
@@ -608,10 +609,14 @@
             </div>
             <!-- 订单结束 -->
           </div>
+            </table>
+           </div>
+          </div>
          </div>
+
          <!-- Single Tab Content End -->
          <!-- Single Tab Content Start -->
-         <div class="tab-pane fade" id="download" role="tabpanel">
+         <div class="tab-pane fade" id="cogoods" role="tabpanel">
           <div class="myaccount-content">
            <h3>收藏商品</h3>
            <div class="myaccount-table table-responsive text-center">
@@ -642,8 +647,9 @@
          </div>
          <!-- Single Tab Content End -->
          <!-- Single Tab Content Start -->
-         <div class="tab-pane fade" id="download" role="tabpanel">
-          <div class="myaccount-content">
+
+         <div class="tab-pane fade" id="download" role="tabpanel" style="width: 150%">
+          <div class="myaccount-content" style="width: 150%">
            <div class="user-safety">
             <div class="am-cf am-padding">
               <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">账户安全</strong> / <small>Set&nbsp;up&nbsp;Safety</small></div>
@@ -670,7 +676,7 @@
                     <div class="fore2"><small>启用支付密码功能，为您资产账户安全加把锁。</small></div>
                   </div>
                   <div class="fore3">
-                    <a href="setpay.html">
+                    <a href="#">
                       <div class="am-btn am-btn-secondary">立即启用</div>
                     </a>
                   </div>
@@ -732,11 +738,8 @@
          <!-- Single Tab Content End -->
          <!-- Single Tab Content Start -->
          <!-- 强改的 -->
-
          <div class="tab-pane fade" id="payment-method" role="tabpanel">
           <div class="myaccount-content">
-
-
            <div class="user-coupon">
             <!--标题 -->
             <div class="am-cf am-padding">
@@ -803,6 +806,7 @@
                     @endforeach
                   @endif
                     <!-- 这里结束 -->
+
                   </div>
 
                 </div>
@@ -915,10 +919,10 @@
          <div class="tab-pane fade" id="address-edit" role="tabpanel">
           <div class="myaccount-content">
            <h3>地址管理</h3>
-           <address> <p><strong>亲爱的您您</strong></p> <p>请您移步到下面的管理地址那里查看你所有添加的地址 <br />如果疑问请联系客服</p> <p>爱你哟（づ￣3￣）づ╭❤～</p> </address>
+           <address> <p><strong>亲爱你您</strong></p> <p>请您移步到下面的管理地址那里查看你所有添加的地址 <br />如果疑问请联系客服</p> <p>爱你哟（づ￣3￣）づ╭❤～</p> </address>
            <a href="/haddress/{{session('hid')}}" class="btn d-inline-block edit-address-btn"><i class="fa fa-edit"></i>管理地址</a>
              <a href="/haddaddress" class="btn d-inline-block edit-address-btn"><i class="fa fa-edit"></i>添加地址</a>
-
+          <!-- <button class="save-change-btn" data-toggle="modal" data-target="#mymodal">添加收货地址</button> -->
 
           </div>
          </div>
@@ -927,8 +931,8 @@
          <!-- Single Tab Content End -->
          <!-- Single Tab Content Start -->
          <div class="tab-pane fade" id="account-info" role="tabpanel">
-           <div class="myaccount-content">
-           <h3>账户详情</h3>
+          <div class="myaccount-content">
+            <h3>账户详情</h3>
            <div class="account-details-form">
             @if($user == '')
                 
@@ -984,13 +988,11 @@
 
 
 
-
-
           <div class="tab-pane fade" id="announce" role="tabpanel">
           <div class="myaccount-content">
            <h3>消息</h3>
-            @foreach($notice as $r)        
-                <div class="row"> 
+            @foreach($notice as $r)
+            <div class="row"> 
                <div class="col-lg-12"> 
                 <div class="faq-wrapper"> 
                  <div id="accordion">                           
@@ -1008,13 +1010,14 @@
                 </div> 
                </div> 
               </div>
-            
             @endforeach
-              {{$notice->render()}}
 
 
           </div>
          </div>
+
+
+
 
          <!-- Single Tab Content End -->
         </div>
@@ -1026,65 +1029,9 @@
    </div>
   </div>
   <!--=====  End of My Account page content  ======-->
-</body>
+ </body>
  <script type="text/javascript">
-    // 第一级别获取
-    $.get('/city',{upid:0},function(data){
-      // console.log(data);
-      // 禁止请选择选中
-      $('.ss').attr('disabled','true');
-      // 得到的数据数组内容 遍历每一个对象
-      for(var i=0;i<data.length;i++){
-        // 将我们遍历得到的地址写在option标签中
-        var info = $('<option value="'+data[i].id+'">'+data[i].name+'</option>');
-        // 将得到的option标签放入到select对象中
-        $('#sid').append(info);
-      }
-    },'json');
-    // 其他级别内容
-    //live 事件委派 他可以帮助我们将动态生成的内容只要选择器相同就可以有相应的事件
-    $('select').live('change',function(){
-        // 将当前的对象存储起来
-        obj = $(this);
-        // 通过ID查找下一个
-        id = $(this).val();
-        // 清除所有其他的select
-        obj.nextAll('select').remove();
-        // alert(id);
-        $.getJSON('/city',{upid:id},function(data){
-            // alert(data);
-            if(data !=''){
-                // 创建一个select标签
-                var select = $('<select></select>');
-                //防止当前城市没有办法选择所以我们先写上一个请选择option标签
-                var op = $('<option value="" class="mm">--请选择--</option>');
-                select.append(op);
-                // 循环得到的数组里面的option标签添加到selete
-                for(var i=0;i<data.length;i++){
-                    var info = $('<option value="'+data[i].id+'">'+data[i].name+'</option>');
-                    select.append(info);
-                }
-                // 将select标签添加到当前标签后面
-                obj.after(select);
-                // 把其他级别的请选择禁用
-                $('.mm').attr('disabled','true');
-            }
-        })
-    });
-    // 获取选中的数据提交操作页面
-    $('button').click(function(){
-        arr = [];
-        $('select').each(function(){
-            // 获取 当前select被选中的option标签文本
-            opdata = $(this).find('option:selected').html();
-            // 将我们得到的每个值放置到数组中 push()
-            arr.push(opdata);
-        })
-        //将得到的数组直接赋值给隐藏域的value值即可
-        $('input[name=city]').val(arr);
-
-    })
-    $(".d").bind('click',function(){
+ $(".d").bind('click',function(){
  //console.log(2);
 
 
@@ -1123,6 +1070,7 @@
     });
 
 });
+
 
 </script>
 </html>

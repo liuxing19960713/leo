@@ -41,6 +41,7 @@ class PayController extends Controller
         $data=DB::table('user_address')->where('uid','=',$uid)->where('isDefault','=',1)->get();
         // dd($data);
         //查询优惠券
+        
         $demo=DB::table('discount_log')->join('discount','discount_log.did','=','discount.id')->select('discount_log.name','discount.max','discount.minus','discount_log.did')->where('uid','=',$uid)->get();
         //处理优惠券数据
         if ($request->input('minus')) {
@@ -182,22 +183,7 @@ class PayController extends Controller
         //
     }
 
-    //支付宝 接口调用
-    public function pays(){
-        //商户订单号
-        $out_trade_no=87955251;
-        //订单名称
-        $subject=195471794;
-        //付款金额
-        $total_fee=0.01;
-        //商品描述
-        $body="jaj28568ja";
-        pay($out_trade_no,$subject,$total_fee,$body);
-    } 
-    //通知界面
-    public function returnurl(){
-        echo "支付成功";
-    }
+   
 
 
 }

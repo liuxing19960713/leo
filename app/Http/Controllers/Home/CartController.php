@@ -113,7 +113,7 @@ class CartController extends Controller
     {
         $id     = $request->input('id');
         // dd($id);
-        $goods  = session('cart');
+        $goods  = session('cart.html');
         foreach ($goods as $key => $value) {
             // var_dump($value);die;
             if($value['id'] ==$id){
@@ -176,7 +176,6 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $data = $request->except(['_token']);
-        
         if(!$this->checkexit($data['id'])){
             //如果session为空，则向里面加一条信息
             $request->session()->push('cart.html',$data);

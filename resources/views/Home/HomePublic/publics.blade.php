@@ -59,7 +59,6 @@
           <ul>
             @if(null !== (session('username')))
            <li><a href="/mypersonal">我的账户</a></li>
-           <li><a href="checkout.html">结算</a></li>
            <li><a href="/loginout">退出</a></li>
             @else
            <li><a href="/hlogin">登录</a></li>
@@ -118,41 +117,9 @@
         <!--=======  End of single icon  =======-->
         <!--=======  single icon  =======-->
         <div class="single-icon">
-         <a href="/hcart" id="cart-icon"> <i class="lnr lnr-cart"></i> <span class="text">我的购物车</span> <span class="count">0</span> </a>
+         <a href="/hcart" id="cart-icon"> <i class="lnr lnr-cart"></i> <span class="text">我的购物车</span>  </a>
          <!-- cart floating box -->
-         <div class="cart-floating-box hidden" id="cart-floating-box">
-          <div class="cart-items">
-           <div class="cart-float-single-item d-flex">
-            <span class="remove-item" id="remove-item"><a href="#"><i class="fa fa-times"></i></a></span>
-            <div class="cart-float-single-item-image">
-             <a href="single-product.html"><img src="/static/home/assets/images/products/product01.jpg" class="img-fluid" alt="" /></a>
-            </div>
-            <div class="cart-float-single-item-desc">
-             <p class="product-title"> <a href="single-product.html">Duis pulvinar obortis eleifend </a></p>
-             <p class="price"><span class="quantity">1 x</span> $20.50</p>
-            </div>
-           </div>
-           <div class="cart-float-single-item d-flex">
-            <span class="remove-item"><a href="#"><i class="fa fa-times"></i></a></span>
-            <div class="cart-float-single-item-image">
-             <a href="single-product.html"><img src="/static/home/assets/images/products/product02.jpg" class="img-fluid" alt="" /></a>
-            </div>
-            <div class="cart-float-single-item-desc">
-             <p class="product-title"> <a href="single-product.html">Fusce ultricies dolor vitae</a></p>
-             <p class="price"><span class="quantity">1 x</span> $20.50</p>
-            </div>
-           </div>
-          </div>
-          <div class="cart-calculation">
-           <div class="calculation-details">
-            <p class="total">Subtotal <span>$22</span></p>
-           </div>
-           <div class="floating-cart-btn text-center">
-            <a class="floating-cart-btn" href="checkout.html">Checkout</a>
-            <a class="floating-cart-btn" href="cart.html">View Cart</a>
-           </div>
-          </div>
-         </div>
+         
          <!-- end of cart floating box -->
         </div>
         <!--=======  End of single icon  =======-->
